@@ -32,6 +32,8 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.0",
     "moment-timezone": "^0.5.40",
-    "mongoose": "^6.8.1"
+    "mongoose": "^6.8.1",
+    "react-router-dom": "^6.6.1",
+    "react-scripts": "^5.0.1"
   }
 }
