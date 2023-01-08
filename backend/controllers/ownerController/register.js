@@ -10,7 +10,7 @@ const {generateJWTtoken} = require('../../utility/generateJWTtoken');
 // @access  public
 
 exports.registerUser = asyncHandler(async (req, res) => {
-    const { firstname, lastname, email, password, confirmPassword , contact, cName, cEmail,cContact,cAddress, cServiceTime } = req.body;
+    const { firstname, lastname, email, password, confirmPassword , contact, cName, cEmail,cContact,address:cAddress, cServiceTime } = req.body;
     console.log(req.body)
     console.log("from owner register")
     if (!firstname || !lastname || !email || !password  || !confirmPassword || !contact || !cName || !cEmail || !cContact || !cAddress || !cServiceTime) {
@@ -29,21 +29,22 @@ exports.registerUser = asyncHandler(async (req, res) => {
     }
 
     // Check if user already exsist
-    const userExists = await Owner.findOne({ email });
+    const userExists = await Owner.findOne({ $or : [{email:email},{contact:contact}] });
+    console.log(userExists);
     if (userExists) {
         res.status(400);
         console.log(userExists);
         throw new Error('Owner is already exists');
     }
 
-    const companyExists = await Company.findOne({ $or:[{email:cEmail},{name:cName}] });
+    const companyExists = await Company.findOne({ $or:[{email:cEmail},{name:cName},{contact:cContact}] });
     if( companyExists ){
         res.status(400);
         console.log(companyExists);
-        throw new Error('compnay is already exists');
+        throw new Error('company is already exists');
     }
 
-    const compnay = await Company.create({
+    const company = await Company.create({
         name : cName,
         email : cEmail,
         contact : cContact,
@@ -60,14 +61,14 @@ exports.registerUser = asyncHandler(async (req, res) => {
         contact,
         email,
         password: hashPassword,
-        company_id : compnay._id
+        company_name : cName
     });
 
     if (owner) {
         res.status(201).json({
-            _id: owner._id,
-            name: owner.name,
-            email: owner.email,
+            // _id: owner._id,
+            // name: owner.name,
+            // email: owner.email,
             // is this required
             token:generateJWTtoken(owner._id,"Owner")
         });
