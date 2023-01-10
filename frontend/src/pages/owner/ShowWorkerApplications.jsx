@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Spinner from '../components/Spinner';
+import Spinner from '../../components/Spinner';
 import Fuse from 'fuse.js';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';

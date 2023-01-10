@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
-import Spinner from "../components/Spinner";
-import ShowOrder from "../components/ShowOrder";
-import ShowAssignedWorkerDetails from "../components/ShowAssignedWorkerDetails";
+import Spinner from "../../components/Spinner";
+import ShowOrder from "../../components/ShowOrder";
+import ShowAssignedWorkerDetails from "../../components/ShowAssignedWorkerDetails";
 
 export default function TrackOrder({ cookies }) {
   const { order_id } = useParams();

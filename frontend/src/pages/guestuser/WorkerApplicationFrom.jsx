@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 // const { firstname, email, lastname, contact, company_id}
 
-export default function WorkerApplication() {
+export default function WorkerApplicationFrom() {
   const navigate = useNavigate();
   const {company_params_name} = useParams();
   // console.log(params);

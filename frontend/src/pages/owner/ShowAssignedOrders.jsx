@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../components/Spinner';
-import ShowOrder from "../components/ShowOrder";
+import Spinner from '../../components/Spinner';
+import ShowOrder from "../../components/ShowOrder";
 
 export default function ShowAssignedOrders({ cookies }) {
     const navigate = useNavigate();
