@@ -1,9 +1,6 @@
 const jwt = require('jsonwebtoken');
 exports.decodeJWTtoken = (req,res) => {
     if (req.body.token ) {
-        // console.log(req)
-        // get token from header
-        
 
         if (!req.body.token) {
             res.status(401);
