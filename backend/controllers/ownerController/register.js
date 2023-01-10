@@ -70,7 +70,7 @@ exports.registerUser = asyncHandler(async (req, res) => {
             // name: owner.name,
             // email: owner.email,
             // is this required
-            token:generateJWTtoken(owner._id,"Owner")
+            token:generateJWTtoken(owner,"Owner")
         });
     }else{
         res.status(400);

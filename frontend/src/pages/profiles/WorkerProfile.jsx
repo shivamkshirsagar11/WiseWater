@@ -42,6 +42,12 @@ export default function WorkerProfile({ cookies, removeCookies }) {
         navigate('/');
     }
 
+    const redirectHandler = (e) => {
+        e.preventDefault();
+        console.log(e.target);
+        navigate(`${e.target.value}`);
+    }
+
     return (
         <>
         <div>
@@ -50,6 +56,8 @@ export default function WorkerProfile({ cookies, removeCookies }) {
             <p>your email address : {userData.email}</p>
             <p>your Contact number : {userData.contact}</p>
             <button onClick={handleLogout}>logout</button>
+            <button onClick={redirectHandler} value="/worker/orders/assigned">show assigned orders</button>
+            <button onClick={redirectHandler} value="/worker/orders/delievered">show delievered Orders</button>
         </div>
 
         <h1> Company Details</h1>

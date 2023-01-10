@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ShowOrder({order}) {
+export default function ShowPlacedorder({order}) {
     return (
         <div>
             <p>water type {order.water_type}</p>
@@ -13,7 +13,6 @@ export default function ShowOrder({order}) {
             <p>city {order.address.city}</p>
             <p>pincde {order.address.pincode}</p>
             <p>state {order.address.state}</p>
-            {order.status && <p>status {order.status}</p>}
         </div>
     )
 }
