@@ -22,7 +22,7 @@ export default function ShowAssignedOrders({ cookies }) {
                 const data = await response.json();
                 console.log(data)
                 if (data.type === 'error') throw new Error(data.message);
-                setDelieveredOrders(data.assignedOrders);
+                setDelieveredOrders(data.orders);
             } catch (error) {
                 toast.error(error)
             }
