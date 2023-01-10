@@ -6,18 +6,23 @@ import { useNavigate } from 'react-router-dom';
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
 
+// now it seems like i am able to understand how useRef is works
+// and changed comapnies object from useState hook to useRef hook
+// REASON :- optimization
+
 export default function ShowCompanies({ cookies }) {
 
     const navigate = useNavigate();
-    const [companies, setCompanies] = useState(null);
+    const companies = useRef(null);
     const [userType, setUserType] = useState(null);
     const [searchedCompanies, setSearchedCompanies] = useState(null);
     const fuse = useRef(null);
+
     useEffect(() => {
         const { token } = cookies;
         const fun = async () => {
-            const response = await fetch(`http://localhost:3001/api/user/showCompanies`);
-            const userTypeResponse = await fetch(`http://localhost:3001/api/user/userType`, {
+            const response = await fetch(`http://localhost:3001/api/user/show-companies`);
+            const userTypeResponse = await fetch(`http://localhost:3001/api/user/give-user-type`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -26,7 +31,6 @@ export default function ShowCompanies({ cookies }) {
             });
             const data = await response.json();
             const typeOfUser = await userTypeResponse.json();
-            console.log(typeOfUser);
             setUserType(typeOfUser.userType);
             fuse.current = new Fuse(data.companies, {
                 keys: [
@@ -35,45 +39,40 @@ export default function ShowCompanies({ cookies }) {
                 ],
                 includeScore: true
             });
-            // console.log(fuse);   
-            setCompanies(data.companies);
+            companies.current = data.companies;
             setSearchedCompanies(data.companies);
         }
         fun();
-    }, []);
+    }, [cookies]);
 
     const [query, setQuery] = useState('');
 
     useEffect(() => {
         if (fuse.current) {
             if ('' !== query) {
-                console.log(query)
                 const results = fuse.current.search(query);
-                const temp = [];
+                const companies = [];
                 results.forEach(result => {
-                    temp.push(result.item);
+                    companies.push(result.item);
                 });
-                console.log(temp);
-                setSearchedCompanies(temp);
-            } else
                 setSearchedCompanies(companies);
+            } else
+                setSearchedCompanies(companies.current);
         } else {
-            console.log("here")
+            
         }
-    }, [fuse, query]);
+    }, [query]);
 
-    if (null === companies)
+    if (null === searchedCompanies)
         return (<Spinner />);
 
     const handleApply = (e) => {
         e.preventDefault();
-        console.log(e.target);
         navigate(`/worker/application/${e.target.value}`);
     }
 
     const handlePlaceorder = (e) => {
         e.preventDefault();
-        console.log(e.target);
         navigate(`/customer/placeorder/${e.target.value}`);
     }
 
