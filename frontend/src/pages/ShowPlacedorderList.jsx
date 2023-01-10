@@ -31,7 +31,7 @@ export default function ShowPlacedorderList({ cookies }) {
     if (null === orderList) {
         return <Spinner />
     }
-    const handleTrackOrder = (e)=>{
+    const handleTrackOrder = (e) => {
         e.preventDefault();
         console.log(e.target.value)
         navigate(`${e.target.value}`)
@@ -42,13 +42,13 @@ export default function ShowPlacedorderList({ cookies }) {
             {
                 orderList.map((order, index) => {
                     return (
-                        <>
-                            <div key={index}>
-                                <h2 >order number {index}</h2>
-                                <ShowOrder order={order} />
-                                <button value={`/customer/order/track/${order._id}`} onClick={handleTrackOrder}>Track Order</button>
-                            </div>
-                        </>
+
+                        <div key={index}>
+                            <h2 >order number {index}</h2>
+                            <ShowOrder order={order} />
+                            <button value={`/customer/order/track/${order._id}`} onClick={handleTrackOrder}>Track Order</button>
+                        </div>
+
                     )
                 })
             }

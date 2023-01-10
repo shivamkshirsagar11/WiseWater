@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
 
-export default function CustomerProfile({ cookies,removeCookies }) {
+export default function CustomerProfile({ cookies, removeCookies }) {
     const navigate = useNavigate();
-    
+
     const [userData, setUserData] = useState(null);
-    // const [companyData, setCompanyData] = useState(null);
+
     useEffect(() => {
         const fun = async () => {
             try {
@@ -29,7 +29,7 @@ export default function CustomerProfile({ cookies,removeCookies }) {
         fun();
     }, []);
 
-    if (userData === null ) {
+    if (userData === null) {
         return <Spinner />
     }
 

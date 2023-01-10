@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 
 export default function WorkerAssignedOrders({ cookies }) {
     const navigate = useNavigate();
-    const {token} = cookies;
     const [assignedOrders, setAssignedOrders] = useState(null);
+    const {token} = cookies;
     useEffect(() => {
         const fun = async () => {
             try {
@@ -36,7 +36,6 @@ export default function WorkerAssignedOrders({ cookies }) {
         return <Spinner />;
     }
 
-
     const handleDelieverOrder = async (e)=>{
         e.preventDefault();
         console.log(e.target.value);
@@ -63,6 +62,7 @@ export default function WorkerAssignedOrders({ cookies }) {
             {0 === assignedOrders.length && <p>no order are assigned</p>}
             {
                 assignedOrders.map((assignedOrder, index) => {
+                    delete assignedOrder.status
                     return (
                         <div key={index}>
                             <h2>order number {index}</h2>

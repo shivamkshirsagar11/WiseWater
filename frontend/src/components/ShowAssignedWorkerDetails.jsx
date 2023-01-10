@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function AssignedWorker({worker}) {
+export default function ShowAssignedWorkerDetails({worker}) {
     console.log("worker from customer track order", worker)
     return (
         <div>

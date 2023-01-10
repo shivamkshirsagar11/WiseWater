@@ -6,9 +6,9 @@ import { toast } from 'react-toastify';
 
 export default function ShowAssignedOrders({ cookies }) {
     const navigate = useNavigate();
+    const { token } = cookies;
     const [delieveredOrders, setDelieveredOrders] = useState(null);
     useEffect(() => {
-        const { token } = cookies;
         const fun = async () => {
             try {
                 const response = await fetch('http://localhost:3001/api/worker/show-delievered-orders', {
@@ -34,13 +34,12 @@ export default function ShowAssignedOrders({ cookies }) {
         return <Spinner />;
     }
 
-    
-
     return (
         <div>
             {0 === delieveredOrders.length && <p>no order are assigned</p>}
             {
                 delieveredOrders.map((assignedOrder, index) => {
+                    delete assignedOrder.status;
                     return (
                         <div key={index}>
                             <h2>order number {index}</h2>
