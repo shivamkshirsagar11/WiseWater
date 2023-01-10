@@ -8,7 +8,7 @@ const Company = require('../../models/companyModel');
 // @route   get /api/woker/application
 // @access  public
 
-exports.workerApplication = asyncHandler(async (req, res) => {
+exports.workerApplicationForm = asyncHandler(async (req, res) => {
     const { firstname, email, lastname, contact, companyname } = req.body;
 
     if (!firstname || !email || !lastname || !contact || !companyname) {
@@ -21,7 +21,7 @@ exports.workerApplication = asyncHandler(async (req, res) => {
     }
 
     const company = await Company.findOne({ name: companyname });
-    console.log(company);
+    
     if (null === company) {
         res.status(401);
         throw new Error('company is not exists');

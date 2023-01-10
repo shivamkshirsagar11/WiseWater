@@ -64,7 +64,7 @@ function App() {
 
             {/* worker   */}
             <Route path="/worker">
-              <Route path="/worker/application/:company_params_name" element={<WorkerApplicationFrom />} />
+              <Route path="/worker/application/:companyname" element={<WorkerApplicationFrom />} />
               <Route path="/worker/orders/assigned" element={<WorkerAssignedOrders cookies={cookies} />} />
               <Route path="/worker/orders/delievered" element={<WorkerDelieveredOrderes cookies={cookies} />} />
               <Route path="/worker/profile" element={<WorkerProfile cookies={cookies} removeCookies={handleRemoveCookies} />} />
