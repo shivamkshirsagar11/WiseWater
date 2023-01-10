@@ -11,7 +11,7 @@ export default function ShowAssignedOrders({ cookies }) {
         const { token } = cookies;
         const fun = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api/owner/show-delievered-orders', {
+                const response = await fetch('http://localhost:3001/api/worker/show-delievered-orders', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json, text/plain, */*',
