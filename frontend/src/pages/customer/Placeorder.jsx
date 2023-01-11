@@ -18,7 +18,6 @@ export default function Placeorder({ cookies }) {
                     body: JSON.stringify({ token })
                 });
                 const data = await response.json();
-                console.log(data)
                 if (data.type === 'error') throw new Error(data.message);
             } catch (error) {
                 alert('you are not authenticated' + error);
@@ -26,10 +25,9 @@ export default function Placeorder({ cookies }) {
             }
         }
         authenticate();
-    }, []);
+    }, [cookies]);
 
     const { company_name } = useParams();
-    console.log(company_name);
 
     const [formData, setFormData] = useState({
         water_type: '', water_temperature: '', water_quantity: '', companyname: company_name
@@ -38,7 +36,6 @@ export default function Placeorder({ cookies }) {
     const handleInputData = (e) => {
         const { name, value } = e.target;
         if ('water_quantity' === name) {
-            console.log(value);
             const ch = (value.slice(-1));
 
             if (!(ch <= '9' && ch >= '0'))

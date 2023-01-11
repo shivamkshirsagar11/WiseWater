@@ -20,14 +20,13 @@ export default function CustomerProfile({ cookies, removeCookies }) {
                 });
                 const data = await response.json();
                 if (data.type === 'error') throw (data.message);
-                console.log(data);
                 setUserData(data.user);
             } catch (error) {
                 navigate('/');
             }
         }
         fun();
-    }, []);
+    }, [cookies]);
 
     if (userData === null) {
         return <Spinner />
@@ -35,14 +34,12 @@ export default function CustomerProfile({ cookies, removeCookies }) {
 
     const handleLogout = (e) => {
         e.preventDefault();
-        console.log(removeCookies)
         removeCookies('token');
         navigate('/');
     }
 
     const redirectHandler = (e) => {
         e.preventDefault();
-        console.log(e.target);
         navigate(`${e.target.value}`);
     }
 
