@@ -11,7 +11,6 @@ export default function WorkerAssignedOrders({ cookies }) {
     useEffect(() => {
         const fun = async () => {
             try {
-                const { token } = cookies;
                 const response = await fetch('http://localhost:3001/api/worker/show-assigned-orders', {
                     method: 'POST',
                     headers: {
@@ -56,7 +55,11 @@ export default function WorkerAssignedOrders({ cookies }) {
             toast.error(error);
         }
     }
-
+const handleAssignedOrderQuery = (e)=>{
+    e.preventDefault();
+    console.log("Order no: ",e.target.value);
+    navigate(`/worker/order/assigned/query/${e.target.value}`)
+}
     return (
         <div>
             {0 === assignedOrders.length && <p>no order are assigned</p>}
@@ -68,7 +71,7 @@ export default function WorkerAssignedOrders({ cookies }) {
                             <h2>order number {index}</h2>
                             <ShowOrder order={assignedOrder} />
                             <button onClick={handleDelieverOrder} value={`${assignedOrder._id}`}>Order Delievered</button>
-                            {/* <button value={`${assignedOrder._id}`} onclick={handleReAssignOrder}>Re-assign Order</button> */}
+                            <button value={`${assignedOrder._id}`} onClick={handleAssignedOrderQuery}>Order Query</button>
                         </div>
                     )
                 })

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
+import ShowCustomerDetails from '../../components/ShowCustomerDetails';
 
 export default function CustomerProfile({ cookies, removeCookies }) {
     const navigate = useNavigate();
@@ -46,15 +47,7 @@ export default function CustomerProfile({ cookies, removeCookies }) {
     return (
         <>
             <div>
-                <p>your first name : {userData.firstname}</p>
-                <p>your last name : {userData.lastname}</p>
-                <p>your email address : {userData.email}</p>
-                <p>your Contact number : {userData.contact}</p>
-                <h3>address</h3>
-                <p>line1 : {userData.address.line1}</p>
-                <p>line1 : {userData.address.line2}</p>
-                <p>line1 : {userData.address.pincode}</p>
-                <p>line1 : {userData.address.state}</p>
+                <ShowCustomerDetails userData={userData}/>
             </div>
             <button onClick={redirectHandler} value="/show-companies">Show companies</button>
             <button onClick={redirectHandler} value="/customer/show-placed-orders">My orders</button>

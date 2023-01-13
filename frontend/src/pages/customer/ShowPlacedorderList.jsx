@@ -46,7 +46,7 @@ export default function ShowPlacedorderList({ cookies }) {
                         <div key={index}>
                             <h2 >order number {index}</h2>
                             <ShowOrder order={order} />
-                            <button value={`/customer/order/track/${order._id}`} onClick={handleTrackOrder}>Track Order</button>
+                            {order.status !== "delievered" && order.status !== "in-query" && <button value={`/customer/order/track/${order._id}`} onClick={handleTrackOrder}>Track Order</button>}
                         </div>
 
                     )

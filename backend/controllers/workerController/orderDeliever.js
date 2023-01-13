@@ -1,6 +1,6 @@
 const Order = require('../../models/orderModel');
 exports.orderDeliever = async (req, res) => {
-    const assignedOrder = await Order.find({ $and: [{ worker_id: req.user._id }, { order_id: req.body.order_id }] })
+    const assignedOrder = await Order.find({ $and: [{ worker_id: req.user._id }, {_id: req.body.order_id }] })
     if (assignedOrder) {
         const updated = await Order.updateOne({ _id: req.body.order_id }, { $set: { status: "delievered" } })
         if (updated) {

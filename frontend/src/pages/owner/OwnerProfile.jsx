@@ -79,6 +79,7 @@ export default function OwnerProfile({ cookies,removeCookies }) {
             <button onClick={redirectHandler} value="/show-companies">Show companies</button>
             <button onClick={redirectHandler} value="/owner/show-pending-orders">Show pending orders</button>
             <button onClick={redirectHandler} value="/owner/show-assigned-orders">show assigned orders</button>
+            <button onClick={redirectHandler} value="/owner/show-in-query-orders">Worker Order Query</button>
             <button onClick={handleLogout}>logout</button>
         </>
     );

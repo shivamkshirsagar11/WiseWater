@@ -58,6 +58,7 @@ export default function WorkerProfile({ cookies, removeCookies }) {
             <button onClick={handleLogout}>logout</button>
             <button onClick={redirectHandler} value="/worker/orders/assigned">show assigned orders</button>
             <button onClick={redirectHandler} value="/worker/orders/delievered">show delievered Orders</button>
+            
         </div>
 
         <h1> Company Details</h1>

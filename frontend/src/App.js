@@ -15,19 +15,24 @@ import CustomerProfile from './pages/customer/CustomerProfile';
 import Placeorder from './pages/customer/Placeorder';
 import ShowPlacedorderList from './pages/customer/ShowPlacedorderList';
 import TrackOrder from "./pages/customer/TrackOrder";
+import ShowCustomerDetails from "./components/ShowCustomerDetails";
+import ShowCustomer from './pages/owner/ShowCustomer'
 
 // worker
 import WorkerAssignedOrders from './pages/worker/WorkerAssignedOrders';
 import WorkerProfile from './pages/worker/WorkerProfile';
-import WorkerDelieveredOrderes from "./pages/worker/WorkerDelieveredOrders"
+import WorkerDelieveredOrderes from "./pages/worker/WorkerDelieveredOrders";
+import WorkerOrderQuery from "./pages/worker/WorkerOrderQuery";
 
 // owner
+import ShowInQueryOrderList from "./pages/owner/ShowInQueryOrderList";
 import OwnerRegistration from './pages/owner/OwnerRegistration';
 import ShowWorkerApplications from './pages/owner/ShowWorkerApplications';
 import ShowPendingOrderList from './pages/owner/ShowPendingOrderList';
 import OwnerProfile from './pages/owner/OwnerProfile';
 import ShowWorkers from "./pages/owner/ShowWorkers";
 import ShowAssignedOrders from './pages/owner/ShowAssignedOrders'
+import ResolveInQueryOrder from "./pages/owner/ResolveInQueryOrder";
 
 // general pages
 import NotFound from './pages/NotFound';
@@ -67,6 +72,7 @@ function App() {
               <Route path="/worker/application/:companyname" element={<WorkerApplicationFrom />} />
               <Route path="/worker/orders/assigned" element={<WorkerAssignedOrders cookies={cookies} />} />
               <Route path="/worker/orders/delievered" element={<WorkerDelieveredOrderes cookies={cookies} />} />
+              <Route path="/worker/order/assigned/query/:order_id" element={<WorkerOrderQuery cookies={cookies} />} />
               <Route path="/worker/profile" element={<WorkerProfile cookies={cookies} removeCookies={handleRemoveCookies} />} />
             </Route>
 
@@ -78,6 +84,9 @@ function App() {
               <Route path="/owner/show-pending-orders" element={<ShowPendingOrderList cookies={cookies} />} />
               <Route path="/owner/show-workers/:order_id" element={<ShowWorkers cookies={cookies} />} />
               <Route path="/owner/show-assigned-orders" element={<ShowAssignedOrders cookies={cookies} />} />
+              <Route path="/owner/show-in-query-orders" element={<ShowInQueryOrderList cookies={cookies} />} />
+              <Route path="/owner/in-query-order/resolve/:order_id" element={<ResolveInQueryOrder cookies={cookies} />} />
+              <Route path="/owner/resolve-order-query/customerdetails/:customer_id" element={<ShowCustomer cookies={cookies} />} />
             </Route>
 
             {/* show companies   */}
