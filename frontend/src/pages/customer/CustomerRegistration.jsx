@@ -25,7 +25,7 @@ export default function CustomerRegistration({ setCookies }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const customer = { ...formData, ...formAddress };
-
+        // await registerCustomer(customer);
         try {
             const response = await fetch(`http://localhost:3001/api/customer/register`, {
 
