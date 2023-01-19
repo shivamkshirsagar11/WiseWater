@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate,useParams } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
 import { toast } from 'react-toastify';
-import ShowCustomerDetails from '../../components/ShowCustomerDetails';
+import UserDetails from '../../components/UserDetails';
+
 export default function ResolveInQueryOrder({ cookies }) {
     const {customer_id} = useParams();
     const navigate = useNavigate();
@@ -38,7 +39,7 @@ export default function ResolveInQueryOrder({ cookies }) {
 
     return (
         <div>
-            <ShowCustomerDetails userData={customer}/>
+            <UserDetails userData={customer}/>
         </div>
     )
 }

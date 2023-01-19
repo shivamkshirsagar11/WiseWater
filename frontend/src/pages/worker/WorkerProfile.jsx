@@ -21,7 +21,7 @@ export default function WorkerProfile({ cookies, removeCookies }) {
             }
         }
         fetchData();
-    }, []);
+    }, [cookies]);
 
     if (userData === null) {
         return <Spinner />
