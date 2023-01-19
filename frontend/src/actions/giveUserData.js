@@ -9,10 +9,10 @@ const giveUserData = async (userType, token) => {
         });
         const data = await response.json();
         if (data.type === 'error')
-            throw (data.message);
+            throw new Error(data.message);
         else {
             const responseObject = {
-                type : 'success',
+                type : 'data',
                 userData : data.userData,
             }
             if( 'customer'!==userType ){
@@ -23,7 +23,7 @@ const giveUserData = async (userType, token) => {
     } catch (error) {
         return ({
             type: 'error',
-            data: error
+            error: error
         })
     }
 }

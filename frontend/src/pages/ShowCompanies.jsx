@@ -59,16 +59,6 @@ export default function ShowCompanies({ cookies }) {
     if (null === searchedCompanies)
         return (<Spinner />);
 
-    // const handleApply = (e) => {
-    //     e.preventDefault();
-    //     navigate(`/worker/application/${e.target.value}`);
-    // }
-
-    // const handlePlaceorder = (e) => {
-    //     e.preventDefault();
-    //     navigate(`/customer/placeorder/${e.target.value}`);
-    // }
-
     const redirectHandler = (e) => {
         e.preventDefault();
         console.log(e.target);

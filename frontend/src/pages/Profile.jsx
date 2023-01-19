@@ -18,7 +18,7 @@ export default function Profile({ cookies, removeCookies, userType }) {
             const { token } = cookies;
             const response = await giveUserData(userType, token);
             if ('error' === response.type) {
-                alert(response.data);
+                alert(response.error);
                 navigate('/');
             } else {
                 setUserData(response.userData);
