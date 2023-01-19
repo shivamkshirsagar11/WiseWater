@@ -1,6 +1,5 @@
 const giveUserData = async (userType, token) => {
     try {
-        console.log(userType + ' ' + token);
         const response = await fetch(`http://localhost:3001/api/${userType}/profile`, {
             method: "POST",
             headers: {
@@ -12,13 +11,16 @@ const giveUserData = async (userType, token) => {
         if (data.type === 'error')
             throw (data.message);
         else {
-            return ({
-                type: 'success',
-                data: data.user
-            });
+            const responseObject = {
+                type : 'success',
+                userData : data.userData,
+            }
+            if( 'customer'!==userType ){
+                responseObject.companyData = data.companyData
+            }
+            return (responseObject);
         }
     } catch (error) {
-        console.log(error);
         return ({
             type: 'error',
             data: error

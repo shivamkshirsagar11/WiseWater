@@ -14,7 +14,7 @@ exports.profile = asyncHandler(async(req,res) =>{
     // console.log(obj);
     console.log(company);
     res.status(200).json({
-        user: req.user,
-        company : company
+        userData: req.user,
+        companyData : company
     })
 })

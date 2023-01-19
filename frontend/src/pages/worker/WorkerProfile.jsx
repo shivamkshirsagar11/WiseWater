@@ -1,34 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
+import { giveUserData } from '../../actions/giveUserData';
 
 export default function WorkerProfile({ cookies, removeCookies }) {
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
     const [companyData, setCompanyData] = useState(null);
+
     useEffect(() => {
-        const fun = async () => {
-            try {
-                const { token } = cookies;
-                const response = await fetch(`http://localhost:3001/api/worker/profile`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ token }),
-                });
-                const data = await response.json();
-                console.log(data);
-                if (data.type === 'error') throw (data.message);
-                
-                setUserData(data.user);
-                setCompanyData(data.company);
-            } catch (error) {
-                // console.
+        const fetchData = async () => {
+            const { token } = cookies;
+            const response = await giveUserData('worker', token);
+            if ('error' === response.type) {
+                alert(response.data);
                 navigate('/');
+            } else {
+                setUserData(response.userData);
+                setCompanyData(response.companyData);
             }
         }
-        fun();
+        fetchData();
     }, []);
 
     if (userData === null) {
@@ -50,38 +42,38 @@ export default function WorkerProfile({ cookies, removeCookies }) {
 
     return (
         <>
-        <div>
-            <p>your first name : {userData.firstname}</p>
-            <p>your last name : {userData.lastname}</p>
-            <p>your email address : {userData.email}</p>
-            <p>your Contact number : {userData.contact}</p>
-            <button onClick={handleLogout}>logout</button>
-            <button onClick={redirectHandler} value="/worker/orders/assigned">show assigned orders</button>
-            <button onClick={redirectHandler} value="/worker/orders/delievered">show delievered Orders</button>
-            
-        </div>
+            <div>
+                <p>your first name : {userData.firstname}</p>
+                <p>your last name : {userData.lastname}</p>
+                <p>your email address : {userData.email}</p>
+                <p>your Contact number : {userData.contact}</p>
+                <button onClick={handleLogout}>logout</button>
+                <button onClick={redirectHandler} value="/worker/orders/assigned">show assigned orders</button>
+                <button onClick={redirectHandler} value="/worker/orders/delievered">show delievered Orders</button>
 
-        <h1> Company Details</h1>
-        <table>
-            <thead>
-                <tr>
-                <th>Email</th>
-                <th>Contact No</th>
-                <th>Service time</th>
-                <th>Rating</th>
-                <th>Company Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{companyData.email}</td>
-                    <td>{companyData.contact}</td>
-                    <td>{companyData.serviceTime}</td>
-                    <td>{companyData.rating}</td>
-                    <td>{companyData.name}</td>
-                </tr>
-            </tbody>
-        </table>
+            </div>
+
+            <h1> Company Details</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Contact No</th>
+                        <th>Service time</th>
+                        <th>Rating</th>
+                        <th>Company Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{companyData.email}</td>
+                        <td>{companyData.contact}</td>
+                        <td>{companyData.serviceTime}</td>
+                        <td>{companyData.rating}</td>
+                        <td>{companyData.name}</td>
+                    </tr>
+                </tbody>
+            </table>
         </>
     )
 }

@@ -20,7 +20,7 @@ export default function CustomerProfile({ cookies, removeCookies }) {
                 alert(response.data);
                 navigate('/');
             }else{
-                setUserData(response.data);
+                setUserData(response.userData);
             }
         }
         fetchData();

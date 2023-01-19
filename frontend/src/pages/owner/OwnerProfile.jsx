@@ -1,35 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner'
-import e from 'cors';
+import { giveUserData } from '../../actions/giveUserData';
 
-export default function OwnerProfile({ cookies,removeCookies }) {
-    console.log(removeCookies)
+export default function OwnerProfile({ cookies, removeCookies }) {
     const navigate = useNavigate();
-    console.log('owner profile');
     const [userData, setUserData] = useState(null);
     const [companyData, setCompanyData] = useState(null);
+
     useEffect(() => {
-        const fun = async () => {
-            try {
-                const { token } = cookies;
-                const response = await fetch(`http://localhost:3001/api/owner/profile`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ token }),
-                });
-                const data = await response.json();
-                if (data.type === 'error') throw (data.message);
-                console.log(data);
-                setUserData(data.user);
-                setCompanyData(data.company);
-            } catch (error) {
+        const fetchData = async () => {
+            const { token } = cookies;
+            const response = await giveUserData('owner', token);
+            if ('error' === response.type) {
+                alert(response.data);
                 navigate('/');
+            } else {
+                setUserData(response.userData);
+                setCompanyData(response.companyData);
             }
         }
-        fun();
+        fetchData();
     }, []);
 
     const handleLogout = (e) => {
