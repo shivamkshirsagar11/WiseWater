@@ -11,7 +11,6 @@ import WorkerApplicationFrom from './pages/guestuser/WorkerApplicationFrom';
 
 // customer
 import CustomerRegistration from './pages/customer/CustomerRegistration';
-import CustomerProfile from './pages/customer/CustomerProfile';
 import Placeorder from './pages/customer/Placeorder';
 import ShowPlacedorderList from './pages/customer/ShowPlacedorderList';
 import TrackOrder from "./pages/customer/TrackOrder";
@@ -20,7 +19,6 @@ import ShowCustomer from './pages/owner/ShowCustomer'
 
 // worker
 import WorkerAssignedOrders from './pages/worker/WorkerAssignedOrders';
-import WorkerProfile from './pages/worker/WorkerProfile';
 import WorkerDelieveredOrderes from "./pages/worker/WorkerDelieveredOrders";
 import WorkerOrderQuery from "./pages/worker/WorkerOrderQuery";
 
@@ -29,7 +27,6 @@ import ShowInQueryOrderList from "./pages/owner/ShowInQueryOrderList";
 import OwnerRegistration from './pages/owner/OwnerRegistration';
 import ShowWorkerApplications from './pages/owner/ShowWorkerApplications';
 import ShowPendingOrderList from './pages/owner/ShowPendingOrderList';
-import OwnerProfile from './pages/owner/OwnerProfile';
 import ShowWorkers from "./pages/owner/ShowWorkers";
 import ShowAssignedOrders from './pages/owner/ShowAssignedOrders'
 import ResolveInQueryOrder from "./pages/owner/ResolveInQueryOrder";

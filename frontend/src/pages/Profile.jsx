@@ -6,7 +6,7 @@ import { giveUserData } from '../actions/giveUserData';
 import CompanyDetails from '../components/CompanyDetails';
 import Address from '../components/Address';
 import UserDetails from '../components/UserDetails';
-import Buttons from '../components/Buttons';
+import ProfileButtons from '../components/ProfileButtons';
 
 export default function Profile({ cookies, removeCookies, userType }) {
     const navigate = useNavigate();
@@ -53,10 +53,10 @@ export default function Profile({ cookies, removeCookies, userType }) {
             {
                 'customer' !== userType ?
                     <CompanyDetails companyData={companyData} /> :
-                    <Address />
+                    <Address address={userData.address}/>
             }
 
-            <Buttons userType={userType} redirectHandler={redirectHandler} />
+            <ProfileButtons userType={userType} redirectHandler={redirectHandler} />
 
             <button onClick={handleLogout}>logout</button>
         </>

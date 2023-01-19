@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Buttons({userType,redirectHandler}) {
+function ProfileButtons({userType,redirectHandler}) {
 
     
 
@@ -37,4 +37,4 @@ function Buttons({userType,redirectHandler}) {
     )
 }
 
-export default Buttons
+export default ProfileButtons

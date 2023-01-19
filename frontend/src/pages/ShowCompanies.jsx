@@ -3,6 +3,9 @@ import Spinner from '../components/Spinner';
 import Fuse from 'fuse.js';
 import { useNavigate } from 'react-router-dom';
 
+import { giveCompaniesData } from '../actions/giveCompaniesData';
+import { giveUserType } from '../actions/giveUserType';
+
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
 
@@ -20,29 +23,21 @@ export default function ShowCompanies({ cookies }) {
 
     useEffect(() => {
         const { token } = cookies;
-        const fun = async () => {
-            const response = await fetch(`http://localhost:3001/api/user/show-companies`);
-            const userTypeResponse = await fetch(`http://localhost:3001/api/user/give-user-type`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ token }),
-            });
-            const data = await response.json();
-            const typeOfUser = await userTypeResponse.json();
-            setUserType(typeOfUser.userType);
-            fuse.current = new Fuse(data.companies, {
+        const fetchData = async () => {
+            const companiesData = await giveCompaniesData();
+            const userType = await giveUserType(token);
+            fuse.current = new Fuse(companiesData, {
                 keys: [
                     'name',
                     'address',
                 ],
                 includeScore: true
             });
-            companies.current = data.companies;
-            setSearchedCompanies(data.companies);
+            companies.current = companiesData;
+            setSearchedCompanies(companiesData);
+            setUserType(userType);
         }
-        fun();
+        fetchData();
     }, [cookies]);
 
     const [query, setQuery] = useState('');
@@ -58,22 +53,26 @@ export default function ShowCompanies({ cookies }) {
                 setSearchedCompanies(companies);
             } else
                 setSearchedCompanies(companies.current);
-        } else {
-            
         }
     }, [query]);
 
     if (null === searchedCompanies)
         return (<Spinner />);
 
-    const handleApply = (e) => {
-        e.preventDefault();
-        navigate(`/worker/application/${e.target.value}`);
-    }
+    // const handleApply = (e) => {
+    //     e.preventDefault();
+    //     navigate(`/worker/application/${e.target.value}`);
+    // }
 
-    const handlePlaceorder = (e) => {
+    // const handlePlaceorder = (e) => {
+    //     e.preventDefault();
+    //     navigate(`/customer/placeorder/${e.target.value}`);
+    // }
+
+    const redirectHandler = (e) => {
         e.preventDefault();
-        navigate(`/customer/placeorder/${e.target.value}`);
+        console.log(e.target);
+        navigate(`${e.target.value}`);
     }
 
     return (
@@ -86,8 +85,8 @@ export default function ShowCompanies({ cookies }) {
                     return (
                         <p key={index} >
                             {company.name}
-                            {'guest' === userType && <button value={company.name} onClick={handleApply}>apply</button>}
-                            {'customer' === userType && <button value={company.name} onClick={handlePlaceorder}>place order</button>}
+                            {'guest' === userType && <button value={`/worker/application/${company.name}`} onClick={redirectHandler}>apply</button>}
+                            {'customer' === userType && <button value={`/customer/placeorder/${company.name}`} onClick={redirectHandler}>place order</button>}
                         </p>
                     )
                 })
