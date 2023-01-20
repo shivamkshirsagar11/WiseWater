@@ -10,7 +10,7 @@ import Login from "./pages/guestuser/login";
 import WorkerApplicationFrom from './pages/guestuser/WorkerApplicationFrom';
 
 // customer
-import CustomerRegistration from './pages/customer/CustomerRegistration';
+import CustomerRegistration from './pages/register/CustomerRegistration';
 import Placeorder from './pages/customer/Placeorder';
 import ShowPlacedorderList from './pages/customer/ShowPlacedorderList';
 import TrackOrder from "./pages/customer/TrackOrder";
