@@ -1,7 +1,7 @@
-const userLogin = async (user) => {
-    console.log(user)
+const registerUser = async (user) => {
     try {
-        const response = await fetch(`http://localhost:3001/api/user/login`, {
+        const response = await fetch(`http://localhost:3001/api/customer/register`, {
+
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -10,21 +10,21 @@ const userLogin = async (user) => {
             body: JSON.stringify(user)
         });
         const data = await response.json();
-        if ('error' === data.type) 
+
+        if ('error' === data.type)
             throw new Error(data.message);
-        else{
+        else {
             return {
-                type : 'data',
-                token : data.token,
+                type: 'data',
+                token: data.token
             }
         }
-
     } catch (error) {
-        return {
-            type : 'error',
-            error : error
-        }
+        return ({
+            type: 'error',
+            error,
+        })
     }
 }
 
-export { userLogin };
+export { registerUser };

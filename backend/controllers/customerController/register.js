@@ -46,14 +46,15 @@ exports.registerUser = asyncHandler(async (req, res) => {
         email,
         password: hashPassword
     });
-    
+    console.log('from end ')
+    console.log(user);
     if (user) {
         res.json({
-            ...user, 
             // message : 'done',
             // is this required
             // FOR NOW I AM COMMENT THIS BECAUSE IT IS GIVING ERROR LIKE THIS
-            token:generateJWTtoken(user,"Customer")
+            token:generateJWTtoken(user,"Customer"),
+            type : 'data'
         });
     }else{
         res.status(400).send('invalid user data');

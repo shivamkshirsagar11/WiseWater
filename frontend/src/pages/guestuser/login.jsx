@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { userLogin } from '../../actions/userLogin';
+import { loginUser } from '../../actions/loginUser';
 
 export default function Login({ setCookies }) {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function Login({ setCookies }) {
       email: email,
       password: password,
     };
-    const response = await userLogin(user);
+    const response = await loginUser(user);
 
     if ('error' === response.type) {
       toast.error(response.error)

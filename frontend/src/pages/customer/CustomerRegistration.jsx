@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { registerUser } from '../../actions/registerUser';
 
 export default function CustomerRegistration({ setCookies }) {
     const navigate = useNavigate();
@@ -24,24 +25,14 @@ export default function CustomerRegistration({ setCookies }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const customer = { ...formData, ...formAddress };
-        // await registerCustomer(customer);
-        try {
-            const response = await fetch(`http://localhost:3001/api/customer/register`, {
-
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(customer)
-            });
-            const data = await response.json();
-            if (data.type === 'error') throw new Error(data.message);
-            setCookies('token', data.token);
+        const customer = { ...formData, address : {...formAddress} };
+        const response = await registerUser(customer);
+        if( 'error'===response.type ){
+            alert(response.error);
+        }else{
+            setCookies('token', response.token);
+            alert('you are registered successfully');
             navigate('/customer/profile');
-        } catch (error) {
-            toast.error(error.message);
         }
     }
     return (

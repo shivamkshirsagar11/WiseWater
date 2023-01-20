@@ -30,7 +30,8 @@ import ShowPendingOrderList from './pages/owner/ShowPendingOrderList';
 import ShowWorkers from "./pages/owner/ShowWorkers";
 import ShowAssignedOrders from './pages/owner/ShowAssignedOrders'
 import ResolveInQueryOrder from "./pages/owner/ResolveInQueryOrder";
-import Profile from './pages/Profile'
+
+import Profile from './pages/profile/Profile'
 
 // general pages
 import NotFound from './pages/NotFound';

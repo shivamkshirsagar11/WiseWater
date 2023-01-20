@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Spinner from '../components/Spinner';
 import Fuse from 'fuse.js';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 import { giveCompaniesData } from '../actions/giveCompaniesData';
@@ -24,8 +25,21 @@ export default function ShowCompanies({ cookies }) {
     useEffect(() => {
         const { token } = cookies;
         const fetchData = async () => {
-            const companiesData = await giveCompaniesData();
-            const userType = await giveUserType(token);
+            var response = await giveCompaniesData();
+
+            if (response.error) {
+                toast.error(response.error);
+                return;
+            }
+            const companiesData = [...response.companiesData];
+
+            response = await giveUserType(token);
+            if (response.error) {
+                toast.error(response.error);
+                return;
+            }
+            const userType = response.userType;
+
             fuse.current = new Fuse(companiesData, {
                 keys: [
                     'name',

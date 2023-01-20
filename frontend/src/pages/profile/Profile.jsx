@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../components/Spinner';
-import { giveUserData } from '../actions/giveUserData';
+import Spinner from '../../components/Spinner';
+import { giveUserData } from '../../actions/giveUserData';
 
-import CompanyDetails from '../components/CompanyDetails';
-import Address from '../components/Address';
-import UserDetails from '../components/UserDetails';
-import ProfileButtons from '../components/ProfileButtons';
+import CompanyDetails from '../../components/CompanyDetails';
+import Address from '../../components/Address';
+import UserDetails from '../../components/UserDetails';
+import ProfileButtons from './ProfileButtons';
 
 export default function Profile({ cookies, removeCookies, userType }) {
     const navigate = useNavigate();

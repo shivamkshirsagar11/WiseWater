@@ -7,12 +7,11 @@ exports.showCompanies = asyncHandler(async (req, res) => {
         res.status(200);
         res.json({
             companies,
-            found: true,
         });
     } else {
         res.status(200);
         res.json({
-            found: false,
+            companies : []
         });
     }
 })
