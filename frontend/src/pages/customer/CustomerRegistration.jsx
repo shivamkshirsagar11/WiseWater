@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { registerUser } from '../../actions/registerUser';
+import { registerUser } from '../../actions/general/registerUser';
 
 export default function CustomerRegistration({ setCookies }) {
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function CustomerRegistration({ setCookies }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const customer = { ...formData, address : {...formAddress} };
-        const response = await registerUser(customer);
+        const response = await registerUser('customer',customer);
         if( 'error'===response.type ){
             alert(response.error);
         }else{

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
-import { giveUserData } from '../../actions/giveUserData';
+import { giveUserData } from '../../actions/general/giveUserData';
 
 import CompanyDetails from '../../components/CompanyDetails';
 import Address from '../../components/Address';

@@ -4,8 +4,8 @@ import Fuse from 'fuse.js';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-import { giveCompaniesData } from '../actions/giveCompaniesData';
-import { giveUserType } from '../actions/giveUserType';
+import { giveCompaniesData } from '../actions/general/giveCompaniesData';
+import { giveUserType } from '../actions/general/giveUserType';
 
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
@@ -27,14 +27,14 @@ export default function ShowCompanies({ cookies }) {
         const fetchData = async () => {
             var response = await giveCompaniesData();
 
-            if (response.error) {
+            if ('error'===response.type) {
                 toast.error(response.error);
                 return;
             }
             const companiesData = [...response.companiesData];
 
             response = await giveUserType(token);
-            if (response.error) {
+            if ('error'===response.type) {
                 toast.error(response.error);
                 return;
             }

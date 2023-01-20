@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
+import { fetchDataFromBackend } from "../../actions/owner/fetchDataFromBackend";
 
 export default function ShowWorkers({ cookies }) {
   const { order_id } = useParams();
@@ -37,27 +38,22 @@ export default function ShowWorkers({ cookies }) {
     e.preventDefault();
     console.log(e.target.value);
     try {
-        const {token} = cookies;
-      const response = await fetch(
-        `http://localhost:3001/api/owner/assign-order`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token, worker_id: e.target.value, order_id:order_id }),
-        }
-      );
-      const data = await response.json();
-      if (data.error) throw new Error(data.message);
+      const { token } = cookies;
+      const info = { token, worker_id: e.target.value, order_id: order_id };
+      const response = await fetchDataFromBackend('http://localhost:3001/api/owner/assign-order', info);
+      if ('error' === response.type) {
+        toast.error(response.error);
+        return;
+      } else {
         navigate('/owner/show-pending-orders');
+      }
     } catch (error) {
       toast(error);
     }
   };
   return (
     <>
-      {showWorkers.map((worker,index) => {
+      {showWorkers.map((worker, index) => {
         return (
           <div key={index}>
             <p>{worker.firstname}</p>

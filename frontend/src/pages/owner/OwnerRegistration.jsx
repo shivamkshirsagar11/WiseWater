@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { registerUser } from '../../actions/general/registerUser';
 
 // { firstname, lastname, email, password, confirmPassword , contact, cName, cEmail,cContact,cAddress, cServiceTime }
 
@@ -30,26 +31,16 @@ export default function OwnerRegistration({setCookies}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const owner = { firstname, lastname, email, password, confirmPassword, contact, cName, cEmail,cContact, cServiceTime,address };
-        console.log(owner)
-        try {
-            const response = await fetch(`http://localhost:3001/api/owner/register`, {
 
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(owner)
-            });
-            console.log(response);
-            const data = await response.json();
-            if( data.type==='error' )   throw new Error(data.message);
-            console.log(data);
-            setCookies('token', data.token);
+        const response = await registerUser('owner',owner);
+        if( 'error'===response.type ){
+            alert(response.error);
+        }else{
+            setCookies('token', response.token);
+            alert('you are registered successfully');
             navigate('/owner/profile');
-        } catch (error) {
-            toast.error(error.message);
         }
+
     }
     return (
         <div>

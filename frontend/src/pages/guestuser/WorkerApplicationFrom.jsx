@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
+import { registerUser } from '../../actions/general/registerUser'; 
 
 export default function WorkerApplicationFrom() {
   const navigate = useNavigate();
@@ -19,22 +20,14 @@ export default function WorkerApplicationFrom() {
     e.preventDefault();
     const worker = { ...formData };
 
-    try {
-      const response = await fetch(`http://localhost:3001/api/worker/application`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(worker)
-      });
-      console.log(response);
-      const data = await response.json();
-      if (data.type === 'error') throw new Error(data.message);
+    const response = await registerUser('worker', worker);
+    if ('error' === response.type) {
+      alert(response.error);
+    } else {
+      alert('successfully applied');
       navigate('/show-companies');
-    } catch (error) {
-      toast.error(error.message);
     }
+
   }
   return (
     <div>
