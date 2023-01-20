@@ -15,7 +15,7 @@ function AddressDetailsForRegister({ address, setAddress }) {
             pincode : <input type="text" name="pincode" onChange={handleInput} value={address.pincode} />
             state : <input type="text" name="state" onChange={handleInput} value={address.state} />
         </div>
-    )
+    );
 }
 
 export default AddressDetailsForRegister

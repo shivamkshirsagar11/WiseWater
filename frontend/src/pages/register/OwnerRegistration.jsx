@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { registerUser } from '../../../actions/general/registerUser';
+import { registerUser } from '../../actions/general/registerUser';
 import UserDetailsForRegister from './UserDetailsForRegister';
 import CompanyDetailsForRegister from './CompanyDetailsForRegister';
 
