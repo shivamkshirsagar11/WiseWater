@@ -1,11 +1,12 @@
-const fetchDataFromBackend = async({url,data})=>{
+const fetchDataFromBackend = async(url,data)=>{
+    console.log(data)
     try{
         const response = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ data }),
+            body: JSON.stringify({ ...data }),
         });
         
         const dataJson = await response.json();

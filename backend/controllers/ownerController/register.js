@@ -10,70 +10,74 @@ const {generateJWTtoken} = require('../../utility/generateJWTtoken');
 // @access  public
 
 exports.registerUser = asyncHandler(async (req, res) => {
-    const { firstname, lastname, email, password, confirmPassword , contact, cName, cEmail,cContact,address:cAddress, cServiceTime } = req.body;
-    console.log(req.body)
-    console.log("from owner register")
-    if (!firstname || !lastname || !email || !password  || !confirmPassword || !contact || !cName || !cEmail || !cContact || !cAddress || !cServiceTime) {
-        res.status(400);
-        throw new Error('Invalid Credential');
-    }
-    else if( contact.length > 10 || cContact.length > 10){
-        res.status(400);
-        throw new Error('Invalid contact');
-    }
-    else if( password !== confirmPassword){
-        res.status(400);
-        throw new Error('Invalid password');
-    }else if( cServiceTime ){
-        // validation is required
-    }
+    console.log(req.body);
+    const {userData,companyData} = req.body;
+    console.log(userData);
+    console.log(companyData);
+    // const { firstname, lastname, email, password, confirmPassword , contact, cName, cEmail,cContact,address:cAddress, cServiceTime } = req.body;
+    // console.log(req.body)
+    // console.log("from owner register")
+    // if (!firstname || !lastname || !email || !password  || !confirmPassword || !contact || !cName || !cEmail || !cContact || !cAddress || !cServiceTime) {
+    //     res.status(400);
+    //     throw new Error('Invalid Credential');
+    // }
+    // else if( contact.length > 10 || cContact.length > 10){
+    //     res.status(400);
+    //     throw new Error('Invalid contact');
+    // }
+    // else if( password !== confirmPassword){
+    //     res.status(400);
+    //     throw new Error('Invalid password');
+    // }else if( cServiceTime ){
+    //     // validation is required
+    // }
 
-    // Check if user already exsist
-    const userExists = await Owner.findOne({ $or : [{email:email},{contact:contact}] });
-    console.log(userExists);
-    if (userExists) {
-        res.status(400);
-        console.log(userExists);
-        throw new Error('Owner is already exists');
-    }
+    // // Check if user already exsist
+    // const userExists = await Owner.findOne({ $or : [{email:email},{contact:contact}] });
+    // console.log(userExists);
+    // if (userExists) {
+    //     res.status(400);
+    //     console.log(userExists);
+    //     throw new Error('Owner is already exists');
+    // }
 
-    const companyExists = await Company.findOne({ $or:[{email:cEmail},{name:cName},{contact:cContact}] });
-    if( companyExists ){
-        res.status(400);
-        console.log(companyExists);
-        throw new Error('company is already exists');
-    }
+    // const companyExists = await Company.findOne({ $or:[{email:cEmail},{name:cName},{contact:cContact}] });
+    // if( companyExists ){
+    //     res.status(400);
+    //     console.log(companyExists);
+    //     throw new Error('company is already exists');
+    // }
 
-    const company = await Company.create({
-        name : cName,
-        email : cEmail,
-        contact : cContact,
-        address : cAddress,
-        serviceTime : cServiceTime,
-    })
+    // const company = await Company.create({
+    //     name : cName,
+    //     email : cEmail,
+    //     contact : cContact,
+    //     address : cAddress,
+    //     serviceTime : cServiceTime,
+    // })
 
-    const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    // const hashPassword = await bcrypt.hash(password, salt);
 
-    const owner = await Owner.create({
-        firstname,
-        lastname,
-        contact,
-        email,
-        password: hashPassword,
-        company_name : cName
-    });
+    // const owner = await Owner.create({
+    //     firstname,
+    //     lastname,
+    //     contact,
+    //     email,
+    //     password: hashPassword,
+    //     company_name : cName
+    // });
 
-    if (owner) {
+    // if (owner) {
         res.status(201).json({
             // _id: owner._id,
             // name: owner.name,
             // email: owner.email,
             // is this required
-            token:generateJWTtoken(owner,"Owner")
+            token:'done'
         });
-    }else{
-        res.status(400);
-        throw new Error('Invalid user data');
-    }
+    // }else{
+    //     res.status(400);
+    //     throw new Error('Invalid user data');
+    // }
 });

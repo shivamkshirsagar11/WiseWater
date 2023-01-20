@@ -17,9 +17,9 @@ export default function Login({ setCookies }) {
       password: password,
     };
     const response = await loginUser(user);
-
+    console.log(response)
     if ('error' === response.type) {
-      toast.error(response.error)
+      alert(response.error);
     } else {
       setCookies('token', response.token);
       alert('successfully logged in');

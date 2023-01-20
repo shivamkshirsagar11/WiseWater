@@ -25,7 +25,7 @@ exports.loginUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Please give all the details');
     }
-
+    console.log(email, password);
     const collection = mapCollectionName(req.body.collectionName);
     console.log(collection);
     const user = await collection.findOne({ email });

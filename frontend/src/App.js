@@ -24,7 +24,7 @@ import WorkerOrderQuery from "./pages/worker/WorkerOrderQuery";
 
 // owner
 import ShowInQueryOrderList from "./pages/owner/ShowInQueryOrderList";
-import OwnerRegistration from './pages/owner/OwnerRegistration';
+import OwnerRegistration from './pages/owner/register/OwnerRegistration';
 import ShowWorkerApplications from './pages/owner/ShowWorkerApplications';
 import ShowPendingOrderList from './pages/owner/ShowPendingOrderList';
 import ShowWorkers from "./pages/owner/ShowWorkers";

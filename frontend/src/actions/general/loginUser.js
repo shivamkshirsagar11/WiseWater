@@ -10,6 +10,7 @@ const loginUser = async (user) => {
             body: JSON.stringify(user)
         });
         const data = await response.json();
+        console.log(data);
         if ('error' === data.type) 
             throw new Error(data.message);
         else{

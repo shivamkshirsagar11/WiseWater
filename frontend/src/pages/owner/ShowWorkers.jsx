@@ -12,7 +12,10 @@ export default function ShowWorkers({ cookies }) {
   useEffect(() => {
     const fun = async () => {
       const { token } = cookies;
-      const response = await fetch(
+
+      const response = await fetchDataFromBackend('http://localhost:3001/api/owner/show-workers', { token });
+
+      const r1 = await fetch(
         `http://localhost:3001/api/owner/show-workers
                 `,
         {
@@ -23,10 +26,16 @@ export default function ShowWorkers({ cookies }) {
           body: JSON.stringify({ token }),
         }
       );
-      const data = await response.json();
-      if (data.type === "error") throw data.message;
+      const data = await r1.json();
       console.log(data);
-      setShowWorkers(data.workers);
+      console.log(response);
+      if ('error' === response.type) {
+        toast.error(response.error);
+        return;
+      } else {
+        setShowWorkers(response.data.workers);
+      }
+
     };
     fun();
   }, []);
