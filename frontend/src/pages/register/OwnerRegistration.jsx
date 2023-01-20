@@ -8,7 +8,7 @@ import CompanyDetailsForRegister from './CompanyDetailsForRegister';
 export default function OwnerRegistration({ setCookies }) {
     const navigate = useNavigate();
 
-    const [userDataForm, setUserDataForm] = useState({
+    const [userDataForm, setUserData] = useState({
         firstname: '', lastname: '', email: '', password: '', confirmPassword: '', contact: ''
     });
 
@@ -36,7 +36,7 @@ export default function OwnerRegistration({ setCookies }) {
     return (
         <div>
             <form method="post" >
-                <UserDetailsForRegister userData={userDataForm} setUserDataForm={setUserDataForm} />
+                <UserDetailsForRegister userData={userDataForm} setUserData={setUserData} />
 
                 {/* company */}
                 <CompanyDetailsForRegister companyData={companyData} setCompanyData={setCompanyData} />

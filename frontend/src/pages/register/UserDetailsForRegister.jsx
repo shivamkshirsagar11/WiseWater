@@ -1,11 +1,11 @@
 import React from 'react'
 
-function UserDetailsForRegister({ userData, setUserDataForm }) {
+function UserDetailsForRegister({ userData, setUserData }) {
     const { firstname, lastname, email, contact,password,confirmPassword } = userData;
 
     const handleInputData = (e) => {
         const { name, value } = e.target;
-        setUserDataForm(prevState => ({ ...prevState, [name]: value }));
+        setUserData(prevState => ({ ...prevState, [name]: value }));
     }
 
     return (
