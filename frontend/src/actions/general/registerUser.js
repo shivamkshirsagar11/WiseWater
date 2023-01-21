@@ -1,7 +1,7 @@
-const registerUser = async (userType,userObj) => {
+const registerUser = async (userType, userObj) => {
     try {
         var action = "register";
-        if( 'worker'===userType )
+        if ('worker' === userType)
             action = 'application';
         const response = await fetch(`http://localhost:3001/api/${userType}/${action}`, {
 
@@ -13,7 +13,6 @@ const registerUser = async (userType,userObj) => {
             body: JSON.stringify(userObj)
         });
         const data = await response.json();
-        console.log(data);
         if ('error' === data.type)
             throw new Error(data.message);
         else {

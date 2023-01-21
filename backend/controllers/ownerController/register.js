@@ -52,7 +52,8 @@ exports.registerUser = asyncHandler(async (req, res) => {
 
     if (owner) {
         res.status(201).json({
-            token: generateJWTtoken(owner, "Owner")
+            token: generateJWTtoken(owner, "Owner"),
+            type : 'data'
         });
     } else {
         res.status(400);

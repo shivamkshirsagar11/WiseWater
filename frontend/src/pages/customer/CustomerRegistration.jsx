@@ -31,7 +31,7 @@ export default function CustomerRegistration({ setCookies }) {
             alert(response.error);
         }else{
             setCookies('token', response.token);
-            alert('you are registered successfully');
+            toast.error('you are registered successfully');
             navigate('/customer/profile');
         }
     }
