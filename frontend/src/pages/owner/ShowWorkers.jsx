@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
-import { fetchDataFromBackend } from "../../actions/owner/fetchDataFromBackend";
+import { fetchDataFromBackend } from "../../actions/general/fetchDataFromBackend";
 
 export default function ShowWorkers({ cookies }) {
   const { order_id } = useParams();

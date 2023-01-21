@@ -28,14 +28,14 @@ export default function ShowCompanies({ cookies }) {
             var response = await giveCompaniesData();
 
             if ('error'===response.type) {
-                toast.error(response.error);
+                alert(response.error);
                 return;
             }
             const companiesData = [...response.companiesData];
 
             response = await giveUserType(token);
             if ('error'===response.type) {
-                toast.error(response.error);
+                alert(response.error);
                 return;
             }
             const userType = response.userType;
@@ -70,7 +70,7 @@ export default function ShowCompanies({ cookies }) {
         }
     }, [query]);
 
-    if (null === searchedCompanies)
+    if (null === searchedCompanies || null===userType)
         return (<Spinner />);
 
     const redirectHandler = (e) => {

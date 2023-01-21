@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import ShowOrder from "../../components/ShowOrder";
 import ShowAssignedWorkerDetails from "../../components/ShowAssignedWorkerDetails";
+import { giveDetailsToTrackOrder } from "../../actions/orders/giveDetailsToTrackOrder";
 
 export default function TrackOrder({ cookies }) {
   const { order_id } = useParams();
@@ -12,37 +13,22 @@ export default function TrackOrder({ cookies }) {
   const [worker, setWorker] = useState([]);
   console.log("order-id", order_id);
   useEffect(() => {
-    const fun = async () => {
+
+    const fetchData = async () => {
       const { token } = cookies;
-      try {
-        const response = await fetch(
-          `http://localhost:3001/api/customer/track-order
-                `,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ token, order_id: order_id }),
-          }
-        );
-        const data = await response.json();
-        if (data.type === "error") {
-          // navigate("/customer/show-placed-orders");
-          throw data.message;
-        }
-        console.log(data);
-        setShowOrder(data.order);
-        setWorker(data.worker);
-      } catch (error) {
-        toast(error);
-        navigate("/");
+      const response =await giveDetailsToTrackOrder(token, order_id);
+      if ('error' === response.type) {
+        alert(response.error);
+        navigate('/login');
       }
-    };
-    fun();
+      setShowOrder(response.order);
+      setWorker(response.worker);
+    }
+    fetchData();
+
   }, []);
 
-  if (null === showOrder) {
+  if (null === showOrder || null == worker) {
     return <Spinner />;
   }
   return (

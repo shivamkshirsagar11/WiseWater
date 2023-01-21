@@ -6,6 +6,7 @@ const { passwordGen } = require('../../utility/passwordGenerator.js');
 
 exports.hireWorker = asyncHandler(async (req, res) => {
     console.log('from hire worker')
+    console.log(req.body);
     // const temp = (req.user.company_id);
     const workerApplication = { ...req.body.workerApplication };
     delete workerApplication.applicationdate;

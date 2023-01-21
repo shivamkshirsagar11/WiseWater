@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+
 export default function Placeorder({ cookies }) {
     const navigate = useNavigate();
 
@@ -59,6 +60,11 @@ export default function Placeorder({ cookies }) {
         const order = { ...formData, address };
 
         const { token } = cookies;
+
+        const fetchData = async()=>{
+
+        }
+        fetchData();
         console.log(order);
         try {
             const response = await fetch(`http://localhost:3001/api/customer/placeorder`, {

@@ -1,4 +1,4 @@
-const loginUser = async (user) => {
+const  loginUser = async (user) => {
     console.log(user)
     try {
         const response = await fetch(`http://localhost:3001/api/user/login`, {
