@@ -14,8 +14,11 @@ const userTypeHandler = (req, res, next) => {
             return; // otherwise after calling next it will run remaing code but we don't want that to do
         }
         const {collectionName} = decodeJWTtoken(req,res);
+        console.log("from user type")
+        console.log(collectionName);
         // console.log(decoded);
         if (collectionName.toLowerCase() === url[2].toLowerCase()) {
+            console.log('jhere')
             next();
         }
         else {

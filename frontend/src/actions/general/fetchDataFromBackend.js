@@ -3,12 +3,11 @@ const fetchDataFromBackend = async(url,data)=>{
     delete data.token;
     try{
         const response = await fetch(url, {
-            method: "POST",
+            method: "get",
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ ...data }),
         });
         
         const dataJson = await response.json();

@@ -7,6 +7,7 @@ const placeOrder = async (token, order) => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
+            body: JSON.stringify({order})
         });
         const data = await response.json();
         if ('error' === data.type)

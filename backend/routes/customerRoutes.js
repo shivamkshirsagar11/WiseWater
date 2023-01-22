@@ -9,10 +9,10 @@ const {showPlacedOrders} = require('../controllers/customerController/showPlaced
 const { trackOrder } = require('../controllers/customerController/trackOrder');
 
 router.post('/register',registerUser);
-router.post('/profile',protect,profile);
+router.get('/profile',protect,profile);
 router.post('/placeorder',protect,placeorder);
-router.post('/show-placed-orders',protect,showPlacedOrders);
-router.post('/authenticate',protect,(req,res)=>{
+router.get('/show-placed-orders',protect,showPlacedOrders);
+router.get('/authenticate',protect,(req,res)=>{
     console.log('customer in atuhencated')
     res.json({message:'done'});
 })

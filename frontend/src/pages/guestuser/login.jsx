@@ -22,6 +22,7 @@ export default function Login({ setCookies }) {
       alert(response.error);
     } else {
       setCookies('token', response.token);
+      console.log(response.token)
       alert('successfully logged in');
       navigate(`/${user.collectionName.toLowerCase()}/profile`);
     }

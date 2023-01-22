@@ -73,12 +73,14 @@ function ShowWorkerApplications({ cookies }) {
         e.preventDefault();
 
         const workerApplication = { ...searchedWorkerApplications[e.target.value] };
+        console.log(workerApplication);
         const response = await hireWorker(token, workerApplication);
         if ('error' === response.type) {
             alert(response.error);
         } else {
             const response = await giveWorkerApplications(token);
-            workerApplications.current = [...response.workerApplications];
+            workerApplications.current = [response.workerApplications];
+            setSearchedWorkerApplications(response.workerApplications);
             setQuery('');
         }
     }

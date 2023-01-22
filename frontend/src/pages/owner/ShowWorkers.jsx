@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import { fetchDataFromBackend } from "../../actions/general/fetchDataFromBackend";
+import { giveWorkerDetails } from "../../actions/owner/giveWorkerDetails";
+import { assignOrder } from "../../actions/orders/assignOrder";
 
 export default function ShowWorkers({ cookies }) {
   const { order_id } = useParams();
@@ -13,27 +15,13 @@ export default function ShowWorkers({ cookies }) {
     const fun = async () => {
       const { token } = cookies;
 
-      const response = await fetchDataFromBackend('http://localhost:3001/api/owner/show-workers', { token });
+      const response = await giveWorkerDetails(token);
 
-      const r1 = await fetch(
-        `http://localhost:3001/api/owner/show-workers
-                `,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token }),
-        }
-      );
-      const data = await r1.json();
-      console.log(data);
-      console.log(response);
       if ('error' === response.type) {
-        toast.error(response.error);
-        return;
+        alert(response.error);
+
       } else {
-        setShowWorkers(response.data.workers);
+        setShowWorkers(response.workers);
       }
 
     };
@@ -48,10 +36,10 @@ export default function ShowWorkers({ cookies }) {
     console.log(e.target.value);
     try {
       const { token } = cookies;
-      const info = { token, worker_id: e.target.value, order_id: order_id };
-      const response = await fetchDataFromBackend('http://localhost:3001/api/owner/assign-order', info);
+      const obj = { token, worker_id: e.target.value, order_id: order_id };
+      const response = await assignOrder(obj);
       if ('error' === response.type) {
-        toast.error(response.error);
+        alert(response.error);
         return;
       } else {
         navigate('/owner/show-pending-orders');

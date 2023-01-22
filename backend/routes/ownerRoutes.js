@@ -18,20 +18,20 @@ const { moveToPending } = require('../controllers/ownerController/moveToPending'
 const { fetchCustomer } = require('../controllers/ownerController/fetchCustomer');
 
 router.post('/register',registerUser);
-router.post('/profile',protect,profile);
-router.post('/showWorkerApplications',protect,showWorkerApplications);
+router.get('/profile',protect,profile);
+router.get('/showWorkerApplications',protect,showWorkerApplications);
 router.post('/hire-worker',protect,hireWorker);
-router.post('/show-pending-orders',protect,showPendingOrders);
+router.get('/show-pending-orders',protect,showPendingOrders);
 router.post('/assign-order',protect,assignOrder);
-router.post('/show-assigned-orders',protect,showAssignedOrders);
-router.post('/show-workers',protect,showWorkers);
+router.get('/show-assigned-orders',protect,showAssignedOrders);
+router.get('/show-workers',protect,showWorkers);
 router.post('/show-in-query-orders',protect,inQueryOrder);
 router.post('/resolve-in-query-orders',protect,getInQueryOrder);
 router.post('/get-order',protect,getOrder);
 router.post('/reassign-order',protect,reAssignOrder);
 router.post('/move-to-pending-order',protect,moveToPending);
 router.post('/fetch-customer',protect,fetchCustomer);
-router.post('/authenticate',protect,(req,res)=>{
+router.get('/authenticate',protect,(req,res)=>{
     console.log('owner in atuhencated')
     res.json({message:'done'});
 })

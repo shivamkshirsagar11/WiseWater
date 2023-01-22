@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 exports.decodeJWTtoken = (req, res) => {
 
     const { authorization } = req.headers
-
+    console.log(authorization)
     if ('Bearer undefined'!==authorization) {
         const token = authorization.split(' ')[1];
         if ('undefined' !== token) {
@@ -13,6 +13,8 @@ exports.decodeJWTtoken = (req, res) => {
                 throw new Error('invalid token')
             }
             else {
+                console.log('data');
+                console.log(decoded)
                 return decoded;
             }
         } else {

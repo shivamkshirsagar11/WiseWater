@@ -3,12 +3,10 @@ const giveAssignedOrders = async (token) => {
         const response = await fetch(
             `http://localhost:3001/api/owner/show-assigned-orders`,
             {
-                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ token }),
             }
         );
         const data = await response.json();

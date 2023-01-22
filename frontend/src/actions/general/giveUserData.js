@@ -1,7 +1,6 @@
 const giveUserData = async (userType, token) => {
     try {
         const response = await fetch(`http://localhost:3001/api/${userType}/profile`, {
-            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`

@@ -3,7 +3,6 @@ const givePlacedOrders = async (token) => {
         const response = await fetch(
             `http://localhost:3001/api/customer/show-placed-orders`,
             {
-                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`

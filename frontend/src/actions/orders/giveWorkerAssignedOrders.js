@@ -3,7 +3,6 @@ const giveWorkerAssignedOrders = async (token) => {
         const response = await fetch(
             `http://localhost:3001/api/worker/show-assigned-orders`,
             {
-                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`

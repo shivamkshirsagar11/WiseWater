@@ -4,7 +4,6 @@ const givePendingOrders = async (token) => {
             `http://localhost:3001/api/owner/show-pending-orders
             `,
             {
-                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`
