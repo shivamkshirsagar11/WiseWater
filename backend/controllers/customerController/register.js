@@ -31,7 +31,7 @@ exports.registerUser = asyncHandler(async (req, res) => {
             // message : 'done',
             // is this required
             // FOR NOW I AM COMMENT THIS BECAUSE IT IS GIVING ERROR LIKE THIS
-            token: generateJWTtoken(user, "Customer"),
+            token: generateJWTtoken(user._id, "Customer"),
             type: 'data'
         });
     } else {

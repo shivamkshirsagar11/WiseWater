@@ -2,7 +2,7 @@ const orderModel = require("../../models/orderModel")
 const workerModel = require("../../models/workerModel")
 
 exports.trackOrder = async(req,res)=>{
-const isOrderCorrect = await orderModel.find({$and:[{_id:req.body.order_id},{customer_id:req.user._id}]})
+const isOrderCorrect = await orderModel.find({$and:[{_id:req.body.order_id},{customer_id:req.userid}]})
 console.log("from track order")
 console.log(isOrderCorrect[0])
 console.log(isOrderCorrect[0].worker_id)

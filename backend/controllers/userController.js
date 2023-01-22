@@ -28,7 +28,7 @@ exports.loginUser = asyncHandler(async (req, res) => {
     console.log(email, password);
     const collection = mapCollectionName(req.body.collectionName);
     console.log(collection);
-    const user = await collection.findOne({ email });
+    const user = await collection.findOne({ email },{password:1,_id:1});
     console.log(user)
     // console.log(user);
     // console.log(collection + "from")
@@ -39,7 +39,7 @@ exports.loginUser = asyncHandler(async (req, res) => {
             // id: user._id,
             // name: user.name,
             // email: user.email,  
-            token: generateJWTtoken(user, req.body.collectionName) // whty every time create new token
+            token: generateJWTtoken(user._id, req.body.collectionName) // whty every time create new token
         });
     } else {
         res.status(400);

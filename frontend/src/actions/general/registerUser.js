@@ -16,9 +16,15 @@ const registerUser = async (userType, userObj) => {
         if ('error' === data.type)
             throw new Error(data.message);
         else {
-            return {
-                type: 'data',
-                token: data.token
+            if ('worker' === userType) {
+                return {
+                    type: 'success'
+                }
+            } else {
+                return {
+                    type: 'data',
+                    token: data.token
+                }
             }
         }
     } catch (error) {

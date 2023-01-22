@@ -1,7 +1,7 @@
 const Order = require('../../models/orderModel');
 exports.showAssignedOrders = async (req, res) => {
     console.log('inside assigned orders')
-    const assignedOrders = await Order.find({ $and: [{ worker_id: req.user._id }, { status: { $eq: "assigned" } }] })
+    const assignedOrders = await Order.find({ $and: [{ worker_id: req.userid }, { status: { $eq: "assigned" } }] })
     console.log(assignedOrders)
     if (assignedOrders) {
         res.status(200)
