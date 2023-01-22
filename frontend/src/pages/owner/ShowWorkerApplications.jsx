@@ -3,6 +3,8 @@ import Spinner from '../../components/Spinner';
 import Fuse from 'fuse.js';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { giveWorkerApplications } from '../../actions/owner/giveWorkerApplications';
+import { hireWorker } from '../../actions/owner/hireWorker';
 
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
@@ -23,19 +25,16 @@ function ShowWorkerApplications({ cookies }) {
     const { token } = cookies;
 
     useEffect(() => {
-        const fun = async () => {
-            try {
-                const response = await fetch(`http://localhost:3001/api/owner/showWorkerApplications`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ token }),
-                });
-                const data = await response.json();
-                if (data.type === 'error') throw (data.message);
-                workerApplications.current = [...data.workerApplications];
-                console.log(data);
+
+        const fetchData = async () => {
+            const { token } = cookies;
+            const response = await giveWorkerApplications(token);
+            if ('error' === response.type) {
+                alert(response.error);
+                navigate('/login');
+            } else {
+                console.log(response)
+                workerApplications.current = [...response.workerApplications];
                 fuse.current = new Fuse(workerApplications.current, {
                     keys: [
                         'firstname',
@@ -43,15 +42,10 @@ function ShowWorkerApplications({ cookies }) {
                     ],
                     includeScore: true
                 });
-                // console.log(fuse);
-                console.log(data);
-                console.log(data.workerApplications);
                 setSearchedWorkerApplications(workerApplications.current);
-            } catch (error) {
-                navigate('/');
             }
         }
-        fun();
+        fetchData();
     }, []);
 
 
@@ -78,31 +72,14 @@ function ShowWorkerApplications({ cookies }) {
     const handleHiring = async (e) => {
         e.preventDefault();
 
-        const workerApplication = {...searchedWorkerApplications[e.target.value]};
-        console.log(workerApplication);
-        try {
-
-            const response = await fetch(`http://localhost:3001/api/owner/hire-worker`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ token, workerApplication }),
-            });
-            const data = await response.json();
-            if (data.type === 'error') throw (data.message);
-            console.log(data);
-
-            const temp_arr = [...searchedWorkerApplications];
-            console.log(temp_arr);
-            temp_arr.splice(e.target.value,1);
-            console.log(temp_arr);
-
-            workerApplications.current.splice(e.target.value,1);
-            console.log(workerApplications.current);
-            setSearchedWorkerApplications(temp_arr);
-        } catch (error) {
-            toast.error(error);
+        const workerApplication = { ...searchedWorkerApplications[e.target.value] };
+        const response = await hireWorker(token, workerApplication);
+        if ('error' === response.type) {
+            alert(response.error);
+        } else {
+            const response = await giveWorkerApplications(token);
+            workerApplications.current = [...response.workerApplications];
+            setQuery('');
         }
     }
 

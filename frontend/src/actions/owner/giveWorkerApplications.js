@@ -1,25 +1,20 @@
-const giveUserData = async (userType, token) => {
+const giveWorkerApplications = async (token) => {
     try {
-        const response = await fetch(`http://localhost:3001/api/${userType}/profile`, {
+        const response = await fetch(`http://localhost:3001/api/owner/showWorkerApplications`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`
             },
-            // body: JSON.stringify({ token }),
         });
         const data = await response.json();
         if (data.type === 'error')
             throw new Error(data.message);
         else {
-            const responseObject = {
+            return {
                 type : 'data',
-                userData : data.userData,
+                workerApplications : data.workerApplications,
             }
-            if( 'customer'!==userType ){
-                responseObject.companyData = data.companyData
-            }
-            return (responseObject);
         }
     } catch (error) {
         return ({
@@ -29,4 +24,4 @@ const giveUserData = async (userType, token) => {
     }
 }
 
-export { giveUserData };
+export { giveWorkerApplications };

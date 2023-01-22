@@ -1,21 +1,21 @@
-const authenticateUser = async (user, token) => {
-
+const hireWorker = async (token, workerApplication) => {
     try {
-        const response = await fetch(`http://localhost:3001/api/${user}/authenticate`, {
+
+        const response = await fetch(`http://localhost:3001/api/owner/hire-worker`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ token }),
+            body: JSON.stringify({ workerApplication }),
         });
         const data = await response.json();
         if (data.type === 'error')
-            throw new Error(data.message);
+            throw (data.message);
         else {
-            return({
-                type : 'success',
-            })
+            return {
+                type : 'success'
+            }
         }
     } catch (error) {
         return ({
@@ -23,7 +23,6 @@ const authenticateUser = async (user, token) => {
             error: error
         })
     }
-
 }
 
-export { authenticateUser }
+export { hireWorker };

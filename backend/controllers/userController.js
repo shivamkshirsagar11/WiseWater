@@ -52,7 +52,11 @@ exports.loginUser = asyncHandler(async (req, res) => {
 // @access  public
 
 exports.giveUserType =  (req, res) => {
-    if( req.body.token ){
+
+    const { authorization } = req.headers
+    console.log('from user type')
+    console.log(authorization)
+    if( 'Bearer undefined' !== authorization ){
         const decodedToken = decodeJWTtoken(req,res);
         res.json({
             userType : decodedToken.collectionName.toLowerCase(),

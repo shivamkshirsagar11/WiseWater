@@ -1,23 +1,25 @@
 const jwt = require('jsonwebtoken');
-exports.decodeJWTtoken = (req,res) => {
-    if (req.body.token ) {
+exports.decodeJWTtoken = (req, res) => {
 
-        if (!req.body.token) {
+    const { authorization } = req.headers
+
+    if ('Bearer undefined'!==authorization) {
+        const token = authorization.split(' ')[1];
+        if ('undefined' !== token) {
+            console.log('from dcode jwt token');
+            console.log(token);
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            if (decoded === undefined) {
+                throw new Error('invalid token')
+            }
+            else {
+                return decoded;
+            }
+        } else {
             res.status(401);
             throw new Error('not authorized, no token');
         }
-
-        // verify token
-        const decoded = jwt.verify(req.body.token, process.env.JWT_SECRET);
-        console.log(decoded);
-        if (decoded === undefined) {
-            throw Error('No Header Found')
-        }
-        else {
-            return decoded;
-        }
-    }
-    else {
+    } else {
         res.status(401);
         throw new Error('not authorized, no token');
     }

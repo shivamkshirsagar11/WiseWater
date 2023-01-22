@@ -1,10 +1,12 @@
 const fetchDataFromBackend = async(url,data)=>{
-    console.log(data)
+    const {token} = data;
+    delete data.token;
     try{
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({ ...data }),
         });

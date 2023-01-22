@@ -6,8 +6,9 @@ const deliverOrder = async (token,order_id) => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ token,order_id }),
+                body: JSON.stringify({ order_id }),
             }
         );
         const data = await response.json();

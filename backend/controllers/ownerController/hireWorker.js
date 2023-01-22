@@ -39,8 +39,7 @@ exports.hireWorker = asyncHandler(async (req, res) => {
             
             res.status(200);
             res.json({
-                workerApplication,
-                found: true,
+                message : 'success',
             });
         } else {
             res.status(400);
