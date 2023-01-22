@@ -13,7 +13,7 @@ router.post('/profile',protect,profile);
 router.post('/placeorder',protect,placeorder);
 router.post('/show-placed-orders',protect,showPlacedOrders);
 router.post('/authenticate',protect,(req,res)=>{
-    console.log('owner in atuhencated')
+    console.log('customer in atuhencated')
     res.json({message:'done'});
 })
 router.post('/track-order',protect,trackOrder)

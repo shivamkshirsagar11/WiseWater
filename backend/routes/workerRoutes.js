@@ -17,8 +17,8 @@ router.post('/show-delievered-orders',protect,showDelieverOrders);
 router.post('/fetch-order',protect,fetchOrder);
 router.post('/make-order-query',protect,postOrderQuery);
 router.post('/authenticate',protect,(req,res)=>{
-    console.log('owner in atuhencated')
-    res.json({message:'done'});
+    console.log('worker in atuhencated')
+    res.json({message:'success'});
 })
 
 module.exports = router;

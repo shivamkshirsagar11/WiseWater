@@ -3,32 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
 import ShowOrder from "../../components/ShowOrder";
 import { toast } from 'react-toastify';
+import { giveWorkerDelieveredOrders } from '../../actions/orders/giveWorkerDelieveredOrders';
 
 export default function ShowAssignedOrders({ cookies }) {
     const navigate = useNavigate();
     const { token } = cookies;
     const [delieveredOrders, setDelieveredOrders] = useState(null);
     useEffect(() => {
-        const fun = async () => {
-            try {
-                const response = await fetch('http://localhost:3001/api/worker/show-delievered-orders', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ token })
-                });
-                const data = await response.json();
-                console.log(data)
-                if (data.type === 'error') throw new Error(data.message);
-                setDelieveredOrders(data.orders);
-            } catch (error) {
-                toast.error(error)
+        const fetchData = async () => {
+            const response = await giveWorkerDelieveredOrders(token);
+            if( 'error'===response.type ){
+                alert(response.error);
+                navigate('/login');
+            }else{
+                setDelieveredOrders(response.delieveredOrders);
             }
         }
-        fun();
-    }, []);
+        fetchData();
+    }, [token]);
 
     if (null === delieveredOrders) {
         return <Spinner />;

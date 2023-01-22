@@ -3,33 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
 import ShowOrder from "../../components/ShowOrder";
 import { toast } from 'react-toastify';
+import { giveWorkerAssignedOrders } from '../../actions/orders/giveWorkerAssignedOrders';
+import { deliverOrder } from '../../actions/orders/deliverOrder';
 
 export default function WorkerAssignedOrders({ cookies }) {
     const navigate = useNavigate();
     const [assignedOrders, setAssignedOrders] = useState(null);
     const {token} = cookies;
     useEffect(() => {
-        const fun = async () => {
-            try {
-                const response = await fetch('http://localhost:3001/api/worker/show-assigned-orders', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({token})
-                });
-                const data = await response.json();
-                console.log(data)
-                if (data.type === 'error') throw new Error(data.message);
-                setAssignedOrders(data.assignedOrders);
-            } catch (error) {
-                toast.error(error)
+        const fetchData = async()=>{
+            const response = await giveWorkerAssignedOrders(token);
+            if( 'error'===response.type ){
+                alert(response.error);
                 navigate('/login');
+            }else{
+                setAssignedOrders(response.assignedOrders);
             }
         }
-        fun();
-    }, []);
+        fetchData();
+    }, [token]);
 
     if (null === assignedOrders) {
         return <Spinner />;
@@ -38,21 +30,11 @@ export default function WorkerAssignedOrders({ cookies }) {
     const handleDelieverOrder = async (e)=>{
         e.preventDefault();
         console.log(e.target.value);
-        try {
-            const response = await fetch('http://localhost:3001/api/worker/order-delivered', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ token,order_id:e.target.value })
-            });
-            const data = await response.json();
-            console.log(data)
-            if (data.type === 'error') throw new Error(data.message);
-            setAssignedOrders(data.assignedOrders);
-        } catch (error) {
-            toast.error(error);
+        const response = await deliverOrder(token,e.target.value);
+        if( 'error'===response.type ){
+            alert(response.error);
+        }else{
+            setAssignedOrders(response.assignedOrders);
         }
     }
 const handleAssignedOrderQuery = (e)=>{

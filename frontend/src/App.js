@@ -11,7 +11,7 @@ import WorkerApplicationFrom from './pages/guestuser/WorkerApplicationFrom';
 
 // customer
 import CustomerRegistration from './pages/register/CustomerRegistration';
-import Placeorder from './pages/customer/Placeorder';
+import Placeorder from './pages/customer/placeorder/Placeorder';
 import ShowPlacedorderList from './pages/customer/ShowPlacedorderList';
 import TrackOrder from "./pages/customer/TrackOrder";
 // import ShowCustomerDetails from "./components/ShowCustomerDetails";
