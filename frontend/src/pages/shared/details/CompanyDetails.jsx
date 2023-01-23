@@ -1,5 +1,5 @@
 import React from 'react';
-import Address from './Address'
+import AddressDetails from './AddressDetails'
 
 function CompanyDetails({companyData}) {
     return (
@@ -10,7 +10,7 @@ function CompanyDetails({companyData}) {
             <p>your company service time : {companyData.serviceTime}</p>
             <p>your company rating : {companyData.rating}</p>
             <p>your company name : {companyData.name}</p>
-            <Address address={companyData.address}/>
+            <AddressDetails address={companyData.address}/>
         </div>
     )
 }

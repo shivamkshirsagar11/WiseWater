@@ -1,4 +1,6 @@
 import React from 'react'
+import AddressDetails from '../details/AddressDetails'
+
 
 export default function ShowOrder({order}) {
     return (
@@ -8,11 +10,7 @@ export default function ShowOrder({order}) {
             <p>water quantity {order.water_quantity}</p>
             <p>company name {order.company_name}</p>
             <h3>address</h3>
-            <p>line1 {order.address.line1}</p>
-            <p>line2 {order.address.line2}</p>
-            <p>city {order.address.city}</p>
-            <p>pincde {order.address.pincode}</p>
-            <p>state {order.address.state}</p>
+            <AddressDetails address={order.address} />
             {order.status && <p>status {order.status}</p>}
         </div>
     )

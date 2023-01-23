@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Address({address}) {
+function AddressDetails({address}) {
     return (
         <div>
             <h3>address</h3>
@@ -12,4 +12,4 @@ function Address({address}) {
     )
 }
 
-export default Address
+export default AddressDetails

@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Spinner from '../components/Spinner';
+import Spinner from '../Spinner';
 import Fuse from 'fuse.js';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-import { giveCompaniesData } from '../actions/general/giveCompaniesData';
-import { giveUserType } from '../actions/general/giveUserType';
+import { giveCompaniesData } from '../../actions/guestUser/giveCompaniesData';
+import { giveUserType } from '../../actions/guestUser/giveUserType';
 
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef

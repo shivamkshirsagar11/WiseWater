@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { registerUser } from '../../actions/general/registerUser';
-import UserDetailsForRegister from './UserDetailsForRegister';
-import CompanyDetailsForRegister from './CompanyDetailsForRegister';
+import { registerUser } from '../../actions/shared/registerUser';
+import CompanyDetailsForm from '../shared/form/CompanyDetailsForm';
+import UserDetailsForm from '../shared/form/UserDetailsForm';
 
 export default function OwnerRegistration({ setCookies }) {
     const navigate = useNavigate();
@@ -36,10 +36,10 @@ export default function OwnerRegistration({ setCookies }) {
     return (
         <div>
             <form method="post" >
-                <UserDetailsForRegister userData={userData} setUserData={setUserData} />
+                <UserDetailsForm userData={userData} setUserData={setUserData} />
 
                 {/* company */}
-                <CompanyDetailsForRegister companyData={companyData} setCompanyData={setCompanyData} />
+                <CompanyDetailsForm companyData={companyData} setCompanyData={setCompanyData} />
 
                 <button type="submit" onClick={handleSubmit}>Submit</button>
             </form>

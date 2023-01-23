@@ -1,7 +1,7 @@
 import React from 'react';
-import AddressDetailsForRegister from './AddressDetailsForRegister';
+import AddressDetailsForm from './AddressDetailsForm';
 
-function CompanyDetailsForRegister({ companyData, setCompanyData }) {
+function CompanyDetailsForm({ companyData, setCompanyData }) {
     const { name, email, contact, serviceTime } = companyData;
 
     const handleInputData = (e) => {
@@ -21,9 +21,9 @@ function CompanyDetailsForRegister({ companyData, setCompanyData }) {
             company contact : <input type="email" name="contact" onChange={handleInputData} value={contact} />
             company service time : <input type="text" name="serviceTime" onChange={handleInputData} value={serviceTime} />
 
-            <AddressDetailsForRegister address={companyData.address} setAddress={setAddress} />
+            <AddressDetailsForm address={companyData.address} setAddress={setAddress} />
         </div>
     )
 }
 
-export default CompanyDetailsForRegister
+export default CompanyDetailsForm

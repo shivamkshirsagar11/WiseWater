@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { authenticateUser } from '../../../actions/general/authenticateUser';
-import { placeOrder } from '../../../actions/orders/placeOrder';
+import { authenticateUser } from '../../actions/shared/authenticateUser';
+import { placeOrder } from '../../actions/customer/placeOrder';
+import AddressDetailsForm from '../shared/form/AddressDetailsForm';
 
 export default function Placeorder({ cookies }) {
     const navigate = useNavigate();
@@ -42,9 +42,8 @@ export default function Placeorder({ cookies }) {
         line1: '', line2: '', city: '', pincode: '', state: ''
     });
 
-    const handleInputAddress = (e) => {
-        const { name, value } = e.target;
-        setAddressData(prevState => ({ ...prevState, [name]: value }));
+    const setInputAddress = (address) => {
+        setAddressData({...address})
     }
 
     const handleSubmit = async (event) => {
@@ -87,11 +86,7 @@ export default function Placeorder({ cookies }) {
                 <input type="text" name="water_quantity" value={orderData.water_quantity} onChange={handleInputData} />
 
                 {/* address */}
-                Line1 : <input type="text" name="line1" onChange={handleInputAddress} value={addressData.line1} />
-                Line2 : <input type="text" name="line2" onChange={handleInputAddress} value={addressData.line2} />
-                city : <input type="text" name="city" onChange={handleInputAddress} value={addressData.city} />
-                pincode : <input type="text" name="pincode" onChange={handleInputAddress} value={addressData.pincode} />
-                state : <input type="text" name="state" onChange={handleInputAddress} value={addressData.state} />
+                <AddressDetailsForm address={addressData} setAddress={setInputAddress}/>
 
                 companyname : <input type="text" name="companyname" value={orderData.companyname} readOnly={true} />
 

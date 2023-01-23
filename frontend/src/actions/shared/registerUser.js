@@ -4,7 +4,6 @@ const registerUser = async (userType, userObj) => {
         if ('worker' === userType)
             action = 'application';
         const response = await fetch(`/api/${userType}/${action}`, {
-
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',

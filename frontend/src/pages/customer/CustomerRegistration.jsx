@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../../actions/general/registerUser';
-import UserDetailsForRegister from './UserDetailsForRegister';
-import AddressDetailsForRegister from './AddressDetailsForRegister';
+import { registerUser } from '../../actions/shared/registerUser';
+import UserDetailsForm from '../shared/form/UserDetailsForm';
+import AddressDetailsForm from '../shared/form/AddressDetailsForm';
 
 function CustomerRegistration({ setCookies }) {
     const navigate = useNavigate();
@@ -32,8 +32,8 @@ function CustomerRegistration({ setCookies }) {
     return (
         <div>
             <form method="post" >
-                <UserDetailsForRegister userData={userData} setUserData={setUserData} />
-                <AddressDetailsForRegister address={userData.address} setAddress={setAddress}/>
+                <UserDetailsForm userData={userData} setUserData={setUserData} />
+                <AddressDetailsForm address={userData.address} setAddress={setAddress}/>
                 <button type="submit" onClick={handleSubmit}>Submit</button>
             </form>
         </div>

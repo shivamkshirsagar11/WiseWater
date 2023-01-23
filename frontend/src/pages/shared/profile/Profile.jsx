@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../../components/Spinner';
-import { giveUserData } from '../../actions/general/giveUserData';
+import Spinner from '../../Spinner';
+import { giveUserData } from '../../../actions/shared/profile/giveUserData';
 
-import CompanyDetails from '../../components/CompanyDetails';
-import Address from '../../components/Address';
-import UserDetails from '../../components/UserDetails';
+import CompanyDetails from '../details/CompanyDetails';
+// import CompanyDetails from ''
+import AddressDetails from '../details/AddressDetails';
+import UserDetails from '../details/UserDetails';
 import ProfileButtons from './ProfileButtons';
 
 export default function Profile({ cookies, removeCookies, userType }) {
@@ -50,15 +51,12 @@ export default function Profile({ cookies, removeCookies, userType }) {
     return (
         <>
             <UserDetails userData={userData} />
-
             {
                 'customer' !== userType ?
                     <CompanyDetails companyData={companyData} /> :
-                    <Address address={userData.address}/>
+                    <AddressDetails address={userData.address}/>
             }
-
             <ProfileButtons userType={userType} redirectHandler={redirectHandler} />
-
             <button onClick={handleLogout}>logout</button>
         </>
     );

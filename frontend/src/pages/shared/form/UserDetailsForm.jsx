@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UserDetailsForRegister({ userData, setUserData }) {
+function UserDetailsForm({ userData, setUserData }) {
     const { firstname, lastname, email, contact, password, confirmPassword } = userData;
 
     const handleInputData = (e) => {
@@ -23,4 +23,4 @@ function UserDetailsForRegister({ userData, setUserData }) {
     )
 }
 
-export default UserDetailsForRegister
+export default UserDetailsForm

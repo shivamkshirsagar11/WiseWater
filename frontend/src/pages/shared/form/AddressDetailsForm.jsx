@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AddressDetailsForRegister({ address, setAddress }) {
+function AddressDetailsForm({ address, setAddress }) {
 
     const handleInput = (e) => {
         const { value, name } = e.target;
@@ -18,4 +18,4 @@ function AddressDetailsForRegister({ address, setAddress }) {
     );
 }
 
-export default AddressDetailsForRegister
+export default AddressDetailsForm
