@@ -1,7 +1,7 @@
 const giveWorkerDelieveredOrders = async (token) => {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/worker/show-delievered-orders`,
+            `/api/worker/show-delievered-orders`,
             {
                 headers: {
                     "Content-Type": "application/json",

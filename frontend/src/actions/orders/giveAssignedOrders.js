@@ -1,7 +1,7 @@
 const giveAssignedOrders = async (token) => {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/owner/show-assigned-orders`,
+            `/api/owner/show-assigned-orders`,
             {
                 headers: {
                     "Content-Type": "application/json",

@@ -13,7 +13,7 @@ export default function ResolveInQueryOrder({ cookies }) {
 
         const fetchCustomer = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api/owner/fetch-customer', {
+                const response = await fetch('/api/owner/fetch-customer', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json, text/plain, */*',

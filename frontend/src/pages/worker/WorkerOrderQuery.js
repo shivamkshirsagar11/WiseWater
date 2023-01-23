@@ -13,7 +13,7 @@ export default function WorkerOrderQuery({ cookies }) {
     useEffect(() => {
         const fetchOrder = async()=>{
             try{
-                const response = await fetch('http://localhost:3001/api/worker/fetch-order', {
+                const response = await fetch('/api/worker/fetch-order', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json, text/plain, */*',
@@ -37,7 +37,7 @@ export default function WorkerOrderQuery({ cookies }) {
 
     const makeOrderQuery = async(x)=>{
         try{
-            const response = await fetch('http://localhost:3001/api/worker/make-order-query', {
+            const response = await fetch('/api/worker/make-order-query', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',

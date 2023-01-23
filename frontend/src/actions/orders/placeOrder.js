@@ -1,6 +1,6 @@
 const placeOrder = async (token, order) => {
     try {
-        const response = await fetch(`http://localhost:3001/api/customer/placeorder`, {
+        const response = await fetch(`/api/customer/placeorder`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',

@@ -1,7 +1,7 @@
 const givePendingOrders = async (token) => {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/owner/show-pending-orders
+            `/api/owner/show-pending-orders
             `,
             {
                 headers: {

@@ -1,6 +1,6 @@
 const giveWorkerDetails = async (token) => {
     try {
-        const response = await fetch(`http://localhost:3001/api/owner/show-workers`, {
+        const response = await fetch(`/api/owner/show-workers`, {
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`

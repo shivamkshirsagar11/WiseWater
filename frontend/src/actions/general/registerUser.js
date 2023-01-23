@@ -3,7 +3,7 @@ const registerUser = async (userType, userObj) => {
         var action = "register";
         if ('worker' === userType)
             action = 'application';
-        const response = await fetch(`http://localhost:3001/api/${userType}/${action}`, {
+        const response = await fetch(`/api/${userType}/${action}`, {
 
             method: 'POST',
             headers: {

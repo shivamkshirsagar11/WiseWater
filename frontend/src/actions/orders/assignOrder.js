@@ -3,7 +3,7 @@ const assignOrder = async ({ token, worker_id, order_id}) => {
     console.log(worker_id)
     console.log(order_id)
     try {
-        const response = await fetch(`http://localhost:3001/api/owner/assign-order`, {
+        const response = await fetch(`/api/owner/assign-order`, {
             method : 'POST',
             headers: {
                 "Content-Type": "application/json",

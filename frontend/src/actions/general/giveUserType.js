@@ -1,7 +1,7 @@
 const giveUserType = async (token) => {
 
     try {
-        const response = await fetch(`http://localhost:3001/api/user/give-user-type`, {
+        const response = await fetch(`/api/user/give-user-type`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

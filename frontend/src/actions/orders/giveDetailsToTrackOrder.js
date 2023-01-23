@@ -1,7 +1,7 @@
 const giveDetailsToTrackOrder = async (token,order_id) => {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/customer/track-order`,
+            `/api/customer/track-order`,
             {
                 method: "POST",
                 headers: {

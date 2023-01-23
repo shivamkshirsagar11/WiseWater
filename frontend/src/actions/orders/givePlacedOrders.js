@@ -1,7 +1,7 @@
 const givePlacedOrders = async (token) => {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/customer/show-placed-orders`,
+            `/api/customer/show-placed-orders`,
             {
                 headers: {
                     "Content-Type": "application/json",

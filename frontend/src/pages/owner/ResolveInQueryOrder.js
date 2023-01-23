@@ -12,7 +12,7 @@ export default function ResolveInQueryOrder({ cookies }) {
 
         const fetchInQueryOrder = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api/owner/get-order', {
+                const response = await fetch('/api/owner/get-order', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json, text/plain, */*',
@@ -38,7 +38,7 @@ export default function ResolveInQueryOrder({ cookies }) {
 
     const ReAssignOrder = async () => {
         try {
-            const response = await fetch('http://localhost:3001/api/owner/reassign-order', {
+            const response = await fetch('/api/owner/reassign-order', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
@@ -57,7 +57,7 @@ export default function ResolveInQueryOrder({ cookies }) {
     }
     const MoveToPending = async () => {
         try {
-            const response = await fetch('http://localhost:3001/api/owner/move-to-pending-order', {
+            const response = await fetch('/api/owner/move-to-pending-order', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',

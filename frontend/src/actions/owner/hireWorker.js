@@ -1,7 +1,7 @@
 const hireWorker = async (token, workerApplication) => {
     try {
 
-        const response = await fetch(`http://localhost:3001/api/owner/hire-worker`, {
+        const response = await fetch(`/api/owner/hire-worker`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

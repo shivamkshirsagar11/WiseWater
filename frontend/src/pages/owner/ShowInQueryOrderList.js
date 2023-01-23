@@ -12,7 +12,7 @@ export default function ShowInQueryOrderList({ cookies }) {
 
         const fetchInQueryOrder = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api/owner/show-in-query-orders', {
+                const response = await fetch('/api/owner/show-in-query-orders', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json, text/plain, */*',

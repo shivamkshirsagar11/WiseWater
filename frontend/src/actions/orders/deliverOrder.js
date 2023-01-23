@@ -1,7 +1,7 @@
 const deliverOrder = async (token,order_id) => {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/worker/order-delivered`,
+            `/api/worker/order-delivered`,
             {
                 method: "POST",
                 headers: {

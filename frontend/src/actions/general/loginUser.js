@@ -1,7 +1,7 @@
 const  loginUser = async (user) => {
     console.log(user)
     try {
-        const response = await fetch(`http://localhost:3001/api/user/login`, {
+        const response = await fetch(`/api/user/login`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',

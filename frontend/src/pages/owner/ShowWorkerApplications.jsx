@@ -86,25 +86,28 @@ function ShowWorkerApplications({ cookies }) {
     }
 
     return (
-        <div>{searchedWorkerApplications.length !== 0 ?
-            <>
-                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} />
-                {
-                    searchedWorkerApplications.map((workerApplication, index) => {
-                        return (
-                            <div key={index}>
-                                <h2>application {index}</h2>
-                                <p>first Name :- {workerApplication.firstname}</p>
-                                <p>last Name :- {workerApplication.lastname}</p>
-                                <p>contact :- {workerApplication.contact}</p>
-                                <p>email :- {workerApplication.email}</p>
-                                <button onClick={handleHiring} value={index}>hire worker</button>
-                            </div>
-                        )
-                    })
-                }
-            </>
-            : <>No application found</>}
+        <div>
+        {
+            searchedWorkerApplications.length !== 0 ?
+                <>
+                    <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} />
+                    {
+                        searchedWorkerApplications.map((workerApplication, index) => {
+                            return (
+                                <div key={index}>
+                                    <h2>application {index}</h2>
+                                    <p>first Name :- {workerApplication.firstname}</p>
+                                    <p>last Name :- {workerApplication.lastname}</p>
+                                    <p>contact :- {workerApplication.contact}</p>
+                                    <p>email :- {workerApplication.email}</p>
+                                    <button onClick={handleHiring} value={index}>hire worker</button>
+                                </div>
+                            )
+                        })
+                    }
+                </>
+                : <>No application found</>
+        }
         </div>
     )
 }
