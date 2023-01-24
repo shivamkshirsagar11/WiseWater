@@ -1,18 +1,21 @@
+const bcrypt = require('bcryptjs');
+const asyncHandler = require('express-async-handler');
+const Customer = require('../../models/customerModel');
+const { generateJWTtoken } = require('../../utility/generateJWTtoken');
+const {customerValidation} = require('./customerValidation')
 
 // registerUser registers any user
 // @desc    registerUser :- register customer
 // @route   get /api/customer/register
 // @access  public
 
-const {checkUserValidation} = require('../../validations/checkUserValidation');
-
 exports.registerUser = async (req, res) => {
     console.log(req.body);
     const { firstname, email, password, lastname, address, contact } = req.body;
 
-    const error = await checkUserValidation(req.body);
-
-    if (error.errorMessage.length > 0) {
+    const error = await customerValidation(req.body);
+    console.log(error);
+    if ( error && error.errorMessage.length > 0) {
         res.status(error.statusCode).json({
             error: {
                 errorMessage: error.errorMessage
@@ -34,6 +37,7 @@ exports.registerUser = async (req, res) => {
                 type: 'data'
             });
         } catch (error) {
+            console.log(error);
             res.status(500).json({
                 error: {
                     errorMessage: ['Interanl Server Error']
@@ -42,3 +46,4 @@ exports.registerUser = async (req, res) => {
         }
     }
 };
+
