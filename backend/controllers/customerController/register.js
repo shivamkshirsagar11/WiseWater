@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const Customer = require('../../models/customerModel');
 const { generateJWTtoken } = require('../../utility/generateJWTtoken');
-const {customerValidation} = require('./customerValidation')
+const { customerValidation } = require('./customerValidation');
 
 // registerUser registers any user
 // @desc    registerUser :- register customer
@@ -14,8 +14,8 @@ exports.registerUser = async (req, res) => {
     const { firstname, email, password, lastname, address, contact } = req.body;
 
     const error = await customerValidation(req.body);
-    console.log(error);
-    if ( error && error.errorMessage.length > 0) {
+
+    if (error && error.errorMessage.length > 0) {
         res.status(error.statusCode).json({
             error: {
                 errorMessage: error.errorMessage
