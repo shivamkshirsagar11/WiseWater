@@ -10,11 +10,13 @@ export default function TrackOrder({ cookies }) {
   const navigate = useNavigate();
   const [showOrder, setShowOrder] = useState([]);
   const [worker, setWorker] = useState([]);
+  const [loading, setLoading] = useState(false);
   console.log("order-id", order_id);
   useEffect(() => {
 
     const fetchData = async () => {
       const { token } = cookies;
+      setLoading(true);
       const response = await giveDetailsToTrackOrder(token, order_id);
       if ('error' === response.type) {
         alert(response.error);
@@ -22,12 +24,13 @@ export default function TrackOrder({ cookies }) {
       }
       setShowOrder(response.order);
       setWorker(response.worker);
+      setLoading(false);
     }
     fetchData();
 
   }, []);
 
-  if (null === showOrder || null == worker) {
+  if (true === loading) {
     return <Spinner />;
   }
   return (
