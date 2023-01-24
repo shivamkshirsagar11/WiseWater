@@ -12,8 +12,9 @@ const registerUser = async (userType, userObj) => {
             body: JSON.stringify(userObj)
         });
         const data = await response.json();
-        if ('error' === data.type)
-            throw new Error(data.message);
+        console.log(data);
+        if ( undefined !== data.error)
+            throw new Error(data.error.errorMessage);
         else {
             if ('worker' === userType) {
                 return {
