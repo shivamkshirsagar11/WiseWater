@@ -1,6 +1,6 @@
 const submitJobApplication = async (userData) => {
     try {
-        const response = await fetch(`/api/worker/application`, {
+        const response = await fetch(`/api/user/submit-job-application`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
