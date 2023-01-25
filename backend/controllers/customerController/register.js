@@ -10,11 +10,9 @@ const { customerValidation } = require('../../validations/customerValidation/cus
 // @access  public
 
 exports.registerUser = async (req, res) => {
-    console.log(req.body);
-    const { firstname, email, password, lastname, address, contact } = req.body;
-
+    
     const error = await customerValidation(req.body);
-
+    
     if (error && error.errorMessage.length > 0) {
         res.status(error.statusCode).json({
             error: {
@@ -23,6 +21,7 @@ exports.registerUser = async (req, res) => {
         });
     } else {
         try {
+            const { firstname, email, password, lastname, address, contact } = req.body;
             const user = await Customer.create({
                 firstname,
                 lastname,
@@ -37,7 +36,6 @@ exports.registerUser = async (req, res) => {
                 type: 'data'
             });
         } catch (error) {
-            console.log(error);
             res.status(500).json({
                 error: {
                     errorMessage: ['Interanl Server Error']

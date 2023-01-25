@@ -26,7 +26,7 @@ exports.placeorder = asyncHandler(async (req, res) => {
                 water_temperature,
                 water_quantity,
                 address,
-                company_name: company.name,
+                company_name: companyname,
                 status: 'pending',
                 customer_id: req.userid,
             });
@@ -35,6 +35,7 @@ exports.placeorder = asyncHandler(async (req, res) => {
                 message: 'from place order'
             });
         } catch (error) {
+            console.log(error);
             res.status(500).json({
                 error: {
                     errorMessage: ['Interanl Server Error']

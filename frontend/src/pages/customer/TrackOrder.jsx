@@ -8,9 +8,11 @@ import { giveDetailsToTrackOrder } from "../../actions/customer/giveDetailsToTra
 export default function TrackOrder({ cookies }) {
   const { order_id } = useParams();
   const navigate = useNavigate();
-  const [showOrder, setShowOrder] = useState([]);
-  const [worker, setWorker] = useState([]);
-  const [loading, setLoading] = useState(false);
+
+
+  const [order, setOrder] = useState({});
+  const [worker, setWorker] = useState({});
+  const [loading, setLoading] = useState(true);
   console.log("order-id", order_id);
   useEffect(() => {
 
@@ -18,16 +20,16 @@ export default function TrackOrder({ cookies }) {
       const { token } = cookies;
       setLoading(true);
       const response = await giveDetailsToTrackOrder(token, order_id);
+      console.log(response);
       if ('error' === response.type) {
         alert(response.error);
         navigate('/login');
       }
-      setShowOrder(response.order);
+      setOrder(response.order);
       setWorker(response.worker);
       setLoading(false);
     }
     fetchData();
-
   }, []);
 
   if (true === loading) {
@@ -35,21 +37,21 @@ export default function TrackOrder({ cookies }) {
   }
   return (
     <>
-      {showOrder.map((order, index) => {
-        return (
-          <div key={index}>
+      {/* {showOrder.map((order, index) => { */}
+        {/* return ( */}
+          <div >
             <ShowOrder order={order} />
             {order.status !== "pending" &&
               <div>
-                <p>Worker name: {worker[0].firstname} {worker[0].lastname}</p>
-                <p>Worker Contact: {worker[0].contact}</p>
-                <p>Worker Email: {worker[0].email}</p>
+                <p>Worker name: {worker.firstname} {worker.lastname}</p>
+                <p>Worker Contact: {worker.contact}</p>
+                <p>Worker Email: {worker.email}</p>
               </div>
               // <ShowAssignedWorkerDetails worker={worker} />
             }
           </div>
-        );
-      })}
+        {/* ); */}
+      {/* })} */}
     </>
   );
 }
