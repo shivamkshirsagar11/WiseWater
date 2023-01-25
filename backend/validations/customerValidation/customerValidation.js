@@ -28,20 +28,10 @@ exports.customerValidation = async (customer) => {
             const checkUser = await Customer.findOne({ $or: [{ email: email }, { contact: contact }] });
             if (checkUser) {
                 return {errorMessage:['You are alerady signed up'],statusCode:404};
-                // res.status(404).json({
-                //     error: {
-                //         errorMessage: ['Your email already exited']
-                //     }
-                // })
             }
         } catch (error) {
             console.log(error)
             return {errorMessage: ['Interanl Server Error'],statusCode:500};
-            // res.status(500).json({
-            //     error: {
-            //         errorMessage: ['Interanl Server Error']
-            //     }
-            // })
         }
     }
 }

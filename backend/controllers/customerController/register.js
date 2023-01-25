@@ -32,7 +32,7 @@ exports.registerUser = async (req, res) => {
                 password: await bcrypt.hash(password, 10)
             });
 
-            res.json({
+            res.status(200).json({
                 token: generateJWTtoken(user._id, "Customer"),
                 type: 'data'
             });

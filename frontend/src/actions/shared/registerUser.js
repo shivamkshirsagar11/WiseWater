@@ -9,7 +9,6 @@ const registerUser = async (userType, userObj) => {
             body: JSON.stringify(userObj)
         });
         const data = await response.json();
-        console.log(data);
         if (undefined !== data.error)
             throw new Error(data.error.errorMessage);
         else {

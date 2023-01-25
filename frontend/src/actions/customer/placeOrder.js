@@ -10,8 +10,8 @@ const placeOrder = async (token, order) => {
             body: JSON.stringify({order})
         });
         const data = await response.json();
-        if ('error' === data.type)
-            throw new Error(data.message);
+        if ( undefined!== data.error)
+            throw new Error(data.error.errorMessage);
         else {
             return {
                 type: 'success',
