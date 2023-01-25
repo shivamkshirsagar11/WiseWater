@@ -1,10 +1,10 @@
-const { checkAddressValidation } = require('./checkAddressValidation');
+const { addressValidation } = require('../shared/addressValidation');
 const validator = require('validator');
-const Company = require('../models/companyModel');
+const Company = require('../../models/companyModel');
 
-exports.checkCompanyValidation = async (companyData) => {
+exports.companyValidation = async (companyData) => {
     const { name, email, contact, serviceTime, address } = companyData;
-    const addressValidationError = checkAddressValidation(address);
+    const addressValidationError = addressValidation(address);
 
     var error = [];
 

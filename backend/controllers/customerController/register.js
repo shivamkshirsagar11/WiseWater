@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const Customer = require('../../models/customerModel');
 const { generateJWTtoken } = require('../../utility/generateJWTtoken');
-const { customerValidation } = require('./customerValidation');
+const { customerValidation } = require('../../validations/customerValidation/customerValidation');
 
 // registerUser registers any user
 // @desc    registerUser :- register customer

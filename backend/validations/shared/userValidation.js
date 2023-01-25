@@ -1,6 +1,6 @@
 const validator = require('validator');
 
-exports.checkUserValidation = async(userData)=>{
+exports.userValidation = async (userData) => {
     const { firstname, email, password, confirmPassword, lastname, contact } = userData;
     const error = [];
     if (!firstname) {
@@ -36,9 +36,7 @@ exports.checkUserValidation = async(userData)=>{
     if (false) {
         // check the contact validation whather it contains alphabet and other stuff
     }
-    
     if (error.length > 0) {
         return error;
-        
     }
 }

@@ -1,12 +1,12 @@
-const { checkUserValidation } = require('../../validations/checkUserValidation');
-const {checkCompanyValidation} = require('../../validations/checkCompanyValidation');
+const { userValidation } = require('../shared/userValidation');
+const {companyValidation} = require('../companyValidation/companyValidation');
 const Owner = require('../../models/ownerModel');
 
 exports.ownerValidation = async (obj) => {
     const { userData: ownerData, companyData } = obj;
 
-    const userValidationError = await checkUserValidation(ownerData);
-    const companyValidationError = await checkCompanyValidation(companyData);
+    const userValidationError = await userValidation(ownerData);
+    const companyValidationError = await companyValidation(companyData);
 
     var error = [];
 

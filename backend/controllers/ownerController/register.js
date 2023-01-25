@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const Owner = require('../../models/ownerModel');
 const Company = require('../../models/companyModel');
 const { generateJWTtoken } = require('../../utility/generateJWTtoken');
-const {ownerValidation} = require('./ownerValidation')
+const {ownerValidation} = require('../../validations/ownerValidation/ownerValidation');
 
 // registerUser registers any user
 // @desc    registerUser :- register owner check company id and company name
@@ -11,7 +11,6 @@ const {ownerValidation} = require('./ownerValidation')
 // @access  public
 
 exports.registerUser = async (req, res) => {
-
 
     const error = await ownerValidation(req.body);
 

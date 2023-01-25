@@ -1,11 +1,11 @@
-const { checkUserValidation } = require('../../validations/checkUserValidation');
-const { checkAddressValidation } = require('../../validations/checkAddressValidation');
+const { userValidation } = require('../shared/userValidation');
+const { addressValidation } = require('../shared/addressValidation');
 const Customer = require('../../models/customerModel');
 
 exports.customerValidation = async (customer) => {
     
-    const userValidationError = await checkUserValidation(customer);
-    const addressValidationError = checkAddressValidation(customer.address);
+    const userValidationError = await userValidation(customer);
+    const addressValidationError = addressValidation(customer.address);
 
     var error = [];
     console.log(userValidationError)

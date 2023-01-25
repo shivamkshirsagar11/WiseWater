@@ -1,7 +1,6 @@
-const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const WorkerApplication = require('../../models/workerApplicationModel');
-const Company = require('../../models/companyModel');
+const { workerValidation } = require('../../validations/workerValidation/workerValication');
 
 // registerUser registers any user
 // @desc    worker can apply for job to company 
@@ -9,49 +8,37 @@ const Company = require('../../models/companyModel');
 // @access  public
 
 exports.workerApplicationForm = asyncHandler(async (req, res) => {
-    const { firstname, email, lastname, contact, companyname } = req.body;
 
-    if (!firstname || !email || !lastname || !contact || !companyname) {
-        res.status(400);
-        throw new Error('Invalid Credential');
-    }
-    else if (contact.length > 10) {
-        res.status(400);
-        throw new Error('Invalid contact');
-    }
+    const error = await workerValidation(req.body);
 
-    const company = await Company.findOne({ name: companyname });
-    
-    if (null === company) {
-        res.status(401);
-        throw new Error('company is not exists');
-    }
-
-    // Check if user already exsist
-    // MEANING :- if user already applied for this company then don't allow to apply again
-    const workerExists = await WorkerApplication.findOne({ $or: [{ email, company_name: companyname }, { contact: contact, company_name: companyname }] });
-    if (workerExists) {
-        res.status(400);
-        console.log(workerExists);
-        throw new Error(`You already applied for ${companyname}`);
-    }
-
-    const worker = await WorkerApplication.create({
-        firstname,
-        lastname,
-        contact,
-        email,
-        company_name: companyname
-    });
-
-    if (worker) {
-        res.status(201).json({
-            _id: worker._id,
-            name: worker.name,
-            email: worker.email,
+    console.log(error);
+    if (error && error.errorMessage.length > 0) {
+        res.status(error.statusCode).json({
+            error: {
+                errorMessage: error.errorMessage
+            }
         });
     } else {
-        res.status(400);
-        throw new Error('Invalid user data');
+        const { firstname, email, lastname, contact, companyname } = req.body;
+        try {
+            const worker = await WorkerApplication.create({
+                firstname,
+                lastname,
+                contact,
+                email,
+                company_name: companyname
+            });
+
+            res.status(201).json({
+                _id: worker._id,
+            });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({
+                error: {
+                    errorMessage: ['Interanl Server Error']
+                }
+            })
+        }
     }
 });
