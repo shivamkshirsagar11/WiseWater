@@ -1,12 +1,12 @@
-const registerUser = async (userType, userObj) => {
+const submitJobApplication = async (userData) => {
     try {
-        const response = await fetch(`/api/${userType}/register`, {
+        const response = await fetch(`/api/worker/application`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(userObj)
+            body: JSON.stringify(userData)
         });
         const data = await response.json();
         console.log(data);
@@ -14,8 +14,7 @@ const registerUser = async (userType, userObj) => {
             throw new Error(data.error.errorMessage);
         else {
             return {
-                type: 'data',
-                token: data.token
+                type: 'success'
             }
         }
     } catch (error) {
@@ -26,4 +25,4 @@ const registerUser = async (userType, userObj) => {
     }
 }
 
-export { registerUser };
+export { submitJobApplication };

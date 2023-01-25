@@ -11,7 +11,6 @@ exports.workerApplicationForm = asyncHandler(async (req, res) => {
 
     const error = await workerValidation(req.body);
 
-    console.log(error);
     if (error && error.errorMessage.length > 0) {
         res.status(error.statusCode).json({
             error: {
