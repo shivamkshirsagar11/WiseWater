@@ -3,7 +3,9 @@ const validator = require('validator');
 const Company = require('../../models/companyModel');
 
 exports.companyValidation = async (companyData) => {
+
     const { name, email, contact, serviceTime, address } = companyData;
+
     const addressValidationError = addressValidation(address);
 
     var error = [];
