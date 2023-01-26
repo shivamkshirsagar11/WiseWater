@@ -1,27 +1,35 @@
 const jwt = require('jsonwebtoken');
-exports.decodeJWTtoken = (req)=>{
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-        // console.log(req)
-        // get token from header
-        token = req.headers.authorization.split(' ')[1];
+exports.decodeJWTtoken = (req, res) => {
 
-        if( !token ){
-            res.status(401);
-            throw new Error('not authorized, no token');
+    const { authorization } = req.headers;
+    if ('Bearer undefined' !== authorization) {
+        const token = authorization.split(' ')[1];
+        if ('undefined' !== token) {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            if (decoded === undefined) {
+                res.status(401).json({
+                    error: {
+                        errorMessage: ['you are not authorized for this page']
+                    }
+                });
+            }
+            else {
+                return decoded;
+            }
+        } else {
+            console.log('here')
+            res.status(401).json({
+                error: {
+                    errorMessage: ['you are not authorized for this page']
+                }
+            });
         }
-
-        // verify token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log(decoded);
-        if(decoded === undefined){
-            throw Error('No Header Found')
-        }
-        else{
-        return decoded;
-        }
-    }
-    else{
-        res.status(401);
-        throw new Error('not authorized, no token');
+    } else {
+        console.log('baread header is not exists')
+        res.status(401).json({
+            error: {
+                errorMessage: ['you are not authorized for this page']
+            }
+        });
     }
 }

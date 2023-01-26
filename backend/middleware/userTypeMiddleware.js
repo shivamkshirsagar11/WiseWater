@@ -1,29 +1,30 @@
 const { decodeJWTtoken } = require('../utility/decodeJWTtoken');
 
 const userTypeHandler = (req, res, next) => {
-
-
     const url = req.url.split('/');
-
+    
     if ('user' === url[2]) {
         next();
+        return;
     } else {
-
-        if ('worker' === url[2] && 'application' === url[3]) {
-            console.log("in if.......")
+        // REASON :- FOR THIS USER TYPE CHECKING IS NOT REQUIRED
+        if( 'application'===url[3] || 'register'===url[3] ) {
             next();
+            return; // otherwise after calling next it will run remaing code but we don't want that to do
         }
-        const decoded = decodeJWTtoken(req);
-
-        if (decoded.collectionName.toLowerCase() === url[2].toLowerCase()) {
+        const {collectionName} = decodeJWTtoken(req,res);
+        console.log('abc')
+        if (collectionName.toLowerCase() === url[2].toLowerCase()) {
+            console.log('jhere')
             next();
         }
         else {
-            // console.log(error);
-            res.status(401);
-            throw new Error('not authorized');
+            res.status(401).json({
+                error:{
+                    errorMessage:['you are not authorized for this page']
+                }
+            });
         }
-        console.log("from usercheck")
     }
 }
 

@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const {protect} = require('../middleware/authMiddlerware');
 
-const {loginUser, profileUpdate} = require('../controllers/userController');
-const {searchByCity} = require("../controllers/companyController/searchCriteria.js")
+const {loginUser} = require('../controllers/userController/loginUser');
+const { giveUserType } = require('../controllers/userController/giveUserType');
+const { submitJobApplicationForm } = require('../controllers/userController/submitJobApplicationForm');
+const {showCompanies} = require("../controllers/companyController/showCompanies.js");
+
 router.post('/login',loginUser);
-router.post('/profileupdate',protect,profileUpdate);
-router.post('/searchcompanies',searchByCity);
+router.get('/show-companies',showCompanies);
+router.post('/give-user-type',giveUserType);
+router.post('/submit-job-application',submitJobApplicationForm);
 module.exports = router;

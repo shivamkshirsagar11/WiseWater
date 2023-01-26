@@ -23,7 +23,8 @@ exports.workerApplication = asyncHandler(async (req, res) => {
         throw new Error('Invalid contact');
     }
     // Check if user already exsist
-    const workerExists = await Worker.findOne({ email });
+    
+    const workerExists = await Worker.findOne({ $or : [{email:email},{contact:contact}] });
     if (workerExists) {
         res.status(400);
         console.log(workerExists);
@@ -46,11 +47,7 @@ exports.workerApplication = asyncHandler(async (req, res) => {
 
     if (worker) {
         res.status(201).json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            // is this required
-            token:generateJWTtoken(user._id,"Worker")
+            _id: worker._id,
         });
     }else{
         res.status(400);
