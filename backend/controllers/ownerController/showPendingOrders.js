@@ -7,8 +7,7 @@ exports.showPendingOrders = async (req, res) => {
         const { company_name } = await Owner.findOne({ _id: req.userid }, { company_name: 1, _id: 0 });
         const pendingOrderList = await Order.find({ company_name, status: "pending" });
         console.log(pendingOrderList)
-        res.status(200)
-        res.json({
+        res.status(200).json({
             pendingOrderList: pendingOrderList,
         })
     } catch (error) {
