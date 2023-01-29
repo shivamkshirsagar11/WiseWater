@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { giveCompaniesData } from '../../actions/guestUser/giveCompaniesData';
 import { giveUserType } from '../../actions/guestUser/giveUserType';
+import MultiToast from '../../actions/shared/MultiToast';
 
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
@@ -28,20 +29,20 @@ export default function ShowCompanies({ cookies }) {
         setLoading(true);
         const fetchData = async () => {
             var response = await giveCompaniesData();
-
             if ('error'===response.type) {
-                alert(response.error);
+                MultiToast(response.error, true);
                 return;
             }
             const companiesData = [...response.companiesData];
 
             response = await giveUserType(token);
+            console.log(response);
             if ('error'===response.type) {
-                alert(response.error);
+                MultiToast(response.error, true);
                 return;
             }
             const userType = response.userType;
-
+            console.log(response.userType)
             fuse.current = new Fuse(companiesData, {
                 keys: [
                     'name',

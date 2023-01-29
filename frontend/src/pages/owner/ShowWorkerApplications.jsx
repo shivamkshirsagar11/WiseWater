@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { giveWorkerApplications } from '../../actions/owner/giveWorkerApplications';
 import { hireWorker } from '../../actions/owner/hireWorker';
 import UserDetails from '../shared/details/UserDetails';
+import MultiToast from '../../actions/shared/MultiToast';
 
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
@@ -33,7 +34,7 @@ function ShowWorkerApplications({ cookies }) {
             const { token } = cookies;
             const response = await giveWorkerApplications(token);
             if ('error' === response.type) {
-                alert(response.error);
+                MultiToast(response.error, true);
                 navigate('/login');
             } else {
                 console.log(response)

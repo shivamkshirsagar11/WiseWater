@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
-import { registerUser } from '../../actions/shared/registerUser';
 import { submitJobApplication } from '../../actions/guestUser/submitJobApplication'
+import MultiToast from '../../actions/shared/MultiToast';
+import OTP from '../shared/form/OTP';
 
 export default function WorkerApplicationFrom() {
   const navigate = useNavigate();
   const { companyname } = useParams();
-
+  const [flag, setFlag] = useState(false);
   const [userData, setuserData] = useState({
     firstname: '', lastname: '', email: '', contact: '', companyname
   });
@@ -20,17 +20,14 @@ export default function WorkerApplicationFrom() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await submitJobApplication({ ...userData });
-    if ('error' === response.type) {
-      alert(response.error);
-    } else {
-      alert('successfully applied');
-      navigate('/show-companies');
-    }
+    const response = await submitJobApplication(userData, true);
+    if ("error" === response.type) MultiToast(response.error, true);
+    else setFlag(true);
   }
 
   return (
-    <div>
+    <>
+    {!flag && <div>
       <form method="post" >
         firstName : <input type="text" name="firstname" onChange={handleInputData} value={userData.firstname} />
         lastName : <input type="text" name="lastname" onChange={handleInputData} value={userData.lastname} />
@@ -39,6 +36,8 @@ export default function WorkerApplicationFrom() {
         companyname : <input type="text" name="companyname" value={userData.companyname} readOnly={true} />
         <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>
-    </div>
+    </div>}
+    {flag && <OTP userData={userData} userType="" register = {submitJobApplication} setCookies={()=>{}} navigateString = {"/"} requiredCookie = {0} toastMsg = {"Application Sent Successfully"}/>}
+    </>
   );
 }

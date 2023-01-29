@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '../Spinner';
 import ShowOrder from "../shared/order/Order";
 import { toast } from 'react-toastify';
+import MultiToast from '../../actions/shared/MultiToast';
 
 export default function WorkerOrderQuery({ cookies }) {
     const {order_id} = useParams();
@@ -46,7 +47,7 @@ export default function WorkerOrderQuery({ cookies }) {
                 body: JSON.stringify({token,order_id:x,query:orderQuery})
             });
             const data = await response.json();
-            if (data.type === 'error') toast.error(data.message);
+            if (data.type === 'error') MultiToast(data.error, true);
             console.log(data)
             navigate(`/worker/profile`);
         }catch(e){

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { authenticateUser } from '../../actions/shared/authenticateUser';
 import { placeOrder } from '../../actions/customer/placeOrder';
 import AddressDetailsForm from '../shared/form/AddressDetailsForm';
+import MultiToast from '../../actions/shared/MultiToast';
 
 export default function Placeorder({ cookies }) {
     const navigate = useNavigate();
@@ -53,7 +54,7 @@ export default function Placeorder({ cookies }) {
         const fetchData = async () => {
             const response = await placeOrder(token,order);
             if( 'error'===response.type ){
-                alert(response.error);
+                MultiToast(response.error, true);
             }else{
                 navigate('/show-companies');
             }

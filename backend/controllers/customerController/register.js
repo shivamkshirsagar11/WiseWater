@@ -10,18 +10,23 @@ const { customerValidation } = require('../../validations/customerValidation/cus
 // @access  public
 
 exports.registerUser = async (req, res) => {
-    
+    const {onlyValidation} = req.body;
     const error = await customerValidation(req.body);
-    
     if (error && error.errorMessage.length > 0) {
         res.status(error.statusCode).json({
             error: {
                 errorMessage: error.errorMessage
             }
         });
-    } else {
+    }
+    else if(onlyValidation){
+        res.status(200).json({
+            type:"data"
+        })
+    }
+    else{
         try {
-            const { firstname, email, password, lastname, address, contact } = req.body;
+                const { firstname, email, password, lastname, address, contact } = req.body;
             const user = await Customer.create({
                 firstname,
                 lastname,
@@ -43,5 +48,6 @@ exports.registerUser = async (req, res) => {
             })
         }
     }
+    
 };
 

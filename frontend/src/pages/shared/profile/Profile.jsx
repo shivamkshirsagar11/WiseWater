@@ -8,6 +8,7 @@ import CompanyDetails from '../details/CompanyDetails';
 import AddressDetails from '../details/AddressDetails';
 import UserDetails from '../details/UserDetails';
 import ProfileButtons from './ProfileButtons';
+import MultiToast from '../../../actions/shared/MultiToast';
 
 export default function Profile({ cookies, removeCookies, userType }) {
     const navigate = useNavigate();
@@ -31,6 +32,7 @@ export default function Profile({ cookies, removeCookies, userType }) {
     }, [cookies]);
 
     const handleLogout = (e) => {
+        MultiToast("Logging out...", false)
         e.preventDefault();
         console.log(removeCookies)
         removeCookies('token');

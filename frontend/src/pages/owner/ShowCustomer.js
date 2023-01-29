@@ -3,6 +3,7 @@ import { useNavigate,useParams } from 'react-router-dom';
 import Spinner from '../Spinner';
 import { toast } from 'react-toastify';
 import UserDetails from '../shared/details/UserDetails';
+import MultiToast from '../../actions/shared/MultiToast';
 
 export default function ResolveInQueryOrder({ cookies }) {
     const {customer_id} = useParams();
@@ -26,7 +27,7 @@ export default function ResolveInQueryOrder({ cookies }) {
                 if (data.type === 'error') toast.error(data.message);
                 setCustomer(data.customer);
             } catch (error) {
-                alert('you are not authenticated' + error);
+                MultiToast('you are not authenticated' + error, true)
                 navigate('/login');
             }
         }

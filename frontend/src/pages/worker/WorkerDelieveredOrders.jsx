@@ -4,6 +4,7 @@ import Spinner from '../Spinner';
 import ShowOrder from "../shared/order/Order";
 import { toast } from 'react-toastify';
 import { giveWorkerDelieveredOrders } from '../../actions/worker/giveWorkerDelieveredOrders';
+import MultiToast from '../../actions/shared/MultiToast';
 
 export default function ShowAssignedOrders({ cookies }) {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function ShowAssignedOrders({ cookies }) {
             setLoading(true);
             const response = await giveWorkerDelieveredOrders(token);
             if ('error' === response.type) {
-                alert(response.error);
+                MultiToast(response.error, true);
                 navigate('/login');
             } else {
                 setDelieveredOrders(response.delieveredOrders);

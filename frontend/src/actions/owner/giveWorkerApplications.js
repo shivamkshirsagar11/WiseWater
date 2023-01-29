@@ -8,7 +8,7 @@ const giveWorkerApplications = async (token) => {
         });
         const data = await response.json();
         if (undefined !== data.error)
-            throw new Error(data.error.errorMessage);
+            throw (data.error.errorMessage);
         else {
             return {
                 type: 'data',

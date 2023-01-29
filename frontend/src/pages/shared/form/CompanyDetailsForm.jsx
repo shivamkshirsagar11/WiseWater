@@ -18,7 +18,7 @@ function CompanyDetailsForm({ companyData, setCompanyData }) {
 
             company name : <input type="name" name="name" onChange={handleInputData} value={name} />
             company email : <input type="email" name="email" onChange={handleInputData} value={email} />
-            company contact : <input type="email" name="contact" onChange={handleInputData} value={contact} />
+            company contact : <input type="text" name="contact" onChange={handleInputData} value={contact} />
             company service time : <input type="text" name="serviceTime" onChange={handleInputData} value={serviceTime} />
 
             <AddressDetailsForm address={companyData.address} setAddress={setAddress} />

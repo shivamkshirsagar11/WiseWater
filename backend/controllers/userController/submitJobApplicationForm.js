@@ -7,13 +7,18 @@ const { workerValidation } = require('../../validations/workerValidation/workerV
 
 exports.submitJobApplicationForm = async (req, res) => {
 
+    const {onlyValidation} = req.body;
     const error = await workerValidation(req.body);
-
     if (error && error.errorMessage.length > 0) {
         res.status(error.statusCode).json({
             error: {
                 errorMessage: error.errorMessage
             }
+        });
+    }
+    else if(onlyValidation){
+        res.status(200).json({
+            type:"data"
         });
     } else {
         const { firstname, email, lastname, contact, companyname } = req.body;

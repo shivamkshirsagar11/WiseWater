@@ -1,6 +1,7 @@
 const validator = require('validator');
+const { default: validateContact } = require('../validateContact');
 
-exports.userValidation = async (userData) => {
+exports.userValidation = (userData) => {
     const { firstname, email, password, confirmPassword, lastname, contact } = userData;
     const error = [];
     if (!firstname) {
@@ -33,8 +34,13 @@ exports.userValidation = async (userData) => {
     if (contact && contact.length !== 10) {
         error.push('contact is not valid');
     }
-    if (false) {
-        // check the contact validation whather it contains alphabet and other stuff
+    if (contact) {
+        async ()=>{
+        const data = await validateContact(contact);
+        const {isValidNumber} = data;
+        if(!isValidNumber)
+        error.push('contact is not valid');
+        }
     }
     if (error.length > 0) {
         return error;

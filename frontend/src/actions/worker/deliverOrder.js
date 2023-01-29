@@ -13,7 +13,7 @@ const deliverOrder = async (token, order_id) => {
         );
         const data = await response.json();
         if (undefined !== data.error)
-            throw new Error(data.error.errorMessage);
+            throw (data.error.errorMessage);
         else {
             return {
                 type: 'success'

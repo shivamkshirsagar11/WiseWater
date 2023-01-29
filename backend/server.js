@@ -1,13 +1,12 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
-const dotenv = require('dotenv').config();
 const bodyParser = require('body-parser');
 const { errorHandler } = require('./middleware/errorMiddleware');
 const { userTypeHandler } = require('./middleware/userTypeMiddleware');
 
 // dotenv configt
-dotenv.config();
+const dotenv = require('dotenv').config();
 
 // rest object
 const app = express();
@@ -38,4 +37,4 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 3001;
 
 // listening port
-app.listen(PORT, () => { console.log('server is listening on PORT') })
+app.listen(PORT, () => { console.log(`server is listening on PORT: ${PORT}`) })

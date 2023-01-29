@@ -29,6 +29,14 @@ exports.companyValidation = async (companyData) => {
     if (contact && contact.length !== 10) {
         error.push('contact is not valid');
     }
+    if (contact) {
+        async ()=>{
+            const data = await validateContact(contact);
+            const {isValidNumber} = data;
+            if(!isValidNumber)
+            error.push('contact is not valid');
+            }
+    }
     if (!serviceTime) {
         error.push('service time is required');
     }

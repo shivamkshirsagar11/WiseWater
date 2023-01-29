@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { loginUser } from '../../actions/guestUser/loginUser';
+import 'react-toastify/dist/ReactToastify.css';
+import  MultiToast  from '../../actions/shared/MultiToast';
 
 export default function Login({ setCookies }) {
   const navigate = useNavigate();
@@ -19,11 +20,12 @@ export default function Login({ setCookies }) {
     const response = await loginUser(user);
     console.log(response)
     if ('error' === response.type) {
-      alert(response.error);
+      console.log(response.error)
+      MultiToast(response.error, true);
     } else {
       setCookies('token', response.token);
       console.log(response.token)
-      alert('successfully logged in');
+      MultiToast("successfully logged in", false)
       navigate(`/${user.collectionName.toLowerCase()}/profile`);
     }
   }

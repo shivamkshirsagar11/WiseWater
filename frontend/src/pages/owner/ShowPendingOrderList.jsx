@@ -4,6 +4,7 @@ import Spinner from '../Spinner';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { givePendingOrders } from "../../actions/owner/givePendingOrders";
+import MultiToast from "../../actions/shared/MultiToast";
 
 export default function ShowPendingOrderList({ cookies }) {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function ShowPendingOrderList({ cookies }) {
       setLoading(true);
       const response = await givePendingOrders(token);
       if ('error' === response.type) {
-        alert(response.error);
+        MultiToast(response.error, true);
         navigate('/login');
       }
       setPendingOrderList(response.pendingOrderList);

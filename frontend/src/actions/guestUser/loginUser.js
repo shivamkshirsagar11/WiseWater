@@ -12,15 +12,15 @@ const loginUser = async (user) => {
         const data = await response.json();
         console.log(data);
         if (undefined !== data.error)
-            throw new Error(data.error.errorMessage);
+            throw (data.error.errorMessage);
         else {
             return {
                 type: 'data',
                 token: data.token,
             }
         }
-
     } catch (error) {
+        console.log(error)
         return {
             type: 'error',
             error: error

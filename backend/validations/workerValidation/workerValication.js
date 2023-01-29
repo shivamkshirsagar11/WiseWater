@@ -27,8 +27,13 @@ exports.workerValidation = async (worker) => {
     if (contact && contact.length !== 10) {
         error.push('contact is not valid');
     }
-    if (false) {
-        // check the contact validation whather it contains alphabet and other stuff
+    if (contact) {
+        async ()=>{
+            const data = await validateContact(contact);
+            const {isValidNumber} = data;
+            if(!isValidNumber)
+            error.push('contact is not valid');
+            }
     }
 
     if( error.length > 0 ) {

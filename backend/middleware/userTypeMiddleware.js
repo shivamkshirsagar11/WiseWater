@@ -2,7 +2,6 @@ const { decodeJWTtoken } = require('../utility/decodeJWTtoken');
 
 const userTypeHandler = (req, res, next) => {
     const url = req.url.split('/');
-    
     if ('user' === url[2]) {
         next();
         return;

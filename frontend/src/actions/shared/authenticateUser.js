@@ -9,7 +9,7 @@ const authenticateUser = async (user, token) => {
         });
         const data = await response.json();
         if (data.type === 'error')
-            throw new Error(data.message);
+            throw (data.message);
         else {
             return({
                 type : 'success',

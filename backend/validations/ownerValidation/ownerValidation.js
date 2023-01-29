@@ -4,7 +4,6 @@ const Owner = require('../../models/ownerModel');
 
 exports.ownerValidation = async (obj) => {
     const { userData: ownerData, companyData } = obj;
-
     const userValidationError = userValidation(ownerData);
     const companyValidationError = await companyValidation(companyData);
 

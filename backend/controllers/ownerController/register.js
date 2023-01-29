@@ -11,7 +11,7 @@ const {ownerValidation} = require('../../validations/ownerValidation/ownerValida
 // @access  public
 
 exports.registerUser = async (req, res) => {
-
+    const {onlyValidation} = req.body;
     const error = await ownerValidation(req.body);
 
     if (error && error.errorMessage.length > 0) {
@@ -19,6 +19,11 @@ exports.registerUser = async (req, res) => {
             error: {
                 errorMessage: error.errorMessage
             }
+        });
+    }
+    else if(onlyValidation){
+        res.status(200).json({
+            type:"data"
         });
     } else {
         const { userData, companyData } = req.body;

@@ -1,48 +1,65 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { registerUser } from '../../actions/shared/registerUser';
-import CompanyDetailsForm from '../shared/form/CompanyDetailsForm';
-import UserDetailsForm from '../shared/form/UserDetailsForm';
-
+import React, { useState } from "react";
+import { registerUser } from "../../actions/shared/registerUser";
+import CompanyDetailsForm from "../shared/form/CompanyDetailsForm";
+import UserDetailsForm from "../shared/form/UserDetailsForm";
+import MultiToast from "../../actions/shared/MultiToast";
+import OTP from "../shared/form/OTP";
 export default function OwnerRegistration({ setCookies }) {
-    const navigate = useNavigate();
+  const [flag, setFlag] = useState(false);
+  const [userData, setUserData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    contact: "",
+  });
 
-    const [userData, setUserData] = useState({
-        firstname: '', lastname: '', email: '', password: '', confirmPassword: '', contact: ''
-    });
+  const [companyData, setCompanyData] = useState({
+    name: "",
+    email: "",
+    contact: "",
+    serviceTime: "",
+    address: { line1: "", line2: "", city: "", pincode: "", state: "" },
+  });
 
-    const [companyData, setCompanyData] = useState({
-        name: '', email: '', contact: '', serviceTime: '',
-        address: { line1: '', line2: '', city: '', pincode: '', state: '' }
-    });
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const owner = { userData: { ...userData }, companyData: { ...companyData } };
-
-        console.log(owner);
-
-        const response = await registerUser('owner', owner);
-        if ('error' === response.type) {
-            alert(response.error);
-        } else {
-            setCookies('token', response.token);
-            alert('you are registered successfully');
-            navigate('/owner/profile');
-        }
-
-    }
-    return (
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await registerUser("owner", owner, true);
+    if ("error" === response.type) MultiToast(response.error, true);
+    else setFlag(true);
+  };
+  const owner = { userData: { ...userData }, companyData: { ...companyData } };
+  return (
+    <>
+      {!flag && (
         <div>
-            <form method="post" >
-                <UserDetailsForm userData={userData} setUserData={setUserData} />
+          <form method="post">
+            <UserDetailsForm userData={userData} setUserData={setUserData} />
 
-                {/* company */}
-                <CompanyDetailsForm companyData={companyData} setCompanyData={setCompanyData} />
+            {/* company */}
+            <CompanyDetailsForm
+              companyData={companyData}
+              setCompanyData={setCompanyData}
+            />
 
-                <button type="submit" onClick={handleSubmit}>Submit</button>
-            </form>
+            <button type="submit" onClick={handleSubmit}>
+              Submit
+            </button>
+          </form>
         </div>
-    );
+      )}
+      {flag && (
+        <OTP
+          userData={owner}
+          userType="owner"
+          register={registerUser}
+          setCookies={setCookies}
+          navigateString={"/owner/profile"}
+          requiredCookie={2}
+          toastMsg={"you are registered successfully"}
+        />
+      )}
+    </>
+  );
 }

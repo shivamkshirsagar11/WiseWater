@@ -3,6 +3,7 @@ import Spinner from '../Spinner';
 import ShowOrder from '../shared/order/Order';
 import { useNavigate } from 'react-router-dom';
 import { givePlacedOrders } from '../../actions/customer/givePlacedOrders';
+import MultiToast from '../../actions/shared/MultiToast';
 
 export default function ShowPlacedorderList({ cookies }) {
     const [placedOrderList, setPlacedOrderList] = useState([]);
@@ -16,7 +17,7 @@ export default function ShowPlacedorderList({ cookies }) {
             setLoading(true);
             const response = await givePlacedOrders(token);
             if ('error' === response.type) {
-                alert(response.error);
+                MultiToast(response.error, true);
                 navigate('/login');
             }
             setPlacedOrderList(response.orderList);
@@ -42,7 +43,7 @@ export default function ShowPlacedorderList({ cookies }) {
                         <div key={index}>
                             <h2 >order number {index}</h2>
                             <ShowOrder order={order} />
-                            {order.status !== "delievered" && order.status !== "in-query" && <button value={`/customer/order/track/${order._id}`} onClick={handleTrackOrder}>Track Order</button>}
+                            {order.status == "assigned" && <button value={`/customer/order/track/${order._id}`} onClick={handleTrackOrder}>Track Order</button>}
                         </div>
                     )
                 })

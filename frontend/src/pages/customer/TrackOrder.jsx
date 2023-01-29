@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Spinner from '../Spinner';
 import ShowOrder from "../shared/order/Order";
 import { giveDetailsToTrackOrder } from "../../actions/customer/giveDetailsToTrackOrder";
+import MultiToast from "../../actions/shared/MultiToast";
 
 export default function TrackOrder({ cookies }) {
   const { order_id } = useParams();
@@ -22,7 +23,7 @@ export default function TrackOrder({ cookies }) {
       const response = await giveDetailsToTrackOrder(token, order_id);
       console.log(response);
       if ('error' === response.type) {
-        alert(response.error);
+        MultiToast(response.error, true);
         navigate('/login');
       }
       setOrder(response.order);
