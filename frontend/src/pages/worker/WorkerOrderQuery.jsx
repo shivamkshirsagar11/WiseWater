@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Spinner from '../Spinner';
-import ShowOrder from "../shared/order/Order";
+import Spinner from '../Spinner.jsx';
+import ShowOrder from "../shared/order/Order.jsx";
 import { toast } from 'react-toastify';
-import MultiToast from '../../actions/shared/MultiToast';
+import MultiToast from '../../actions/shared/MultiToast.js';
 
 export default function WorkerOrderQuery({ cookies }) {
     const {order_id} = useParams();

@@ -1,4 +1,4 @@
-const Order = require('../../models/orderModel');
+import OrderModel from '../../models/orderModel.js';
 
 
 // showPlacedOrders user type : customer
@@ -7,9 +7,9 @@ const Order = require('../../models/orderModel');
 // @access  private
 // applied middleware :- userTypeHandler , protect
 
-exports.showPlacedOrders = async (req, res) => {
+export async function showPlacedOrders(req, res) {
     try {
-        const orderList = await Order.find({ customer_id: req.userid });
+        const orderList = await OrderModel.find({ customer_id: req.userid });
         res.status(200).json({
             orderList,
         });
@@ -20,4 +20,4 @@ exports.showPlacedOrders = async (req, res) => {
             }
         })
     }
-};
+}

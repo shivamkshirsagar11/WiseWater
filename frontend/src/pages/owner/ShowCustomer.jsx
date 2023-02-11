@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate,useParams } from 'react-router-dom';
-import Spinner from '../Spinner';
 import { toast } from 'react-toastify';
-import UserDetails from '../shared/details/UserDetails';
-import MultiToast from '../../actions/shared/MultiToast';
+import Spinner from '../Spinner.jsx';
+import UserDetails from '../shared/details/UserDetails.jsx';
+import MultiToast from '../../actions/shared/MultiToast.js';
 
 export default function ResolveInQueryOrder({ cookies }) {
     const {customer_id} = useParams();

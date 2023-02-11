@@ -1,13 +1,13 @@
-const Order = require('../../models/orderModel');
+import OrderModel from '../../models/orderModel.js';
 
-exports.orderDeliever = async (req, res) => {
+export async function orderDeliever(req, res) {
 
     const { order_id } = req.body;
 
     try {
-        const assignedOrder = await Order.find({ $and: [{ worker_id: req.userid }, { _id: order_id }] })
+        const assignedOrder = await OrderModel.find({ $and: [{ worker_id: req.userid }, { _id: order_id }] })
         if (assignedOrder) {
-            const updated = await Order.updateOne({ _id: order_id }, { $set: { status: "delievered" } })
+            const updated = await updateOne({ _id: order_id }, { $set: { status: "delievered" } })
             res.status(200).json({
                 message: 'success'
             })

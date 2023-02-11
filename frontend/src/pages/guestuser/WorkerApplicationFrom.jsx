@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { submitJobApplication } from '../../actions/guestUser/submitJobApplication'
-import MultiToast from '../../actions/shared/MultiToast';
-import OTP from '../shared/form/OTP';
+import { submitJobApplication } from '../../actions/guestUser/submitJobApplication.js'
+import MultiToast from '../../actions/shared/MultiToast.js';
+import OTP from '../shared/form/OTP.jsx';
 
 export default function WorkerApplicationFrom() {
   const navigate = useNavigate();

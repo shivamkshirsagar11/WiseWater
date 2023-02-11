@@ -1,6 +1,6 @@
-const asyncHandler = require('express-async-handler');
-const { decodeJWTtoken } = require('../utility/decodeJWTtoken');
-const { mapCollectionName } = require('../utility/mappingCollection');
+import asyncHandler from 'express-async-handler';
+import { decodeJWTtoken } from '../utility/decodeJWTtoken.js';
+import { mapCollectionName } from '../utility/mappingCollection.js';
 
 const protect = asyncHandler(async (req, res, next) => {
     console.log('from auth!!')
@@ -18,5 +18,4 @@ const protect = asyncHandler(async (req, res, next) => {
         });
     }
 });
-
-module.exports = { protect };
+export  default protect;

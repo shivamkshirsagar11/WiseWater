@@ -1,10 +1,9 @@
-const Customer = require('../../models/customerModel');
-const asyncHandler = require('express-async-handler');
+import CustomerModel from '../../models/customerModel.js';
 
-exports.profile = async (req, res) => {
+export async function profile(req, res) {
 
     try {
-        const userData = await Customer.findOne({ _id: req.userid });
+        const userData = await CustomerModel.findOne({ _id: req.userid });
         if (userData) {
             res.status(200).json({
                 userData

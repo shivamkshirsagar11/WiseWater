@@ -1,12 +1,12 @@
-const Order = require('../../models/orderModel');
-const Owner = require('../../models/ownerModel');
+import OrderModel from '../../models/orderModel.js';
+import OwnerModel from '../../models/ownerModel.js';
 
-exports.showAssignedOrders = async (req, res) => {
+export async function showAssignedOrders(req, res) {
 
     try {
-        const { company_name } = await Owner.findOne({ _id: req.userid }, { company_name: 1, _id: 0 });
+        const { company_name } = await OwnerModel.findOne({ _id: req.userid }, { company_name: 1, _id: 0 });
         console.log(company_name);
-        const assignedOrders = await Order.find({ company_name, status: "assigned" })
+        const assignedOrders = await OrderModel.find({ company_name, status: "assigned" })
         if (assignedOrders) {
             res.status(200).json({
                 assignedOrders,

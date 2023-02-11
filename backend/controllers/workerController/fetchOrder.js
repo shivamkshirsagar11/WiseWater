@@ -1,10 +1,10 @@
-const Order = require("../../models/orderModel");
+import OrderModel from "../../models/orderModel.js";
 
-exports.fetchOrder = async (req, res) => {
+export async function fetchOrder(req, res) {
     const { order_id } = req.body;
 
     try {
-        const order = await Order.find({ $and: [{ _id: order_id }, { worker_id: req.userid }] });
+        const order = await OrderModel.find({ $and: [{ _id: order_id }, { worker_id: req.userid }] });
         console.log(order);
         if (order) {
             res.status(200).json({

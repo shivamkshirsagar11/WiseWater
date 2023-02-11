@@ -1,5 +1,5 @@
 import React from 'react';
-import AddressDetailsForm from './AddressDetailsForm';
+import AddressDetailsForm from './AddressDetailsForm.jsx';
 
 function CompanyDetailsForm({ companyData, setCompanyData }) {
     const { name, email, contact, serviceTime } = companyData;

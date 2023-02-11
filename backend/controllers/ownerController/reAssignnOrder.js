@@ -1,15 +1,15 @@
-const expressAsyncHandler = require("express-async-handler");
-const orderModel = require("../../models/orderModel");
-const workerOrderQuery = require("../../models/workerOrderQuery");
+import expressAsyncHandler from "express-async-handler";
+import OrderModel from "../../models/orderModel.js";
+import WorkerOrderQuery from "../../models/workerOrderQuery.js";
 
-exports.reAssignOrder = expressAsyncHandler(async (req,res)=>{
+export const reAssignOrder = expressAsyncHandler(async (req,res)=>{
 const {order_id} = req.body;
-const order = await orderModel.find({_id:order_id})
+const order = await OrderModel.find({_id:order_id})
 console.log("Owner -> getinQueryOrder")
 console.log(order);
 if(order){
-    const update = await orderModel.updateOne({_id:order_id},{$set:{status:"assigned"}})
-    const deleted = await workerOrderQuery.deleteOne({order_id:order_id})
+    const update = await OrderModel.updateOne({_id:order_id},{$set:{status:"assigned"}})
+    const deleted = await WorkerOrderQuery.deleteOne({order_id:order_id})
     if( update && deleted ){
         res.status(200);
         res.json({success:true})

@@ -1,8 +1,8 @@
-const { userValidation } = require('../shared/userValidation');
-const {companyValidation} = require('../companyValidation/companyValidation');
-const Owner = require('../../models/ownerModel');
+import { userValidation } from '../shared/userValidation.js';
+import { companyValidation } from '../companyValidation/companyValidation.js';
+import Owner from '../../models/ownerModel.js';
 
-exports.ownerValidation = async (obj) => {
+export async function ownerValidation(obj) {
     const { userData: ownerData, companyData } = obj;
     const userValidationError = userValidation(ownerData);
     const companyValidationError = await companyValidation(companyData);

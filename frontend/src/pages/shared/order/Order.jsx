@@ -1,5 +1,5 @@
 import React from 'react'
-import AddressDetails from '../details/AddressDetails'
+import AddressDetails from '../details/AddressDetails.jsx'
 
 
 export default function ShowOrder({order}) {

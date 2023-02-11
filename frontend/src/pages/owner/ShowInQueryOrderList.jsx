@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../Spinner';
-import ShowInQueryOrders from '../../components/ShowInQueryOrders';
+import Spinner from '../Spinner.jsx';
+import ShowInQueryOrders from '../../components/ShowInQueryOrders.js';
 import { toast } from 'react-toastify';
 
 export default function ShowInQueryOrderList({ cookies }) {

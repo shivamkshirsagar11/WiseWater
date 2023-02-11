@@ -1,9 +1,9 @@
-const Company = require('../../models/companyModel');
-const WorkerApplication = require('../../models/workerApplicationModel');
-const validator = require('validator');
+import Company from '../../models/companyModel.js';
+import WorkerApplication from '../../models/workerApplicationModel.js';
+import pkg from 'validator';
+const { isEmail } = pkg;
 
-
-exports.workerValidation = async (worker) => {
+export async function workerValidation(worker) {
 
     const { firstname, email, lastname, contact, companyname } = worker;
 
@@ -18,7 +18,7 @@ exports.workerValidation = async (worker) => {
     if (!email) {
         error.push('email is required');
     }
-    if (email && !validator.isEmail(email)) {
+    if (email && !isEmail(email)) {
         error.push('email is not a valid');
     }
     if (!contact) {

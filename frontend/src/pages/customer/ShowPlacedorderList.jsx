@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Spinner from '../Spinner';
-import ShowOrder from '../shared/order/Order';
+import Spinner from '../Spinner.jsx';
+import ShowOrder from '../shared/order/Order.jsx';
 import { useNavigate } from 'react-router-dom';
-import { givePlacedOrders } from '../../actions/customer/givePlacedOrders';
-import MultiToast from '../../actions/shared/MultiToast';
+import { givePlacedOrders } from '../../actions/customer/givePlacedOrders.js';
+import MultiToast from '../../actions/shared/MultiToast.js';
 
 export default function ShowPlacedorderList({ cookies }) {
     const [placedOrderList, setPlacedOrderList] = useState([]);

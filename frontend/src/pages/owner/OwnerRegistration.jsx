@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { registerUser } from "../../actions/shared/registerUser";
-import CompanyDetailsForm from "../shared/form/CompanyDetailsForm";
-import UserDetailsForm from "../shared/form/UserDetailsForm";
-import MultiToast from "../../actions/shared/MultiToast";
-import OTP from "../shared/form/OTP";
+import { registerUser } from "../../actions/shared/registerUser.js";
+import MultiToast from "../../actions/shared/MultiToast.js";
+import CompanyDetailsForm from "../shared/form/CompanyDetailsForm.jsx";
+import UserDetailsForm from "../shared/form/UserDetailsForm.jsx";
+import OTP from "../shared/form/OTP.jsx";
 export default function OwnerRegistration({ setCookies }) {
   const [flag, setFlag] = useState(false);
   const [userData, setUserData] = useState({

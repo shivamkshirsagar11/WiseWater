@@ -1,7 +1,7 @@
-const { addressValidation } = require('../shared/addressValidation');
-const Company = require('../../models/companyModel');
+import { addressValidation } from '../shared/addressValidation.js';
+import Company from '../../models/companyModel.js';
 
-exports.orderValidation = async (order) => {
+export async function orderValidation(order) {
     var error = [];
 
     const { water_type, water_temperature, water_quantity, companyname, address } = order;

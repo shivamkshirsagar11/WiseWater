@@ -1,4 +1,6 @@
-exports.validateContact = async (contact) => {
+// import fetch from "node-fetch";
+import fetch from "node-fetch";
+export async function validateContact(contact) {
     const url = `https://phonenumbervalidatefree.p.rapidapi.com/ts_PhoneNumberValidateTest.jsp?number=%2B91${contact}`;
   
     const options = {
@@ -12,6 +14,7 @@ exports.validateContact = async (contact) => {
     const response = await fetch(url, options);
     const data = await response.json();
     const { isPossibleNumber, isValidNumber } = data;
+    console.log(isPossibleNumber, isValidNumber)
     if (isValidNumber && isPossibleNumber) {
       return {
         isValidNumber: true,
@@ -21,5 +24,5 @@ exports.validateContact = async (contact) => {
         isValidNumber: false,
       };
     }
-  };
+  }
   

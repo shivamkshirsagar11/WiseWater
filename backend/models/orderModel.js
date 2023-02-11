@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
-const addressSchema = require('./addressModel');
-const worker = require('./workerModel');
+import { Schema, model } from 'mongoose';
+import addressSchema from './addressModel.js';
 
 // water_type,water_temperature,water_quantity,companyname
 
-const orderSchema = mongoose.Schema({
+const orderSchema = Schema({
     water_type: {
         type: String,
         required: [true, "can't be blank"],
@@ -27,7 +26,7 @@ const orderSchema = mongoose.Schema({
         ref: 'Company'
     },
     customer_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         required: true,
         ref: 'Customer'
     },
@@ -37,10 +36,10 @@ const orderSchema = mongoose.Schema({
         defaultValue: 'pending'
     },
     worker_id:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         defaultValue:null,
         ref:'Worker'
     }
 });
 
-module.exports = mongoose.model("Order", orderSchema);
+export default model("Order", orderSchema);

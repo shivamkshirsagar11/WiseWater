@@ -1,11 +1,11 @@
-const jwt = require('jsonwebtoken');
-exports.decodeJWTtoken = (req, res) => {
+import { verify } from 'jsonwebtoken';
+export function decodeJWTtoken(req, res) {
 
     const { authorization } = req.headers;
     if ('Bearer undefined' !== authorization) {
         const token = authorization.split(' ')[1];
         if ('undefined' !== token) {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const decoded = verify(token, process.env.JWT_SECRET);
             if (decoded === undefined) {
                 res.status(401).json({
                     error: {

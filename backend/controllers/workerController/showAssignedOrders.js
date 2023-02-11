@@ -1,8 +1,8 @@
-const Order = require('../../models/orderModel');
-exports.showAssignedOrders = async (req, res) => {
+import OrderModel from '../../models/orderModel.js';
+export async function showAssignedOrders(req, res) {
 
     try {
-        const assignedOrders = await Order.find({ $and: [{ worker_id: req.userid }, { status: { $eq: "assigned" } }] })
+        const assignedOrders = await OrderModel.find({ $and: [{ worker_id: req.userid }, { status: { $eq: "assigned" } }] })
         res.status(200).json({
             found: true,
             assignedOrders: assignedOrders

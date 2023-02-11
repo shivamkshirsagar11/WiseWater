@@ -1,14 +1,8 @@
-const Order = require('../../models/orderModel');
-const asyncHandler = require('express-async-handler');
-const { orderValidation } = require('../../validations/orderValidation/orderValidation')
+import OrderModel from '../../models/orderModel.js';
+import asyncHandler from 'express-async-handler';
+import { orderValidation } from '../../validations/orderValidation/orderValidation.js';
 
-// placeorder user type : customer
-// @desc    placeorder : customer can placeorder by this function
-// @route   post /api/customer/placeorder
-// @access  private
-// applied middleware :- userTypeHandler , protect
-
-exports.placeorder = asyncHandler(async (req, res) => {
+export const placeorder = asyncHandler(async (req, res) => {
     const { water_type, water_temperature, water_quantity, companyname, address } = req.body.order;
 
     const error = await orderValidation(req.body.order);
@@ -21,7 +15,7 @@ exports.placeorder = asyncHandler(async (req, res) => {
         });
     } else {
         try {
-            const order = await Order.create({
+            const order = await OrderModel.create({
                 water_type,
                 water_temperature,
                 water_quantity,

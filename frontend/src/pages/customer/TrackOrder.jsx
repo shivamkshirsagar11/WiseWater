@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
-import Spinner from '../Spinner';
-import ShowOrder from "../shared/order/Order";
-import { giveDetailsToTrackOrder } from "../../actions/customer/giveDetailsToTrackOrder";
-import MultiToast from "../../actions/shared/MultiToast";
+import Spinner from '../Spinner.jsx';
+import ShowOrder from "../shared/order/Order.jsx";
+import { giveDetailsToTrackOrder } from "../../actions/customer/giveDetailsToTrackOrder.js";
+import MultiToast from "../../actions/shared/MultiToast.js";
 
 export default function TrackOrder({ cookies }) {
   const { order_id } = useParams();

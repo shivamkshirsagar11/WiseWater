@@ -1,15 +1,18 @@
 // Download the helper library from https://www.twilio.com/docs/node/install
 // Set environment variables for your credentials
 
-const expressAsyncHandler = require("express-async-handler");
-
+import expressAsyncHandler from "express-async-handler";
+import twilio from "twilio";
 // Read more at http://twil.io/secure
-const accountSid = process.env.ACCOUNT_SID;
-const authToken = process.env.AUTH_TOKEN;
-const verifySid = process.env.VERIFY_SID;
-const client = require("twilio")(accountSid, authToken);
+const ACCOUNT_SID = "ACf9074ad1b8968f7090b4760ae2ddae5a"
+const AUTH_TOKEN = "a807d9144a4b6cfff0c08a49a7c724a0"
+const VERIFY_SID = "VAab67bcb24a7af25dab589e576cd66a4d"
+const accountSid = ACCOUNT_SID;
+const authToken = AUTH_TOKEN;
+const verifySid = VERIFY_SID;
+const client = twilio(accountSid, authToken);
 
-exports.generateOTP = expressAsyncHandler(async (req,res)=>{
+export const generateOTP = expressAsyncHandler(async (req,res)=>{
 const {contact} = req.body;
 console.log(`+91-${contact}`)
 await client.verify.v2
@@ -23,7 +26,7 @@ await client.verify.v2
   });
 }
 );
-exports.verifyOTP = expressAsyncHandler (async (req,res) =>{
+export const verifyOTP = expressAsyncHandler (async (req,res) =>{
     const {contact, otp} = req.body;
     console.log(`+91-${contact}, otp: ${otp}`)
   await client.verify.v2

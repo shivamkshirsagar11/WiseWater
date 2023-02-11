@@ -1,12 +1,12 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const { errorHandler } = require('./middleware/errorMiddleware');
-const { userTypeHandler } = require('./middleware/userTypeMiddleware');
-
+import express, { json, urlencoded } from 'express';
+import connectDB from './config/db.js';
+import cors from 'cors';
+import bodyparser from 'body-parser';
+import  errorHandler  from './middleware/errorMiddleware.js';
+import  userTypeHandler  from './middleware/userTypeMiddleware.js';
+import dotEnv from 'dotenv';
 // dotenv configt
-const dotenv = require('dotenv').config();
+const dotenv = dotEnv.config();
 
 // rest object
 const app = express();
@@ -15,10 +15,10 @@ const app = express();
 connectDB();
 
 // middleware
-app.use(bodyParser.json());
+app.use(bodyparser.json());
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(urlencoded({ extended: false }));
 app.use('/', userTypeHandler);
 
 // app.get('/', (req, res) => {
@@ -27,10 +27,15 @@ app.use('/', userTypeHandler);
 
 
 // routes
-app.use('/api/user', require('./routes/userRoutes.js'));
-app.use('/api/owner', require('./routes/ownerRoutes.js'));
-app.use('/api/worker', require('./routes/workerRoutes.js'));
-app.use('/api/customer', require('./routes/customerRoutes.js'));
+import userRoutes from  './routes/userRoutes.js';
+import ownerRoutes from './routes/ownerRoutes.js';
+import workerRoutes from './routes/workerRoutes.js';
+import customerRoutes from './routes/customerRoutes.js';
+
+app.use('/api/user', userRoutes);
+app.use('/api/owner', ownerRoutes);
+app.use('/api/worker', workerRoutes);
+app.use('/api/customer', customerRoutes);
 app.use(errorHandler);
 
 // port

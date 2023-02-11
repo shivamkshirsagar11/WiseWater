@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { authenticateUser } from '../../actions/shared/authenticateUser';
-import { placeOrder } from '../../actions/customer/placeOrder';
-import AddressDetailsForm from '../shared/form/AddressDetailsForm';
-import MultiToast from '../../actions/shared/MultiToast';
+import { authenticateUser } from '../../actions/shared/authenticateUser.js';
+import { placeOrder } from '../../actions/customer/placeOrder.js';
+import AddressDetailsForm from '../shared/form/AddressDetailsForm.jsx';
+import MultiToast from '../../actions/shared/MultiToast.js';
 
 export default function Placeorder({ cookies }) {
     const navigate = useNavigate();

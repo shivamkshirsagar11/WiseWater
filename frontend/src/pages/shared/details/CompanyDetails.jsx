@@ -1,5 +1,5 @@
 import React from 'react';
-import AddressDetails from './AddressDetails'
+import AddressDetails from './AddressDetails.jsx'
 
 function CompanyDetails({companyData}) {
     return (

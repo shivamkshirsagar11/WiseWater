@@ -1,4 +1,4 @@
-exports.addressValidation = (address) => {
+export function addressValidation(address) {
     const { line1, line2, city, pincode,state } = address;
     const error = [];
     if (!line1) {

@@ -1,11 +1,11 @@
-const WorkerApplication = require('../../models/workerApplicationModel');
-const { workerValidation } = require('../../validations/workerValidation/workerValication');
+import  workerApplicationModel  from '../../models/workerApplicationModel.js';
+import { workerValidation } from '../../validations/workerValidation/workerValication.js';
 
 // @desc    submitJobApplication :- it will use to submit job application of user to company
 // @route   post /api/user/
 // @access  public
 
-exports.submitJobApplicationForm = async (req, res) => {
+export async function submitJobApplicationForm(req, res) {
 
     const {onlyValidation} = req.body;
     const error = await workerValidation(req.body);
@@ -23,7 +23,7 @@ exports.submitJobApplicationForm = async (req, res) => {
     } else {
         const { firstname, email, lastname, contact, companyname } = req.body;
         try {
-            const worker = await WorkerApplication.create({
+            const worker = await workerApplicationModel.create({
                 firstname,
                 lastname,
                 contact,
@@ -42,4 +42,4 @@ exports.submitJobApplicationForm = async (req, res) => {
             })
         }
     }
-};
+}

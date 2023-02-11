@@ -1,13 +1,13 @@
-const express = require('express');
-const router = express.Router();
-const {protect} = require('../middleware/authMiddlerware');
+import { Router } from 'express';
+const router = Router();
+import  protect  from '../middleware/authMiddlerware.js';
 
-const {profile} = require('../controllers/workerController/profile');
-const { showAssignedOrders } = require('../controllers/workerController/showAssignedOrders');
-const { orderDeliever } = require('../controllers/workerController/orderDeliever');
-const { showDelieverOrders } = require('../controllers/workerController/showDelieveredOrders');
-const { fetchOrder } = require('../controllers/workerController/fetchOrder');
-const { postOrderQuery } = require('../controllers/workerController/postOrderQuery');
+import { profile } from '../controllers/workerController/profile.js';
+import { showAssignedOrders } from '../controllers/workerController/showAssignedOrders.js';
+import { orderDeliever } from '../controllers/workerController/orderDeliever.js';
+import { showDelieverOrders } from '../controllers/workerController/showDelieveredOrders.js';
+import { fetchOrder } from '../controllers/workerController/fetchOrder.js';
+import { postOrderQuery } from '../controllers/workerController/postOrderQuery.js';
 
 
 router.get('/profile',protect,profile);
@@ -21,4 +21,4 @@ router.get('/authenticate',protect,(req,res)=>{
     res.json({message:'success'});
 })
 
-module.exports = router;
+export default router;

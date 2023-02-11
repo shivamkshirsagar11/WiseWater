@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { registerUser } from "../../actions/shared/registerUser";
-import UserDetailsForm from "../shared/form/UserDetailsForm";
-import AddressDetailsForm from "../shared/form/AddressDetailsForm";
-import MultiToast from "../../actions/shared/MultiToast";
-import OTP from "../shared/form/OTP";
+import { registerUser } from "../../actions/shared/registerUser.js";
+import UserDetailsForm from "../shared/form/UserDetailsForm.jsx";
+import AddressDetailsForm from "../shared/form/AddressDetailsForm.jsx";
+import MultiToast from "../../actions/shared/MultiToast.js";
+import OTP from "../shared/form/OTP.jsx";
 
 function CustomerRegistration({ setCookies }) {
 

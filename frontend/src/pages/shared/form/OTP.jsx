@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { sendOtp, verifyOtp } from "../../../actions/Verification/OTPprocess";
-import MultiToast from "../../../actions/shared/MultiToast";
+import { sendOtp, verifyOtp } from "../../../actions/Verification/OTPprocess.js";
+import MultiToast from "../../../actions/shared/MultiToast.js";
 import { useNavigate } from 'react-router-dom';
 
 function OTP({ userData, userType, setCookies, register, requiredCookie, navigateString, toastMsg }) {

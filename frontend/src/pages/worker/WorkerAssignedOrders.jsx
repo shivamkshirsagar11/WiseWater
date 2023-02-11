@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../Spinner';
-import ShowOrder from "../shared/order/Order";
-import { toast } from 'react-toastify';
-import { giveWorkerAssignedOrders } from '../../actions/worker/giveWorkerAssignedOrders';
-import { deliverOrder } from '../../actions/worker/deliverOrder';
-import MultiToast from '../../actions/shared/MultiToast';
+import Spinner from '../Spinner.jsx';
+import ShowOrder from "../shared/order/Order.jsx";
+import { giveWorkerAssignedOrders } from '../../actions/worker/giveWorkerAssignedOrders.js';
+import { deliverOrder } from '../../actions/worker/deliverOrder.js';
+import MultiToast from '../../actions/shared/MultiToast.js';
 
 export default function WorkerAssignedOrders({ cookies }) {
     const navigate = useNavigate();

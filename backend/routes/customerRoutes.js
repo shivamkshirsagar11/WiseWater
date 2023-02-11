@@ -1,12 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const {protect} = require('../middleware/authMiddlerware');
+import { Router } from 'express';
+const router = Router();
+import  protect  from '../middleware/authMiddlerware.js';
 
-const {registerUser} = require('../controllers/customerController/register');
-const {profile} = require('../controllers/customerController/profile');
-const {placeorder} = require('../controllers/customerController/placeorder');
-const {showPlacedOrders} = require('../controllers/customerController/showPlacedOrders');
-const { trackOrder } = require('../controllers/customerController/trackOrder');
+import { registerUser } from '../controllers/customerController/register.js';
+import { profile } from '../controllers/customerController/profile.js';
+import { placeorder } from '../controllers/customerController/placeorder.js';
+import { showPlacedOrders } from '../controllers/customerController/showPlacedOrders.js';
+import { trackOrder } from '../controllers/customerController/trackOrder.js';
 
 router.post('/register',registerUser);
 router.get('/profile',protect,profile);
@@ -18,4 +18,4 @@ router.get('/authenticate',protect,(req,res)=>{
 })
 router.post('/track-order',protect,trackOrder)
 
-module.exports = router;
+export default router;

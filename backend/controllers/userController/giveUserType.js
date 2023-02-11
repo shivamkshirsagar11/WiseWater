@@ -1,12 +1,10 @@
-
-
-const { decodeJWTtoken } = require('../../utility/decodeJWTtoken');
+import { decodeJWTtoken } from '../../utility/decodeJWTtoken.js';
 
 // @desc    giveUserType :- it will decode jwt token and give user type
 // @route   post /api/user/
 // @access  public
 
-exports.giveUserType = (req, res) => {
+export function giveUserType(req, res) {
         const {authorization} = req.headers;
     if ('Bearer undefined' !== authorization) {
         const decodedToken = decodeJWTtoken(req, res);
@@ -19,4 +17,4 @@ exports.giveUserType = (req, res) => {
             userType: 'guest'
         });
     }
-};
+}

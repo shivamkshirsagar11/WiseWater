@@ -5,35 +5,35 @@ import { useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 
 // guest user
-import Home from "./pages/guestUser/Home";
-import Login from "./pages/guestUser/login";
-import WorkerApplicationFrom from "./pages/guestUser/WorkerApplicationFrom";
-import ShowCompanies from "./pages/guestUser/ShowCompanies";
+import Home from "./pages/guestUser/Home.jsx";
+import Login from "./pages/guestUser/login.jsx";
+import WorkerApplicationFrom from "./pages/guestUser/WorkerApplicationFrom.jsx";
+import ShowCompanies from "./pages/guestUser/ShowCompanies.jsx";
 // customer
-import CustomerRegistration from "./pages/customer/CustomerRegistration";
-import Placeorder from "./pages/customer/Placeorder";
-import ShowPlacedorderList from "./pages/customer/ShowPlacedorderList";
-import TrackOrder from "./pages/customer/TrackOrder";
-import ShowCustomer from "./pages/owner/ShowCustomer";
+import CustomerRegistration from "./pages/customer/CustomerRegistration.jsx";
+import Placeorder from "./pages/customer/Placeorder.jsx";
+import ShowPlacedorderList from "./pages/customer/ShowPlacedorderList.jsx";
+import TrackOrder from "./pages/customer/TrackOrder.jsx";
+import ShowCustomer from "./pages/owner/ShowCustomer.jsx";
 
 // worker
-import WorkerAssignedOrders from "./pages/worker/WorkerAssignedOrders";
-import WorkerDelieveredOrderes from "./pages/worker/WorkerDelieveredOrders";
-import WorkerOrderQuery from "./pages/worker/WorkerOrderQuery";
+import WorkerAssignedOrders from "./pages/worker/WorkerAssignedOrders.jsx";
+import WorkerDelieveredOrderes from "./pages/worker/WorkerDelieveredOrders.jsx";
+import WorkerOrderQuery from "./pages/worker/WorkerOrderQuery.jsx";
 
 // owner
-import ShowInQueryOrderList from "./pages/owner/ShowInQueryOrderList";
-import OwnerRegistration from "./pages/owner/OwnerRegistration";
-import ShowWorkerApplications from "./pages/owner/ShowWorkerApplications";
-import ShowPendingOrderList from "./pages/owner/ShowPendingOrderList";
-import ShowWorkers from "./pages/owner/ShowWorkers";
-import ShowAssignedOrders from "./pages/owner/ShowAssignedOrders";
-import ResolveInQueryOrder from "./pages/owner/ResolveInQueryOrder";
+import ShowInQueryOrderList from "./pages/owner/ShowInQueryOrderList.jsx";
+import OwnerRegistration from "./pages/owner/OwnerRegistration.jsx";
+import ShowWorkerApplications from "./pages/owner/ShowWorkerApplications.jsx";
+import ShowPendingOrderList from "./pages/owner/ShowPendingOrderList.jsx";
+import ShowWorkers from "./pages/owner/ShowWorkers.jsx";
+import ShowAssignedOrders from "./pages/owner/ShowAssignedOrders.jsx";
+import ResolveInQueryOrder from "./pages/owner/ResolveInQueryOrder.jsx";
 
-import Profile from "./pages/shared/profile/Profile";
+import Profile from "./pages/shared/profile/Profile.jsx";
 
 // general pages
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   const [cookies, setCookies, removeCookies] = useCookies(["token"]);

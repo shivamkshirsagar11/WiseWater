@@ -1,7 +1,8 @@
-const validator = require('validator');
-const { default: validateContact } = require('../validateContact');
+import pkg from 'validator';
+const { isStrongPassword, isEmail } = pkg;
+import { validateContact } from '../validateContact.js';
 
-exports.userValidation = (userData) => {
+export function userValidation(userData) {
     const { firstname, email, password, confirmPassword, lastname, contact } = userData;
     const error = [];
     if (!firstname) {
@@ -13,7 +14,7 @@ exports.userValidation = (userData) => {
     if (!password) {
         error.push('Password is required');
     }
-    if (password && !validator.isStrongPassword(password)) {
+    if (password && !isStrongPassword(password)) {
         error.push('password is not strong');
     }
     if (!confirmPassword) {
@@ -25,7 +26,7 @@ exports.userValidation = (userData) => {
     if (!email) {
         error.push('email is required');
     }
-    if (email && !validator.isEmail(email)) {
+    if (email && !isEmail(email)) {
         error.push('email is not a valid');
     }
     if (!contact) {
@@ -35,12 +36,13 @@ exports.userValidation = (userData) => {
         error.push('contact is not valid');
     }
     if (contact) {
-        async ()=>{
+        const check_number = async (contact)=>{
         const data = await validateContact(contact);
         const {isValidNumber} = data;
         if(!isValidNumber)
         error.push('contact is not valid');
         }
+        check_number(contact);
     }
     if (error.length > 0) {
         return error;

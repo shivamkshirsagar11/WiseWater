@@ -1,4 +1,4 @@
-const { decodeJWTtoken } = require('../utility/decodeJWTtoken');
+import { decodeJWTtoken } from '../utility/decodeJWTtoken.js';
 
 const userTypeHandler = (req, res, next) => {
     const url = req.url.split('/');
@@ -27,4 +27,4 @@ const userTypeHandler = (req, res, next) => {
     }
 }
 
-module.exports = { userTypeHandler };
+export default  userTypeHandler ;

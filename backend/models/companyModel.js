@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const addressSchema = require('./addressModel');
+import { Schema, model } from 'mongoose';
+import addressSchema from './addressModel.js';
 
-const companySchema = mongoose.Schema(
+const companySchema = Schema(
     {
         name: {
             type: 'string',
@@ -38,4 +38,4 @@ const companySchema = mongoose.Schema(
     }
 )
 
-module.exports = mongoose.model('Company',companySchema);
+export default model('Company',companySchema);
