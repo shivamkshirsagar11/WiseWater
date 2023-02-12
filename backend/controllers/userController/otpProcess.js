@@ -3,27 +3,34 @@
 
 import expressAsyncHandler from "express-async-handler";
 import twilio from "twilio";
+import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config({ path: '../.env' })
 // Read more at http://twil.io/secure
-const ACCOUNT_SID = "ACf9074ad1b8968f7090b4760ae2ddae5a"
-const AUTH_TOKEN = "a807d9144a4b6cfff0c08a49a7c724a0"
-const VERIFY_SID = "VAab67bcb24a7af25dab589e576cd66a4d"
-const accountSid = ACCOUNT_SID;
-const authToken = AUTH_TOKEN;
-const verifySid = VERIFY_SID;
+const accountSid = process.env.ACCOUNT_SID;
+const authToken = process.env.AUTH_TOKEN;
+const verifySid = process.env.VERIFY_SID;
 const client = twilio(accountSid, authToken);
 
 export const generateOTP = expressAsyncHandler(async (req,res)=>{
 const {contact} = req.body;
 console.log(`+91-${contact}`)
-await client.verify.v2
-  .services(verifySid)
+try{
+  const rsp = await client.verify.v2.services(verifySid)
   .verifications.create({ to: `+91${contact}`, channel: "sms" })
-  .then((verification) => {
-    console.log(verification.status);
-    res.json({
-      status:"OTP sent"
-    })
-  });
+  console.log(rsp);
+res.json({
+  sattus:"OTP sent"
+})
+}
+catch(e){
+  console.log(e);
+}
+  // .then((verification) => {
+  //   console.log(verification.status);
+  //   res.json({
+  //     status:"OTP sent"
+  //   })
+  // });
 }
 );
 export const verifyOTP = expressAsyncHandler (async (req,res) =>{

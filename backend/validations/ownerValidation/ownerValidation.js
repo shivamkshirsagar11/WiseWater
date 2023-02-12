@@ -4,7 +4,7 @@ import Owner from '../../models/ownerModel.js';
 
 export async function ownerValidation(obj) {
     const { userData: ownerData, companyData } = obj;
-    const userValidationError = userValidation(ownerData);
+    const userValidationError = await userValidation(ownerData);
     const companyValidationError = await companyValidation(companyData);
 
     var error = [];

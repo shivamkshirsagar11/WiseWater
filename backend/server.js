@@ -4,9 +4,8 @@ import cors from 'cors';
 import bodyparser from 'body-parser';
 import  errorHandler  from './middleware/errorMiddleware.js';
 import  userTypeHandler  from './middleware/userTypeMiddleware.js';
-import dotEnv from 'dotenv';
-// dotenv configt
-const dotenv = dotEnv.config();
+import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config({ path: '../.env' })
 
 // rest object
 const app = express();
@@ -40,6 +39,5 @@ app.use(errorHandler);
 
 // port
 const PORT = process.env.PORT || 3001;
-
 // listening port
 app.listen(PORT, () => { console.log(`server is listening on PORT: ${PORT}`) })

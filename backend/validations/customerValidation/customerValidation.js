@@ -4,13 +4,12 @@ import Customer from '../../models/customerModel.js';
 
 export async function customerValidation(customer) {
 
-    const userValidationError = userValidation(customer);
+    const userValidationError = await userValidation(customer);
     const addressValidationError = addressValidation(customer.address);
 
     var error = [];
 
     if (userValidationError || addressValidationError) {
-
         if (userValidationError) {
             error = error.concat(userValidationError);
         }
