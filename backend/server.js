@@ -2,8 +2,8 @@ import express, { json, urlencoded } from 'express';
 import connectDB from './config/db.js';
 import cors from 'cors';
 import bodyparser from 'body-parser';
-import  errorHandler  from './middleware/errorMiddleware.js';
-import  userTypeHandler  from './middleware/userTypeMiddleware.js';
+import errorHandler from './middleware/errorMiddleware.js';
+import userTypeHandler from './middleware/userTypeMiddleware.js';
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config({ path: '../.env' })
 
@@ -26,7 +26,7 @@ app.use('/', userTypeHandler);
 
 
 // routes
-import userRoutes from  './routes/userRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import ownerRoutes from './routes/ownerRoutes.js';
 import workerRoutes from './routes/workerRoutes.js';
 import customerRoutes from './routes/customerRoutes.js';

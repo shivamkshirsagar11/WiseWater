@@ -1,9 +1,12 @@
-import  find  from '../../models/companyModel.js';
+import Company from '../../models/companyModel.js';
 
 export async function showCompanies(req, res) {
 
     try {
-        const companies = await find({}, { _id: 0 });
+        const companies = await Company.find({}, { _id: 0 });
+        console.log('from show companies controller')
+        console.log('print companies array')
+        console.log(companies)
         res.status(200).json({
             companies,
         });

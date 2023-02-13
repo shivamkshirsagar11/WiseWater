@@ -13,7 +13,7 @@ export async function hireWorker(req, res) {
     try {
         const checkWorkerApplication = await WorkerApplicationModel.find({ company_name: workerApplication.company_name, email: workerApplication.email }, { _id: 0 });
         if (checkWorkerApplication) {
-            console.log(workerApplication);
+            // console.log(workerApplication);
             const worker = await WorkerModel.create({
                 ...workerApplication
             });

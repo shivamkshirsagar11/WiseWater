@@ -9,7 +9,7 @@ export async function trackOrder(req, res) {
 
     if (order) {
         const worker = await WorkerModel.findOne({ _id: order.worker_id });
-        console.log(worker)
+
         if (worker) {
             res.status(200).json({
                 order: order,

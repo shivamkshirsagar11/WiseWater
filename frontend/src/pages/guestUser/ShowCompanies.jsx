@@ -27,7 +27,7 @@ export default function ShowCompanies({ cookies }) {
         setLoading(true);
         const fetchData = async () => {
             var response = await giveCompaniesData();
-            if ('error'===response.type) {
+            if ('error' === response.type) {
                 MultiToast(response.error, true);
                 return;
             }
@@ -35,7 +35,7 @@ export default function ShowCompanies({ cookies }) {
 
             response = await giveUserType(token);
             console.log(response);
-            if ('error'===response.type) {
+            if ('error' === response.type) {
                 MultiToast(response.error, true);
                 return;
             }
@@ -72,7 +72,7 @@ export default function ShowCompanies({ cookies }) {
         }
     }, [query]);
 
-    if (true===loading)
+    if (true === loading)
         return (<Spinner />);
 
     const redirectHandler = (e) => {
@@ -89,11 +89,19 @@ export default function ShowCompanies({ cookies }) {
                 searchedCompanies.map((company, index) => {
                     // change is reuqired from UI
                     return (
-                        <p key={index} >
-                            {company.name}
+                        <div key={index} >
+                            <h4>{company.name}</h4>
+                            <p> water price
+                                <ul>
+                                    <li>cold water : {company.waterPrice.coldWater}</li>
+                                    <li>normal water : {company.waterPrice.normalWater}</li>
+                                    <li>hot water : {company.waterPrice.hotWater}</li>
+                                </ul>
+                            </p>
                             {'guest' === userType && <button value={`/worker/application/${company.name}`} onClick={redirectHandler}>apply</button>}
                             {'customer' === userType && <button value={`/customer/placeorder/${company.name}`} onClick={redirectHandler}>place order</button>}
-                        </p>
+
+                        </div>
                     )
                 })
             }

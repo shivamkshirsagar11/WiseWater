@@ -6,25 +6,23 @@ import twilio from "twilio";
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config({ path: '../.env' })
 // Read more at http://twil.io/secure
-const accountSid = process.env.ACCOUNT_SID;
-const authToken = process.env.AUTH_TOKEN;
-const verifySid = process.env.VERIFY_SID;
+const accountSid = 'ACf9074ad1b8968f7090b4760ae2ddae5a';
+const authToken = '3f34dae1d5de995173ea1200f7b315f9';
+const verifySid = 'VAab67bcb24a7af25dab589e576cd66a4d';
 const client = twilio(accountSid, authToken);
-
-export const generateOTP = expressAsyncHandler(async (req,res)=>{
-const {contact} = req.body;
-console.log(`+91-${contact}`)
-try{
-  const rsp = await client.verify.v2.services(verifySid)
-  .verifications.create({ to: `+91${contact}`, channel: "sms" })
-  console.log(rsp);
-res.json({
-  sattus:"OTP sent"
-})
-}
-catch(e){
-  console.log(e);
-}
+export const generateOTP = expressAsyncHandler(async (req, res) => {
+  const { contact } = req.body;
+  try {
+    const rsp = await client.verify.v2.services(verifySid)
+      .verifications.create({ to: `+91${contact}`, channel: "sms" })
+    res.json({
+      sattus: "OTP sent"
+    })
+  }
+  catch (e) {
+    console.log('from otp process catch block have some error')
+    console.log(e);
+  }
   // .then((verification) => {
   //   console.log(verification.status);
   //   res.json({
@@ -33,17 +31,17 @@ catch(e){
   // });
 }
 );
-export const verifyOTP = expressAsyncHandler (async (req,res) =>{
-    const {contact, otp} = req.body;
-    console.log(`+91-${contact}, otp: ${otp}`)
+export const verifyOTP = expressAsyncHandler(async (req, res) => {
+  const { contact, otp } = req.body;
+
   await client.verify.v2
-        .services(verifySid)
-        .verificationChecks.create({ to: `+91${contact}`, code: otp })
-        .then((verification_check) => {
-          console.log(verification_check.status);
-          res.status(200)
-          res.json({
-            status:verification_check.status
-          })
-        })  
+    .services(verifySid)
+    .verificationChecks.create({ to: `+91${contact}`, code: otp })
+    .then((verification_check) => {
+
+      res.status(200)
+      res.json({
+        status: verification_check.status
+      })
+    })
 });

@@ -11,7 +11,7 @@ import { ownerValidation } from '../../validations/ownerValidation/ownerValidati
 // @access  public
 
 export async function registerUser(req, res) {
-    const {onlyValidation} = req.body;
+    const { onlyValidation } = req.body;
     const error = await ownerValidation(req.body);
 
     if (error && error.errorMessage.length > 0) {
@@ -21,12 +21,15 @@ export async function registerUser(req, res) {
             }
         });
     }
-    else if(onlyValidation){
+    else if (onlyValidation) {
         res.status(200).json({
-            type:"data"
+            type: "data"
         });
     } else {
         const { userData, companyData } = req.body;
+        console.log('from owner register');
+        console.log('print compnay object')
+        console.log(companyData);
         try {
             const company = await companyModel.create({
                 name: companyData.name,
@@ -34,6 +37,7 @@ export async function registerUser(req, res) {
                 contact: companyData.contact,
                 address: companyData.address,
                 serviceTime: companyData.serviceTime,
+                waterPrice: companyData.waterPrice
             });
             const owner = await ownerModel.create({
                 firstname: userData.firstname,

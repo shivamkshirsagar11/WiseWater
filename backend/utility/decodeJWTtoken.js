@@ -5,7 +5,7 @@ export function decodeJWTtoken(req, res) {
     if ('Bearer undefined' !== authorization) {
         const token = authorization.split(' ')[1];
         if ('undefined' !== token) {
-            const decoded = verify(token, process.env.JWT_SECRET);
+            const decoded = verify(token, "4mt&!RF&6L7n&^@3k&ME4zaK9!ou^*7SH0J8q@U2");
             if (decoded === undefined) {
                 res.status(401).json({
                     error: {

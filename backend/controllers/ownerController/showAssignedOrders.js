@@ -5,7 +5,7 @@ export async function showAssignedOrders(req, res) {
 
     try {
         const { company_name } = await OwnerModel.findOne({ _id: req.userid }, { company_name: 1, _id: 0 });
-        console.log(company_name);
+
         const assignedOrders = await OrderModel.find({ company_name, status: "assigned" })
         if (assignedOrders) {
             res.status(200).json({

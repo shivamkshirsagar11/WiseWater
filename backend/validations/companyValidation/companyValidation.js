@@ -5,7 +5,7 @@ import Company from '../../models/companyModel.js';
 
 export async function companyValidation(companyData) {
 
-    const { name, email, contact, serviceTime, address } = companyData;
+    const { name, email, contact, serviceTime, address, waterPrice } = companyData;
 
     const addressValidationError = addressValidation(address);
 
@@ -20,7 +20,6 @@ export async function companyValidation(companyData) {
     if (!email) {
         error.push('company email is required');
     }
-
     if (email && !isEmail(email)) {
         error.push('email is not a valid');
     }
@@ -31,12 +30,12 @@ export async function companyValidation(companyData) {
         error.push('contact is not valid');
     }
     if (contact) {
-        async ()=>{
+        async () => {
             const data = await validateContact(contact);
-            const {isValidNumber} = data;
-            if(!isValidNumber)
-            error.push('contact is not valid');
-            }
+            const { isValidNumber } = data;
+            if (!isValidNumber)
+                error.push('contact is not valid');
+        }
     }
     if (!serviceTime) {
         error.push('service time is required');
@@ -44,7 +43,15 @@ export async function companyValidation(companyData) {
     if (serviceTime && false) {
         // validation is required
     }
-
+    if ('' === waterPrice.coldWater) {
+        error.push('water price for cold water is required');
+    }
+    if ('' === waterPrice.normalWater) {
+        error.push('water price for normal water is required');
+    }
+    if ('' === waterPrice.hotWater) {
+        error.push('water price for hot water is required');
+    }
     if (error.length > 0)
         return error;
     else {

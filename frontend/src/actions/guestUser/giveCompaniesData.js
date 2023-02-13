@@ -1,16 +1,17 @@
 const giveCompaniesData = async () => {
 
-    try{
+    try {
         const response = await fetch(`/api/user/show-companies`);
         const data = await response.json();
+        console.log(data.companies)
         return {
-            type : 'data',
-            companiesData : data.companies,
+            type: 'data',
+            companiesData: data.companies,
         }
-    }catch(error){
+    } catch (error) {
         return {
-            type : 'error',
-            error : 'some thing went wrong please try again',
+            type: 'error',
+            error: 'some thing went wrong please try again',
         }
     }
 
