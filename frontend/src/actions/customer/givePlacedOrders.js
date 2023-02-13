@@ -11,7 +11,7 @@ const givePlacedOrders = async (token) => {
         );
         const data = await response.json();
         if ('error' === data.type)
-            throw new Error(data.message);
+            throw (data.message);
         else {
             return {
                 type: 'data',

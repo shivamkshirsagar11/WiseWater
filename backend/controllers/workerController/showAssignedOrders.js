@@ -1,20 +1,18 @@
-const Order = require('../../models/orderModel');
-exports.showAssignedOrders = async (req, res) => {
-    console.log('inside assigned orders')
-    const assignedOrders = await Order.find({ $and: [{ worker_id: req.userid }, { status: { $eq: "assigned" } }] })
-    console.log(assignedOrders)
-    if (assignedOrders) {
-        res.status(200)
-        res.json({
+import OrderModel from '../../models/orderModel.js';
+export async function showAssignedOrders(req, res) {
+
+    try {
+        const assignedOrders = await OrderModel.find({ $and: [{ worker_id: req.userid }, { status: { $eq: "assigned" } }] })
+        res.status(200).json({
             found: true,
             assignedOrders: assignedOrders
         })
-    }
-    else {
-        res.status(204)
-        res.json({
-            found: false
-        }
-        )
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            error: {
+                errorMessage: ['Interanl Server Error']
+            }
+        })
     }
 }

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../Spinner';
-import ShowOrder from "../shared/order/Order";
-import { giveAssignedOrders } from '../../actions/owner/giveAssignedOrders';
+import Spinner from '../Spinner.jsx';
+import ShowOrder from "../shared/order/Order.jsx";
+import { giveAssignedOrders } from '../../actions/owner/giveAssignedOrders.js';
+import MultiToast from '../../actions/shared/MultiToast.js';
 
 export default function ShowAssignedOrders({ cookies }) {
 
@@ -17,7 +18,7 @@ export default function ShowAssignedOrders({ cookies }) {
             setLoading(true);
             const response = await giveAssignedOrders(token);
             if ('error' === response.type) {
-                alert(response.error);
+                MultiToast(response.error, true)
                 navigate('/login');
             }
             setAssignedOrders(response.assignedOrders);

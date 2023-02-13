@@ -1,14 +1,14 @@
-const Order = require("../../models/orderModel")
-const Worker = require("../../models/workerModel")
+import OrderModel from "../../models/orderModel.js";
+import WorkerModel from "../../models/workerModel.js";
 
-exports.trackOrder = async (req, res) => {
+export async function trackOrder(req, res) {
 
     const { order_id } = req.body;
 
-    const order = await Order.findOne({ $and: [{ _id: order_id }, { customer_id: req.userid }] });
-    
+    const order = await OrderModel.findOne({ $and: [{ _id: order_id }, { customer_id: req.userid }] });
+
     if (order) {
-        const worker = await Worker.findOne({ _id: order.worker_id });
+        const worker = await WorkerModel.findOne({ _id: order.worker_id });
         console.log(worker)
         if (worker) {
             res.status(200).json({
@@ -22,8 +22,11 @@ exports.trackOrder = async (req, res) => {
             })
         }
     } else {
+        console.log(error);
         res.status(404).json({
-            error: "order is not found"
+            error: {
+                errorMessage: ['order is not found']
+            }
         })
     }
 }

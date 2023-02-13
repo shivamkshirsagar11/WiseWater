@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const addressSchema = require('./addressModel');
+import { Schema, model } from 'mongoose';
+import addressSchema from './addressModel.js';
 
-const customerSchema = mongoose.Schema({
+const customerSchema = Schema({
     email: {
         type: String, 
         lowercase: true, 
@@ -33,4 +33,4 @@ const customerSchema = mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("Customer",customerSchema);
+export default model("Customer",customerSchema);

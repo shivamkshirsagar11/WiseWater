@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "proxy": "http://localhost:3001",
   "private": true,
+  "type":"module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -10,12 +11,15 @@
     "dotenv": "^16.0.3",
     "fuse.js": "^6.6.2",
     "http-proxy-middleware": "^2.0.6",
+    "node-fetch": "^3.3.0",
+    "proxy": "^1.0.2",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
+    "twilio": "^3.84.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -1,21 +1,21 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
-const {registerUser} = require('../controllers/ownerController/register');
-const {profile} = require('../controllers/ownerController/profile');
-const {showWorkerApplications} = require('../controllers/ownerController/showWorkerApplications');
-const {hireWorker} = require('../controllers/ownerController/hireWorker');
-const {showPendingOrders} = require('../controllers/ownerController/showPendingOrders');
-const {showAssignedOrders} = require('../controllers/ownerController/showAssignedOrders');
-const {assignOrder} = require('../controllers/ownerController/assignOrder');
-const {protect} = require('../middleware/authMiddlerware');
-const {showWorkers} = require('../controllers/ownerController/showWorkers');
-const { inQueryOrder } = require('../controllers/ownerController/inQueryOrders');
-const { getInQueryOrder } = require('../controllers/ownerController/getInQueryOrder');
-const { getOrder } = require('../controllers/ownerController/getOrder');
-const { reAssignOrder } = require('../controllers/ownerController/reAssignnOrder');
-const { moveToPending } = require('../controllers/ownerController/moveToPending');
-const { fetchCustomer } = require('../controllers/ownerController/fetchCustomer');
+import { registerUser } from '../controllers/ownerController/register.js';
+import { profile } from '../controllers/ownerController/profile.js';
+import { showWorkerApplications } from '../controllers/ownerController/showWorkerApplications.js';
+import { hireWorker } from '../controllers/ownerController/hireWorker.js';
+import { showPendingOrders } from '../controllers/ownerController/showPendingOrders.js';
+import { showAssignedOrders } from '../controllers/ownerController/showAssignedOrders.js';
+import { assignOrder } from '../controllers/ownerController/assignOrder.js';
+import  protect  from '../middleware/authMiddlerware.js';
+import { showWorkers } from '../controllers/ownerController/showWorkers.js';
+import { inQueryOrder } from '../controllers/ownerController/inQueryOrders.js';
+import { getInQueryOrder } from '../controllers/ownerController/getInQueryOrder.js';
+import { getOrder } from '../controllers/ownerController/getOrder.js';
+import { reAssignOrder } from '../controllers/ownerController/reAssignnOrder.js';
+import { moveToPending } from '../controllers/ownerController/moveToPending.js';
+import { fetchCustomer } from '../controllers/ownerController/fetchCustomer.js';
 
 router.post('/register',registerUser);
 router.get('/profile',protect,profile);
@@ -36,4 +36,4 @@ router.get('/authenticate',protect,(req,res)=>{
     res.json({message:'done'});
 })
 
-module.exports = router;
+export default router;

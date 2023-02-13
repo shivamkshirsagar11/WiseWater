@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../Spinner';
-import { giveUserData } from '../../../actions/shared/profile/giveUserData';
+import { giveUserData } from '../../../actions/shared/profile/giveUserData.js';
 
-import CompanyDetails from '../details/CompanyDetails';
+import CompanyDetails from '../details/CompanyDetails.jsx';
 // import CompanyDetails from ''
-import AddressDetails from '../details/AddressDetails';
-import UserDetails from '../details/UserDetails';
-import ProfileButtons from './ProfileButtons';
+import AddressDetails from '../details/AddressDetails.jsx';
+import UserDetails from '../details/UserDetails.jsx';
+import ProfileButtons from './ProfileButtons.jsx';
+import MultiToast from '../../../actions/shared/MultiToast.js';
 
 export default function Profile({ cookies, removeCookies, userType }) {
     const navigate = useNavigate();
@@ -31,6 +32,7 @@ export default function Profile({ cookies, removeCookies, userType }) {
     }, [cookies]);
 
     const handleLogout = (e) => {
+        MultiToast("Logging out...", false)
         e.preventDefault();
         console.log(removeCookies)
         removeCookies('token');

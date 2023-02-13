@@ -1,15 +1,15 @@
-const asyncHandler = require('express-async-handler');
-const Company = require('../../models/companyModel');
-const Worker = require('../../models/workerModel');
 
-exports.profile = async (req, res) => {
+import CompanyModel from '../../models/companyModel.js';
+import WorkerModel from '../../models/workerModel.js';
+
+export async function profile(req, res) {
 
     try {
-        const userData = await Worker.findOne({ _id: req.userid }, { password: 0 });
+        const userData = await WorkerModel.findOne({ _id: req.userid }, { password: 0 });
 
         if (userData) {
 
-            const companyData = await Company.findOne({ name: userData.company_name });
+            const companyData = await CompanyModel.findOne({ name: userData.company_name });
 
             if (companyData) {
                 res.status(200).json({

@@ -1,33 +1,43 @@
-const express = require('express');
+import express, { json, urlencoded } from 'express';
+import connectDB from './config/db.js';
+import cors from 'cors';
+import bodyparser from 'body-parser';
+import  errorHandler  from './middleware/errorMiddleware.js';
+import  userTypeHandler  from './middleware/userTypeMiddleware.js';
+import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config({ path: '../.env' })
+
+// rest object
 const app = express();
-const connectDB = require('./config/db');
-const cors = require('cors');
-const dotenv = require('dotenv').config();
-const bodyParser = require('body-parser');
-const {errorHandler} = require('./middleware/errorMiddleware');
-const {userTypeHandler} = require('./middleware/userTypeMiddleware');
 
-
-const PORT = process.env.PORT || 3001;
+// connect to database
 connectDB();
 
-app.use(bodyParser.json());
+// middleware
+app.use(bodyparser.json());
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(urlencoded({ extended: false }));
+app.use('/', userTypeHandler);
 
-app.get('/', (req, res) => {
-    res.send('yo man');
-});
+// app.get('/', (req, res) => {
+//     res.send('yo man');
+// });
 
-// REASON FOR PUT userTypeHandler in comment is for now JWT token is not configured
 
-app.use('/',userTypeHandler);
+// routes
+import userRoutes from  './routes/userRoutes.js';
+import ownerRoutes from './routes/ownerRoutes.js';
+import workerRoutes from './routes/workerRoutes.js';
+import customerRoutes from './routes/customerRoutes.js';
 
-app.use('/api/user',require('./routes/userRoutes.js'));
-app.use('/api/owner',require('./routes/ownerRoutes.js'));
-app.use('/api/worker',require('./routes/workerRoutes.js'));
-app.use('/api/customer',require('./routes/customerRoutes.js'));
+app.use('/api/user', userRoutes);
+app.use('/api/owner', ownerRoutes);
+app.use('/api/worker', workerRoutes);
+app.use('/api/customer', customerRoutes);
 app.use(errorHandler);
 
-app.listen(PORT,()=>{console.log('server is listening on PORT')})
+// port
+const PORT = process.env.PORT || 3001;
+// listening port
+app.listen(PORT, () => { console.log(`server is listening on PORT: ${PORT}`) })

@@ -2,6 +2,8 @@ const errorHandler = (err, req, res, next) => {
     // console.log(res);
     const statusCode = res.statusCode ? res.statusCode : 500;
     console.log(statusCode);
+    console.log(err.message);
+    console.log(err.stack);
     res.status(statusCode);
     console.log('here!!!!')
     res.json({
@@ -12,4 +14,4 @@ const errorHandler = (err, req, res, next) => {
 
 }
 
-module.exports = { errorHandler };
+export default  errorHandler ;

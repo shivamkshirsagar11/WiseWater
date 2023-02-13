@@ -1,9 +1,9 @@
-const expressAsyncHandler = require("express-async-handler");
-const workerOrderQuery = require("../../models/workerOrderQuery");
+import expressAsyncHandler from "express-async-handler";
+import WorkerOrderQuery from "../../models/workerOrderQuery.js";
 
-exports.getInQueryOrder = expressAsyncHandler(async (req,res)=>{
+export const getInQueryOrder = expressAsyncHandler(async (req,res)=>{
 const {order_id} = req.body;
-const query = await workerOrderQuery.find({order_id:order_id})
+const query = await WorkerOrderQuery.find({order_id:order_id})
 console.log("Owner -> getinQueryOrder")
 console.log(query);
 if(query){

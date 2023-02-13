@@ -1,25 +1,25 @@
-const WorkerApplication = require('../../models/workerApplicationModel');
-const asyncHandler = require('express-async-handler');
-const Worker = require('../../models/workerModel');
-const bcrypt = require('bcryptjs');
-const { passwordGen } = require('../../utility/passwordGenerator.js');
+import WorkerApplicationModel from '../../models/workerApplicationModel.js';
+import WorkerModel from '../../models/workerModel.js';
+import pkg from 'bcryptjs';
+const { hash } = pkg;
+import { passwordGen } from '../../utility/passwordGenerator.js';
 
-exports.hireWorker = async (req, res) => {
+export async function hireWorker(req, res) {
 
     const workerApplication = { ...req.body.workerApplication };
     delete workerApplication.applicationdate;
-    workerApplication.password = await bcrypt.hash(passwordGen(10), 10);
+    workerApplication.password = await hash(passwordGen(10), 10);
 
     try {
-        const checkWorkerApplication = await WorkerApplication.find({ company_name: workerApplication.company_name, email: workerApplication.email }, { _id: 0 });
+        const checkWorkerApplication = await WorkerApplicationModel.find({ company_name: workerApplication.company_name, email: workerApplication.email }, { _id: 0 });
         if (checkWorkerApplication) {
             console.log(workerApplication);
-            const worker = await Worker.create({
+            const worker = await WorkerModel.create({
                 ...workerApplication
             });
             // when owner hire a worker
             // the all applications related to that user will be removed from workerApplication collection
-            const val = await WorkerApplication.deleteMany({ $or: [{ email: worker.email }, { contact: worker.contact }] });
+            const val = await WorkerApplicationModel.deleteMany({ $or: [{ email: worker.email }, { contact: worker.contact }] });
             res.status(200).json({
                 message: 'success',
             });

@@ -1,16 +1,15 @@
-const { userValidation } = require('../shared/userValidation');
-const { addressValidation } = require('../shared/addressValidation');
-const Customer = require('../../models/customerModel');
+import { userValidation } from '../shared/userValidation.js';
+import { addressValidation } from '../shared/addressValidation.js';
+import Customer from '../../models/customerModel.js';
 
-exports.customerValidation = async (customer) => {
+export async function customerValidation(customer) {
 
-    const userValidationError = userValidation(customer);
+    const userValidationError = await userValidation(customer);
     const addressValidationError = addressValidation(customer.address);
 
     var error = [];
 
     if (userValidationError || addressValidationError) {
-
         if (userValidationError) {
             error = error.concat(userValidationError);
         }

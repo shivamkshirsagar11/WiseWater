@@ -1,12 +1,12 @@
-const Order = require("../../models/orderModel");
-const Worker = require("../../models/workerModel");
-const WorkerOrderQuery = require("../../models/workerOrderQuery");
-const { DateTime } = require('luxon');
-const asyncHandler = require('express-async-handler');
+import OrderModel from "../../models/orderModel.js";
+import WorkerModel from "../../models/workerModel.js";
+import WorkerOrderQuery from "../../models/workerOrderQuery.js";
+import { DateTime } from 'luxon';
+import asyncHandler from 'express-async-handler';
 
-exports.postOrderQuery = asyncHandler(async (req, res) => {
-    const order = await Order.find({ $and: [{ worker_id: req.userid }, { _id: req.body.order_id }] });
-    const worker = await Worker.findOne({_id:req.userid});
+export const postOrderQuery = asyncHandler(async (req, res) => {
+    const order = await OrderModel.find({ $and: [{ worker_id: req.userid }, { _id: req.body.order_id }] });
+    const worker = await WorkerModel.findOne({_id:req.userid});
     const datetime = DateTime.local()
     const currentDateTime = datetime.toLocaleString(DateTime.DATETIME_MED);
     console.log("from worker -> post query: ", currentDateTime);
@@ -21,7 +21,7 @@ exports.postOrderQuery = asyncHandler(async (req, res) => {
             worker_email: worker.email,
             worker_contact: worker.contact
         });
-        const update = await Order.updateOne({ _id: req.body.order_id }, { $set: { status: "in-query" } });
+        const update = await OrderModel.updateOne({ _id: req.body.order_id }, { $set: { status: "in-query" } });
         console.log(query);
         console.log(update);
         if (query && update) {

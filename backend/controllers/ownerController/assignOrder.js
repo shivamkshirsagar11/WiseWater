@@ -1,9 +1,9 @@
-const Order = require("../../models/orderModel");
-exports.assignOrder = async (req, res) => {
+import OrderModel from "../../models/orderModel.js";
+export async function assignOrder(req, res) {
 	const { worker_id, order_id } = req.body;
 
 	try {
-		const order = await Order.findOne({ _id: order_id });
+		const order = await OrderModel.findOne({ _id: order_id });
 
 		if (null === order) {
 			res.status(404).json({
@@ -13,7 +13,7 @@ exports.assignOrder = async (req, res) => {
 			})
 		}
 		else {
-			const updatedOrder = await Order.updateOne(
+			const updatedOrder = await OrderModel.updateOne(
 				{ _id: order_id },
 				{ $set: { worker_id: worker_id, status: "assigned" } }
 			);
@@ -29,4 +29,4 @@ exports.assignOrder = async (req, res) => {
 			}
 		})
 	}
-};
+}

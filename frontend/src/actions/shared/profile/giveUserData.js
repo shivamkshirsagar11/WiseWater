@@ -8,7 +8,7 @@ const giveUserData = async (userType, token) => {
         });
         const data = await response.json();
         if (undefined !== data.error)
-            throw new Error(data.error.errorMessage);
+            throw (data.error.errorMessage);
         else {
             const responseObject = {
                 type: 'data',

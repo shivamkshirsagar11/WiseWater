@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const tempSchema = mongoose.Schema({
+const tempSchema = Schema({
     latitude : {
         type : Number,
     }
@@ -10,4 +10,4 @@ const tempSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Temp",tempSchema);
+export default model("Temp",tempSchema);

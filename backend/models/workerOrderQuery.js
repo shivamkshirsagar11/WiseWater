@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const workerOrderQuerySchema = mongoose.Schema({
+const workerOrderQuerySchema = Schema({
     worker_id:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         defaultValue:null,
         ref:'Worker'
     },
@@ -19,7 +19,7 @@ const workerOrderQuerySchema = mongoose.Schema({
         required:true
     },
     order_id:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         defaultValue:null,
         ref:'Order'
     },
@@ -33,4 +33,4 @@ const workerOrderQuerySchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("WorkerOrderQuery", workerOrderQuerySchema);
+export default model("WorkerOrderQuery", workerOrderQuerySchema);

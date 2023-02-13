@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
-import Spinner from '../Spinner';
-import ShowOrder from "../shared/order/Order";
-import { giveDetailsToTrackOrder } from "../../actions/customer/giveDetailsToTrackOrder";
+import Spinner from '../Spinner.jsx';
+import ShowOrder from "../shared/order/Order.jsx";
+import { giveDetailsToTrackOrder } from "../../actions/customer/giveDetailsToTrackOrder.js";
+import MultiToast from "../../actions/shared/MultiToast.js";
 
 export default function TrackOrder({ cookies }) {
   const { order_id } = useParams();
@@ -22,7 +23,7 @@ export default function TrackOrder({ cookies }) {
       const response = await giveDetailsToTrackOrder(token, order_id);
       console.log(response);
       if ('error' === response.type) {
-        alert(response.error);
+        MultiToast(response.error, true);
         navigate('/login');
       }
       setOrder(response.order);

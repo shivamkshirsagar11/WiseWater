@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
-import Spinner from '../Spinner';
-import { giveWorkerDetails } from "../../actions/owner/giveWorkerDetails";
-import { assignOrder } from "../../actions/owner/assignOrder";
+import Spinner from '../Spinner.jsx';
+import { giveWorkerDetails } from "../../actions/owner/giveWorkerDetails.js";
+import { assignOrder } from "../../actions/owner/assignOrder.js";
+import MultiToast from "../../actions/shared/MultiToast.js";
 
 export default function ShowWorkers({ cookies }) {
   const { order_id } = useParams();
@@ -39,7 +39,7 @@ export default function ShowWorkers({ cookies }) {
       const obj = { token, worker_id: e.target.value, order_id: order_id };
       const response = await assignOrder(obj);
       if ('error' === response.type) {
-        alert(response.error);
+        MultiToast(response.error, true);
         return;
       } else {
         navigate('/owner/show-pending-orders');

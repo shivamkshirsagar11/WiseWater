@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Spinner from '../Spinner';
+import Spinner from '../Spinner.jsx';
 import Fuse from 'fuse.js';
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-
-import { giveCompaniesData } from '../../actions/guestUser/giveCompaniesData';
-import { giveUserType } from '../../actions/guestUser/giveUserType';
+import { giveCompaniesData } from '../../actions/guestUser/giveCompaniesData.js';
+import { giveUserType } from '../../actions/guestUser/giveUserType.js';
+import MultiToast from '../../actions/shared/MultiToast.js';
 
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
@@ -28,20 +27,20 @@ export default function ShowCompanies({ cookies }) {
         setLoading(true);
         const fetchData = async () => {
             var response = await giveCompaniesData();
-
             if ('error'===response.type) {
-                alert(response.error);
+                MultiToast(response.error, true);
                 return;
             }
             const companiesData = [...response.companiesData];
 
             response = await giveUserType(token);
+            console.log(response);
             if ('error'===response.type) {
-                alert(response.error);
+                MultiToast(response.error, true);
                 return;
             }
             const userType = response.userType;
-
+            console.log(response.userType)
             fuse.current = new Fuse(companiesData, {
                 keys: [
                     'name',

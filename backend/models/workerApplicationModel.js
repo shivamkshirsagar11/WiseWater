@@ -1,8 +1,9 @@
-const mongoose = require('mongoose');
-const moment = require('moment-timezone');
-const dateIndia = moment.tz(Date.now(), "Asia/Kolkata");
+import { Schema, model } from 'mongoose';
+import pkg from 'moment-timezone';
+const { tz } = pkg;
+const dateIndia = tz(Date.now(), "Asia/Kolkata");
 
-const workerApplicationSchema = mongoose.Schema({
+const workerApplicationSchema = Schema({
     email: {
         type: String,
         lowercase: true,
@@ -28,11 +29,11 @@ const workerApplicationSchema = mongoose.Schema({
     },
     company_name: {
         // we are giving type of foregine key 
-        type: mongoose.Schema.Types.String,
+        type: Schema.Types.String,
         required: true,
         // ref:'User' this allows user field to work as foregine key
         ref: 'Company'
     },
 }
 );
-module.exports = mongoose.model('WorkerApplication', workerApplicationSchema);
+export default model('WorkerApplication', workerApplicationSchema);

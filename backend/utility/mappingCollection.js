@@ -1,8 +1,8 @@
-const Customer = require('../models/customerModel')
-const Owner = require('../models/ownerModel')
-const Worker = require('../models/workerModel')
+import Customer from '../models/customerModel.js';
+import Owner from '../models/ownerModel.js';
+import Worker from '../models/workerModel.js';
 
-exports.mapCollectionName = (collectionName)=>{
+export function mapCollectionName(collectionName){
     switch(collectionName){
         case "Customer":
             return Customer;

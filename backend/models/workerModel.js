@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const workerSchema = mongoose.Schema({
+import { Schema, model } from 'mongoose';
+const workerSchema = Schema({
     email: {
         type: String, 
         lowercase: true, 
@@ -35,10 +35,10 @@ const workerSchema = mongoose.Schema({
     },
     company_name: {
         // we are giving type of foregine key 
-        type: mongoose.Schema.Types.String,
+        type: Schema.Types.String,
         required: true,
         // ref:'User' this allows user field to work as foregine key
         ref: 'Company'
     },
 });
-module.exports = mongoose.model('Worker',workerSchema);
+export default model('Worker',workerSchema);

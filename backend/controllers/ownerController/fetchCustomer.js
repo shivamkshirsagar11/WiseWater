@@ -1,7 +1,7 @@
-const expressAsyncHandler = require("express-async-handler");
-const Customer = require('../../models/customerModel');
-exports.fetchCustomer = expressAsyncHandler(async (req, res)=>{
-    const customer = await Customer.find({_id:req.body.customer_id},{password:0})
+import expressAsyncHandler from "express-async-handler";
+import CustomerModel from '../../models/customerModel.js';
+export const fetchCustomer = expressAsyncHandler(async (req, res)=>{
+    const customer = await CustomerModel.find({_id:req.body.customer_id},{password:0})
     console.log("owner -> show customer")
     console.log(customer)
     if(customer){

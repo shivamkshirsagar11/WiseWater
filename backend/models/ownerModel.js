@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const ownerSchema = mongoose.Schema({
+const ownerSchema = Schema({
     email: {
         type: String, 
         lowercase: true, 
@@ -27,9 +27,9 @@ const ownerSchema = mongoose.Schema({
         match: [/^[(]?[0-9]{3}[)]?[\s\.]?[0-9]{3}[\s\.]?[0-9]{4,6}$/,"is Invalid"]
     },
     company_name: {
-        type: mongoose.Schema.Types.String,
+        type: Schema.Types.String,
         required: true,
         ref: 'Company'
     },
 });
-module.exports = mongoose.model('Owner',ownerSchema);
+export default model('Owner',ownerSchema);

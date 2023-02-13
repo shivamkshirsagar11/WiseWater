@@ -1,4 +1,5 @@
-const submitJobApplication = async (userData) => {
+const submitJobApplication = async (userData, onlyValidation) => {
+    userData.onlyValidation = onlyValidation;
     try {
         const response = await fetch(`/api/user/submit-job-application`, {
             method: 'POST',
@@ -11,7 +12,7 @@ const submitJobApplication = async (userData) => {
         const data = await response.json();
         console.log(data);
         if (undefined !== data.error)
-            throw new Error(data.error.errorMessage);
+            throw (data.error.errorMessage);
         else {
             return {
                 type: 'success'

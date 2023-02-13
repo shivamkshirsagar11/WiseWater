@@ -1,8 +1,9 @@
-const { addressValidation } = require('../shared/addressValidation');
-const validator = require('validator');
-const Company = require('../../models/companyModel');
+import { addressValidation } from '../shared/addressValidation.js';
+import pkg from 'validator';
+const { isEmail } = pkg;
+import Company from '../../models/companyModel.js';
 
-exports.companyValidation = async (companyData) => {
+export async function companyValidation(companyData) {
 
     const { name, email, contact, serviceTime, address } = companyData;
 
@@ -20,7 +21,7 @@ exports.companyValidation = async (companyData) => {
         error.push('company email is required');
     }
 
-    if (email && !validator.isEmail(email)) {
+    if (email && !isEmail(email)) {
         error.push('email is not a valid');
     }
     if (!contact) {
@@ -28,6 +29,14 @@ exports.companyValidation = async (companyData) => {
     }
     if (contact && contact.length !== 10) {
         error.push('contact is not valid');
+    }
+    if (contact) {
+        async ()=>{
+            const data = await validateContact(contact);
+            const {isValidNumber} = data;
+            if(!isValidNumber)
+            error.push('contact is not valid');
+            }
     }
     if (!serviceTime) {
         error.push('service time is required');

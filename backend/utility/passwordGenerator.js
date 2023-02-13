@@ -1,4 +1,4 @@
-exports.passwordGen = ( len )=> {
+export function passwordGen( len ) {
     // var length = (len)?(len):(10);
     // var string = "abcdefghijklmnopqrstuvwxyz"; //to upper 
     // var numeric = '0123456789';
