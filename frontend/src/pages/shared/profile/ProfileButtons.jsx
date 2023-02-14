@@ -1,8 +1,8 @@
 import React from 'react'
 
-function ProfileButtons({userType,redirectHandler}) {
+function ProfileButtons({ userType, redirectHandler }) {
 
-    
+
 
     return (
         <div>
@@ -15,14 +15,17 @@ function ProfileButtons({userType,redirectHandler}) {
                     <button onClick={redirectHandler} value="/owner/show-assigned-orders">show assigned orders</button>
                     <button onClick={redirectHandler} value="/owner/show-in-query-orders">Worker Order Query</button>
                     <button onClick={redirectHandler} value="/owner/show-worker-applications">show worker application</button>
+                    <button onClick={redirectHandler} value="/owner/get-payment-details">get payment details</button>
                 </>
             }
 
             {/* customer */}
             {
-                'customer' === userType && <>
+                'customer' === userType &&
+                <>
                     <button onClick={redirectHandler} value="/show-companies">Show companies</button>
                     <button onClick={redirectHandler} value="/customer/show-placed-orders">My orders</button>
+                    <button onClick={redirectHandler} value="/customer/get-payment-details">get payment details</button>
                 </>
             }
 

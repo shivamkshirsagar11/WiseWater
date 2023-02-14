@@ -1,9 +1,13 @@
 import OrderModel from '../../models/orderModel.js';
+import companyModel from '../../models/companyModel.js';
 import asyncHandler from 'express-async-handler';
 import { orderValidation } from '../../validations/orderValidation/orderValidation.js';
 
 export const placeorder = asyncHandler(async (req, res) => {
-    const { water_type, water_temperature, water_quantity, companyname, address } = req.body.order;
+    const { water_type, water_quantity, companyname, address } = req.body.order;
+
+    const { waterPrice } = await companyModel.findOne({ name: companyname }, { waterPrice: 1, _id: 0 });
+    console.log(waterPrice[water_type]);
 
     const error = await orderValidation(req.body.order);
 
@@ -17,11 +21,11 @@ export const placeorder = asyncHandler(async (req, res) => {
         try {
             const order = await OrderModel.create({
                 water_type,
-                water_temperature,
                 water_quantity,
                 address,
                 company_name: companyname,
                 status: 'pending',
+                cost: waterPrice[water_type],
                 customer_id: req.userid,
             });
 

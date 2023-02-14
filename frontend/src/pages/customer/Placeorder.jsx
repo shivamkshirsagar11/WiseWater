@@ -11,7 +11,7 @@ export default function Placeorder({ cookies }) {
     useEffect(() => {
         const { token } = cookies;
         const authenticate = async () => {
-            const response = authenticateUser('customer', token);
+            const response = await authenticateUser('customer', token);
             if ('error' === response.type) {
                 alert('you are not authenticated' + response.error);
                 navigate('/login');
@@ -44,18 +44,18 @@ export default function Placeorder({ cookies }) {
     });
 
     const setInputAddress = (address) => {
-        setAddressData({...address})
+        setAddressData({ ...address })
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const order = { ...orderData, address:{...addressData} };
+        const order = { ...orderData, address: { ...addressData } };
         const { token } = cookies;
         const fetchData = async () => {
-            const response = await placeOrder(token,order);
-            if( 'error'===response.type ){
+            const response = await placeOrder(token, order);
+            if ('error' === response.type) {
                 MultiToast(response.error, true);
-            }else{
+            } else {
                 navigate('/show-companies');
             }
         }
@@ -69,25 +69,16 @@ export default function Placeorder({ cookies }) {
 
                 <select name="water_type" onChange={handleInputData} value={orderData.water_type}>
                     <option value="">water type</option>
-                    <option value="filtered_water">filtered water</option>
-                    <option value="natural_water">Natural water</option>
-                    <option value="alkline_water">alkline water</option>
-                    <option value="normal_water">normal water</option>
+                    <option value="hotWater">hot water</option>
+                    <option value="coldWater">cold water</option>
+                    <option value="normalWater">normal water</option>
                 </select>
 
-                <label htmlFor="water_temperature">Choose a water temperature:</label>
-
-                <select name="water_temperature" onChange={handleInputData} value={orderData.water_temperature}>
-                    <option value="">water temperature</option>
-                    <option value="hot_water">hot</option>
-                    <option value="cold_water">cold</option>
-                    <option value="normal_water">normal</option>
-                </select>
                 water quantity :
                 <input type="text" name="water_quantity" value={orderData.water_quantity} onChange={handleInputData} />
 
                 {/* address */}
-                <AddressDetailsForm address={addressData} setAddress={setInputAddress}/>
+                <AddressDetailsForm address={addressData} setAddress={setInputAddress} />
 
                 companyname : <input type="text" name="companyname" value={orderData.companyname} readOnly={true} />
 

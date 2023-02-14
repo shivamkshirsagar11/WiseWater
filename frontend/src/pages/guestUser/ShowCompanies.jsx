@@ -100,7 +100,6 @@ export default function ShowCompanies({ cookies }) {
                             </p>
                             {'guest' === userType && <button value={`/worker/application/${company.name}`} onClick={redirectHandler}>apply</button>}
                             {'customer' === userType && <button value={`/customer/placeorder/${company.name}`} onClick={redirectHandler}>place order</button>}
-
                         </div>
                     )
                 })

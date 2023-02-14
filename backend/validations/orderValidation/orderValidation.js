@@ -11,9 +11,6 @@ export async function orderValidation(order) {
     if (!water_type) {
         error.push('water type is required');
     }
-    if (!water_temperature) {
-        error.push('water temperature is required');
-    }
     if (!water_quantity) {
         error.push('water quantity is required');
     }

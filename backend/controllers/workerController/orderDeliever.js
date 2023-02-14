@@ -1,13 +1,45 @@
 import OrderModel from '../../models/orderModel.js';
+import paymentModel from '../../models/paymentModel.js';
+
+const handlePayment = async (assignedOrder) => {
+    try {
+        var obj = await paymentModel.findOne({ $and: [{ customer_id: assignedOrder.customer_id }, { company_name: assignedOrder.company_name }] });
+        console.log(assignedOrder);
+        if (null === obj) {
+            obj = await paymentModel.create({
+                customer_id: assignedOrder.customer_id,
+                company_name: assignedOrder.company_name,
+                payment: { hotWater: 0, coldWater: 0, normalWater: 0 }
+            })
+        }
+        console.log('from worker controler order deliever page')
+        console.log('obj')
+        console.log(obj)
+        obj.payment[assignedOrder.water_type] += assignedOrder.cost * assignedOrder.water_quantity;
+        obj = await paymentModel.findOneAndUpdate(
+            { $and: [{ customer_id: assignedOrder.customer_id }, { company_name: assignedOrder.company_name }] },
+            obj
+        );
+        console.log(obj)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            error: {
+                errorMessage: ['Interanl Server Error']
+            }
+        })
+    }
+}
 
 export async function orderDeliever(req, res) {
 
     const { order_id } = req.body;
 
     try {
-        const assignedOrder = await OrderModel.find({ $and: [{ worker_id: req.userid }, { _id: order_id }] })
+        const assignedOrder = await OrderModel.findOne({ $and: [{ worker_id: req.userid }, { _id: order_id }] })
         if (assignedOrder) {
-            const updated = await updateOne({ _id: order_id }, { $set: { status: "delievered" } })
+            await handlePayment(assignedOrder);
+            // const updated = await OrderModel.updateOne({ _id: order_id }, { $set: { status: "delievered" } })
             res.status(200).json({
                 message: 'success'
             })

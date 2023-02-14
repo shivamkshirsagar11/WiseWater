@@ -8,10 +8,6 @@ const orderSchema = Schema({
         type: String,
         required: [true, "can't be blank"],
     },
-    water_temperature: {
-        type: String,
-        required: [true, "can't be blank"],
-    },
     water_quantity: {
         type: Number,
         required: [true, "can't be blank"],
@@ -30,15 +26,19 @@ const orderSchema = Schema({
         required: true,
         ref: 'Customer'
     },
-    status:{
-        type:String,
-        required:true,
+    status: {
+        type: String,
+        required: true,
         defaultValue: 'pending'
     },
-    worker_id:{
+    cost: {
+        type: Number,
+        required: true,
+    },
+    worker_id: {
         type: Schema.Types.ObjectId,
-        defaultValue:null,
-        ref:'Worker'
+        defaultValue: null,
+        ref: 'Worker'
     }
 });
 

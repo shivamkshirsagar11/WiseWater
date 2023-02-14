@@ -38,21 +38,16 @@ export default function TrackOrder({ cookies }) {
   }
   return (
     <>
-      {/* {showOrder.map((order, index) => { */}
-        {/* return ( */}
-          <div >
-            <ShowOrder order={order} />
-            {order.status !== "pending" &&
-              <div>
-                <p>Worker name: {worker.firstname} {worker.lastname}</p>
-                <p>Worker Contact: {worker.contact}</p>
-                <p>Worker Email: {worker.email}</p>
-              </div>
-              // <ShowAssignedWorkerDetails worker={worker} />
-            }
+      <div >
+        <ShowOrder order={order} />
+        {order.status !== "pending" &&
+          <div>
+            <p>Worker name: {worker.firstname} {worker.lastname}</p>
+            <p>Worker Contact: {worker.contact}</p>
+            <p>Worker Email: {worker.email}</p>
           </div>
-        {/* ); */}
-      {/* })} */}
+        }
+      </div>
     </>
   );
 }
