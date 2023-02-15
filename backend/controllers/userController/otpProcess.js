@@ -4,11 +4,11 @@
 import expressAsyncHandler from "express-async-handler";
 import twilio from "twilio";
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-dotenv.config({ path: '../.env' })
+dotenv.config();
 // Read more at http://twil.io/secure
-const accountSid = '';
-const authToken = '';
-const verifySid = '';
+const accountSid = process.env.ACCOUNT_SID;
+const authToken = process.env.AUTH_TOKEN;
+const verifySid = process.env.VERIFY_SID;
 const client = twilio(accountSid, authToken);
 export const generateOTP = expressAsyncHandler(async (req, res) => {
   const { contact } = req.body;

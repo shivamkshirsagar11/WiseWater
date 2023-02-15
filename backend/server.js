@@ -5,8 +5,7 @@ import bodyparser from 'body-parser';
 import errorHandler from './middleware/errorMiddleware.js';
 import userTypeHandler from './middleware/userTypeMiddleware.js';
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-dotenv.config({ path: '../.env' })
-
+dotenv.config();
 // rest object
 const app = express();
 

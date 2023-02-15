@@ -13,13 +13,17 @@ export async function hireWorker(req, res) {
     try {
         const checkWorkerApplication = await WorkerApplicationModel.find({ company_name: workerApplication.company_name, email: workerApplication.email }, { _id: 0 });
         if (checkWorkerApplication) {
-            // console.log(workerApplication);
-            const worker = await WorkerModel.create({
-                ...workerApplication
-            });
-            // when owner hire a worker
-            // the all applications related to that user will be removed from workerApplication collection
-            const val = await WorkerApplicationModel.deleteMany({ $or: [{ email: worker.email }, { contact: worker.contact }] });
+            console.log(workerApplication);
+            
+            //un comment from this when wmail is done
+            // const worker = await WorkerModel.create({
+            //     ...workerApplication
+            // });
+            // // when owner hire a worker
+            // // the all applications related to that user will be removed from workerApplication collection
+            // const val = await WorkerApplicationModel.deleteMany({ $or: [{ email: worker.email }, { contact: worker.contact }] });
+            //to this
+
             res.status(200).json({
                 message: 'success',
             });
