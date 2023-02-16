@@ -30,6 +30,7 @@ const workerApplicationSchema = Schema({
     company_name: {
         // we are giving type of foregine key 
         type: Schema.Types.String,
+        lowercase:true,
         required: true,
         // ref:'User' this allows user field to work as foregine key
         ref: 'Company'

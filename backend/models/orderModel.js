@@ -18,6 +18,7 @@ const orderSchema = Schema({
     },
     company_name: {
         type: String,
+        lowercase:true,
         required: true,
         ref: 'Company'
     },

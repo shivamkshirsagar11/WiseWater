@@ -29,6 +29,7 @@ const ownerSchema = Schema({
     company_name: {
         type: Schema.Types.String,
         required: true,
+        lowercase:true,
         ref: 'Company'
     },
 });

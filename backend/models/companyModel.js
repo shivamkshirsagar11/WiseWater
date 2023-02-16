@@ -5,7 +5,7 @@ const companySchema = Schema(
     {
         name: {
             type: String,
-            lowercase: true,
+            lowercase:true,
             unique: true,
             required: [true, "please give company name"]
         },
