@@ -23,7 +23,6 @@ function CustomerRegistration({ setCookies }) {
     const response = await registerUser("customer", userData, true);
     if ("error" === response.type) MultiToast(response.error, true);
     else setFlag(true);
-
   };
 
   const setAddress = (address) => {
@@ -47,7 +46,7 @@ function CustomerRegistration({ setCookies }) {
           </form>
         </div>
       )}
-      {flag && <OTP userData={customer} userType="customer" register = {registerUser} setCookies={setCookies} navigateString = {"/customer/profile"} requiredCookie = {1} toastMsg = {"you are registered successfully"}/>}
+      {flag && <OTP userData={customer} userType="customer" register={registerUser} setCookies={setCookies} navigateString={"/customer/profile"} requiredCookie={1} toastMsg={"you are registered successfully"} />}
     </>
   );
 }

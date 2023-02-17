@@ -16,6 +16,7 @@ import { getOrder } from '../controllers/ownerController/getOrder.js';
 import { reAssignOrder } from '../controllers/ownerController/reAssignnOrder.js';
 import { moveToPending } from '../controllers/ownerController/moveToPending.js';
 import { fetchCustomer } from '../controllers/ownerController/fetchCustomer.js';
+<<<<<<< Updated upstream
 
 router.post('/register',registerUser);
 router.get('/profile',protect,profile);
@@ -32,6 +33,28 @@ router.post('/reassign-order',protect,reAssignOrder);
 router.post('/move-to-pending-order',protect,moveToPending);
 router.post('/fetch-customer',protect,fetchCustomer);
 router.get('/authenticate',protect,(req,res)=>{
+=======
+import { getPaymentDetails } from '../controllers/ownerController/getPaymentDetails.js';
+import { acceptPayment } from '../controllers/ownerController/acceptPayment.js';
+
+router.post('/register', registerUser);
+router.get('/profile', protect, profile);
+router.get('/showWorkerApplications', protect, showWorkerApplications);
+router.post('/hire-worker', protect, hireWorker);
+router.get('/show-pending-orders', protect, showPendingOrders);
+router.post('/assign-order', protect, assignOrder);
+router.get('/show-assigned-orders', protect, showAssignedOrders);
+router.get('/show-workers', protect, showWorkers);
+router.post('/show-in-query-orders', protect, inQueryOrder);
+router.post('/resolve-in-query-orders', protect, getInQueryOrder);
+router.post('/get-order', protect, getOrder);
+router.post('/reassign-order', protect, reAssignOrder);
+router.post('/move-to-pending-order', protect, moveToPending);
+router.post('/fetch-customer', protect, fetchCustomer);
+router.get('/payment-details', protect, getPaymentDetails);
+router.post('/accept-payment', protect, acceptPayment)
+router.get('/authenticate', protect, (req, res) => {
+>>>>>>> Stashed changes
     console.log('owner in atuhencated')
     res.json({message:'done'});
 })

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../actions/guestUser/loginUser.js';
 import 'react-toastify/dist/ReactToastify.css';
-import  MultiToast  from '../../actions/shared/MultiToast.js';
+import MultiToast from '../../actions/shared/MultiToast.js';
 
 export default function Login({ setCookies }) {
   const navigate = useNavigate();
@@ -34,13 +34,10 @@ export default function Login({ setCookies }) {
     <>
       <form>
         email: <input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-
         password: <input type="text" value={password} onChange={(e) => { setPassword(e.target.value) }} />
-
         <button type="submit" value="Customer" onClick={hadleSubmit}>Login as customer</button>
         <button type="submit" value="Worker" onClick={hadleSubmit}>Login as Worker</button>
         <button type="submit" value="Owner" onClick={hadleSubmit}>Login as Owner</button>
-
       </form>
     </>
   );
