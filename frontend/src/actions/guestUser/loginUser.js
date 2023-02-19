@@ -1,6 +1,9 @@
-const loginUser = async (user) => {
-    console.log(user)
+import { getLatLang } from "./getLatLang.js";
+
+ const loginUser = async (user) => {
     try {
+        const locationObj = await getLatLang();
+        user.locationObj = locationObj;
         const response = await fetch(`/api/user/login`, {
             method: 'POST',
             headers: {

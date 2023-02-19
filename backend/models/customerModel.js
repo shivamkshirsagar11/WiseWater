@@ -31,6 +31,15 @@ const customerSchema = Schema({
         type: String,
         required: [true, "can't be blank"], 
     },
+    latitude : {
+        type : Number,
+        default: null
+    }
+    ,
+    longitude : {
+        type : Number,
+        default: null
+    }
 });
 
 export default model("Customer",customerSchema);

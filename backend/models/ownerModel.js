@@ -32,5 +32,14 @@ const ownerSchema = Schema({
         lowercase:true,
         ref: 'Company'
     },
+    latitude : {
+        type : Number,
+        default: null
+    }
+    ,
+    longitude : {
+        type : Number,
+        default: null
+    },
 });
 export default model('Owner',ownerSchema);

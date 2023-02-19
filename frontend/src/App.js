@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 
 // guest user
+// import Map from "./pages/shared/map/MapRender.jsx";
 import Home from "./pages/guestUser/Home.jsx";
 import Login from "./pages/guestUser/login.jsx";
 import WorkerApplicationFrom from "./pages/guestUser/WorkerApplicationFrom.jsx";
@@ -54,6 +55,10 @@ function App() {
           <Route path="/">
             {/* guestuser */}
             <Route index element={<Home />} />
+            {/* <Route
+                path="/open/order"
+                element={<Map cookies={cookies} />}
+              /> */}
             <Route
               path="/login"
               element={<Login setCookies={handleSetCookies} />}

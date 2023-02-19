@@ -41,5 +41,14 @@ const workerSchema = Schema({
         // ref:'User' this allows user field to work as foregine key
         ref: 'Company'
     },
+    latitude : {
+        type : Number,
+        default: null
+    }
+    ,
+    longitude : {
+        type : Number,
+        default: null
+    }
 });
 export default model('Worker',workerSchema);

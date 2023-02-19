@@ -10,6 +10,7 @@ export default function WorkerAssignedOrders({ cookies }) {
     const navigate = useNavigate();
     const [assignedOrders, setAssignedOrders] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [location, setLocation] = useState({});
     const { token } = cookies;
     useEffect(() => {
         const fetchData = async () => {
@@ -20,6 +21,7 @@ export default function WorkerAssignedOrders({ cookies }) {
                 navigate('/login');
             } else {
                 setAssignedOrders(response.assignedOrders);
+                setLocation(response.location);
             }
             setLoading(false);
         }
@@ -29,7 +31,7 @@ export default function WorkerAssignedOrders({ cookies }) {
     if (true === loading) {
         return <Spinner />;
     }
-
+    console.log(location);
     const handleDelieverOrder = async (e) => {
         e.preventDefault();
         console.log(e.target.value);
@@ -48,6 +50,10 @@ export default function WorkerAssignedOrders({ cookies }) {
         console.log("Order no: ", e.target.value);
         navigate(`/worker/order/assigned/query/${e.target.value}`)
     }
+    const handleOpenOrder = (e)=>{
+        e.preventDefault();
+        
+    }
     return (
         <div>
             {0 === assignedOrders.length && <p>no order are assigned</p>}
@@ -59,6 +65,7 @@ export default function WorkerAssignedOrders({ cookies }) {
                             <h2>order number {index}</h2>
                             <ShowOrder order={assignedOrder} />
                             <button onClick={handleDelieverOrder} value={`${assignedOrder._id}`}>Order Delievered</button>
+                            <button>Open Order</button>
                             <button value={`${assignedOrder._id}`} onClick={handleAssignedOrderQuery}>Order Query</button>
                         </div>
                     )

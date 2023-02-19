@@ -2,7 +2,7 @@
 import { mapCollectionName } from '../../utility/mappingCollection.js';
 import { generateJWTtoken } from '../../utility/generateJWTtoken.js';
 import pkg from 'bcryptjs';
-const { compare } = pkg;
+const { compare, hash } = pkg;
 import pkg2 from "validator";
 const {isEmail} = pkg2;
 
@@ -12,7 +12,8 @@ const {isEmail} = pkg2;
 
 export async function loginUser(req, res) {
 
-    const { email, password } = req.body;
+    const { email, password, locationObj} = req.body;
+    console.log("from login");
     var error = [];
     // login validation
     if (!email) {
@@ -33,13 +34,14 @@ export async function loginUser(req, res) {
         });
     } else {
         const collection = mapCollectionName(req.body.collectionName);
-        
         const user = await collection.findOne({ email }, { password: 1, _id: 1 });
-        
         if (user && (await compare(password, user.password))) {
-            res.json({
-                token: generateJWTtoken(user._id, req.body.collectionName) // whty every time create new token
-            });
+            console.log(user);
+        const updateUser = await collection.updateOne({_id:user._id}, {$set:{longitude: locationObj.longitude, latitude: locationObj.latitude}});  
+        console.log(updateUser)      
+                res.json({
+                    token: generateJWTtoken(user._id, req.body.collectionName) // whty every time create new token
+                });
         } else {
             res.status(400).json({
                 error : {
