@@ -35,7 +35,8 @@ export default function OwnerRegistration({ setCookies }) {
 	return (
 		<>
 			{!flag && (
-				<div>
+				<div className="container my-3">
+					<h3 className="display-4">Owner Registration</h3>
 					<form method="post">
 						<UserDetailsForm userData={userData} setUserData={setUserData} />
 
@@ -45,7 +46,7 @@ export default function OwnerRegistration({ setCookies }) {
 							setCompanyData={setCompanyData}
 						/>
 
-						<button type="submit" onClick={handleSubmit}>
+						<button type="submit" onClick={handleSubmit} className="btn btn-warning">
 							Submit
 						</button>
 					</form>

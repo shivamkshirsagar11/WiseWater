@@ -34,14 +34,17 @@ function CustomerRegistration({ setCookies }) {
   return (
     <>
       {!flag && (
-        <div>
+        <div className="container my-3">
+          <h3 className="display-4">
+          Customer Registration
+          </h3>
           <form method="post">
             <UserDetailsForm userData={userData} setUserData={setUserData} />
             <AddressDetailsForm
               address={userData.address}
               setAddress={setAddress}
             />
-            <button type="submit" onClick={handleSubmit}>
+            <button type="submit" className="btn btn-success" onClick={handleSubmit}>
               Submit
             </button>
           </form>
