@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/guestUser/Home.jsx";
 import Login from "./pages/guestUser/login.jsx";
 import WorkerApplicationFrom from "./pages/guestUser/WorkerApplicationFrom.jsx";
-import ShowCompanies from "./pages/guestUser/ShowCompanies.jsx";
+import ShowCompanies from "./pages/guestUser/showCompanies/ShowCompanies.jsx";
 // customer
 import CustomerRegistration from "./pages/customer/CustomerRegistration.jsx";
 import Placeorder from "./pages/customer/Placeorder.jsx";
@@ -54,15 +54,15 @@ function App() {
         <Routes>
           <Route path="/">
             {/* guestuser */}
-            <Route index element={<Home />} />
+            <Route index element={<Home setCookies={handleSetCookies} />} />
             {/* <Route
                 path="/open/order"
                 element={<Map cookies={cookies} />}
               /> */}
-            <Route
+            {/* <Route
               path="/login"
               element={<Login setCookies={handleSetCookies} />}
-            />
+            /> */}
             <Route
               path="/verification/contact/otp"
               element={<Login setCookies={handleSetCookies} />}

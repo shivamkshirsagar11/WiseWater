@@ -7,9 +7,11 @@ import Card from "../../components/Card.jsx";
 import ownerImage from "../../media/p1.jpg";
 import customerImage from "../../media/p2.jpg";
 import workerImage from "../../media/p3.jpg";
-export default function Login({ setCookies }) {
-  const navigate = useNavigate();
 
+export default function Login(props) {
+  const navigate = useNavigate();
+  // console.log(setCookies)
+  console.log(props)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,7 +28,7 @@ export default function Login({ setCookies }) {
       console.log(response.error);
       MultiToast(response.error, true);
     } else {
-      setCookies("token", response.token);
+      // setCookies("token", response.token);
       console.log(response.token);
       MultiToast("successfully logged in", false);
       navigate(`/${user.collectionName.toLowerCase()}/profile`);
@@ -47,8 +49,8 @@ export default function Login({ setCookies }) {
               collection={"Customer"}
               varC={"One"}
               src={customerImage}
-              toLink = "/customer/register"
-              text = {"Signup"}
+              toLink="/customer/register"
+              text={"Signup"}
             />
           </div>
           <div className="col">
@@ -61,8 +63,8 @@ export default function Login({ setCookies }) {
               collection={"Worker"}
               varC={"Two"}
               src={workerImage}
-              toLink = "/show-companies"
-              text = {"Apply for job"}
+              toLink="/show-companies"
+              text={"Apply for job"}
             />
           </div>
           <div className="col">
@@ -75,8 +77,8 @@ export default function Login({ setCookies }) {
               collection={"Owner"}
               varC={"Three"}
               src={ownerImage}
-              toLink = "/owner/register"
-              text = {"Signup"}
+              toLink="/owner/register"
+              text={"Signup"}
             />
           </div>
         </div>

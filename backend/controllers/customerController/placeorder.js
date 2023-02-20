@@ -19,7 +19,7 @@ export const placeorder = asyncHandler(async (req, res) => {
         });
     } else {
         try {
-            const order = await OrderModel.create({
+            const order = new OrderModel({
                 water_type,
                 water_quantity,
                 address,
@@ -28,7 +28,8 @@ export const placeorder = asyncHandler(async (req, res) => {
                 cost: waterPrice[water_type],
                 customer_id: req.userid,
             });
-
+            order.orderId = await order.orderid;
+            await order.save();
             res.status(200).json({
                 message: 'from place order'
             });
@@ -40,6 +41,5 @@ export const placeorder = asyncHandler(async (req, res) => {
                 }
             })
         }
-
     }
 });

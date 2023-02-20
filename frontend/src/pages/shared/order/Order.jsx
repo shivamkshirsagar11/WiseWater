@@ -1,16 +1,23 @@
-import React from 'react'
-import AddressDetails from '../details/AddressDetails.jsx'
+import React, { useState } from 'react'
+import OrderViewModel from '../../../components/orderViewModel/OrderViewModel.jsx';
 
 
 export default function ShowOrder({ order }) {
-    return (
-        <div>
-            <p>water type {order.water_type}</p>
-            <p>water quantity {order.water_quantity}</p>
-            <p>company name {order.company_name}</p>
 
-            <AddressDetails address={order.address} />
-            {order.status && <p>status {order.status}</p>}
+    const [orderViewModelState, setOrderViewModelState] = useState(false);
+    console.log(order)
+    return (
+
+        <div className="container">
+            <h5 style={{ color: "blue" }}>
+                order ID {order.orderId}
+            </h5>
+            <OrderViewModel
+                show={orderViewModelState}
+                onHide={() => setOrderViewModelState(false)}
+                data={order}
+            />
+            <button onClick={() => setOrderViewModelState(true)}>show order details</button>
         </div>
     )
 }

@@ -3,9 +3,11 @@ import { registerUser } from "../../actions/shared/registerUser.js";
 import UserDetailsForm from "../shared/form/UserDetailsForm.jsx";
 import AddressDetailsForm from "../shared/form/AddressDetailsForm.jsx";
 import MultiToast from "../../actions/shared/MultiToast.js";
-import OTP from "../shared/form/OTP.jsx";
+import { useNavigate } from "react-router-dom";
+// import OTP from "../shared/form/OTP.jsx";
 
 function CustomerRegistration({ setCookies }) {
+  const navigate = useNavigate();
 
   const [flag, setFlag] = useState(false);
   const [userData, setUserData] = useState({
@@ -20,10 +22,12 @@ function CustomerRegistration({ setCookies }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await registerUser("customer", userData, true);
+    const response = await registerUser("customer", userData, false);
     if ("error" === response.type) MultiToast(response.error, true);
-    else setFlag(true);
-
+    // else setFlag(true);
+    else {
+      navigate('/customer/profile')
+    }
   };
 
   const setAddress = (address) => {
@@ -36,7 +40,7 @@ function CustomerRegistration({ setCookies }) {
       {!flag && (
         <div className="container my-3">
           <h3 className="display-4">
-          Customer Registration
+            Customer Registration
           </h3>
           <form method="post">
             <UserDetailsForm userData={userData} setUserData={setUserData} />
@@ -50,7 +54,7 @@ function CustomerRegistration({ setCookies }) {
           </form>
         </div>
       )}
-      {flag && <OTP userData={customer} userType="customer" register = {registerUser} setCookies={setCookies} navigateString = {"/customer/profile"} requiredCookie = {1} toastMsg = {"you are registered successfully"}/>}
+      {/* {flag && <OTP userData={customer} userType="customer" register = {registerUser} setCookies={setCookies} navigateString = {"/customer/profile"} requiredCookie = {1} toastMsg = {"you are registered successfully"}/>} */}
     </>
   );
 }

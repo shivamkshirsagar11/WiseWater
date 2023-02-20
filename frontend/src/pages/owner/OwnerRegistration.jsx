@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../actions/shared/registerUser.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
 import CompanyDetailsForm from "../shared/form/CompanyDetailsForm.jsx";
 import UserDetailsForm from "../shared/form/UserDetailsForm.jsx";
-import OTP from "../shared/form/OTP.jsx";
+// import OTP from "../shared/form/OTP.jsx";
 
 export default function OwnerRegistration({ setCookies }) {
 	const [flag, setFlag] = useState(false);
@@ -24,12 +25,15 @@ export default function OwnerRegistration({ setCookies }) {
 		address: { line1: "", line2: "", city: "", pincode: "", state: "" },
 		waterPrice: { coldWater: '', normalWater: '', hotWater: '' }
 	});
-
+	const navigate = useNavigate();
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const response = await registerUser("owner", owner, true);
 		if ("error" === response.type) MultiToast(response.error, true);
-		else setFlag(true);
+		else {
+			navigate('/owner/profile');
+		}
+		// else setFlag(true);
 	};
 	const owner = { userData: { ...userData }, companyData: { ...companyData } };
 	return (
@@ -52,7 +56,7 @@ export default function OwnerRegistration({ setCookies }) {
 					</form>
 				</div>
 			)}
-			{flag && (
+			{/* {flag && (
 				<OTP
 					userData={owner}
 					userType="owner"
@@ -62,7 +66,7 @@ export default function OwnerRegistration({ setCookies }) {
 					requiredCookie={2}
 					toastMsg={"you are registered successfully"}
 				/>
-			)}
+			)} */}
 		</>
 	);
 }

@@ -6,6 +6,7 @@ import { giveWorkerApplications } from '../../actions/owner/giveWorkerApplicatio
 import { hireWorker } from '../../actions/owner/hireWorker.js';
 import UserDetails from '../shared/details/UserDetails.jsx';
 import MultiToast from '../../actions/shared/MultiToast.js';
+import Layout from '../shared/Layout/Layout.jsx';
 
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
@@ -70,7 +71,7 @@ function ShowWorkerApplications({ cookies }) {
         }
     }, [fuse, query]);
 
-    if (true===loading)
+    if (true === loading)
         return (<Spinner />);
 
     const handleHiring = async (e) => {
@@ -90,26 +91,28 @@ function ShowWorkerApplications({ cookies }) {
     }
 
     return (
-        <div>
-        {
-            searchedWorkerApplications.length !== 0 ?
-                <>
-                    <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} />
-                    {
-                        searchedWorkerApplications.map((workerApplication, index) => {
-                            return (
-                                <div key={index}>
-                                    <h2>application {index}</h2>
-                                    <UserDetails userData={workerApplication} />
-                                    <button onClick={handleHiring} value={index}>hire worker</button>
-                                </div>
-                            )
-                        })
-                    }
-                </>
-                : <>No application found</>
-        }
-        </div>
+        <Layout userType={'owner'}>
+            <div>
+                {
+                    searchedWorkerApplications.length !== 0 ?
+                        <>
+                            <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} />
+                            {
+                                searchedWorkerApplications.map((workerApplication, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <h2>application {index}</h2>
+                                            <UserDetails userData={workerApplication} />
+                                            <button onClick={handleHiring} value={index}>hire worker</button>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </>
+                        : <>No application found</>
+                }
+            </div>
+        </Layout>
     )
 }
 

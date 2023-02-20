@@ -4,6 +4,7 @@ import Spinner from '../Spinner.jsx';
 import ShowOrder from "../shared/order/Order.jsx";
 import { giveAssignedOrders } from '../../actions/owner/giveAssignedOrders.js';
 import MultiToast from '../../actions/shared/MultiToast.js';
+import Layout from '../shared/Layout/Layout.jsx';
 
 export default function ShowAssignedOrders({ cookies }) {
 
@@ -28,24 +29,26 @@ export default function ShowAssignedOrders({ cookies }) {
 
     }, [cookies]);
 
-    if (true===loading) {
+    if (true === loading) {
         return <Spinner />;
     }
 
     return (
-        <div>
-            {0 === assignedOrders.length && <p>no order are assigned</p>}
-            {
-                assignedOrders.map((assignedOrder, index) => {
-                    delete assignedOrder.status
-                    return (
-                        <div key={index}>
-                            <h2>order number {index}</h2>
-                            <ShowOrder order={assignedOrder} />
-                        </div>
-                    )
-                })
-            }
-        </div>
+        <Layout userType={'owner'}>
+            <div>
+                {0 === assignedOrders.length && <p>no order are assigned</p>}
+                {
+                    assignedOrders.map((assignedOrder, index) => {
+                        console.log(assignedOrder)
+                        delete assignedOrder.status
+                        return (
+                            <div key={index}>
+                                <ShowOrder order={assignedOrder} />
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        </Layout>
     )
 }

@@ -4,6 +4,7 @@ import { authenticateUser } from '../../actions/shared/authenticateUser.js';
 import { placeOrder } from '../../actions/customer/placeOrder.js';
 import AddressDetailsForm from '../shared/form/AddressDetailsForm.jsx';
 import MultiToast from '../../actions/shared/MultiToast.js';
+import Layout from '../shared/Layout/Layout.jsx';
 
 export default function Placeorder({ cookies }) {
     const navigate = useNavigate();
@@ -63,27 +64,29 @@ export default function Placeorder({ cookies }) {
     }
 
     return (
-        <div>
-            <form action="post">
-                <label htmlFor="water_type">Choose a water type:</label>
+        <Layout userType={'customer'}>
+            <div>
+                <form action="post">
+                    <label htmlFor="water_type">Choose a water type:</label>
 
-                <select name="water_type" onChange={handleInputData} value={orderData.water_type}>
-                    <option value="">water type</option>
-                    <option value="hotWater">hot water</option>
-                    <option value="coldWater">cold water</option>
-                    <option value="normalWater">normal water</option>
-                </select>
+                    <select name="water_type" onChange={handleInputData} value={orderData.water_type}>
+                        <option value="">water type</option>
+                        <option value="hotWater">hot water</option>
+                        <option value="coldWater">cold water</option>
+                        <option value="normalWater">normal water</option>
+                    </select>
 
-                water quantity :
-                <input type="text" name="water_quantity" value={orderData.water_quantity} onChange={handleInputData} />
+                    water quantity :
+                    <input type="text" name="water_quantity" value={orderData.water_quantity} onChange={handleInputData} />
 
-                {/* address */}
-                <AddressDetailsForm address={addressData} setAddress={setInputAddress} />
+                    {/* address */}
+                    <AddressDetailsForm address={addressData} setAddress={setInputAddress} />
 
-                companyname : <input type="text" name="companyname" value={orderData.companyname} readOnly={true} />
+                    companyname : <input type="text" name="companyname" value={orderData.companyname} readOnly={true} />
 
-                <button type="submit" onClick={handleSubmit}>submit</button>
-            </form>
-        </div>
+                    <button type="submit" onClick={handleSubmit}>submit</button>
+                </form>
+            </div>
+        </Layout>
     )
 }

@@ -1,5 +1,7 @@
 import { Schema, model } from 'mongoose';
 import addressSchema from './addressModel.js';
+import getNextSequenceValue from './getNextSequenceValue.js';
+import CounterModel from './counterModel.js';
 
 // water_type,water_temperature,water_quantity,companyname
 
@@ -18,7 +20,7 @@ const orderSchema = Schema({
     },
     company_name: {
         type: String,
-        lowercase:true,
+        lowercase: true,
         required: true,
         ref: 'Company'
     },
@@ -40,7 +42,20 @@ const orderSchema = Schema({
         type: Schema.Types.ObjectId,
         defaultValue: null,
         ref: 'Worker'
+    },
+    orderId: {
+        type: Number,
+        required: true,
     }
+    // seq: { type: Number, default: await getNextSequenceValue() }
+});
+orderSchema.virtual("orderid").get(async function () {
+    const counter = await CounterModel.findOneAndUpdate(
+        { _id: "orderid" },
+        { $inc: { seq: 1 } },
+        { new: true }
+    );
+    return counter.seq;
 });
 
 export default model("Order", orderSchema);

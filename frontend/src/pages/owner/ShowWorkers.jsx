@@ -4,6 +4,7 @@ import Spinner from '../Spinner.jsx';
 import { giveWorkerDetails } from "../../actions/owner/giveWorkerDetails.js";
 import { assignOrder } from "../../actions/owner/assignOrder.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
+import Layout from "../shared/Layout/Layout.jsx";
 
 export default function ShowWorkers({ cookies }) {
   const { order_id } = useParams();
@@ -28,7 +29,7 @@ export default function ShowWorkers({ cookies }) {
     fetchData();
   }, []);
 
-  if (true===loading) {
+  if (true === loading) {
     return <Spinner />;
   }
   const assignHandler = async (e) => {
@@ -49,7 +50,7 @@ export default function ShowWorkers({ cookies }) {
     }
   };
   return (
-    <>
+    <Layout userType={'owner'}>
       {showWorkers.map((worker, index) => {
         return (
           <div key={index}>
@@ -60,6 +61,6 @@ export default function ShowWorkers({ cookies }) {
           </div>
         );
       })}
-    </>
+    </Layout>
   );
 }

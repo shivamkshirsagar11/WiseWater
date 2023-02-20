@@ -4,6 +4,7 @@ import Spinner from '../Spinner.jsx';
 import { useNavigate } from "react-router-dom";
 import { givePendingOrders } from "../../actions/owner/givePendingOrders.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
+import Layout from "../shared/Layout/Layout.jsx";
 
 export default function ShowPendingOrderList({ cookies }) {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function ShowPendingOrderList({ cookies }) {
     fetchData();
   }, [cookies]);
 
-  if (true===loading) {
+  if (true === loading) {
     return <Spinner />;
   }
 
@@ -39,10 +40,11 @@ export default function ShowPendingOrderList({ cookies }) {
   // REASON :- in showOrder componenet there is condataion on this order.status
   // when owner wants to show panding orders then there is no meansing to show order status
   return (
-    <>
+    <Layout userType={'owner'}>
       {pendingOrderList.length === 0 && <>No Order found</>}
       {pendingOrderList.map((order, index) => {
         delete order.status
+        console.log(order)
         return (
 
           <div key={index}>
@@ -53,9 +55,8 @@ export default function ShowPendingOrderList({ cookies }) {
               value={`/owner/show-workers/${order._id}`}
             >assign</button>
           </div>
-
         );
       })}
-    </>
+    </Layout>
   );
 }

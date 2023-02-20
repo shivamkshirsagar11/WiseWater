@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { submitJobApplication } from "../../actions/guestUser/submitJobApplication.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
-import OTP from "../shared/form/OTP.jsx";
+// import OTP from "../shared/form/OTP.jsx";
 
 export default function WorkerApplicationFrom() {
   const navigate = useNavigate();
@@ -26,7 +26,10 @@ export default function WorkerApplicationFrom() {
 
     const response = await submitJobApplication(userData, true);
     if ("error" === response.type) MultiToast(response.error, true);
-    else setFlag(true);
+    // else setFlag(true);
+    else {
+      navigate('/');
+    }
   };
 
   return (
@@ -107,7 +110,7 @@ export default function WorkerApplicationFrom() {
           </form>
         </div>
       )}
-      {flag && (
+      {/* {flag && (
         <OTP
           userData={userData}
           userType=""
@@ -117,7 +120,7 @@ export default function WorkerApplicationFrom() {
           requiredCookie={0}
           toastMsg={"Application Sent Successfully"}
         />
-      )}
+      )} */}
     </>
   );
 }

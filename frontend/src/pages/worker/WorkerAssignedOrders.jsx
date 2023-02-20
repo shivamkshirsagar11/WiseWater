@@ -5,6 +5,7 @@ import ShowOrder from "../shared/order/Order.jsx";
 import { giveWorkerAssignedOrders } from '../../actions/worker/giveWorkerAssignedOrders.js';
 import { deliverOrder } from '../../actions/worker/deliverOrder.js';
 import MultiToast from '../../actions/shared/MultiToast.js';
+import Layout from '../shared/Layout/Layout.jsx';
 
 export default function WorkerAssignedOrders({ cookies }) {
     const navigate = useNavigate();
@@ -50,27 +51,29 @@ export default function WorkerAssignedOrders({ cookies }) {
         console.log("Order no: ", e.target.value);
         navigate(`/worker/order/assigned/query/${e.target.value}`)
     }
-    const handleOpenOrder = (e)=>{
+    const handleOpenOrder = (e) => {
         e.preventDefault();
-        
+
     }
     return (
-        <div>
-            {0 === assignedOrders.length && <p>no order are assigned</p>}
-            {
-                assignedOrders.map((assignedOrder, index) => {
-                    delete assignedOrder.status
-                    return (
-                        <div key={index}>
-                            <h2>order number {index}</h2>
-                            <ShowOrder order={assignedOrder} />
-                            <button onClick={handleDelieverOrder} value={`${assignedOrder._id}`}>Order Delievered</button>
-                            <button>Open Order</button>
-                            <button value={`${assignedOrder._id}`} onClick={handleAssignedOrderQuery}>Order Query</button>
-                        </div>
-                    )
-                })
-            }
-        </div>
+        <Layout userType={'worker'}>
+            <div>
+                {0 === assignedOrders.length && <p>no order are assigned</p>}
+                {
+                    assignedOrders.map((assignedOrder, index) => {
+                        delete assignedOrder.status
+                        return (
+                            <div key={index}>
+                                <h2>order number {index}</h2>
+                                <ShowOrder order={assignedOrder} />
+                                <button onClick={handleDelieverOrder} value={`${assignedOrder._id}`}>Order Delievered</button>
+                                <button>Open Order</button>
+                                <button value={`${assignedOrder._id}`} onClick={handleAssignedOrderQuery}>Order Query</button>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        </Layout>
     )
 }

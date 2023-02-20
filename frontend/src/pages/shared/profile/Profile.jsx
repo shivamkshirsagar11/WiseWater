@@ -9,12 +9,15 @@ import AddressDetails from '../details/AddressDetails.jsx';
 import UserDetails from '../details/UserDetails.jsx';
 import ProfileButtons from './ProfileButtons.jsx';
 import MultiToast from '../../../actions/shared/MultiToast.js';
+import Layout from '../Layout/Layout';
+import CompanyViewModel from '../../../components/companyViewModel/CompanyViewModel'
 
 export default function Profile({ cookies, removeCookies, userType }) {
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
     const [companyData, setCompanyData] = useState(null);
-
+    const [companyViewModelState, setCompanyViewModelState] = useState(false);
+    console.log(userData)
     useEffect(() => {
         const fetchData = async () => {
             const { token } = cookies;
@@ -24,7 +27,7 @@ export default function Profile({ cookies, removeCookies, userType }) {
                 navigate('/');
             } else {
                 setUserData(response.userData);
-                if( 'customer'!==userType )
+                if ('customer' !== userType)
                     setCompanyData(response.companyData);
             }
         }
@@ -50,15 +53,21 @@ export default function Profile({ cookies, removeCookies, userType }) {
     }
 
     return (
-        <>
+        <Layout userType={userType} removeCookies={removeCookies}>
             <UserDetails userData={userData} />
             {
                 'customer' !== userType ?
-                    <CompanyDetails companyData={companyData} /> :
-                    <AddressDetails address={userData.address}/>
+                    <>
+                        <CompanyViewModel
+                            show={companyViewModelState}
+                            onHide={() => setCompanyViewModelState(false)}
+                            data={companyData}
+                        />
+                        <button onClick={() => setCompanyViewModelState(true)}>show company details</button> </> :
+                    <AddressDetails address={userData.address} />
             }
-            <ProfileButtons userType={userType} redirectHandler={redirectHandler} />
-            <button onClick={handleLogout}>logout</button>
-        </>
+            {/* <ProfileButtons userType={userType} redirectHandler={redirectHandler} /> */}
+            {/* <button onClick={handleLogout}>logout</button> */}
+        </Layout>
     );
 }

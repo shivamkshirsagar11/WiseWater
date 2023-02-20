@@ -4,6 +4,7 @@ import MultiToast from '../../actions/shared/MultiToast';
 import Spinner from '../Spinner.jsx';
 import { getPaymentDetails } from '../../actions/owner/getPaymentDetails';
 import { useNavigate } from 'react-router-dom';
+import Layout from '../shared/Layout/Layout';
 
 function ShowPaymentsOwner({ cookies }) {
     const [loading, setLoading] = useState(false);
@@ -38,21 +39,23 @@ function ShowPaymentsOwner({ cookies }) {
     }
 
     return (
-        <div>
-            {
-                paymentList.map((payment, index) => (
-                    <div key={index}>
-                        <h3>customer name :- {payment.customer_name}</h3>
-                        <h5>customer contact :- {payment.contact}</h5>
-                        <ul>
-                            <li>hot water cost :- {payment.payment.hotWater}</li>
-                            <li>normal water cost :- {payment.payment.normalWater}</li>
-                            <li>cold water cost :- {payment.payment.coldWater}</li>
-                        </ul>
-                    </div>
-                ))
-            }
-        </div>
+        <Layout userType={'owner'}>
+            <div>
+                {
+                    paymentList.map((payment, index) => (
+                        <div key={index}>
+                            <h3>customer name :- {payment.customer_name}</h3>
+                            <h5>customer contact :- {payment.contact}</h5>
+                            <ul>
+                                <li>hot water cost :- {payment.payment.hotWater}</li>
+                                <li>normal water cost :- {payment.payment.normalWater}</li>
+                                <li>cold water cost :- {payment.payment.coldWater}</li>
+                            </ul>
+                        </div>
+                    ))
+                }
+            </div>
+        </Layout>
     )
 }
 

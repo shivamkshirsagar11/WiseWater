@@ -2,38 +2,38 @@ import React from 'react';
 import AddressDetailsForm from './AddressDetailsForm.jsx';
 
 function CompanyDetailsForm({ companyData, setCompanyData }) {
-    const { name, email, contact, serviceTime, waterPrice } = companyData;
+  const { name, email, contact, serviceTime, waterPrice } = companyData;
 
-    const handleInputData = (e) => {
-        const { name, value } = e.target;
-        setCompanyData(prevState => ({ ...prevState, [name]: value }));
-    }
+  const handleInputData = (e) => {
+    const { name, value } = e.target;
+    setCompanyData(prevState => ({ ...prevState, [name]: value }));
+  }
 
-    const setWaterPrice = (event) => {
-        const { name, value } = event.target;
-        setCompanyData(prevState => {
-            prevState.waterPrice = { ...prevState.waterPrice, [name]: value };
-            return ({ ...prevState });
-        })
-    }
+  const setWaterPrice = (event) => {
+    const { name, value } = event.target;
+    setCompanyData(prevState => {
+      prevState.waterPrice = { ...prevState.waterPrice, [name]: value };
+      return ({ ...prevState });
+    })
+  }
 
-    const setAddress = (address) => {
-        setCompanyData(prevState => ({ ...prevState, address: { ...address } }));
-    }
+  const setAddress = (address) => {
+    setCompanyData(prevState => ({ ...prevState, address: { ...address } }));
+  }
 
-    return (
-        <div>
-<div className="mb-3">
+  return (
+    <div>
+      <div className="mb-3">
         <div className="input-group">
           <span className="input-group-text" id="basic-addon3">
-            City
+            company name
           </span>
           <input
             type="text"
             className="form-control"
             id="basic-url"
             aria-describedby="basic-addon3"
-            name="name" onChange={handleInputData} value={name} 
+            name="name" onChange={handleInputData} value={name}
           />
         </div>
       </div>
@@ -74,30 +74,30 @@ function CompanyDetailsForm({ companyData, setCompanyData }) {
           id="exampleFormControlInput4"
           placeholder="9am to 6pm..."
           type="text"
-          name="serviceTime" onChange={handleInputData} value={serviceTime} 
+          name="serviceTime" onChange={handleInputData} value={serviceTime}
         />
       </div>
-            <h3 className="display-6">Water Prices</h3>
-            <div className="input-group mb-3">
-  <span className="input-group-text">Cold Water</span>
-  <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" name="coldWater" onChange={setWaterPrice} value={waterPrice.coldWater}/>
-  <span className="input-group-text">.00</span>
-</div>
-            <div className="input-group mb-3">
-  <span className="input-group-text">Normal Water</span>
-  <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" name="normalWater" onChange={setWaterPrice} value={waterPrice.normalWater} />
-  <span className="input-group-text">.00</span>
-</div>
-            <div className="input-group mb-3">
-  <span className="input-group-text">Normal Water</span>
-  <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" name="hotWater" onChange={setWaterPrice} value={waterPrice.hotWater}/>
-  <span className="input-group-text">.00</span>
-</div>
+      <h3 className="display-6">Water Prices</h3>
+      <div className="input-group mb-3">
+        <span className="input-group-text">Cold Water</span>
+        <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" name="coldWater" onChange={setWaterPrice} value={waterPrice.coldWater} />
+        <span className="input-group-text">.00</span>
+      </div>
+      <div className="input-group mb-3">
+        <span className="input-group-text">Normal Water</span>
+        <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" name="normalWater" onChange={setWaterPrice} value={waterPrice.normalWater} />
+        <span className="input-group-text">.00</span>
+      </div>
+      <div className="input-group mb-3">
+        <span className="input-group-text">Normal Water</span>
+        <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" name="hotWater" onChange={setWaterPrice} value={waterPrice.hotWater} />
+        <span className="input-group-text">.00</span>
+      </div>
 
 
-            <AddressDetailsForm address={companyData.address} setAddress={setAddress} />
-        </div>
-    )
+      <AddressDetailsForm address={companyData.address} setAddress={setAddress} />
+    </div>
+  )
 }
 
 export default CompanyDetailsForm
