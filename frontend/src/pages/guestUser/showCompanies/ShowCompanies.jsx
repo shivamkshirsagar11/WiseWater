@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import Spinner from "../../Spinner.jsx";
 import Fuse from "fuse.js";
 import { giveCompaniesData } from "../../../actions/guestUser/giveCompaniesData.js";
@@ -6,6 +6,7 @@ import { giveUserType } from "../../../actions/guestUser/giveUserType.js";
 import MultiToast from "../../../actions/shared/MultiToast.js";
 import Layout from "../../shared/Layout/Layout.jsx";
 import CompanyList from "./CompanyList.jsx";
+import { CookiesContext } from "../../../context/CookiesProvider.js";
 
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
@@ -14,7 +15,9 @@ import CompanyList from "./CompanyList.jsx";
 // and changed comapnies object from useState hook to useRef hook
 // REASON :- optimization
 
-export default function ShowCompanies({ cookies }) {
+export default function ShowCompanies() {
+
+  const { cookies } = useContext(CookiesContext);
   const companies = useRef([]);
   const [userType, setUserType] = useState('');
   const [loading, setLoading] = useState(false);

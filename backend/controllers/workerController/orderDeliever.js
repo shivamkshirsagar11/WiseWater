@@ -4,6 +4,7 @@ import paymentModel from '../../models/paymentModel.js';
 const handlePayment = async (assignedOrder) => {
     try {
         var obj = await paymentModel.findOne({ $and: [{ customer_id: assignedOrder.customer_id }, { company_name: assignedOrder.company_name }] });
+
         console.log(assignedOrder);
         if (null === obj) {
             obj = await paymentModel.create({
@@ -33,13 +34,14 @@ const handlePayment = async (assignedOrder) => {
 
 export async function orderDeliever(req, res) {
 
-    const { order_id } = req.body;
-
+    const { orderId } = req.body;
+    console.log(orderId)
     try {
-        const assignedOrder = await OrderModel.findOne({ $and: [{ worker_id: req.userid }, { _id: order_id }] })
+        const assignedOrder = await OrderModel.findOne({ $and: [{ worker_id: req.userid }, { orderId }] })
+        console.log(assignedOrder)
         if (assignedOrder) {
             await handlePayment(assignedOrder);
-            // const updated = await OrderModel.updateOne({ _id: order_id }, { $set: { status: "delievered" } })
+            const updated = await OrderModel.updateOne({ orderId }, { $set: { status: "delievered" } })
             res.status(200).json({
                 message: 'success'
             })

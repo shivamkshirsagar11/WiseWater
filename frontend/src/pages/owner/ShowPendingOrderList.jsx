@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ShowOrder from "../shared/order/Order.jsx";
 import Spinner from '../Spinner.jsx';
 import { useNavigate } from "react-router-dom";
 import { givePendingOrders } from "../../actions/owner/givePendingOrders.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
 import Layout from "../shared/Layout/Layout.jsx";
+import { CookiesContext } from "../../context/CookiesProvider.js";
 
-export default function ShowPendingOrderList({ cookies }) {
+export default function ShowPendingOrderList() {
   const navigate = useNavigate();
+
+  const { cookies } = useContext(CookiesContext);
   const [pendingOrderList, setPendingOrderList] = useState([]);
   const [loading, setLoading] = useState(false);
   console.log("here");
@@ -48,11 +51,10 @@ export default function ShowPendingOrderList({ cookies }) {
         return (
 
           <div key={index}>
-            <h2>order number {index}</h2>
             <ShowOrder order={order} />
             <button
               onClick={redirectHandler}
-              value={`/owner/show-workers/${order._id}`}
+              value={`/owner/show-workers/${order.orderId}`}
             >assign</button>
           </div>
         );

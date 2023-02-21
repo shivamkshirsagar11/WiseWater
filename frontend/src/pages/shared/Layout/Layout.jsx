@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Layout.css";
 
 import { Badge } from "antd";
 import { customerMenu, guestMenu, ownerMenu, workerMenu } from './sideBarButtons'
 
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { CookiesContext } from "../../../context/CookiesProvider";
 
-const Layout = ({ children, removeCookies, userType }) => {
+const Layout = ({ children, userType }) => {
+    const { removeCookies } = useContext(CookiesContext);
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleLogout = () => {
         removeCookies('token');
-        navigate('/login');
+        navigate('/');
     }
 
 
@@ -48,9 +50,9 @@ const Layout = ({ children, removeCookies, userType }) => {
                                 );
                             })}
                             {userType !== 'guest' &&
-                                <div className={`menu-item `} onClick={handleLogout}>
+                                <div className={`menu-item `} onClick={handleLogout} style={{ cursor: 'pointer' }}>
                                     <i className="fa-solid fa-right-from-bracket"></i>
-                                    <Link to="/login">Logout</Link>
+                                    Logout
                                 </div>
                             }
                         </div>

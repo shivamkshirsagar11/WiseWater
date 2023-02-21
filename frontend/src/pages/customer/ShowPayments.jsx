@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { authenticateUser } from '../../actions/shared/authenticateUser';
 import MultiToast from '../../actions/shared/MultiToast';
 import Spinner from '../Spinner.jsx';
 import { getPaymentDetails } from '../../actions/customer/getPaymentDetails';
 import { useNavigate } from 'react-router-dom';
+import { CookiesContext } from '../../context/CookiesProvider';
 
-function ShowPayments({ cookies }) {
+function ShowPayments() {
+
+    const { cookies } = useContext(CookiesContext);
     const [loading, setLoading] = useState(false);
     const [paymentList, setPaymentList] = useState([]);
 

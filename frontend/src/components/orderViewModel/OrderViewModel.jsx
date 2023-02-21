@@ -21,6 +21,10 @@ const OrderViewModel = (props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                <p className="data-row">
+                    <span className="key">order status : </span>{" "}
+                    <span className="value"> {data.status} </span>
+                </p>
                 <h5>customer details</h5>
                 <p className="data-row">
                     <span className="key">name : </span>{" "}

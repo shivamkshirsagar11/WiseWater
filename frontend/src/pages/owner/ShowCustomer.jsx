@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useNavigate,useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Spinner from '../Spinner.jsx';
 import UserDetails from '../shared/details/UserDetails.jsx';
 import MultiToast from '../../actions/shared/MultiToast.js';
+import { CookiesContext } from '../../context/CookiesProvider.js';
 
-export default function ResolveInQueryOrder({ cookies }) {
-    const {customer_id} = useParams();
+export default function ResolveInQueryOrder() {
+
+    const { cookies } = useContext(CookiesContext);
+    const { customer_id } = useParams();
     const navigate = useNavigate();
     const [customer, setCustomer] = useState(null);
     const { token } = cookies;
@@ -20,7 +23,7 @@ export default function ResolveInQueryOrder({ cookies }) {
                         'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ token,customer_id })
+                    body: JSON.stringify({ token, customer_id })
                 });
                 const data = await response.json();
                 console.log(data)
@@ -40,7 +43,7 @@ export default function ResolveInQueryOrder({ cookies }) {
 
     return (
         <div>
-            <UserDetails userData={customer}/>
+            <UserDetails userData={customer} />
         </div>
     )
 }

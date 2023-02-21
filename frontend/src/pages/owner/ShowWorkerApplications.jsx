@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import Spinner from '../Spinner.jsx';
 import Fuse from 'fuse.js';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { hireWorker } from '../../actions/owner/hireWorker.js';
 import UserDetails from '../shared/details/UserDetails.jsx';
 import MultiToast from '../../actions/shared/MultiToast.js';
 import Layout from '../shared/Layout/Layout.jsx';
+import { CookiesContext } from '../../context/CookiesProvider.js';
 
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
@@ -17,9 +18,11 @@ import Layout from '../shared/Layout/Layout.jsx';
 // then backend will find all the users who applied for this company and then only those worker will be shown to owner but for now authentication is remaing so i didn't did that
 // AND ACCRODINGY WE ALSO NEED TO CHANGE BACKEND AS WELL
 
-function ShowWorkerApplications({ cookies }) {
+function ShowWorkerApplications() {
 
     const navigate = useNavigate();
+
+    const { cookies } = useContext(CookiesContext);
     const [searchedWorkerApplications, setSearchedWorkerApplications] = useState([]);
     const [query, setQuery] = useState('');
     const workerApplications = useRef([]);
@@ -93,10 +96,10 @@ function ShowWorkerApplications({ cookies }) {
     return (
         <Layout userType={'owner'}>
             <div>
+                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} />
                 {
                     searchedWorkerApplications.length !== 0 ?
                         <>
-                            <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} />
                             {
                                 searchedWorkerApplications.map((workerApplication, index) => {
                                     return (
@@ -109,11 +112,11 @@ function ShowWorkerApplications({ cookies }) {
                                 })
                             }
                         </>
-                        : <>No application found</>
+                        : <p>No application found</p>
                 }
             </div>
         </Layout>
-    )
+    );
 }
 
 export default ShowWorkerApplications

@@ -1,9 +1,10 @@
 import OrderModel from "../../models/orderModel.js";
 export async function assignOrder(req, res) {
-	const { worker_id, order_id } = req.body;
-
+	console.log(req.body)
+	const { worker_id, orderId } = req.body;
+	console.log(orderId);
 	try {
-		const order = await OrderModel.findOne({ _id: order_id });
+		const order = await OrderModel.findOne({ orderId });
 
 		if (null === order) {
 			res.status(404).json({
@@ -14,7 +15,7 @@ export async function assignOrder(req, res) {
 		}
 		else {
 			const updatedOrder = await OrderModel.updateOne(
-				{ _id: order_id },
+				{ orderId },
 				{ $set: { worker_id: worker_id, status: "assigned" } }
 			);
 			res.status(200).json({

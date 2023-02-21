@@ -1,15 +1,15 @@
-const assignOrder = async ({ token, worker_id, order_id}) => {
+const assignOrder = async ({ token, worker_id, orderId }) => {
     console.log(token)
     console.log(worker_id)
-    console.log(order_id)
+    console.log(orderId)
     try {
         const response = await fetch(`/api/owner/assign-order`, {
-            method : 'POST',
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({worker_id,order_id})
+            body: JSON.stringify({ worker_id, orderId })
         });
         const data = await response.json();
         if (undefined !== data.error)

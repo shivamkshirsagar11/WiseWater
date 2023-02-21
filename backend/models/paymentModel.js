@@ -8,8 +8,9 @@ const paymentSchema = Schema({
     },
     company_name: {
         type: String,
-        lowercase:true,
+        lowercase: true,
         required: true,
+        ref: 'Company'
     },
     payment: {
         type: Object

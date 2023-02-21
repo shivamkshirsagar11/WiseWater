@@ -45,12 +45,12 @@ export const ownerMenu = [
         icon: "fa-solid fa-user-doctor",
     },
     {
-        name: "Worker Order Query",
+        name: "show worker application",
         path: "/owner/show-worker-applications",
         icon: "fa-solid fa-user-doctor",
     },
     {
-        name: "show worker application",
+        name: "get payment details",
         path: "/owner/get-payment-details",
         icon: "fa-solid fa-user-doctor",
     },

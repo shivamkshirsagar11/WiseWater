@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../actions/guestUser/loginUser.js";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,10 +8,11 @@ import ownerImage from "../../media/p1.jpg";
 import customerImage from "../../media/p2.jpg";
 import workerImage from "../../media/p3.jpg";
 
-export default function Login({ setCookies }) {
+import { CookiesContext } from '../../context/CookiesProvider.js'
 
+export default function Login() {
+    const { setCookies } = useContext(CookiesContext);
     const navigate = useNavigate();
-    // // console.log(setCookies)
     // console.log(props)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from '../Spinner.jsx';
 import ShowOrder from "../shared/order/Order.jsx";
 import { giveDetailsToTrackOrder } from "../../actions/customer/giveDetailsToTrackOrder.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
+import { CookiesContext } from "../../context/CookiesProvider.js";
 
-export default function TrackOrder({ cookies }) {
+export default function TrackOrder() {
   const { order_id } = useParams();
   const navigate = useNavigate();
 
+  const { cookies } = useContext(CookiesContext);
 
   const [order, setOrder] = useState({});
   const [worker, setWorker] = useState({});

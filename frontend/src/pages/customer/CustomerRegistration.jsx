@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { registerUser } from "../../actions/shared/registerUser.js";
 import UserDetailsForm from "../shared/form/UserDetailsForm.jsx";
 import AddressDetailsForm from "../shared/form/AddressDetailsForm.jsx";
 import MultiToast from "../../actions/shared/MultiToast.js";
 import { useNavigate } from "react-router-dom";
+import { CookiesContext } from "../../context/CookiesProvider.js";
 // import OTP from "../shared/form/OTP.jsx";
 
-function CustomerRegistration({ setCookies }) {
+function CustomerRegistration() {
   const navigate = useNavigate();
 
+  const { setCookies } = useContext(CookiesContext);
   const [flag, setFlag] = useState(false);
   const [userData, setUserData] = useState({
     firstname: "",

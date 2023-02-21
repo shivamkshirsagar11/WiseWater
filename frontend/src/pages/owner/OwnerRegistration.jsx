@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../actions/shared/registerUser.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
 import CompanyDetailsForm from "../shared/form/CompanyDetailsForm.jsx";
 import UserDetailsForm from "../shared/form/UserDetailsForm.jsx";
+import { CookiesContext } from "../../context/CookiesProvider.js";
 // import OTP from "../shared/form/OTP.jsx";
 
-export default function OwnerRegistration({ setCookies }) {
+export default function OwnerRegistration() {
 	const [flag, setFlag] = useState(false);
+
+	const { setCookies } = useContext(CookiesContext);
 	const [userData, setUserData] = useState({
 		firstname: "",
 		lastname: "",

@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Spinner from '../Spinner.jsx';
 import ShowOrder from '../shared/order/Order.jsx';
 import { useNavigate } from 'react-router-dom';
 import { givePlacedOrders } from '../../actions/customer/givePlacedOrders.js';
 import MultiToast from '../../actions/shared/MultiToast.js';
 import Layout from '../shared/Layout/Layout.jsx';
+import { CookiesContext } from '../../context/CookiesProvider.js';
 
-export default function ShowPlacedorderList({ cookies }) {
+export default function ShowPlacedorderList() {
     const [placedOrderList, setPlacedOrderList] = useState([]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
 
+    const { cookies } = useContext(CookiesContext);
     useEffect(() => {
         const { token } = cookies;
 
@@ -22,6 +24,7 @@ export default function ShowPlacedorderList({ cookies }) {
                 navigate('/login');
             }
             setPlacedOrderList(response.orderList);
+            console.log(response.orderList)
             setLoading(false);
         }
         fetchData();

@@ -1,4 +1,4 @@
-const deliverOrder = async (token, order_id) => {
+const deliverOrder = async (token, orderId) => {
     try {
         const response = await fetch(
             `/api/worker/order-delivered`,
@@ -8,7 +8,7 @@ const deliverOrder = async (token, order_id) => {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ order_id }),
+                body: JSON.stringify({ orderId }),
             }
         );
         const data = await response.json();

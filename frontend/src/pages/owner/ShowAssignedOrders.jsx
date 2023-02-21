@@ -5,9 +5,12 @@ import ShowOrder from "../shared/order/Order.jsx";
 import { giveAssignedOrders } from '../../actions/owner/giveAssignedOrders.js';
 import MultiToast from '../../actions/shared/MultiToast.js';
 import Layout from '../shared/Layout/Layout.jsx';
+import { CookiesContext } from '../../context/CookiesProvider.js';
+import { useContext } from 'react';
 
-export default function ShowAssignedOrders({ cookies }) {
+export default function ShowAssignedOrders() {
 
+    const { cookies } = useContext(CookiesContext);
     const navigate = useNavigate();
     const [assignedOrders, setAssignedOrders] = useState([]);
     const [loading, setLoading] = useState(false);

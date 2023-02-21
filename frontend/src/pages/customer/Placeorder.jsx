@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { authenticateUser } from '../../actions/shared/authenticateUser.js';
 import { placeOrder } from '../../actions/customer/placeOrder.js';
 import AddressDetailsForm from '../shared/form/AddressDetailsForm.jsx';
 import MultiToast from '../../actions/shared/MultiToast.js';
 import Layout from '../shared/Layout/Layout.jsx';
+import { CookiesContext } from '../../context/CookiesProvider.js';
 
-export default function Placeorder({ cookies }) {
+export default function Placeorder() {
     const navigate = useNavigate();
 
+    const { cookies } = useContext(CookiesContext);
     useEffect(() => {
         const { token } = cookies;
         const authenticate = async () => {

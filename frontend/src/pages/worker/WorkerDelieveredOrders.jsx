@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner.jsx';
 import ShowOrder from "../shared/order/Order.jsx";
 import { giveWorkerDelieveredOrders } from '../../actions/worker/giveWorkerDelieveredOrders.js';
 import MultiToast from '../../actions/shared/MultiToast.js';
 import Layout from '../shared/Layout/Layout.jsx';
+import { CookiesContext } from '../../context/CookiesProvider.js';
 
-export default function ShowAssignedOrders({ cookies }) {
+export default function ShowAssignedOrders() {
     const navigate = useNavigate();
     const { token } = cookies;
+
+    const { cookies } = useContext(CookiesContext);
     const [delieveredOrders, setDelieveredOrders] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(() => {

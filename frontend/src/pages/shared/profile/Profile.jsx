@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../Spinner';
 import { giveUserData } from '../../../actions/shared/profile/giveUserData.js';
@@ -11,8 +11,11 @@ import ProfileButtons from './ProfileButtons.jsx';
 import MultiToast from '../../../actions/shared/MultiToast.js';
 import Layout from '../Layout/Layout';
 import CompanyViewModel from '../../../components/companyViewModel/CompanyViewModel'
+import { CookiesContext } from '../../../context/CookiesProvider';
 
-export default function Profile({ cookies, removeCookies, userType }) {
+export default function Profile({ userType }) {
+
+    const { cookies, removeCookies } = useContext(CookiesContext);
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
     const [companyData, setCompanyData] = useState(null);
@@ -53,7 +56,7 @@ export default function Profile({ cookies, removeCookies, userType }) {
     }
 
     return (
-        <Layout userType={userType} removeCookies={removeCookies}>
+        <Layout userType={userType} >
             <UserDetails userData={userData} />
             {
                 'customer' !== userType ?
