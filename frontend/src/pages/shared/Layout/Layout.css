@@ -10,7 +10,7 @@
   min-height: 100%;
   width: 300px;
   border-radius: 5px;
-  background-color: rgb(51, 1, 1);
+  background-image: linear-gradient(#363795, #005C97);
   box-shadow: 0 0 2px gray;
   margin-right: 20px;
   color: white;
@@ -59,7 +59,7 @@
 }
 .active a,
 .active i {
-  color: rgb(51, 1, 1);
+  color: rgb(68, 32, 200);
 }
 
 .header-content {

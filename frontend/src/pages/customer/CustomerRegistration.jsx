@@ -50,7 +50,7 @@ function CustomerRegistration() {
               address={userData.address}
               setAddress={setAddress}
             />
-            <button type="submit" className="btn btn-success" onClick={handleSubmit}>
+            <button type="submit" className="btn btn-success" style={{"background-image":"linear-gradient(#525252, #3d72b4)"}} onClick={handleSubmit}>
               Submit
             </button>
           </form>

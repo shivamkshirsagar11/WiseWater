@@ -53,7 +53,7 @@ export default function OwnerRegistration() {
 							setCompanyData={setCompanyData}
 						/>
 
-						<button type="submit" onClick={handleSubmit} className="btn btn-warning">
+						<button type="submit" onClick={handleSubmit} className="btn" style={{"background-image":"linear-gradient(#525252, #3d72b4)"}}>
 							Submit
 						</button>
 					</form>

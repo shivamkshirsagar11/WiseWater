@@ -15,9 +15,10 @@ function CompanyDetails({ redirectHandler, userType, company, index }) {
                 onHide={() => setCompanyViewModelState(false)}
                 data={company}
             />
-            <button onClick={() => setCompanyViewModelState(true)}>show company details</button>
+            <button class="btn btn-primary" style={{"background-image":"linear-gradient(#525252, #3d72b4)"}} data-bs-toggle="button" onClick={() => setCompanyViewModelState(true)}>show company details</button>
+            
             {"guest" === userType && (
-                <button
+             <button
                     value={`/worker/application/${company.name}`}
                     onClick={redirectHandler}
                     className="btn btn-warning"

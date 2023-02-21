@@ -16,7 +16,7 @@ import { CookiesContext } from "../../../context/CookiesProvider.js";
 // REASON :- optimization
 
 export default function ShowCompanies() {
-
+  console.log(useContext(CookiesContext))
   const { cookies } = useContext(CookiesContext);
   const companies = useRef([]);
   const [userType, setUserType] = useState('');
@@ -75,9 +75,10 @@ export default function ShowCompanies() {
 
 
   return (
+    <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
     <Layout userType={userType}>
       {/* <h3 className="container my-3 display-3">Apply for a job</h3> */}
-      <div className="container-sm input-group mb-3" style={{ marginTop: '5px' }}>
+      {/* <div className="header" style={{ marginTop: '5px' }}> */}
         <input
           type="text"
           className="form-control"
@@ -85,14 +86,17 @@ export default function ShowCompanies() {
           aria-describedby="button-addon2"
           onChange={(e) => setQuery(e.target.value)}
           value={query}
-        />
-      </div>
-      <CompanyList userType={userType} companyList={searchedCompanies} />
+          style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}
+          />
+<br/>
+<CompanyList userType={userType} companyList={searchedCompanies} />
+          {/* </div> */}
       {searchedCompanies.length === 0 && (
         <h4 className="container-sm display-6" style={{ color: "red" }}>
           No Data on This
         </h4>
       )}
     </Layout>
+    </div>
   );
 }
