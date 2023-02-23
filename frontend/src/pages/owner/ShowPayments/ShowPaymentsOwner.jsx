@@ -43,9 +43,10 @@ function ShowPaymentsOwner() {
     }
 
     return (
+            <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
         <Layout userType={'owner'}>
-            <div>
                 {
+                paymentList.length != 0 ?
                     paymentList.map((payment, index) => {
                         console.log(payment.customer_data.firstname)
                         return (
@@ -55,9 +56,11 @@ function ShowPaymentsOwner() {
                             </div>
                         )
                     })
+                    :
+                    <h4 className="container display-6" style={{"color":"brown"}}>No Details</h4>
                 }
-            </div>
         </Layout>
+            </div>
     )
 }
 

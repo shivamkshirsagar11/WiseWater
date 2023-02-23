@@ -56,8 +56,9 @@ export default function Profile({ userType }) {
     }
 
     return (
+        <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
         <Layout userType={userType} >
-            <UserDetails userData={userData} />
+            <UserDetails userData={userData} userType={userType}/>
             {
                 'customer' !== userType ?
                     <>
@@ -66,11 +67,14 @@ export default function Profile({ userType }) {
                             onHide={() => setCompanyViewModelState(false)}
                             data={companyData}
                         />
-                        <button onClick={() => setCompanyViewModelState(true)}>show company details</button> </> :
+                        <br/>
+                        <div className="d-grid gap-2 col-2 mx-auto">
+                        <button className="btn btn-warning"onClick={() => setCompanyViewModelState(true)}>show company details</button> </div></> :
                     <AddressDetails address={userData.address} />
             }
             {/* <ProfileButtons userType={userType} redirectHandler={redirectHandler} /> */}
             {/* <button onClick={handleLogout}>logout</button> */}
         </Layout>
+        </div>
     );
 }

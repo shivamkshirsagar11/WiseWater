@@ -37,9 +37,10 @@ export default function ShowAssignedOrders() {
     }
 
     return (
+        <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
         <Layout userType={'owner'}>
             <div>
-                {0 === assignedOrders.length && <p>no order are assigned</p>}
+                {0 === assignedOrders.length && <h4 className="display-6" style={{"color":"red"}}>no order are assigned</h4>}
                 {
                     assignedOrders.map((assignedOrder, index) => {
                         console.log(assignedOrder)
@@ -53,5 +54,6 @@ export default function ShowAssignedOrders() {
                 }
             </div>
         </Layout>
+        </div>
     )
 }

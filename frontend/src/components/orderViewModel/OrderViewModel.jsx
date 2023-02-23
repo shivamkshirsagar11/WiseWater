@@ -14,6 +14,7 @@ const OrderViewModel = (props) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
+            <div style={{"background-image":"linear-gradient(#eef2f3, #8e9eab)"}}>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     order ID {data.orderId}
@@ -90,6 +91,7 @@ const OrderViewModel = (props) => {
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
             </Modal.Footer>
+            </div>
         </Modal>
     );
 };

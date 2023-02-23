@@ -43,8 +43,9 @@ export default function ShowPendingOrderList() {
   // REASON :- in showOrder componenet there is condataion on this order.status
   // when owner wants to show panding orders then there is no meansing to show order status
   return (
+    <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
     <Layout userType={'owner'}>
-      {pendingOrderList.length === 0 && <>No Order found</>}
+      {pendingOrderList.length === 0 && <h4 className="container display-6" style={{"color":"brown"}}>No Details</h4>}
       {pendingOrderList.map((order, index) => {
         delete order.status
         console.log(order)
@@ -60,5 +61,6 @@ export default function ShowPendingOrderList() {
         );
       })}
     </Layout>
+    </div>
   );
 }

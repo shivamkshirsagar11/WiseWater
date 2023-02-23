@@ -94,9 +94,12 @@ function ShowWorkerApplications() {
     }
 
     return (
+            <div style={{"backgroundImage":"linear-gradient(#b993d6, #8ca6db)"}}>
         <Layout userType={'owner'}>
-            <div>
-                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} />
+                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} className="form-control"
+          placeholder="Search Companies here"
+          aria-describedby="button-addon2"
+          style={{"backgroundImage":"linear-gradient(#b993d6, #8ca6db)"}}/>
                 {
                     searchedWorkerApplications.length !== 0 ?
                         <>
@@ -106,16 +109,16 @@ function ShowWorkerApplications() {
                                         <div key={index}>
                                             <h2>application {index}</h2>
                                             <UserDetails userData={workerApplication} />
-                                            <button onClick={handleHiring} value={index}>hire worker</button>
+                                            <button className="btn btn-warning" onClick={handleHiring} value={index}>hire worker</button>
                                         </div>
                                     )
                                 })
                             }
                         </>
-                        : <p>No application found</p>
+                        : <h4 className="container display-6" style={{"color":"brown"}}>No application found</h4>
                 }
-            </div>
         </Layout>
+            </div>
     );
 }
 

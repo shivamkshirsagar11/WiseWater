@@ -59,10 +59,12 @@ export default function Card({
                         setPassword(e.target.value);
                       }}
                     />
+                    <br/>
                     <button
                       type="submit"
                       value={collection}
                       onClick={hadleSubmit}
+                      className="btn btn-danger"
                     >
                       Login
                     </button>

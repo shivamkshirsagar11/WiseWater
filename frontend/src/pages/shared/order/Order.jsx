@@ -9,15 +9,15 @@ export default function ShowOrder({ order }) {
     return (
 
         <div className="container">
-            <h5 style={{ color: "blue" }}>
+            <h6 className="display-6"style={{ color: "blue" }}>
                 order ID {order.orderId}
-            </h5>
+            </h6>
             <OrderViewModel
                 show={orderViewModelState}
                 onHide={() => setOrderViewModelState(false)}
                 data={order}
             />
-            <button onClick={() => setOrderViewModelState(true)}>show order details</button>
+                        <button className="btn btn-warning" onClick={() => setOrderViewModelState(true)}>order details</button>
         </div>
     )
 }

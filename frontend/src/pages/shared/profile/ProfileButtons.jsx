@@ -5,17 +5,17 @@ function ProfileButtons({ userType, redirectHandler }) {
 
 
     return (
-        <div>
+        <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
 
             {/* owner button */}
             {
                 'owner' === userType && <>
-                    <button onClick={redirectHandler} value="/show-companies">Show companies</button>
-                    <button onClick={redirectHandler} value="/owner/show-pending-orders">Show pending orders</button>
-                    <button onClick={redirectHandler} value="/owner/show-assigned-orders">show assigned orders</button>
+                    <button onClick={redirectHandler} value="/show-companies">companies</button>
+                    <button onClick={redirectHandler} value="/owner/show-pending-orders">pending orders</button>
+                    <button onClick={redirectHandler} value="/owner/show-assigned-orders">assigned orders</button>
                     <button onClick={redirectHandler} value="/owner/show-in-query-orders">Worker Order Query</button>
-                    <button onClick={redirectHandler} value="/owner/show-worker-applications">show worker application</button>
-                    <button onClick={redirectHandler} value="/owner/get-payment-details">get payment details</button>
+                    <button onClick={redirectHandler} value="/owner/show-worker-applications">worker application</button>
+                    <button onClick={redirectHandler} value="/owner/get-payment-details">payment details</button>
                 </>
             }
 

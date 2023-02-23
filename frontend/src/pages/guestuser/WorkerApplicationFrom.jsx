@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { submitJobApplication } from "../../actions/guestUser/submitJobApplication.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
-// import OTP from "../shared/form/OTP.jsx";
+import OTP from "../shared/form/OTP.jsx";
 
 export default function WorkerApplicationFrom() {
   const navigate = useNavigate();
@@ -23,13 +23,10 @@ export default function WorkerApplicationFrom() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+console.log("submitted")
     const response = await submitJobApplication(userData, true);
     if ("error" === response.type) MultiToast(response.error, true);
-    // else setFlag(true);
-    else {
-      navigate('/');
-    }
+    else setFlag(true);
   };
 
   return (
@@ -39,7 +36,7 @@ export default function WorkerApplicationFrom() {
           <h3 className="container-sm my-5 display-3">Worker Application</h3>
           <form method="post" className="container my-5">
             <div className="mb-3">
-              <label for="exampleFormControlInput1" className="form-label">
+              <label htmlFor="exampleFormControlInput1" className="form-label">
                 Email
               </label>
               <input
@@ -73,7 +70,7 @@ export default function WorkerApplicationFrom() {
             </div>
 
             <div className="mb-3">
-              <label for="exampleFormControlInput4" className="form-labe1">
+              <label htmlFor="exampleFormControlInput4" className="form-labe1">
                 Contact
               </label>
               <input
@@ -87,7 +84,7 @@ export default function WorkerApplicationFrom() {
               />
             </div>
             <div className="mb-3">
-              <label for="exampleFormControlInput4" className="form-labe1">
+              <label htmlFor="exampleFormControlInput4" className="form-labe1">
                 CompanyName
               </label>
               <input
@@ -110,17 +107,17 @@ export default function WorkerApplicationFrom() {
           </form>
         </div>
       )}
-      {/* {flag && (
+      {flag && (
         <OTP
           userData={userData}
-          userType=""
+          userType="worker"
           register={submitJobApplication}
           setCookies={() => {}}
           navigateString={"/"}
           requiredCookie={0}
           toastMsg={"Application Sent Successfully"}
         />
-      )} */}
+      )}
     </>
   );
 }
