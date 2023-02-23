@@ -3,9 +3,9 @@ import WorkerModel from "../../models/workerModel.js";
 
 export async function trackOrder(req, res) {
 
-    const { order_id } = req.body;
+    const { orderId } = req.body;
 
-    const order = await OrderModel.findOne({ $and: [{ _id: order_id }, { customer_id: req.userid }] });
+    const order = await OrderModel.findOne({ $and: [{ orderId }, { customer_id: req.userid }] });
 
     if (order) {
         const worker = await WorkerModel.findOne({ _id: order.worker_id });

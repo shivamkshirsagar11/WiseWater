@@ -1,6 +1,6 @@
 import paymentModel from '../../models/paymentModel.js';
-import Company from '../../models/companyModel.js';
-
+import CompanyModel from '../../models/companyModel.js';
+import ownerModel from '../../models/ownerModel.js';
 
 // getPaymentDeatils user type : owner
 // @desc    getPaymentDeatils : owner can get all the payment details by this controller
@@ -10,29 +10,24 @@ import Company from '../../models/companyModel.js';
 
 export async function getPaymentDetails(req, res) {
     try {
-        var company_name = await Owner.findOne({ _id: req.userid }, { _id: 0, company_name: 1 });
-        console.log('name of company is ');
-        console.log(company_name);
-        const someFunction = (myArray) => {
-            const promises = myArray.map(async (myValue) => {
-                console.log(myValue.company_name)
-                return (await Company.findOne({ name: myValue.company_name }, { _id: 0, contact: 1 }));
-            });
-            return Promise.all(promises);
-        }
-        var contactList = await someFunction(paymentList);
-        var resp = [];
-        for (let i = 0; i < contactList.length; i++) {
-            resp.push({
-                contact: contactList[i].contact,
-                company_name: paymentList[i].company_name,
-                payment: paymentList[i].payment
-            })
-        }
-        console.log(resp);
-        res.status(200).json({
-            paymentList: resp
+        console.log('from get payment details owner');
+        const { company_name } = await ownerModel.findOne({ _id: req.userid }, { company_name: 1 });
+        console
+        const paymentList = await paymentModel.find({ company_name }, { _id: 0, __v: 0 }).populate({ path: 'customer_id', select: '-__v -latitude -longitude -_id -password' });
+        // console.log(data);
+
+        const paymentListWithRenamedField = paymentList.map(order => {
+            const { customer_id: customer_data, _doc: otherDetails } = order;
+
+            delete otherDetails.customer_id
+
+            return { customer_data, ...otherDetails };
         });
+        console.log(paymentListWithRenamedField)
+
+        res.status(200).json({
+            paymentList: paymentListWithRenamedField
+        })
     } catch (error) {
         console.log(error)
         res.status(500).json({

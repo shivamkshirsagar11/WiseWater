@@ -1,5 +1,6 @@
-const giveDetailsToTrackOrder = async (token,order_id) => {
+const giveDetailsToTrackOrder = async (token, orderId) => {
     try {
+        console.log(orderId);
         const response = await fetch(
             `/api/customer/track-order`,
             {
@@ -8,18 +9,20 @@ const giveDetailsToTrackOrder = async (token,order_id) => {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ order_id: order_id }),
+                body: JSON.stringify({ orderId }),
             }
         );
         const data = await response.json();
         console.log(data);
-        if (undefined !== data.error)
+        if (undefined !== data.error) {
+            console.log(data.error);
             throw (data.error);
+        }
         else {
             return {
                 type: 'data',
                 order: data.order,
-                worker : data.worker
+                worker: data.worker
             }
         }
     } catch (error) {

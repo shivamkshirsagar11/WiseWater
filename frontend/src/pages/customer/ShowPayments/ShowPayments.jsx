@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { authenticateUser } from '../../actions/shared/authenticateUser';
-import MultiToast from '../../actions/shared/MultiToast';
-import Spinner from '../Spinner.jsx';
-import { getPaymentDetails } from '../../actions/customer/getPaymentDetails';
+import { authenticateUser } from '../../../actions/shared/authenticateUser';
+import MultiToast from '../../../actions/shared/MultiToast';
+import Spinner from '../../Spinner.jsx';
+import { getPaymentDetails } from '../../../actions/customer/getPaymentDetails';
 import { useNavigate } from 'react-router-dom';
-import { CookiesContext } from '../../context/CookiesProvider';
+import { CookiesContext } from '../../../context/CookiesProvider';
+import Layout from '../../shared/Layout/Layout.jsx';
+import Payment from './Payment';
 
 function ShowPayments() {
 
@@ -41,21 +43,16 @@ function ShowPayments() {
     }
 
     return (
-        <div>
+        <Layout userType='customer'>
             {
                 paymentList.map((payment, index) => (
                     <div key={index}>
                         <h3>company name :- {payment.company_name}</h3>
-                        <h5>company contact :- {payment.contact}</h5>
-                        <ul>
-                            <li>hot water cost :- {payment.payment.hotWater}</li>
-                            <li>normal water cost :- {payment.payment.normalWater}</li>
-                            <li>cold water cost :- {payment.payment.coldWater}</li>
-                        </ul>
+                        <Payment payment={payment} />
                     </div>
                 ))
             }
-        </div>
+        </Layout>
     )
 }
 

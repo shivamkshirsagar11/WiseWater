@@ -16,7 +16,7 @@ import Placeorder from "./pages/customer/Placeorder.jsx";
 import ShowPlacedorderList from "./pages/customer/ShowPlacedorderList.jsx";
 import TrackOrder from "./pages/customer/TrackOrder.jsx";
 import ShowCustomer from "./pages/owner/ShowCustomer.jsx";
-import ShowPayments from './pages/customer/ShowPayments.jsx'
+import ShowPayments from './pages/customer/ShowPayments/ShowPayments.jsx'
 
 // worker
 import WorkerAssignedOrders from "./pages/worker/WorkerAssignedOrders.jsx";
@@ -31,7 +31,7 @@ import ShowPendingOrderList from "./pages/owner/ShowPendingOrderList.jsx";
 import ShowWorkers from "./pages/owner/ShowWorkers.jsx";
 import ShowAssignedOrders from "./pages/owner/ShowAssignedOrders.jsx";
 import ResolveInQueryOrder from "./pages/owner/ResolveInQueryOrder.jsx";
-import ShowPaymentsOwner from "./pages/owner/ShowPaymentsOwner.jsx";
+import ShowPaymentsOwner from "./pages/owner/ShowPayments/ShowPaymentsOwner.jsx";
 
 import Profile from "./pages/shared/profile/Profile.jsx";
 
@@ -99,7 +99,7 @@ function App() {
                 element={<ShowPlacedorderList />}
               />
               <Route
-                path="/customer/order/track/:order_id"
+                path="/customer/order/track/:orderId"
                 element={<TrackOrder />}
               />
             </Route>

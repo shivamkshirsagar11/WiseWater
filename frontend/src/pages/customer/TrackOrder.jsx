@@ -8,7 +8,7 @@ import MultiToast from "../../actions/shared/MultiToast.js";
 import { CookiesContext } from "../../context/CookiesProvider.js";
 
 export default function TrackOrder() {
-  const { order_id } = useParams();
+  const { orderId } = useParams();
   const navigate = useNavigate();
 
   const { cookies } = useContext(CookiesContext);
@@ -16,13 +16,13 @@ export default function TrackOrder() {
   const [order, setOrder] = useState({});
   const [worker, setWorker] = useState({});
   const [loading, setLoading] = useState(true);
-  console.log("order-id", order_id);
+  console.log("order-id", orderId);
   useEffect(() => {
 
     const fetchData = async () => {
       const { token } = cookies;
       setLoading(true);
-      const response = await giveDetailsToTrackOrder(token, order_id);
+      const response = await giveDetailsToTrackOrder(token, orderId);
       console.log(response);
       if ('error' === response.type) {
         MultiToast(response.error, true);

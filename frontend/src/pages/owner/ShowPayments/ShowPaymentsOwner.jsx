@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { authenticateUser } from '../../actions/shared/authenticateUser';
-import MultiToast from '../../actions/shared/MultiToast';
-import Spinner from '../Spinner.jsx';
-import { getPaymentDetails } from '../../actions/owner/getPaymentDetails';
+import { authenticateUser } from '../../../actions/shared/authenticateUser';
+import MultiToast from '../../../actions/shared/MultiToast';
+import Spinner from '../../Spinner.jsx';
+import { getPaymentDetails } from '../../../actions/owner/getPaymentDetails';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../shared/Layout/Layout';
-import { CookiesContext } from '../../context/CookiesProvider';
+import Layout from '../../shared/Layout/Layout';
+import { CookiesContext } from '../../../context/CookiesProvider';
+import Payment from './Payment';
 
 function ShowPaymentsOwner() {
 
@@ -45,17 +46,15 @@ function ShowPaymentsOwner() {
         <Layout userType={'owner'}>
             <div>
                 {
-                    paymentList.map((payment, index) => (
-                        <div key={index}>
-                            <h3>customer name :- {payment.customer_name}</h3>
-                            <h5>customer contact :- {payment.contact}</h5>
-                            <ul>
-                                <li>hot water cost :- {payment.payment.hotWater}</li>
-                                <li>normal water cost :- {payment.payment.normalWater}</li>
-                                <li>cold water cost :- {payment.payment.coldWater}</li>
-                            </ul>
-                        </div>
-                    ))
+                    paymentList.map((payment, index) => {
+                        console.log(payment.customer_data.firstname)
+                        return (
+                            <div key={index}>
+                                <h3>customer name :- {payment.customer_data.firstname} {payment.customer_data.lastname}</h3>
+                                <Payment payment={payment} />
+                            </div>
+                        )
+                    })
                 }
             </div>
         </Layout>

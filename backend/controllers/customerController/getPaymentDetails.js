@@ -1,7 +1,6 @@
 import paymentModel from '../../models/paymentModel.js';
 import Company from '../../models/companyModel.js';
 
-
 // getPaymentDeatils user type : customer
 // @desc    getPaymentDeatils : customer can get all the payment details by this controller
 // @route   post /api/customer/payment-details
