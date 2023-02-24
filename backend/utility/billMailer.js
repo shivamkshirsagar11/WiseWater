@@ -1,29 +1,25 @@
 "use strict";
 import { createTransport } from "nodemailer";
-async function main() {
+export async function BillMailer(mobile) {
   let transporter = createTransport({
    service:'gmail',
     auth: {
-      user: "wisewater.helpdesk.info@gmail.com", // generated ethereal user
-      pass: "ivmypjexdoudmcir", // generated ethereal password
+      user: "wisewater.helpdesk.info@gmail.com",
+      pass: "ivmypjexdoudmcir",
     },
   });
 
-  // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: 'wisewater.helpdesk.info@gmail.com', // sender address
-    to: "fromamongus6@gmail.com", // list of receivers
+    from: 'wisewater.helpdesk.info@gmail.com',
+    to: "fromamongus6@gmail.com",
     subject: "Invoice",
-    html: "<b>We will get this kind of pdf in invoice for billing.</b>", // html body
+    html: "<b>We will get this kind of pdf in invoice for billing.</b>",
     attachments: [{
         filename: 'Invoice_Bill.pdf',
-        path: '../../PDF/8200971628.pdf',
+        path: `PDF/${mobile}.pdf`,
         contentType: 'application/pdf'
       }],
   });
 
   console.log("Message sent: %s", info.messageId);
-//   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }
-
-main().catch(console.error);

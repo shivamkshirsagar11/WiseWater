@@ -5,7 +5,7 @@ import MultiToast from "../../actions/shared/MultiToast.js";
 import CompanyDetailsForm from "../shared/form/CompanyDetailsForm.jsx";
 import UserDetailsForm from "../shared/form/UserDetailsForm.jsx";
 import { CookiesContext } from "../../context/CookiesProvider.js";
-// import OTP from "../shared/form/OTP.jsx";
+import OTP from "../shared/form/OTP.jsx";
 
 export default function OwnerRegistration() {
 	const [flag, setFlag] = useState(false);
@@ -33,10 +33,7 @@ export default function OwnerRegistration() {
 		e.preventDefault();
 		const response = await registerUser("owner", owner, true);
 		if ("error" === response.type) MultiToast(response.error, true);
-		else {
-			navigate('/owner/profile');
-		}
-		// else setFlag(true);
+		else setFlag(true);
 	};
 	const owner = { userData: { ...userData }, companyData: { ...companyData } };
 	return (
@@ -59,7 +56,7 @@ export default function OwnerRegistration() {
 					</form>
 				</div>
 			)}
-			{/* {flag && (
+			{flag && (
 				<OTP
 					userData={owner}
 					userType="owner"
@@ -69,7 +66,7 @@ export default function OwnerRegistration() {
 					requiredCookie={2}
 					toastMsg={"you are registered successfully"}
 				/>
-			)} */}
+			)}
 		</>
 	);
 }

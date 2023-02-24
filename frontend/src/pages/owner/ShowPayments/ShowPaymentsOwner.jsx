@@ -17,6 +17,7 @@ function ShowPaymentsOwner() {
     const navigate = useNavigate();
     useEffect(() => {
         const { token } = cookies;
+        
         const authenticate = async () => {
             setLoading(true);
             const rsp = authenticateUser('owner', token);

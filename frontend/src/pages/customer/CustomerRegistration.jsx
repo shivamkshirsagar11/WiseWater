@@ -5,7 +5,7 @@ import AddressDetailsForm from "../shared/form/AddressDetailsForm.jsx";
 import MultiToast from "../../actions/shared/MultiToast.js";
 import { useNavigate } from "react-router-dom";
 import { CookiesContext } from "../../context/CookiesProvider.js";
-// import OTP from "../shared/form/OTP.jsx";
+import OTP from "../shared/form/OTP.jsx";
 
 function CustomerRegistration() {
   const navigate = useNavigate();
@@ -24,12 +24,9 @@ function CustomerRegistration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await registerUser("customer", userData, false);
+    const response = await registerUser("customer", userData, true);
     if ("error" === response.type) MultiToast(response.error, true);
-    // else setFlag(true);
-    else {
-      navigate('/customer/profile')
-    }
+    else setFlag(true);
   };
 
   const setAddress = (address) => {
@@ -41,22 +38,37 @@ function CustomerRegistration() {
     <>
       {!flag && (
         <div className="container my-3">
-          <h3 className="display-4">
-            Customer Registration
-          </h3>
+          <h3 className="display-4">Customer Registration</h3>
           <form method="post">
             <UserDetailsForm userData={userData} setUserData={setUserData} />
             <AddressDetailsForm
               address={userData.address}
               setAddress={setAddress}
             />
-            <button type="submit" className="btn btn-success" style={{"background-image":"linear-gradient(#525252, #3d72b4)"}} onClick={handleSubmit}>
+            <button
+              type="submit"
+              className="btn btn-success"
+              style={{
+                "background-image": "linear-gradient(#525252, #3d72b4)",
+              }}
+              onClick={handleSubmit}
+            >
               Submit
             </button>
           </form>
         </div>
       )}
-      {/* {flag && <OTP userData={customer} userType="customer" register = {registerUser} setCookies={setCookies} navigateString = {"/customer/profile"} requiredCookie = {1} toastMsg = {"you are registered successfully"}/>} */}
+      {flag && (
+        <OTP
+          userData={customer}
+          userType="customer"
+          register={registerUser}
+          setCookies={setCookies}
+          navigateString={"/customer/profile"}
+          requiredCookie={1}
+          toastMsg={"you are registered successfully"}
+        />
+      )}
     </>
   );
 }

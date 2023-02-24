@@ -42,15 +42,15 @@ const ViewModal = (props) => {
                 <hr />
                 <h5>water price</h5>
                 <p className="data-row">
-                    <span className="key">cold water : </span>{" "}
+                    <span className="key">cold water``: </span>{" "}
                     <span className="value"> {data.waterPrice.coldWater}rs </span>
                 </p>
                 <p className="data-row">
-                    <span className="key">service time : </span>{" "}
+                    <span className="key">Normal water: </span>{" "}
                     <span className="value"> {data.waterPrice.normalWater}rs </span>
                 </p>
                 <p className="data-row">
-                    <span className="key">service time : </span>{" "}
+                    <span className="key">Hot water: </span>{" "}
                     <span className="value"> {data.waterPrice.hotWater}rs </span>
                 </p>
                 <hr />

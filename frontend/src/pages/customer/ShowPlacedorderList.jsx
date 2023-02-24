@@ -47,7 +47,6 @@ export default function ShowPlacedorderList() {
                         console.log(order)
                         return (
                             <div key={index}>
-                                <h2 >order number {index}</h2>
                                 <ShowOrder order={order} />
                                 {/* {order.status === "assigned" && <button value={`/customer/order/track/${order.orderId}`} onClick={handleTrackOrder}>Track Order</button>} */}
                             </div>

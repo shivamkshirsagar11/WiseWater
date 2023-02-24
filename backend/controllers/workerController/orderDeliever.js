@@ -45,7 +45,7 @@ export async function orderDeliever(req, res) {
         console.log(assignedOrder)
         if (assignedOrder) {
             await handlePayment(assignedOrder);
-            // const updated = await OrderModel.updateOne({ orderId }, { $set: { status: "delievered" } })
+            const updated = await OrderModel.updateOne({ orderId }, { $set: { status: "delievered" } })
             res.status(200).json({
                 message: 'success'
             })
