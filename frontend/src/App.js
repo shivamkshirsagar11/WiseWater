@@ -5,7 +5,6 @@ import { useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 
 // guest user
-// import Map from "./pages/shared/map/MapRender.jsx";
 import Home from "./pages/guestUser/Home.jsx";
 import Login from "./pages/guestUser/login.jsx";
 import WorkerApplicationFrom from "./pages/guestUser/WorkerApplicationFrom.jsx";
@@ -17,6 +16,7 @@ import ShowPlacedorderList from "./pages/customer/ShowPlacedorderList.jsx";
 import TrackOrder from "./pages/customer/TrackOrder.jsx";
 import ShowCustomer from "./pages/owner/ShowCustomer.jsx";
 import ShowPayments from './pages/customer/ShowPayments/ShowPayments.jsx'
+import Plans from "./pages/customer/Plans.jsx";
 
 // worker
 import WorkerAssignedOrders from "./pages/worker/WorkerAssignedOrders.jsx";
@@ -51,18 +51,6 @@ function App() {
           <Route path="/">
             {/* guestuser */}
             <Route index element={<Home />} />
-            {/* <Route
-                path="/open/order"
-                element={<Map cookies={cookies} />}
-              /> */}
-            {/* <Route
-              path="/login"
-              element={<Login setCookies={handleSetCookies} />}
-            /> */}
-            {/* <Route
-              path="/verification/contact/otp"
-              element={<Login setCookies={handleSetCookies} />}
-            /> */}
             <Route
               path="/worker/application/:companyname"
               element={<WorkerApplicationFrom />}
@@ -78,6 +66,11 @@ function App() {
                 path="/customer/register"
                 element={<CustomerRegistration />}
               />
+              <Route
+                path="/customer/get-subscription-details"
+                element={<Plans/>}
+              />
+
               <Route
                 path="/customer/profile"
                 element={

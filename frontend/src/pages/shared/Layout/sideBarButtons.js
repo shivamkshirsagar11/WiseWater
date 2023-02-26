@@ -11,13 +11,18 @@ export const customerMenu = [
         icon: "fa-solid fa-list",
     },
     {
-        name: "get payment details",
+        name: "payment details",
         path: "/customer/get-payment-details",
         icon: "fa-solid fa-user-doctor",
     },
     {
         name: "Profile",
         path: "/customer/profile",
+        icon: "fa-solid fa-user",
+    },
+    {
+        name: "My Plans",
+        path: "/customer/get-subscription-details",
         icon: "fa-solid fa-user",
     }
 ];
