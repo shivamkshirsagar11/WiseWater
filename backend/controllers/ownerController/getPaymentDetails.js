@@ -13,7 +13,7 @@ export async function getPaymentDetails(req, res) {
         console.log('from get payment details owner');
         const { company_name } = await ownerModel.findOne({ _id: req.userid }, { company_name: 1 });
         console
-        const paymentList = await paymentModel.find({ company_name }, { _id: 0, __v: 0 }).populate({ path: 'customer_id', select: '-__v -latitude -longitude -_id -password' });
+        const paymentList = await paymentModel.find({ company_name }, { _id: 0, __v: 0 }).populate({ path: 'customer_id', select: '-__v -latitude -longitude -password' });
         // console.log(data);
 
         const paymentListWithRenamedField = paymentList.map(order => {

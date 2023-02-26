@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+/PDF
+
 # production
 /build
 
