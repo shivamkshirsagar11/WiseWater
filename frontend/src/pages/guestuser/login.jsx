@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../actions/guestUser/loginUser.js";
@@ -7,6 +8,13 @@ import Card from "../../components/Card.jsx";
 import ownerImage from "../../media/p1.jpg";
 import customerImage from "../../media/p2.jpg";
 import workerImage from "../../media/p3.jpg";
+=======
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../actions/guestUser/loginUser.js';
+import 'react-toastify/dist/ReactToastify.css';
+import MultiToast from '../../actions/shared/MultiToast.js';
+>>>>>>> 9e042aa5c04475af0a7fc08bdf0b647e4fffefc1
 
 export default function Login(props) {
   const navigate = useNavigate();
@@ -38,6 +46,7 @@ export default function Login(props) {
   return (
     <div className="accordion accordion-flush" id="accordionFlushExample">
       <form>
+<<<<<<< HEAD
         <div className="row align-items-center">
           <div className="col">
             <Card
@@ -82,6 +91,13 @@ export default function Login(props) {
             />
           </div>
         </div>
+=======
+        email: <input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+        password: <input type="text" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+        <button type="submit" value="Customer" onClick={hadleSubmit}>Login as customer</button>
+        <button type="submit" value="Worker" onClick={hadleSubmit}>Login as Worker</button>
+        <button type="submit" value="Owner" onClick={hadleSubmit}>Login as Owner</button>
+>>>>>>> 9e042aa5c04475af0a7fc08bdf0b647e4fffefc1
       </form>
     </div>
   );

@@ -58,6 +58,7 @@ function CustomerRegistration() {
           </form>
         </div>
       )}
+<<<<<<< HEAD
       {flag && (
         <OTP
           userData={customer}
@@ -69,6 +70,9 @@ function CustomerRegistration() {
           toastMsg={"you are registered successfully"}
         />
       )}
+=======
+      {flag && <OTP userData={customer} userType="customer" register={registerUser} setCookies={setCookies} navigateString={"/customer/profile"} requiredCookie={1} toastMsg={"you are registered successfully"} />}
+>>>>>>> 9e042aa5c04475af0a7fc08bdf0b647e4fffefc1
     </>
   );
 }

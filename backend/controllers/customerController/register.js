@@ -10,7 +10,7 @@ import { customerValidation } from '../../validations/customerValidation/custome
 // @access  public
 
 export async function registerUser(req, res) {
-    const {onlyValidation} = req.body;
+    const { onlyValidation } = req.body;
     const error = await customerValidation(req.body);
     if (error && error.errorMessage.length > 0) {
         res.status(error.statusCode).json({
@@ -19,14 +19,14 @@ export async function registerUser(req, res) {
             }
         });
     }
-    else if(onlyValidation){
+    else if (onlyValidation) {
         res.status(200).json({
-            type:"data"
+            type: "data"
         })
     }
-    else{
+    else {
         try {
-                const { firstname, email, password, lastname, address, contact } = req.body;
+            const { firstname, email, password, lastname, address, contact } = req.body;
             const user = await CustomerModel.create({
                 firstname,
                 lastname,
@@ -35,7 +35,6 @@ export async function registerUser(req, res) {
                 email,
                 password: await hash(password, 10)
             });
-
             res.status(200).json({
                 token: generateJWTtoken(user._id, "Customer"),
                 type: 'data'
@@ -48,6 +47,6 @@ export async function registerUser(req, res) {
             })
         }
     }
-    
+
 }
 

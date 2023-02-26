@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-d
 dotenv.config();
 
 export async function sendHiringEmail(to, password, companyEmail, companyName, workerName, startDayTime, address) {
+<<<<<<< HEAD
     try{
   let transporter = createTransport({
    service:'gmail',
@@ -23,6 +24,27 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
         cid: 'image@1' //same cid value as in the html img src
     }],
     html:`<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+=======
+  try {
+    let transporter = createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    let info = await transporter.sendMail({
+      from: 'wisewater.helpdesk.info@gmail.com',
+      to: `${to}`,
+      subject: "Hired For Job",
+      attachments: [{
+        filename: '1.png',
+        path: `D:\\SDP\\WiseWater\\backend\\utility\\media\\image-4.png`,
+        cid: 'image@1' //same cid value as in the html img src
+      }],
+      html: `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+>>>>>>> 9e042aa5c04475af0a7fc08bdf0b647e4fffefc1
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
     <!--[if gte mso 9]>
@@ -506,6 +528,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     
     </html>
     `
+<<<<<<< HEAD
   });
 
   return true;
@@ -513,4 +536,12 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     console.log(`Error on sending Email: ${e}`);
     return false;
 }
+=======
+    });
+    return true;
+  } catch (e) {
+    console.log(`Error on sending Email: ${e}`);
+    return false;
+  }
+>>>>>>> 9e042aa5c04475af0a7fc08bdf0b647e4fffefc1
 }

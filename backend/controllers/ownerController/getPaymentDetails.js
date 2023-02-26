@@ -1,7 +1,15 @@
 import paymentModel from '../../models/paymentModel.js';
+<<<<<<< HEAD
 import CompanyModel from '../../models/companyModel.js';
 import ownerModel from '../../models/ownerModel.js';
 
+=======
+import Company from '../../models/companyModel.js';
+import OrderModel from "../../models/orderModel.js";
+import ownerModel from '../../models/ownerModel.js';
+
+
+>>>>>>> 9e042aa5c04475af0a7fc08bdf0b647e4fffefc1
 // getPaymentDeatils user type : owner
 // @desc    getPaymentDeatils : owner can get all the payment details by this controller
 // @route   post /api/owner/payment-details
@@ -10,6 +18,7 @@ import ownerModel from '../../models/ownerModel.js';
 
 export async function getPaymentDetails(req, res) {
     try {
+<<<<<<< HEAD
         console.log('from get payment details owner');
         const { company_name } = await ownerModel.findOne({ _id: req.userid }, { company_name: 1 });
         console
@@ -28,6 +37,18 @@ export async function getPaymentDetails(req, res) {
         res.status(200).json({
             paymentList: paymentListWithRenamedField
         })
+=======
+        console.log(req.userid);
+        var { company_name } = await ownerModel.findOne({ _id: req.userid }, { _id: 0, company_name: 1 });
+        console.log('name of company is ');
+        console.log(company_name);
+        const paymentList = await paymentModel.find({ company_name });
+        console.log('from owner getPayment list');
+        console.log(paymentList);
+        res.status(200).json({
+            paymentList
+        });
+>>>>>>> 9e042aa5c04475af0a7fc08bdf0b647e4fffefc1
     } catch (error) {
         console.log(error)
         res.status(500).json({
