@@ -1,7 +1,7 @@
-const subscription = async (userType,urlParam, token) => {
+const getAllSubscription = async (userType,urlParam, token) => {
     try {
       const response = await fetch(`/api/${userType}/${urlParam}`, {
-        method: "POST",
+        method: "get",
         headers: {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
@@ -24,5 +24,5 @@ const subscription = async (userType,urlParam, token) => {
     }
   };
   
-  export { subscription };
+  export { getAllSubscription };
   
