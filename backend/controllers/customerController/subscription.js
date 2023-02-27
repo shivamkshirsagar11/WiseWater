@@ -27,4 +27,34 @@ async function getAllPlans(req, res){
         })
     }
 }
-export {getAllPlans};
+
+async function AddPlans(req, res){
+    try{
+        const {subObj} = req.body;
+        subObj.user_id = req.userid;
+        subObj.status = "pending"
+        subObj.worker_id = null;
+        const addOne = await subscriptionModel.create({...subObj})
+        console.log("from add subscription...");
+        console.log(addOne);
+        if(addOne){
+            res.status(200).json({
+                added:true
+            })
+        }
+        else{
+            res.status(500).json({
+                added:false
+            })
+        }
+    }catch (error) {
+        console.log(error);
+        res.status(500).json({
+            error: {
+                errorMessage: ['Interanl Server Error']
+            }
+        })
+    }
+}
+
+export {getAllPlans, AddPlans};

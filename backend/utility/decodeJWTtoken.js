@@ -2,6 +2,8 @@ import { verify } from 'jsonwebtoken';
 export function decodeJWTtoken(req, res) {
 
     const { authorization } = req.headers;
+    console.log("from decode jwt");
+    console.log(authorization);
     if ('Bearer undefined' !== authorization) {
         const token = authorization.split(' ')[1];
         if ('undefined' !== token) {

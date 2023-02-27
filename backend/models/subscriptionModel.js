@@ -18,18 +18,20 @@ const SubscriptionModel = Schema({
         type: Schema.Types.Number
     },
     next_date:{
-        required: true,
-        type: Schema.Types.Date
+        type: Schema.Types.Date,
+        defaultValue:null
     },
     worker_id:{
-        required: true,
         defaultValue:null,
         type: Schema.Types.ObjectId
     },
     status:{
         type: Schema.Types.String,
-        required: true,
         defaultValue:"pending"
+    },
+    quantity:{
+        type: Schema.Types.Number,
+        required: true,
     }
 })
 

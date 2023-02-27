@@ -9,6 +9,7 @@ import { showPlacedOrders } from '../controllers/customerController/showPlacedOr
 import { trackOrder } from '../controllers/customerController/trackOrder.js';
 import { getPaymentDetails } from '../controllers/customerController/getPaymentDetails.js';
 import { getAllPlans } from '../controllers/customerController/subscription.js';
+import { AddPlans } from '../controllers/customerController/subscription.js';
 
 router.post('/register', registerUser);
 router.get('/profile', protect, profile);
@@ -20,6 +21,7 @@ router.get('/authenticate', protect, (req, res) => {
 })
 router.get('/payment-details', protect, getPaymentDetails)
 router.get('/get-all-plans', protect, getAllPlans)
+router.post('/add-plan', protect, AddPlans)
 router.post('/track-order', protect, trackOrder)
 
 export default router;

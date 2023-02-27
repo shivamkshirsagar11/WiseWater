@@ -1,5 +1,7 @@
 import { toast } from 'react-toastify';
 const MultiToast = (message, isError) => {
+    console.log("in toastify....");
+    console.log(message)
     console.log(typeof message)
     if (typeof message == typeof ""){
         if(isError)

@@ -1,4 +1,5 @@
 const getAllSubscription = async (userType,urlParam, token) => {
+  console.log("from get all subs")
     try {
       const response = await fetch(`/api/${userType}/${urlParam}`, {
         method: "get",

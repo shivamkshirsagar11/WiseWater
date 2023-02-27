@@ -2,6 +2,7 @@ import { decodeJWTtoken } from '../utility/decodeJWTtoken.js';
 
 const userTypeHandler = (req, res, next) => {
     const url = req.url.split('/');
+    console.log(req.url);
     if ('user' === url[2]) {
         next();
         return;

@@ -75,7 +75,7 @@ function App() {
                 path="/customer/profile"
                 element={
                   <Profile
-                    userType="customer"
+                  userType="customer"
                   />
                 }
               />
@@ -115,7 +115,7 @@ function App() {
                 path="/worker/profile"
                 element={
                   <Profile
-                    userType="worker"
+                  userType="worker"
                   />
                 }
               />
@@ -135,7 +135,7 @@ function App() {
                 path="/owner/profile"
                 element={
                   <Profile
-                    userType="owner"
+                  userType="owner"
                   />
                 }
               />
@@ -177,7 +177,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      <ToastContainer autoClose={3000} />
+<ToastContainer autoClose={3000} />
     </CookiesProvider>
   );
 }
