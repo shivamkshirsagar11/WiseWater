@@ -26,6 +26,7 @@ export default function ShowAssignedOrders() {
                 navigate('/login');
             }
             setAssignedOrders(response.assignedOrders);
+            console.log(response)
             setLoading(false);
         };
         fetchData();

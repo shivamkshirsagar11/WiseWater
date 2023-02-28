@@ -11,14 +11,14 @@ const SubscriptionModel = Schema({
     },
     start_date:{
         required: true,
-        type: Schema.Types.Date
+        type: Schema.Types.String
     },
     remaining_days:{
         required: true,
         type: Schema.Types.Number
     },
     next_date:{
-        type: Schema.Types.Date,
+        type: Schema.Types.String,
         defaultValue:null
     },
     worker_id:{

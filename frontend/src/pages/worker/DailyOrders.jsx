@@ -5,11 +5,13 @@ import MultiToast from "../../actions/shared/MultiToast";
 import { useNavigate } from "react-router-dom";
 import { getAllSubscription } from "../../actions/shared/subscription";
 import SubscriptionDetails from "../shared/details/SubscriptionDetails";
+import { dailyDelievery } from "../../actions/worker/dailyDelievery";
 
-export default function CustomerPlans() {
+export default function DailyOrders() {
   const [spinner, setSpinner] = useState(true);
   const [customerPlans, setCustomerPlans] = useState(null);
   const [customers, setCustomers] = useState(null);
+  const [trigger, setTrigger] = useState(false);
   const { cookies } = useContext(CookiesContext);
   const navigate = useNavigate();
 
@@ -19,27 +21,32 @@ export default function CustomerPlans() {
     const fetchData = async () => {
       setSpinner(true);
       const response = await getAllSubscription(
-        "owner",
-        "get-all-plans",
+        "worker",
+        "daily-ord",
         token
       );
       if ("error" === response.type) {
         MultiToast(response.error, true);
         navigate("/login");
       }
-      setCustomerPlans(response.plans);
+      setCustomerPlans(response.daily);
       setCustomers(response.customers);
       setSpinner(false);
-      console.log(response.plans);
-      console.log(response.customers);
     };
     fetchData();
-  }, [cookies]);
+  }, [cookies, trigger]);
 
-  const redirectHandler = (e) => {
-    e.preventDefault();
-    console.log(e.target);
-    navigate(`${e.target.value}`);
+  const delieverHandler = async (e) => {
+   //do something of delievered
+const id = e.target.value;
+const resp = await dailyDelievery(token, id);
+if ("error" === resp.type) {
+  MultiToast(resp.error, true);
+  navigate("/login");
+}
+else{
+  setTrigger(true);
+}
   };
   return (
     <>
@@ -49,11 +56,11 @@ export default function CustomerPlans() {
           return (
             <div key={index}>
               <p>Plan {index}</p>
-              <SubscriptionDetails plan={plans} customer={customers[index]} userType={"owner"}/>
+              <SubscriptionDetails plan={plans} customer={customers[index]} userType={"worker"}/>
               <button
-              onClick={redirectHandler}
-              value={`/owner/assign-plan/${plans._id}`}
-            >assign</button>
+              value={plans._id}
+              onClick={delieverHandler}
+            >Delievered</button>
             </div>
           );
         })

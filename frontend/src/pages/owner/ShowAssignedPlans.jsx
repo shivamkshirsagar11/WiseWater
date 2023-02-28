@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { getAllSubscription } from "../../actions/shared/subscription";
 import SubscriptionDetails from "../shared/details/SubscriptionDetails";
 
-export default function CustomerPlans() {
+export default function ShowAssignedPlans() {
   const [spinner, setSpinner] = useState(true);
   const [customerPlans, setCustomerPlans] = useState(null);
   const [customers, setCustomers] = useState(null);
+  const [workers, setWorkers] = useState(null);
   const { cookies } = useContext(CookiesContext);
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ export default function CustomerPlans() {
       setSpinner(true);
       const response = await getAllSubscription(
         "owner",
-        "get-all-plans",
+        "get-assigned-plans",
         token
       );
       if ("error" === response.type) {
@@ -29,18 +30,12 @@ export default function CustomerPlans() {
       }
       setCustomerPlans(response.plans);
       setCustomers(response.customers);
+      setWorkers(response.workers);
       setSpinner(false);
-      console.log(response.plans);
-      console.log(response.customers);
     };
     fetchData();
   }, [cookies]);
-
-  const redirectHandler = (e) => {
-    e.preventDefault();
-    console.log(e.target);
-    navigate(`${e.target.value}`);
-  };
+  
   return (
     <>
       {spinner && <Spinner />}
@@ -49,11 +44,7 @@ export default function CustomerPlans() {
           return (
             <div key={index}>
               <p>Plan {index}</p>
-              <SubscriptionDetails plan={plans} customer={customers[index]} userType={"owner"}/>
-              <button
-              onClick={redirectHandler}
-              value={`/owner/assign-plan/${plans._id}`}
-            >assign</button>
+              <SubscriptionDetails plan={plans} customer={customers[index]} userType={"owner"} worker={workers[index]}/>
             </div>
           );
         })

@@ -40,6 +40,11 @@ export const ownerMenu = [
         icon: "fa-solid fa-house",
     },
     {
+        name: "Show Assigned Customer plans",
+        path: "/owner/assigned/plans",
+        icon: "fa-solid fa-house",
+    },
+    {
         name: "Show pending orders",
         path: "/owner/show-pending-orders",
         icon: "fa-solid fa-user-doctor",
@@ -79,6 +84,11 @@ export const workerMenu = [
     {
         name: "show assigned orders",
         path: "/worker/orders/assigned",
+        icon: "fa-solid fa-list",
+    },
+    {
+        name: "show daily orders",
+        path: "/worker/orders/daily",
         icon: "fa-solid fa-list",
     },
     {

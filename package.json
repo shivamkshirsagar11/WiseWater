@@ -36,7 +36,7 @@
     "fuse.js": "^6.6.2",
     "generate-password": "^1.7.0",
     "geoip-lite": "^1.4.7",
-    "glamor": "^2.20.40",
+    "glamor": "^2.17.9",
     "ip-info-finder": "^2.0.7",
     "jsonwebtoken": "^9.0.0",
     "luxon": "^3.2.1",
@@ -51,7 +51,7 @@
     "react-digital-clock": "^0.1.2",
     "react-scripts": "^2.1.3",
     "smtp-client": "^0.4.0",
-    "twilio": "^3.84.1",
+    "twilio": "^4.8.0",
     "validator": "^13.7.0"
   }
 }

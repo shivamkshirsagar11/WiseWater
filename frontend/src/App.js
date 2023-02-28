@@ -21,9 +21,12 @@ import Plans from "./pages/customer/Plans.jsx";
 import WorkerAssignedOrders from "./pages/worker/WorkerAssignedOrders.jsx";
 import WorkerDelieveredOrderes from "./pages/worker/WorkerDelieveredOrders.jsx";
 import WorkerOrderQuery from "./pages/worker/WorkerOrderQuery.jsx";
+import DailyOrders from "./pages/worker/DailyOrders.jsx";
 
 // owner
 import ShowInQueryOrderList from "./pages/owner/ShowInQueryOrderList.jsx";
+import ShowAssignedPlans from "./pages/owner/ShowAssignedPlans.jsx";
+import AssignPlan from "./pages/owner/AssignPlan.jsx";
 import OwnerRegistration from "./pages/owner/OwnerRegistration.jsx";
 import ShowWorkerApplications from "./pages/owner/ShowWorkerApplications.jsx";
 import ShowPendingOrderList from "./pages/owner/ShowPendingOrderList.jsx";
@@ -104,6 +107,10 @@ function App() {
                 element={<WorkerAssignedOrders />}
               />
               <Route
+                path="/worker/orders/daily"
+                element={<DailyOrders />}
+              />
+              <Route
                 path="/worker/orders/delievered"
                 element={<WorkerDelieveredOrderes />}
               />
@@ -126,6 +133,10 @@ function App() {
               <Route
                 path="/owner/register"
                 element={<OwnerRegistration />}
+              />
+              <Route
+                path="/owner/assigned/plans"
+                element={<ShowAssignedPlans />}
               />
               <Route
                 path="/owner/customer-plans"
@@ -154,6 +165,10 @@ function App() {
               <Route
                 path="/owner/show-workers/:orderId"
                 element={<ShowWorkers />}
+              />
+              <Route
+                path="/owner/assign-plan/:orderId"
+                element={<AssignPlan />}
               />
               <Route
                 path="/owner/show-assigned-orders"

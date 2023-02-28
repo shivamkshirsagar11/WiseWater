@@ -1,17 +1,19 @@
 import React from "react";
 import AddressDetails from "./AddressDetails";
-export default function SubscriptionDetails({ plan, customer, userType }) {
+export default function SubscriptionDetails({ plan, customer, userType, worker }) {
   console.log(customer)
   return (
     <ul>
       <li>start date: {plan.start_date}</li>
       <li>water Type: {plan.water_type}</li>
       <li>remaining days: {plan.remaining_days}</li>
+      <li>Next delievery: {plan.next_date}</li>
       <li>plan activation status: {plan.status}</li>
-      {plan.status !== "pending" && <li>worker id : {plan.worker_id}</li>}
+      <hr/>
       {
-        userType === "owner" &&
+        (userType === "owner" || userType === "worker") &&
         <>
+        <h3>Customer Details</h3>
         <li>
           user name: {customer.firstname} {" "} {customer.lastname}
         </li>
@@ -20,8 +22,25 @@ export default function SubscriptionDetails({ plan, customer, userType }) {
         </li>
         </>
       }
-      {userType === "owner" && 
+      {(userType === "owner" || userType === "worker") && <>
       <AddressDetails address={customer.address}/>
+      <hr/>
+      </>
+      }
+      {
+        worker !== null && userType === "owner" &&
+        <>
+        <h3>
+          Worker Details
+        </h3>
+        <li>
+          worker name: {worker.firstname} {" "} {worker.lastname}
+        </li>
+        <li>
+          worker contact: {worker.contact}
+        </li>
+        <hr/>
+        </>
       }
     </ul>
   );
