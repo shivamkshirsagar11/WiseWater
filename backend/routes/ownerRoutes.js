@@ -18,6 +18,7 @@ import { moveToPending } from '../controllers/ownerController/moveToPending.js';
 import { fetchCustomer } from '../controllers/ownerController/fetchCustomer.js';
 import { getPaymentDetails } from '../controllers/ownerController/getPaymentDetails.js';
 import { sendRecipt } from '../controllers/ownerController/sendRecipt.js';
+import { getAllCustomerPlans } from '../controllers/ownerController/subscription.js';
 
 router.post('/register', registerUser);
 router.get('/profile', protect, profile);
@@ -35,6 +36,7 @@ router.post('/move-to-pending-order', protect, moveToPending);
 router.post('/fetch-customer', protect, fetchCustomer);
 router.get('/payment-details', protect, getPaymentDetails);
 router.get('/send-recipt', protect, sendRecipt);
+router.get('/get-all-plans', protect, getAllCustomerPlans);
 router.get('/authenticate', protect, (req, res) => {
     console.log('owner in atuhencated')
     res.json({ message: 'done' });

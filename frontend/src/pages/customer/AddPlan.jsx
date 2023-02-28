@@ -11,9 +11,6 @@ export default function AddPlan({ hideThisPage }) {
   const { token } = cookies;
   console.log(token);
   const [showButton, setShowButton] = useState(true)
-  useEffect(()=>{
-    setTimeout(hideThisPage(false),5000);
-  }, [showButton])
   const [subObj, setSubObj] = useState({
     quantity: 0,
     remaining_days: 0,
@@ -24,7 +21,8 @@ export default function AddPlan({ hideThisPage }) {
     const { name, value } = e.target;
     setSubObj(prevState => ({ ...prevState, [name]: value }));
   };
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const res = await addSubscription(token, subObj);
     console.log(res);
     if (res.type === "error") {
@@ -32,10 +30,11 @@ export default function AddPlan({ hideThisPage }) {
     } else {
       setShowButton(false)
       MultiToast("Your Plan will start soon", false);
+      hideThisPage(true);
     }
   };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       Start date:{" "}
       <input
         type="date"
@@ -69,7 +68,7 @@ export default function AddPlan({ hideThisPage }) {
         <option value="coldWater">cold water</option>
         <option value="normalWater">normal water</option>
       </select>
-      {showButton && <button onClick={handleSubmit}>Submit</button>}
+      <input type="submit" value="Save"/>
     </form>
   );
 }

@@ -7,10 +7,10 @@ import { getAllSubscription } from "../../actions/shared/subscription";
 import SubscriptionDetails from "../shared/details/SubscriptionDetails";
 import AddPlan from "./AddPlan";
 
-export default function Plans() {
+export default function CustomerPlans() {
   const [spinner, setSpinner] = useState(true);
-  const [hidePage, setHidePage] = useState(true);
-  const [customerPlans, setCustomerPlans] = useState(true);
+  const [customerPlans, setCustomerPlans] = useState(null);
+  const [customers, setCustomers] = useState(null);
   const { cookies } = useContext(CookiesContext);
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ export default function Plans() {
     const fetchData = async () => {
       setSpinner(true);
       const response = await getAllSubscription(
-        "customer",
+        "owner",
         "get-all-plans",
         token
       );
@@ -29,33 +29,27 @@ export default function Plans() {
         navigate("/login");
       }
       setCustomerPlans(response.plans);
+      setCustomers(response.customers);
       setSpinner(false);
       console.log(response.plans);
     };
     fetchData();
-  }, [cookies, hidePage]);
-  const showAddPage = (e)=>{
-    setHidePage(false)
-  }
+  }, [cookies]);
   return (
     <>
       {spinner && <Spinner />}
-      {!spinner && hidePage && customerPlans.length == 0 &&<button onClick={showAddPage}>Add +</button>}
-      {!spinner && hidePage && customerPlans.length > 0 ? (
+      {!spinner && customerPlans.length > 0 ? (
         customerPlans.map((plans, index) => {
           return (
             <div key={index}>
               <p>Plan {index}</p>
-              <SubscriptionDetails plan={plans} />
+              <SubscriptionDetails plan={plans} customer={customers[index]} userType={"owner"}/>
             </div>
           );
         })
       ) : (
-        hidePage && <p>NO subscribed plans</p>
+        <p>NO subscribed plans</p>
       )}
-      {
-        !spinner && !hidePage && <AddPlan hideThisPage={setHidePage}/>
-      }
     </>
   );
 }
