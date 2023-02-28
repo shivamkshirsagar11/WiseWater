@@ -35,6 +35,11 @@ export const ownerMenu = [
         icon: "fa-solid fa-house",
     },
     {
+        name: "Show Customer plans",
+        path: "/owner/customer-plans",
+        icon: "fa-solid fa-house",
+    },
+    {
         name: "Show pending orders",
         path: "/owner/show-pending-orders",
         icon: "fa-solid fa-user-doctor",

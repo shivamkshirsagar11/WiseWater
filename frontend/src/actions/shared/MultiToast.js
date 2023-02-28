@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 const MultiToast = (message, isError) => {
 
-    if ((typeof message[Symbol.iterator]) !== 'function') {
+    if (typeof message === typeof " ") {
         if (isError)
             toast.error(message);
         else

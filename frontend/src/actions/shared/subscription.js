@@ -14,7 +14,8 @@ const getAllSubscription = async (userType,urlParam, token) => {
       else {
         return {
           type: "data",
-          plans:data.plans
+          plans:data.plans,
+          customers:data.customers
         };
       }
     } catch (error) {

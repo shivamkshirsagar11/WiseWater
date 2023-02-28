@@ -5,7 +5,6 @@ import MultiToast from "../../actions/shared/MultiToast";
 import { useNavigate } from "react-router-dom";
 import { getAllSubscription } from "../../actions/shared/subscription";
 import SubscriptionDetails from "../shared/details/SubscriptionDetails";
-import AddPlan from "./AddPlan";
 
 export default function CustomerPlans() {
   const [spinner, setSpinner] = useState(true);
@@ -32,6 +31,7 @@ export default function CustomerPlans() {
       setCustomers(response.customers);
       setSpinner(false);
       console.log(response.plans);
+      console.log(response.customers);
     };
     fetchData();
   }, [cookies]);

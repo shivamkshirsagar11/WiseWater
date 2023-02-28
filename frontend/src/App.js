@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 // guest user
 import Home from "./pages/guestUser/Home.jsx";
-import Login from "./pages/guestUser/login.jsx";
 import WorkerApplicationFrom from "./pages/guestUser/WorkerApplicationFrom.jsx";
 import ShowCompanies from "./pages/guestUser/showCompanies/ShowCompanies.jsx";
 // customer
@@ -32,6 +31,7 @@ import ShowWorkers from "./pages/owner/ShowWorkers.jsx";
 import ShowAssignedOrders from "./pages/owner/ShowAssignedOrders.jsx";
 import ResolveInQueryOrder from "./pages/owner/ResolveInQueryOrder.jsx";
 import ShowPaymentsOwner from "./pages/owner/ShowPayments/ShowPaymentsOwner.jsx";
+import CustomerPlans from "./pages/owner/CustomerPlans.jsx";
 
 import Profile from "./pages/shared/profile/Profile.jsx";
 
@@ -126,6 +126,10 @@ function App() {
               <Route
                 path="/owner/register"
                 element={<OwnerRegistration />}
+              />
+              <Route
+                path="/owner/customer-plans"
+                element={<CustomerPlans/>}
               />
               <Route
                 path="/owner/show-worker-applications"

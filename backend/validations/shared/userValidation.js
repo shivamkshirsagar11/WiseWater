@@ -39,7 +39,6 @@ export async function userValidation(userData) {
   }
   // if email is provided by user and it is in valid format then we are suppose to check wheter it is exist or not
   if (email && isEmail(email)) {
-
     
   }
   if (!contact) {
