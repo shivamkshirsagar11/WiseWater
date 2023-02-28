@@ -34,7 +34,7 @@ router.post('/reassign-order', protect, reAssignOrder);
 router.post('/move-to-pending-order', protect, moveToPending);
 router.post('/fetch-customer', protect, fetchCustomer);
 router.get('/payment-details', protect, getPaymentDetails);
-router.get('/send-recipt', protect, sendRecipt);
+router.post('/send-recipt', protect, sendRecipt);
 router.get('/authenticate', protect, (req, res) => {
     console.log('owner in atuhencated')
     res.json({ message: 'done' });

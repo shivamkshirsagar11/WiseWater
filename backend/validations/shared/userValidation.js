@@ -36,6 +36,22 @@ export async function userValidation(userData) {
   if (email && !isEmail(email)) {
     error.push("email is not a valid");
   }
+  // if email is provided by user and it is in valid format then we are suppose to check wheter it is exist or not
+  if (email && isEmail(email)) {
+
+    const API_KEY = process.env.emailExistanceApi;
+    const url = `https://api.zerobounce.net/v2/validate?api_key=${API_KEY}&email=${email}`;
+    try {
+      const response = await fetch(url);
+      if ('invalid' === response.status) {
+        error.push('email is not exists');
+      }
+    } catch (err) {
+      console.log('checking email existance :- ', err)
+      error.push('we are facing issues to check existance of your email address please try again');
+    }
+
+  }
   if (!contact) {
     error.push("contact is required");
   }

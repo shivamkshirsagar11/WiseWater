@@ -17,20 +17,20 @@ function ShowPaymentsOwner() {
     const navigate = useNavigate();
     useEffect(() => {
         const { token } = cookies;
-        
+
         const authenticate = async () => {
             setLoading(true);
             const rsp = authenticateUser('owner', token);
             if ('error' === rsp.type) {
                 setLoading(false);
                 alert('you are not authenticated' + rsp.error);
-                navigate('/login');
+                navigate('/');
             }
             const response = await getPaymentDetails(token);
             setLoading(false);
             if ('error' === response.type) {
                 MultiToast(response.error, true);
-                navigate('/login');
+                // navigate('/');
             } else {
                 setPaymentList(response.paymentList);
                 console.log(response.paymentList);
@@ -44,24 +44,24 @@ function ShowPaymentsOwner() {
     }
 
     return (
-            <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
-        <Layout userType={'owner'}>
+        <div style={{ "background-image": "linear-gradient(#b993d6, #8ca6db)" }}>
+            <Layout userType={'owner'}>
                 {
-                paymentList.length != 0 ?
-                    paymentList.map((payment, index) => {
-                        console.log(payment.customer_data.firstname)
-                        return (
-                            <div key={index}>
-                                <h3>customer name :- {payment.customer_data.firstname} {payment.customer_data.lastname}</h3>
-                                <Payment payment={payment} />
-                            </div>
-                        )
-                    })
-                    :
-                    <h4 className="container display-6" style={{"color":"brown"}}>No Details</h4>
+                    paymentList.length !== 0 ?
+                        paymentList.map((payment, index) => {
+                            console.log(payment.customer_data.firstname)
+                            return (
+                                <div key={index}>
+                                    <h3>customer name :- {payment.customer_data.firstname} {payment.customer_data.lastname}</h3>
+                                    <Payment payment={payment} setPaymentList={setPaymentList} setLoading={setLoading} />
+                                </div>
+                            )
+                        })
+                        :
+                        <h4 className="container display-6" style={{ "color": "brown" }}>No Details</h4>
                 }
-        </Layout>
-            </div>
+            </Layout>
+        </div>
     )
 }
 
