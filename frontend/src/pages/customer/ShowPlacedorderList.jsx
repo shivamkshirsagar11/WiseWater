@@ -44,7 +44,6 @@ export default function ShowPlacedorderList() {
                 {0 === placedOrderList.length && <p>no orders placed</p>}
                 {
                     placedOrderList.map((order, index) => {
-                        console.log(order)
                         return (
                             <div key={index}>
                                 <ShowOrder order={order} />
