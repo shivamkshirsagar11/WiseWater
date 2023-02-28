@@ -1,6 +1,7 @@
 import pkg from "validator";
 const { isStrongPassword, isEmail } = pkg;
 import { validateContact } from "../validateContact.js";
+import fetch from "node-fetch";
 
 export async function userValidation(userData) {
   const {
@@ -39,18 +40,7 @@ export async function userValidation(userData) {
   // if email is provided by user and it is in valid format then we are suppose to check wheter it is exist or not
   if (email && isEmail(email)) {
 
-    const API_KEY = process.env.emailExistanceApi;
-    const url = `https://api.zerobounce.net/v2/validate?api_key=${API_KEY}&email=${email}`;
-    try {
-      const response = await fetch(url);
-      if ('invalid' === response.status) {
-        error.push('email is not exists');
-      }
-    } catch (err) {
-      console.log('checking email existance :- ', err)
-      error.push('we are facing issues to check existance of your email address please try again');
-    }
-
+    
   }
   if (!contact) {
     error.push("contact is required");
@@ -62,6 +52,7 @@ export async function userValidation(userData) {
     const check_number = async (contact) => {
       const data = await validateContact(contact);
       const { isValidNumber } = data;
+      // 4567894567: for validating that it's not correct
       if (!isValidNumber) error.push("contact is not valid");
     };
     await check_number(contact);
