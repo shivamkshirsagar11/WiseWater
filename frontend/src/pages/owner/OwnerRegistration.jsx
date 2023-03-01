@@ -36,23 +36,29 @@ export default function OwnerRegistration() {
 		else setFlag(true);
 	};
 	const owner = { userData: { ...userData }, companyData: { ...companyData } };
+	const styles = {
+		backgroundColor: '#bbdefb',
+		
+	  };
 	return (
-		<>
+		<body style={styles}>
 			{!flag && (
-				<div className="container my-3">
-					<h3 className="display-4">Owner Registration</h3>
+				<div className="container" style={{backgroundColor:"#e3f2fd"}}>
+					<h1 className="text-center " style={{ color: '#0077be' }}>
+						<span className="fw-bold">Customer Registration </span>  
+					</h1>
 					<form method="post">
 						<UserDetailsForm userData={userData} setUserData={setUserData} />
-
-						{/* company */}
 						<CompanyDetailsForm
 							companyData={companyData}
 							setCompanyData={setCompanyData}
 						/>
-
-						<button type="submit" onClick={handleSubmit} className="btn" style={{"background-image":"linear-gradient(#525252, #3d72b4)"}}>
+						
+						<div class="text-center">
+						<button type="submit" onClick={handleSubmit} className="btn" style={{backgroundColor:"#0077be",color:'white'}}>
 							Submit
 						</button>
+						</div>
 					</form>
 				</div>
 			)}
@@ -67,6 +73,6 @@ export default function OwnerRegistration() {
 					toastMsg={"you are registered successfully"}
 				/>
 			)}
-		</>
+		</body>
 	);
 }

@@ -19,7 +19,6 @@ export default function Card({
         <img src={src} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{collection}</h5>
-          <p className="card-text">{collection} shit</p>
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
@@ -43,18 +42,22 @@ export default function Card({
                   data-bs-parent="#accordionFlushExample"
                 >
                   <div className="accordion-body">
-                    email:{" "}
+                    Email:{" "}
                     <input
                       type="email"
+                      class="form-control"
+                      placeholder="Enter email"
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
                     />
-                    password:{" "}
+                    Password:{" "}
                     <input
                       type="password"
                       value={password}
+                      placeholder="Enter password"
+                      class="form-control"
                       onChange={(e) => {
                         setPassword(e.target.value);
                       }}
@@ -64,7 +67,7 @@ export default function Card({
                       type="submit"
                       value={collection}
                       onClick={hadleSubmit}
-                      className="btn btn-danger"
+                      className="btn btn-primary"
                     >
                       Login
                     </button>

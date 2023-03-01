@@ -6,9 +6,13 @@ import twilio from "twilio";
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config();
 // Read more at http://twil.io/secure
-const accountSid = process.env.ACCOUNT_SID;
-const authToken = process.env.AUTH_TOKEN;
-const verifySid = process.env.VERIFY_SID;
+
+const accountSid = "ACf9074ad1b8968f7090b4760ae2ddae5a";
+const authToken = "75f2e4e8dddf91834068ec57e3e47490";
+const verifySid = "VAab67bcb24a7af25dab589e576cd66a4d";
+// const accountSid = process.env.ACCOUNT_SID;
+// const authToken = process.env.AUTH_TOKEN;
+// const verifySid = process.env.VERIFY_SID;
 const client = twilio(accountSid, authToken);
 export const generateOTP = expressAsyncHandler(async (req, res) => {
   const { contact } = req.body;

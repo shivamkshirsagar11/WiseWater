@@ -28,6 +28,7 @@ console.log(contact);
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const response = await verifyOtp(contact, otp);
     console.log(response);
     if (response.status == "approved") {
@@ -48,14 +49,31 @@ console.log(contact);
   };
 
   return (
-    <div>
-      <h1>Enter OTP</h1>
-      <br />
-      <input type="text" name="otp" onChange={handleInput} value={otp} />
-      <br />
-      <button onClick={handleSubmit}>Verify</button>
+    <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1 class="text-center mb-5">Verify Your Account</h1>
+        <form>
+          <div class="form-group">
+            <label for="verification-code">Enter Verification Code:</label>
+            <br></br>
+            <input style={{lineHeight: "1.5"}} type="text"  name ="otp" value={otp} onChange={handleInput} class="form-control" id="verification-code" placeholder="XXXXXX" />
+          </div>
+          <br></br>
+          <div className="text-center">
+          <button type="submit" class="btn btn-primary btn-block" onClick={handleSubmit} style={{
+                  backgroundColor:"#0077be",color:'white',
+                }}>Verify</button>
+              </div>
+        </form>
+
+      </div>
     </div>
+  </div>
   );
 }
 
 export default OTP;
+
+        // <input type="text" name="otp" onChange={handleInput} value={otp} />
+        {/* <button onClick={handleSubmit} class="btn btn-primary btn-block" type="submit">Verify</button> */}

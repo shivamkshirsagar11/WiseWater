@@ -10,6 +10,7 @@ import Home from "./pages/guestUser/Home.jsx";
 import Login from "./pages/guestUser/login.jsx";
 import WorkerApplicationFrom from "./pages/guestUser/WorkerApplicationFrom.jsx";
 import ShowCompanies from "./pages/guestUser/showCompanies/ShowCompanies.jsx";
+
 // customer
 import CustomerRegistration from "./pages/customer/CustomerRegistration.jsx";
 import Placeorder from "./pages/customer/Placeorder.jsx";

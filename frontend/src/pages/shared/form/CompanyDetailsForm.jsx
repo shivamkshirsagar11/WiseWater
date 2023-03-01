@@ -23,10 +23,11 @@ function CompanyDetailsForm({ companyData, setCompanyData }) {
 
   return (
     <div>
-      <div className="mb-3">
+    <div className="container col-sm-6">
+      <div className="">
         <div className="input-group">
           <span className="input-group-text" id="basic-addon3">
-            company name
+            company name  
           </span>
           <input
             type="text"
@@ -58,7 +59,7 @@ function CompanyDetailsForm({ companyData, setCompanyData }) {
         <input
           className="form-control"
           id="exampleFormControlInput4"
-          placeholder="1234567890 10-digits"
+          placeholder="10-digits"
           type="text"
           name="contact"
           onChange={handleInputData}
@@ -77,7 +78,7 @@ function CompanyDetailsForm({ companyData, setCompanyData }) {
           name="serviceTime" onChange={handleInputData} value={serviceTime}
         />
       </div>
-      <h3 className="display-6">Water Prices</h3>
+      <h4 className="display-6 text-center">Water Prices</h4>
       <div className="input-group mb-3">
         <span className="input-group-text">Cold Water</span>
         <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" name="coldWater" onChange={setWaterPrice} value={waterPrice.coldWater} />
@@ -93,9 +94,9 @@ function CompanyDetailsForm({ companyData, setCompanyData }) {
         <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" name="hotWater" onChange={setWaterPrice} value={waterPrice.hotWater} />
         <span className="input-group-text">.00</span>
       </div>
-
-
-      <AddressDetailsForm address={companyData.address} setAddress={setAddress} />
+    </div>
+    <h4 className="display-6 text-center">Company Address</h4>
+    <AddressDetailsForm address={companyData.address} setAddress={setAddress} />
     </div>
   )
 }

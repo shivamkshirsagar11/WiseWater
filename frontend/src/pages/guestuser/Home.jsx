@@ -4,11 +4,13 @@ import { loginUser } from "../../actions/guestUser/loginUser.js";
 import "react-toastify/dist/ReactToastify.css";
 import MultiToast from "../../actions/shared/MultiToast.js";
 import Card from "../../components/Card.jsx";
-import ownerImage from "../../media/p1.jpg";
-import customerImage from "../../media/p2.jpg";
-import workerImage from "../../media/p3.jpg";
+import ownerImage from "../../media/owner.jfif";
+import customerImage from "../../media/customer.jfif";
+import workerImage from "../../media/worker.jfif";
+// import water from "../../media/water_splash.jpg"
 
 import { CookiesContext } from '../../context/CookiesProvider.js'
+// import { size } from "pdfkit/js/page";
 
 export default function Login() {
     const { setCookies } = useContext(CookiesContext);
@@ -36,13 +38,36 @@ export default function Login() {
             navigate(`/${user.collectionName.toLowerCase()}/profile`);
         }
     };
-
+    const styles = {
+        backgroundColor: '#bbdefb',
+        
+      };
+      const cards = {
+        backgroundColor: '#4fc3f7',
+      };
+      const hea= {
+            backgroundColor: "#bbdefb",
+            padding: "12px",
+            textAlign: "center",
+            // backgroundImage: "water",
+      }
+      const ti ={
+            color: "darkblue",
+            fontSize: "45px",
+            margin: "0",
+            textTransform: "uppercase"
+          
+      }
     return (
-        <>
-            <h1 className="container display-3">
-                Wise Water
-            </h1>
-            <div className=" container my-3 p-3 mb-2 bg-primary bg-gradient text-blue">
+        <div style={styles} >
+            {/* // <h1 className="container display-3" > 
+            //     Wise Water
+            // </h1> */}
+
+            <header style={hea} >
+                <h1 class="header-title" style={ti}>Wise Water</h1>
+            </header>
+            <div className=" container p-3 mb-2   bg-gradient text-blue" style={cards} >
                 <div className="accordion accordion-flush" id="accordionFlushExample">
                     <form>
                         <div className="row align-items-center">
@@ -92,7 +117,7 @@ export default function Login() {
                     </form>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

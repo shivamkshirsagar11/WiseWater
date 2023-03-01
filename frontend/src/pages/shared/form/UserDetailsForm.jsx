@@ -16,14 +16,15 @@ function UserDetailsForm({ userData, setUserData }) {
   };
 
   return (
-    <div className="container">
+    <div className="container col-sm-6">
       <div className="input-group">
-        <span className="input-group-text">First and last name</span>
+        <span className="input-group-text">Name</span>
         <input
           type="text"
           aria-label="First name"
           className="form-control"
           name="firstname"
+          placeholder="Enter First Name"
           onChange={handleInputData}
           value={firstname}
         />
@@ -32,17 +33,18 @@ function UserDetailsForm({ userData, setUserData }) {
           aria-label="Last name"
           className="form-control"
           name="lastname"
+          placeholder="Enter Last Name"
           onChange={handleInputData}
           value={lastname}
         />
       </div>
       <div className="mb-3">
-        <label for="exampleFormControlInput1" className="form-label">
+        <label for="exampleFormControlInput1 " className="form-label">
           Email
         </label>
         <input
           type="email"
-          className="form-control"
+          className="form-control "
           id="exampleFormControlInput1"
           placeholder="name@example.com"
           name="email"
@@ -55,9 +57,9 @@ function UserDetailsForm({ userData, setUserData }) {
           Contact
         </label>
         <input
-          className="form-control"
+          className="form-control form-control-sm"
           id="exampleFormControlInput4"
-          placeholder="1234567890 10-digits"
+          placeholder="10 digits"
           type="text"
           name="contact"
           onChange={handleInputData}
@@ -71,7 +73,7 @@ function UserDetailsForm({ userData, setUserData }) {
         <input
           className="form-control"
           id="exampleFormControlInput4"
-          placeholder="1234567890 10-digits"
+          placeholder="Must be atleast 8 digits with atleast 1 capital,1 digit,1 special (@, $, !, &, etc)"
           type="password"
           name="password"
           onChange={handleInputData}
@@ -85,7 +87,7 @@ function UserDetailsForm({ userData, setUserData }) {
         <input
           className="form-control"
           id="exampleFormControlInput4"
-          placeholder="1234567890 10-digits"
+          placeholder=""
           type="password"
           name="confirmPassword"
           onChange={handleInputData}

@@ -7,11 +7,11 @@ function AddressDetailsForm({ address, setAddress }) {
   };
 
   return (
-    <div className="container">
+    <div className="container col-sm-6">
       <div className="input-group">
         <span className="input-group-text">Line 1</span>
         <textarea
-          className="form-control"
+          className="form-control form-control-sm"
           aria-label="With textarea"
           name="line1"
           onChange={handleInput}
@@ -22,7 +22,7 @@ function AddressDetailsForm({ address, setAddress }) {
       <div className="input-group">
         <span className="input-group-text">Line 2</span>
         <textarea
-          className="form-control"
+          className="form-control form-control-sm "
           aria-label="With textarea"
           name="line2"
           onChange={handleInput}
@@ -55,6 +55,7 @@ function AddressDetailsForm({ address, setAddress }) {
             type="text"
             className="form-control"
             id="basic-url"
+            placeholder="6 digits"
             aria-describedby="basic-addon3"
             name="pincode"
             onChange={handleInput}

@@ -6,6 +6,8 @@ import MultiToast from "../../actions/shared/MultiToast.js";
 import { useNavigate } from "react-router-dom";
 import { CookiesContext } from "../../context/CookiesProvider.js";
 import OTP from "../shared/form/OTP.jsx";
+import { style } from "glamor";
+
 
 function CustomerRegistration() {
   const navigate = useNavigate();
@@ -34,30 +36,40 @@ function CustomerRegistration() {
   };
 
   const customer = { ...userData, address: { ...userData.address } };
+  const styles = {
+    backgroundColor: '#bbdefb',
+    
+  };
   return (
-    <>
+    
+    <body style={styles}>
       {!flag && (
-        <div className="container my-3">
-          <h3 className="display-4">Customer Registration</h3>
+        <div className="container " style={{backgroundColor:"#e3f2fd"}}>
+          <h1 className="text-center " style={{ color: '#0077be' }}>
+            <span className="fw-bold">Customer Registration </span>  
+          </h1>
           <form method="post">
             <UserDetailsForm userData={userData} setUserData={setUserData} />
             <AddressDetailsForm
               address={userData.address}
               setAddress={setAddress}
             />
-            <button
-              type="submit"
-              className="btn btn-success"
-              style={{
-                "background-image": "linear-gradient(#525252, #3d72b4)",
-              }}
-              onClick={handleSubmit}
-            >
-              Submit
-            </button>
+            <div className="text-center">
+              <button
+                type="submit"
+                className="btn btn-success "
+                style={{
+                  backgroundColor:"#0077be",color:'white',
+                }}
+                onClick={handleSubmit}
+              >
+                Submit
+              </button> 
+            </div>
           </form>
         </div>
-      )}
+      
+        )}
       {flag && (
         <OTP
           userData={customer}
@@ -69,7 +81,8 @@ function CustomerRegistration() {
           toastMsg={"you are registered successfully"}
         />
       )}
-    </>
+    </body>
+    
   );
 }
 
