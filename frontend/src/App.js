@@ -5,9 +5,7 @@ import { useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 
 // guest user
-// import Map from "./pages/shared/map/MapRender.jsx";
 import Home from "./pages/guestUser/Home.jsx";
-import Login from "./pages/guestUser/login.jsx";
 import WorkerApplicationFrom from "./pages/guestUser/WorkerApplicationFrom.jsx";
 import ShowCompanies from "./pages/guestUser/showCompanies/ShowCompanies.jsx";
 
@@ -18,14 +16,18 @@ import ShowPlacedorderList from "./pages/customer/ShowPlacedorderList.jsx";
 import TrackOrder from "./pages/customer/TrackOrder.jsx";
 import ShowCustomer from "./pages/owner/ShowCustomer.jsx";
 import ShowPayments from './pages/customer/ShowPayments/ShowPayments.jsx'
+import Plans from "./pages/customer/Plans.jsx";
 
 // worker
 import WorkerAssignedOrders from "./pages/worker/WorkerAssignedOrders.jsx";
 import WorkerDelieveredOrderes from "./pages/worker/WorkerDelieveredOrders.jsx";
 import WorkerOrderQuery from "./pages/worker/WorkerOrderQuery.jsx";
+import DailyOrders from "./pages/worker/DailyOrders.jsx";
 
 // owner
 import ShowInQueryOrderList from "./pages/owner/ShowInQueryOrderList.jsx";
+import ShowAssignedPlans from "./pages/owner/ShowAssignedPlans.jsx";
+import AssignPlan from "./pages/owner/AssignPlan.jsx";
 import OwnerRegistration from "./pages/owner/OwnerRegistration.jsx";
 import ShowWorkerApplications from "./pages/owner/ShowWorkerApplications.jsx";
 import ShowPendingOrderList from "./pages/owner/ShowPendingOrderList.jsx";
@@ -33,6 +35,7 @@ import ShowWorkers from "./pages/owner/ShowWorkers.jsx";
 import ShowAssignedOrders from "./pages/owner/ShowAssignedOrders.jsx";
 import ResolveInQueryOrder from "./pages/owner/ResolveInQueryOrder.jsx";
 import ShowPaymentsOwner from "./pages/owner/ShowPayments/ShowPaymentsOwner.jsx";
+import CustomerPlans from "./pages/owner/CustomerPlans.jsx";
 
 import Profile from "./pages/shared/profile/Profile.jsx";
 
@@ -52,18 +55,6 @@ function App() {
           <Route path="/">
             {/* guestuser */}
             <Route index element={<Home />} />
-            {/* <Route
-                path="/open/order"
-                element={<Map cookies={cookies} />}
-              /> */}
-            {/* <Route
-              path="/login"
-              element={<Login setCookies={handleSetCookies} />}
-            /> */}
-            {/* <Route
-              path="/verification/contact/otp"
-              element={<Login setCookies={handleSetCookies} />}
-            /> */}
             <Route
               path="/worker/application/:companyname"
               element={<WorkerApplicationFrom />}
@@ -80,10 +71,15 @@ function App() {
                 element={<CustomerRegistration />}
               />
               <Route
+                path="/customer/get-subscription-details"
+                element={<Plans/>}
+              />
+
+              <Route
                 path="/customer/profile"
                 element={
                   <Profile
-                    userType="customer"
+                  userType="customer"
                   />
                 }
               />
@@ -112,6 +108,10 @@ function App() {
                 element={<WorkerAssignedOrders />}
               />
               <Route
+                path="/worker/orders/daily"
+                element={<DailyOrders />}
+              />
+              <Route
                 path="/worker/orders/delievered"
                 element={<WorkerDelieveredOrderes />}
               />
@@ -123,7 +123,7 @@ function App() {
                 path="/worker/profile"
                 element={
                   <Profile
-                    userType="worker"
+                  userType="worker"
                   />
                 }
               />
@@ -136,6 +136,14 @@ function App() {
                 element={<OwnerRegistration />}
               />
               <Route
+                path="/owner/assigned/plans"
+                element={<ShowAssignedPlans />}
+              />
+              <Route
+                path="/owner/customer-plans"
+                element={<CustomerPlans/>}
+              />
+              <Route
                 path="/owner/show-worker-applications"
                 element={<ShowWorkerApplications />}
               />
@@ -143,7 +151,7 @@ function App() {
                 path="/owner/profile"
                 element={
                   <Profile
-                    userType="owner"
+                  userType="owner"
                   />
                 }
               />
@@ -158,6 +166,10 @@ function App() {
               <Route
                 path="/owner/show-workers/:orderId"
                 element={<ShowWorkers />}
+              />
+              <Route
+                path="/owner/assign-plan/:orderId"
+                element={<AssignPlan />}
               />
               <Route
                 path="/owner/show-assigned-orders"
@@ -185,7 +197,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      <ToastContainer autoClose={3000} />
+<ToastContainer autoClose={3000} />
     </CookiesProvider>
   );
 }

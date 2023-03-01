@@ -1,6 +1,6 @@
-const assignOrder = async ({ token, worker_id, orderId }) => {
+const assignPlan = async ({ token, worker_id, orderId }) => {
     try {
-        const response = await fetch(`/api/owner/assign-order`, {
+        const response = await fetch(`/api/owner/assign-plan`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -14,7 +14,6 @@ const assignOrder = async ({ token, worker_id, orderId }) => {
         else {
             return {
                 type: 'data',
-                workers: data.workers,
             }
         }
     } catch (error) {
@@ -25,4 +24,4 @@ const assignOrder = async ({ token, worker_id, orderId }) => {
     }
 }
 
-export { assignOrder }
+export { assignPlan }

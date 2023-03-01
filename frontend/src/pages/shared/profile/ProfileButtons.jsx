@@ -1,3 +1,4 @@
+// this page is not used and not need
 import React from 'react'
 
 function ProfileButtons({ userType, redirectHandler }) {
@@ -26,6 +27,7 @@ function ProfileButtons({ userType, redirectHandler }) {
                     <button onClick={redirectHandler} value="/show-companies">Show companies</button>
                     <button onClick={redirectHandler} value="/customer/show-placed-orders">My orders</button>
                     <button onClick={redirectHandler} value="/customer/get-payment-details">get payment details</button>
+                    <button onClick={redirectHandler} value="/customer/get-subscription-details">My Plans</button>
                 </>
             }
 

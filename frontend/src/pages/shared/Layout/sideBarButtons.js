@@ -11,13 +11,18 @@ export const customerMenu = [
         icon: "fa-solid fa-list",
     },
     {
-        name: "get payment details",
+        name: "payment details",
         path: "/customer/get-payment-details",
         icon: "fa-solid fa-user-doctor",
     },
     {
         name: "Profile",
         path: "/customer/profile",
+        icon: "fa-solid fa-user",
+    },
+    {
+        name: "My Plans",
+        path: "/customer/get-subscription-details",
         icon: "fa-solid fa-user",
     }
 ];
@@ -27,6 +32,16 @@ export const ownerMenu = [
     {
         name: "Show companies",
         path: "/show-companies",
+        icon: "fa-solid fa-house",
+    },
+    {
+        name: "Show Customer plans",
+        path: "/owner/customer-plans",
+        icon: "fa-solid fa-house",
+    },
+    {
+        name: "Show Assigned Customer plans",
+        path: "/owner/assigned/plans",
         icon: "fa-solid fa-house",
     },
     {
@@ -69,6 +84,11 @@ export const workerMenu = [
     {
         name: "show assigned orders",
         path: "/worker/orders/assigned",
+        icon: "fa-solid fa-list",
+    },
+    {
+        name: "show daily orders",
+        path: "/worker/orders/daily",
         icon: "fa-solid fa-list",
     },
     {

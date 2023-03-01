@@ -16,7 +16,7 @@ export default function Placeorder() {
         const authenticate = async () => {
             const response = await authenticateUser('customer', token);
             if ('error' === response.type) {
-                alert('you are not authenticated' + response.error);
+                MultiToast('you are not authenticated' + response.error, true);
                 navigate('/login');
             }
         }
