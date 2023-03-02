@@ -67,6 +67,7 @@ export default function Card({
                       type="submit"
                       value={collection}
                       onClick={hadleSubmit}
+                      style={ {backgroundColor:"#0077be",color:'white',}}
                       className="btn btn-primary"
                     >
                       Login

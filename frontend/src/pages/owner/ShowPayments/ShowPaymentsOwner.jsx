@@ -42,7 +42,12 @@ function ShowPaymentsOwner() {
     if (true === loading) {
         return <Spinner />
     }
-
+    const styles={
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+         height: "70vh",
+    }
     return (
         <div style={{ "background-image": "linear-gradient(#b993d6, #8ca6db)" }}>
             <Layout userType={'owner'}>
@@ -58,7 +63,9 @@ function ShowPaymentsOwner() {
                             )
                         })
                         :
-                        <h4 className="container display-6" style={{ "color": "brown" }}>No Details</h4>
+                        <div style={styles}>
+                        <h1  style={{color:"#b33800",fontWeight:"500",fontSize:"4rem",textAlign:"center"}}>Oops!! No Details Found</h1>
+                        </div>
                 }
             </Layout>
         </div>

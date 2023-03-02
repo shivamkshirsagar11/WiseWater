@@ -38,10 +38,26 @@ export default function ShowPlacedorderList() {
         console.log(e.target.value)
         navigate(`${e.target.value}`)
     }
+    const styles={
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+         height: "70vh",
+    }
     return (
-        <Layout userType={'customer'}>
-            <div>
-                {0 === placedOrderList.length && <p>no orders placed</p>}
+        // <div style={{backgroundColor:"#64b5f6"}} >
+            <Layout userType={'customer'}style={{backgroundColor:"#670e00"}}
+             >
+            <div >
+                {0 === placedOrderList.length && 
+                <div style={styles}>
+                <div style={{textAlign:"center"}}>
+                <h1 style={{color:"#b33800",fontWeight:"500",fontSize:"4.5rem"}}>No Orders Placed !!
+                </h1>
+                </div>
+                </div>
+                }
+                
                 {
                     placedOrderList.map((order, index) => {
                         return (
@@ -53,6 +69,7 @@ export default function ShowPlacedorderList() {
                     })
                 }
             </div>
-        </Layout>
+         </Layout>
+        // </div>
     )
 }

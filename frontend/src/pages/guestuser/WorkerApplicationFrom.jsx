@@ -33,8 +33,11 @@ console.log("submitted")
     <>
       {!flag && (
         <div>
-          <h3 className="container-sm my-5 display-3">Worker Application</h3>
-          <form method="post" className="container my-5">
+        <h1 className="text-center my-4 " style={{ color: '#0077be' }}>
+            <span className="fw-bold">Worker Application </span>  
+          </h1>
+          {/* <h3 className="container-sm display-4">Worker Application</h3> */}
+          <form method="post" className="container col-sm-6">
             <div className="mb-3">
               <label htmlFor="exampleFormControlInput1" className="form-label">
                 Email
@@ -50,11 +53,12 @@ console.log("submitted")
               />
             </div>
             <div className="input-group">
-              <span className="input-group-text">First and last name</span>
+              <span className="input-group-text">Name</span>
               <input
                 type="text"
                 aria-label="First name"
                 className="form-control"
+                placeholder="First Name"
                 name="firstname"
                 onChange={handleInputData}
                 value={userData.firstname}
@@ -64,6 +68,7 @@ console.log("submitted")
                 aria-label="Last name"
                 className="form-control"
                 name="lastname"
+                placeholder="Last Name"
                 onChange={handleInputData}
                 value={userData.lastname}
               />
@@ -76,7 +81,7 @@ console.log("submitted")
               <input
                 className="form-control"
                 id="exampleFormControlInput4"
-                placeholder="1234567890 10-digits"
+                placeholder="10 digits"
                 type="text"
                 name="contact"
                 onChange={handleInputData}
@@ -100,7 +105,10 @@ console.log("submitted")
             <button
               type="submit"
               onClick={handleSubmit}
-              className="btn btn-warning"
+              className="btn "
+              style={{
+                  backgroundColor:"#0077be",color:'white',
+                }}
             >
               Submit
             </button>

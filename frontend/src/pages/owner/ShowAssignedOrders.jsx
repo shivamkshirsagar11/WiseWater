@@ -36,12 +36,19 @@ export default function ShowAssignedOrders() {
     if (true === loading) {
         return <Spinner />;
     }
-
+    const styles={
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+         height: "70vh",
+    }
     return (
         <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
         <Layout userType={'owner'}>
             <div>
-                {0 === assignedOrders.length && <h4 className="display-6" style={{"color":"red"}}>no order are assigned</h4>}
+                {0 === assignedOrders.length &&  <div style={styles}>
+                        <h1  style={{color:"#b33800",fontWeight:"500",fontSize:"4rem",textAlign:"center"}}>No Orders are Assigned</h1>
+                        </div>}
                 {
                     assignedOrders.map((assignedOrder, index) => {
                         console.log(assignedOrder)

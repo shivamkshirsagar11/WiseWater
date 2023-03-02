@@ -43,10 +43,19 @@ export default function ShowPendingOrderList() {
   // why we delete order.status
   // REASON :- in showOrder componenet there is condataion on this order.status
   // when owner wants to show panding orders then there is no meansing to show order status
+
+  const styles={
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+     height: "70vh",
+}
   return (
     <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
     <Layout userType={'owner'}>
-      {pendingOrderList.length === 0 && <h4 className="container display-6" style={{"color":"brown"}}>No Details</h4>}
+      {pendingOrderList.length === 0 && <div style={styles}>
+                        <h1  style={{color:"#b33800",fontWeight:"500",fontSize:"4rem",textAlign:"center"}}>No Orders are Assigned</h1>
+                        </div>}
       {pendingOrderList.map((order, index) => {
         delete order.status
         console.log(order)
@@ -57,7 +66,7 @@ export default function ShowPendingOrderList() {
             <button
               onClick={redirectHandler}
               value={`/owner/show-workers/${order.orderId}`}
-            >assign</button>
+            >Assign</button>
           </div>
         );
       })}

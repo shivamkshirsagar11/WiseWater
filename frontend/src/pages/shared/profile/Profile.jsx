@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../Spinner';
 import { giveUserData } from '../../../actions/shared/profile/giveUserData.js';
-
+import Clock from 'react-digital-clock';
 import CompanyDetails from '../details/CompanyDetails.jsx';
 // import CompanyDetails from ''
 import AddressDetails from '../details/AddressDetails.jsx';
@@ -56,12 +56,12 @@ export default function Profile({ userType }) {
     }
 
     return (
-        <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
+        <div style={{backgroundColor:"blue"}}>
         <Layout userType={userType} >
             <UserDetails userData={userData} userType={userType}/>
             {
                 'customer' !== userType ?
-                    <>
+                <>
                         <CompanyViewModel
                             show={companyViewModelState}
                             onHide={() => setCompanyViewModelState(false)}
@@ -69,8 +69,17 @@ export default function Profile({ userType }) {
                         />
                         <br/>
                         <div className="d-grid gap-2 col-2 mx-auto">
-                        <button className="btn btn-warning"onClick={() => setCompanyViewModelState(true)}>show company details</button> </div></> :
-                    <AddressDetails address={userData.address} />
+                        <button className="btn btn-warning" style={{fontSize:"1.2em",fontWeight:"700",color:"darkblue"}} onClick={() => setCompanyViewModelState(true)}>Show Company Details</button> </div></> :
+                    <><AddressDetails address={userData.address} />
+                        <div style={{ backgroundColor: "#0077be", textAlign: "center", }}>
+                            <h3 style={{ color: "white", fontSize: "1.4rem", fontFamily: "cursive", fontWeight: "500", }}>
+                                Current Time: <Clock />
+                            </h3>
+                        </div>
+                    </>
+                
+                    
+                    
             }
             {/* <ProfileButtons userType={userType} redirectHandler={redirectHandler} /> */}
             {/* <button onClick={handleLogout}>logout</button> */}

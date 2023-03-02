@@ -45,7 +45,7 @@ export default function OwnerRegistration() {
 			{!flag && (
 				<div className="container" style={{backgroundColor:"#e3f2fd"}}>
 					<h1 className="text-center " style={{ color: '#0077be' }}>
-						<span className="fw-bold">Customer Registration </span>  
+						<span className="fw-bold">Owner Registration </span>  
 					</h1>
 					<form method="post">
 						<UserDetailsForm userData={userData} setUserData={setUserData} />

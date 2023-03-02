@@ -92,14 +92,36 @@ function ShowWorkerApplications() {
             setQuery('');
         }
     }
-
+    const styles={
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+         height: "70vh",
+    }
+    const styles_company= {
+        fontSize: "1.8rem",
+        fontWeight: "700",
+        borderRadius: "3px",
+        border: "4px solid #c5cae9",
+        padding: "13px ",
+        margin: "0 auto",
+        textAlign: "center",
+        color: "#0d47a1",
+        backgroundColor:"#ede7f6 ",
+        input: {
+          '::placeholder': {
+            color: "blue",
+          },
+        },
+      }
     return (
-            <div style={{"backgroundImage":"linear-gradient(#b993d6, #8ca6db)"}}>
+            <div >
         <Layout userType={'owner'}>
                 <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} className="form-control"
           placeholder="Search Companies here"
           aria-describedby="button-addon2"
-          style={{"backgroundImage":"linear-gradient(#b993d6, #8ca6db)"}}/>
+          style={styles_company}
+          />
                 {
                     searchedWorkerApplications.length !== 0 ?
                         <>
@@ -107,15 +129,20 @@ function ShowWorkerApplications() {
                                 searchedWorkerApplications.map((workerApplication, index) => {
                                     return (
                                         <div key={index}>
-                                            <h2>application {index}</h2>
+                                            <h3 style={{textAlign:"center",fontWeight:"600",fontFamily:"monospace"}}>Application {index}</h3>
                                             <UserDetails userData={workerApplication} />
-                                            <button className="btn btn-warning" onClick={handleHiring} value={index}>hire worker</button>
+                                            <div style={{textAlign:"center"}}>
+                                            <button className="btn btn-warning" onClick={handleHiring} style={{fontSize:"1.2em",fontWeight:"700",color:"darkblue",textAlign:"center"}}  value={index}>Hire Worker</button>
+                                        </div>
                                         </div>
                                     )
                                 })
                             }
                         </>
-                        : <h4 className="container display-6" style={{"color":"brown"}}>No application found</h4>
+                        :
+                        <div style={styles}>
+                        <h1  style={{color:"#b33800",fontWeight:"500",fontSize:"4rem",textAlign:"center"}}>No Application Found</h1>
+                        </div>
                 }
         </Layout>
             </div>

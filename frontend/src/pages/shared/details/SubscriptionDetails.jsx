@@ -4,11 +4,11 @@ export default function SubscriptionDetails({ plan, customer, userType, worker }
   console.log(customer)
   return (
     <ul>
-      <li>start date: {plan.start_date}</li>
-      <li>water Type: {plan.water_type}</li>
-      <li>remaining days: {plan.remaining_days}</li>
-      <li>Next delievery: {plan.next_date}</li>
-      <li>plan activation status: {plan.status}</li>
+      <li>Start Date: {plan.start_date}</li>
+      <li>Water Type: {plan.water_type}</li>
+      <li>Remaining Days: {plan.remaining_days}</li>
+      <li>Next Delivery: {plan.next_date}</li>
+      <li>Plan Activation Status: {plan.status}</li>
       <hr/>
       {
         (userType === "owner" || userType === "worker") &&

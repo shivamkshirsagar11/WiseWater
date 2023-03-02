@@ -7,12 +7,9 @@ import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-d
 dotenv.config();
 // Read more at http://twil.io/secure
 
-const accountSid = "ACf9074ad1b8968f7090b4760ae2ddae5a";
-const authToken = "75f2e4e8dddf91834068ec57e3e47490";
-const verifySid = "VAab67bcb24a7af25dab589e576cd66a4d";
-// const accountSid = process.env.ACCOUNT_SID;
-// const authToken = process.env.AUTH_TOKEN;
-// const verifySid = process.env.VERIFY_SID;
+const accountSid = process.env.ACCOUNT_SID;
+const authToken = process.env.AUTH_TOKEN;
+const verifySid = process.env.VERIFY_SID;
 const client = twilio(accountSid, authToken);
 export const generateOTP = expressAsyncHandler(async (req, res) => {
   const { contact } = req.body;
@@ -37,12 +34,11 @@ export const generateOTP = expressAsyncHandler(async (req, res) => {
 );
 export const verifyOTP = expressAsyncHandler(async (req, res) => {
   const { contact, otp } = req.body;
-
   await client.verify.v2
     .services(verifySid)
     .verificationChecks.create({ to: `+91${contact}`, code: otp })
     .then((verification_check) => {
-
+      console.log("in verify");
       res.status(200)
       res.json({
         status: verification_check.status

@@ -6,19 +6,15 @@ const ViewModal = (props) => {
     const data = props.data;
     console.log(props.data)
     return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-        <div style={{"background-image":"linear-gradient(#eef2f3, #8e9eab)"}}>
-            <Modal.Header closeButton>
+         <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered> 
+
+        <div > 
+             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     {data.name}
                 </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
+            </Modal.Header> 
+             <Modal.Body>
                 <p className="data-row">
                     <span className="key">name : </span>{" "}
                     <span className="value"> {data.name} </span>
@@ -40,6 +36,7 @@ const ViewModal = (props) => {
                     <span className="value"> {data.serviceTime} </span>
                 </p>
                 <hr />
+
                 <h5>water price</h5>
                 <p className="data-row">
                     <span className="key">cold water``: </span>{" "}
@@ -54,6 +51,7 @@ const ViewModal = (props) => {
                     <span className="value"> {data.waterPrice.hotWater}rs </span>
                 </p>
                 <hr />
+
                 <h5>copany address</h5>
                 <p className="data-row">
                     <span className="key">line1 : </span>{" "}
@@ -75,12 +73,16 @@ const ViewModal = (props) => {
                     <span className="key">state : </span>{" "}
                     <span className="value"> {data.address.state} </span>
                 </p>
-            </Modal.Body>
-            <Modal.Footer>
+            </Modal.Body> 
+             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
-        </div>
-        </Modal>
+            </Modal.Footer> 
+         </div>
+        </Modal> 
+        
     );
 };
+
 export default ViewModal;
+
+

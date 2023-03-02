@@ -1,17 +1,17 @@
 export const customerMenu = [
     {
-        name: "Show companies",
+        name: "Show Companies",
         path: "/show-companies",
         icon: "fa-solid fa-house",
     },
 
     {
-        name: "My orders",
+        name: "My Orders",
         path: "/customer/show-placed-orders",
         icon: "fa-solid fa-list",
     },
     {
-        name: "payment details",
+        name: "Payment Details",
         path: "/customer/get-payment-details",
         icon: "fa-solid fa-user-doctor",
     },
@@ -30,27 +30,27 @@ export const customerMenu = [
 // admin menu
 export const ownerMenu = [
     {
-        name: "Show companies",
+        name: "Show Companies",
         path: "/show-companies",
         icon: "fa-solid fa-house",
     },
     {
-        name: "Show Customer plans",
+        name: "Show Customer Plans",
         path: "/owner/customer-plans",
         icon: "fa-solid fa-house",
     },
     {
-        name: "Show Assigned Customer plans",
+        name: "Show Assigned Customer Plans",
         path: "/owner/assigned/plans",
         icon: "fa-solid fa-house",
     },
     {
-        name: "Show pending orders",
+        name: "Show Pending Orders",
         path: "/owner/show-pending-orders",
         icon: "fa-solid fa-user-doctor",
     },
     {
-        name: "show assigned orders",
+        name: "Show Assigned Orders",
         path: "/owner/show-assigned-orders",
         icon: "fa-solid fa-user",
     },
@@ -60,12 +60,12 @@ export const ownerMenu = [
         icon: "fa-solid fa-user-doctor",
     },
     {
-        name: "show worker application",
+        name: "Show Worker Application",
         path: "/owner/show-worker-applications",
         icon: "fa-solid fa-user-doctor",
     },
     {
-        name: "get payment details",
+        name: "Get Payment Details",
         path: "/owner/get-payment-details",
         icon: "fa-solid fa-user-doctor",
     },
@@ -77,17 +77,17 @@ export const ownerMenu = [
 ];
 export const workerMenu = [
     {
-        name: "show delievered Orders",
+        name: "Show Delivered Orders",
         path: "/worker/orders/delievered",
         icon: "fa-solid fa-house",
     },
     {
-        name: "show assigned orders",
+        name: "Show Assigned Orders",
         path: "/worker/orders/assigned",
         icon: "fa-solid fa-list",
     },
     {
-        name: "show daily orders",
+        name: "Show Daily Orders",
         path: "/worker/orders/daily",
         icon: "fa-solid fa-list",
     },

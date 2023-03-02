@@ -73,28 +73,44 @@ export default function ShowCompanies() {
   if (true === loading) return <Spinner />;
 
 
-
+  const styles= {
+    fontSize: "1.8rem",
+    fontWeight: "700",
+    borderRadius: "3px",
+    border: "4px solid #c5cae9",
+    padding: "13px ",
+    margin: "0 auto",
+    textAlign: "center",
+    color: "#0d47a1",
+    backgroundColor:"#ede7f6 ",
+    input: {
+      '::placeholder': {
+        color: "blue",
+      },
+    },
+  }
+ 
+  
+  
   return (
-    <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
+    <div style={{backgroundColor:"#64b5f6"}}>
     <Layout userType={userType}>
-      {/* <h3 className="container my-3 display-3">Apply for a job</h3> */}
-      {/* <div className="header" style={{ marginTop: '5px' }}> */}
         <input
           type="text"
-          className="form-control"
-          placeholder="Search Companies here"
+          className="form-control "
+          placeholder="Search Companies Here"
           aria-describedby="button-addon2"
           onChange={(e) => setQuery(e.target.value)}
           value={query}
-          style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}
+          style={styles}
           />
 <br/>
 <CompanyList userType={userType} companyList={searchedCompanies} />
           {/* </div> */}
       {searchedCompanies.length === 0 && (
-        <h4 className="container-sm display-6" style={{ color: "red" }}>
-          No Data on This
-        </h4>
+        <h1 className="container-sm " style={{ color: "#b71c1c", fontSize: "4rem",fontWeight: "500",textAlign:"center"}}>
+          Oops !! Data Unavailable
+        </h1>
       )}
     </Layout>
     </div>
