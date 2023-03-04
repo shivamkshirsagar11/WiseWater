@@ -4,12 +4,14 @@ import { CookiesContext } from "../../context/CookiesProvider.js";
 import MultiToast from "../../actions/shared/MultiToast";
 import { useNavigate } from "react-router-dom";
 import { getAllSubscription } from "../../actions/shared/subscription";
-import SubscriptionDetails from "../shared/details/SubscriptionDetails";
 import { dailyDelievery } from "../../actions/worker/dailyDelievery";
+import PlanViewModel from "../../components/planViewModel/PlanViewModel"
+import Layout from "../shared/Layout/Layout";
 
 export default function DailyOrders() {
   const [spinner, setSpinner] = useState(true);
   const [customerPlans, setCustomerPlans] = useState(null);
+  const [planViewModelState, setPlanViewModelState] = useState(false);
   const [customers, setCustomers] = useState(null);
   const [trigger, setTrigger] = useState(false);
   const { cookies } = useContext(CookiesContext);
@@ -50,13 +52,21 @@ else{
   };
   return (
     <>
+    <Layout userType={'customer'}style={{backgroundColor:"#670e00"}}
+             >
       {spinner && <Spinner />}
       {!spinner && customerPlans.length > 0 ? (
         customerPlans.map((plans, index) => {
           return (
             <div key={index}>
               <p>Plan {index}</p>
-              <SubscriptionDetails plan={plans} customer={customers[index]} userType={"worker"}/>
+              {/* <SubscriptionDetails plan={plans} customer={customers[index]} userType={"worker"}/> */}
+              <PlanViewModel
+                show={planViewModelState}
+                onHide={() => setPlanViewModelState(false)}
+                data={{plan:plans, customer:customers[index], userType:"worker"}}
+            />
+             <button className="btn btn-warning" onClick={() => setPlanViewModelState(true)}>Plan details</button>
               <button
               value={plans._id}
               onClick={delieverHandler}
@@ -67,6 +77,7 @@ else{
       ) : (
         <p>NO subscribed plans</p>
       )}
+      </Layout>
     </>
   );
 }

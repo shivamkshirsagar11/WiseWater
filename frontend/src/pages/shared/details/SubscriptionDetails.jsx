@@ -1,7 +1,6 @@
 import React from "react";
 import AddressDetails from "./AddressDetails";
 export default function SubscriptionDetails({ plan, customer, userType, worker }) {
-  console.log(customer)
   return (
     <ul>
       <li>Start Date: {plan.start_date}</li>

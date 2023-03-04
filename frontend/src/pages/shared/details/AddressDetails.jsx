@@ -15,10 +15,6 @@ function AddressDetails({ address }) {
         <div >
             <div>
             <div  className="display- 7" style={{textAlign:"center",fontFamily:"cursive",color:"darkblue",fontSize:"2rem",fontWeight:"500"}}>Address</div>
-            {/* <p>Line1 : {address.line1}</p>
-            <p>Line2 : {address.line2}</p>
-            <p>Pincode : {address.pincode}</p>
-            <p>State : {address.state}</p> */}
             <table style={{margin:"0 auto"}}>
       <tbody >
         <tr >

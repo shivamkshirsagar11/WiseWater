@@ -11,6 +11,7 @@
     "antd": "^5.2.2",
     "dotenv": "^16.0.3",
     "fuse.js": "^6.6.2",
+    "glamour": "^1.2.3",
     "http-proxy-middleware": "^2.0.6",
     "node-fetch": "^3.3.0",
     "proxy": "^1.0.2",
@@ -22,6 +23,7 @@
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
+    "save": "^2.9.0",
     "twilio": "^3.84.1",
     "web-vitals": "^2.1.4"
   },

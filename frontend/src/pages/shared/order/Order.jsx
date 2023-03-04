@@ -5,7 +5,6 @@ import OrderViewModel from '../../../components/orderViewModel/OrderViewModel.js
 export default function ShowOrder({ order }) {
 
     const [orderViewModelState, setOrderViewModelState] = useState(false);
-    console.log(order)
     return (
 
         <div className="container">
