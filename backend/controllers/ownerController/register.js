@@ -12,10 +12,11 @@ import { ownerValidation } from '../../validations/ownerValidation/ownerValidati
 
 export async function registerUser(req, res) {
     const { onlyValidation } = req.body;
+    console.log('from owner register')
     const error = await ownerValidation(req.body);
-
     if (error && error.errorMessage.length > 0) {
-        res.status(error.statusCode).json({
+        // error.statusCode
+        res.status(200).json({
             error: {
                 errorMessage: error.errorMessage
             }
@@ -37,7 +38,8 @@ export async function registerUser(req, res) {
                 contact: companyData.contact,
                 address: companyData.address,
                 serviceTime: companyData.serviceTime,
-                waterPrice: companyData.waterPrice
+                waterPrice: companyData.waterPrice,
+                status: 'pending'
             });
             const owner = await ownerModel.create({
                 firstname: userData.firstname,
@@ -45,7 +47,8 @@ export async function registerUser(req, res) {
                 contact: userData.contact,
                 email: userData.email,
                 password: await hash(userData.password, 10),
-                company_name: companyData.name
+                company_name: companyData.name,
+                status: 'pending'
             });
 
             res.status(201).json({

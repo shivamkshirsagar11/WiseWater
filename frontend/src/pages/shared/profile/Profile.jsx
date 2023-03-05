@@ -24,14 +24,16 @@ export default function Profile({ userType }) {
     useEffect(() => {
         const fetchData = async () => {
             const { token } = cookies;
-            const response = await giveUserData(userType, token);
-            if ('error' === response.type) {
-                alert(response.error);
-                navigate('/');
-            } else {
-                setUserData(response.userData);
-                if ('customer' !== userType)
-                    setCompanyData(response.companyData);
+            if ('admin' !== userType) {
+                const response = await giveUserData(userType, token);
+                if ('error' === response.type) {
+                    alert(response.error);
+                    navigate('/');
+                } else {
+                    setUserData(response.userData);
+                    if ('customer' !== userType)
+                        setCompanyData(response.companyData);
+                }
             }
         }
         fetchData();
@@ -56,34 +58,34 @@ export default function Profile({ userType }) {
     }
 
     return (
-        <div style={{backgroundColor:"blue"}}>
-        <Layout userType={userType} >
-            <UserDetails userData={userData} userType={userType}/>
-            {
-                'customer' !== userType ?
-                <>
-                        <CompanyViewModel
-                            show={companyViewModelState}
-                            onHide={() => setCompanyViewModelState(false)}
-                            data={companyData}
-                        />
-                        <br/>
-                        <div className="d-grid gap-2 col-2 mx-auto">
-                        <button className="btn btn-warning" style={{fontSize:"1.2em",fontWeight:"700",color:"darkblue"}} onClick={() => setCompanyViewModelState(true)}>Show Company Details</button> </div></> :
-                    <><AddressDetails address={userData.address} />
-                        <div style={{ backgroundColor: "#0077be", textAlign: "center", }}>
-                            <h3 style={{ color: "white", fontSize: "1.4rem", fontFamily: "cursive", fontWeight: "500", }}>
-                                Current Time: <Clock />
-                            </h3>
-                        </div>
-                    </>
-                
-                    
-                    
-            }
-            {/* <ProfileButtons userType={userType} redirectHandler={redirectHandler} /> */}
-            {/* <button onClick={handleLogout}>logout</button> */}
-        </Layout>
+        <div style={{ backgroundColor: "blue" }}>
+            <Layout userType={userType} >
+                <UserDetails userData={userData} userType={userType} />
+                {
+                    'customer' !== userType ?
+                        <>
+                            <CompanyViewModel
+                                show={companyViewModelState}
+                                onHide={() => setCompanyViewModelState(false)}
+                                data={companyData}
+                            />
+                            <br />
+                            <div className="d-grid gap-2 col-2 mx-auto">
+                                <button className="btn btn-warning" style={{ fontSize: "1.2em", fontWeight: "700", color: "darkblue" }} onClick={() => setCompanyViewModelState(true)}>Show Company Details</button> </div></> :
+                        <><AddressDetails address={userData.address} />
+                            <div style={{ backgroundColor: "#0077be", textAlign: "center", }}>
+                                <h3 style={{ color: "white", fontSize: "1.4rem", fontFamily: "cursive", fontWeight: "500", }}>
+                                    Current Time: <Clock />
+                                </h3>
+                            </div>
+                        </>
+
+
+
+                }
+                {/* <ProfileButtons userType={userType} redirectHandler={redirectHandler} /> */}
+                {/* <button onClick={handleLogout}>logout</button> */}
+            </Layout>
         </div>
     );
 }
