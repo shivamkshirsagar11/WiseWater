@@ -20,6 +20,7 @@ export default function Temp() {
             password: password,
         };
         const response = await loginUser(user);
+
         console.log(response);
         if ("error" === response.type) {
             console.log(response.error);
@@ -28,7 +29,6 @@ export default function Temp() {
             setCookies("token", response.token);
             console.log(response.token);
             MultiToast("successfully logged in", false);
-
             navigate(`/adminPage`);
         }
     }

@@ -9,7 +9,7 @@ import { CookiesContext } from "../../context/CookiesProvider.js";
 
 export default function AssignPlan() {
   const { orderId } = useParams();
-    console.log("order id: ",orderId)
+  console.log("order id: ", orderId)
   const { cookies } = useContext(CookiesContext);
   const navigate = useNavigate();
   const [showWorkers, setShowWorkers] = useState([]);
@@ -20,7 +20,10 @@ export default function AssignPlan() {
       const { token } = cookies;
 
       const response = await giveWorkerDetails(token);
-
+      if (false === response.authenticated) {
+        MultiToast(response.message, true);
+        navigate('/');
+      }
       if ('error' === response.type) {
         alert(response.error);
       } else {
@@ -30,14 +33,12 @@ export default function AssignPlan() {
       setLoading(false);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (true === loading) {
-    return <Spinner />;
-  }
   const assignHandler = async (e) => {
     e.preventDefault();
-    console.log("worker id: ",e.target.value);
+    console.log("worker id: ", e.target.value);
     try {
       const { token } = cookies;
       const obj = { token, worker_id: e.target.value, orderId: orderId };
@@ -54,16 +55,22 @@ export default function AssignPlan() {
   };
   return (
     <Layout userType={'owner'}>
-      {showWorkers.map((worker, index) => {
-        return (
-          <div key={index}>
-            <p>{worker.firstname}</p>
-            <button onClick={assignHandler} value={worker._id}>
-              assign order
-            </button>
-          </div>
-        );
-      })}
+      {loading ? <Spinner /> :
+        <>
+          {
+            showWorkers.map((worker, index) => {
+              return (
+                <div key={index}>
+                  <p>{worker.firstname}</p>
+                  <button onClick={assignHandler} value={worker._id}>
+                    assign order
+                  </button>
+                </div>
+              );
+            })
+          }
+        </>
+      }
     </Layout>
   );
 }

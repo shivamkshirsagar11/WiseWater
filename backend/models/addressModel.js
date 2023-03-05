@@ -15,8 +15,6 @@ const addressSchema = Schema(
         pincode: {
             type: String,
             reqired : [true,"pincode can not be blank"],
-            // pincode validation is not right REASON :- it reject right picode as well
-            // match:[/^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{6}$/,"Pincode is Invalid"] 
         },
         state: {
             type: String,

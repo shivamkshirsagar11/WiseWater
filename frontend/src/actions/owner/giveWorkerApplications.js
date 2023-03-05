@@ -6,6 +6,12 @@ const giveWorkerApplications = async (token) => {
                 'Authorization': `Bearer ${token}`
             },
         });
+        if (401 === response.status) {
+            return {
+                authenticated: false,
+                message:"Authentication failed",
+            }
+        }
         const data = await response.json();
         if (undefined !== data.error)
             throw (data.error.errorMessage);

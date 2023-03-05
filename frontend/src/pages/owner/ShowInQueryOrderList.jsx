@@ -30,13 +30,14 @@ export default function ShowInQueryOrderList({ cookies }) {
             }
         }
         fetchInQueryOrder();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (null === inQueryOrders) {
         return <Spinner />;
     }
 
-    const handleRedirect = (e)=>{
+    const handleRedirect = (e) => {
         console.log(e.target);
         navigate(`${e.target.value}`);
     }

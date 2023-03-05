@@ -18,6 +18,9 @@ function ShowOwners() {
         const fetchData = async () => {
             setLoading(true);
             const response = await giveAdminRelatedData(token, 'get-owners');
+            if (false === response.authenticated) {
+                navigate('/adminpage');
+            }
             if ('error' === response.type) {
                 MultiToast(response.error, true);
                 navigate('/');
@@ -28,14 +31,13 @@ function ShowOwners() {
             setLoading(false);
         }
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    if (true === loading) {
-        return <Spinner />
-    }
-
     return (
+       <>
         <Layout userType={'admin'}>
+            {loading ? <Spinner/>:
             <div>
                 {
                     owners.map((owner, index) => (
@@ -43,7 +45,9 @@ function ShowOwners() {
                     ))
                 }
             </div>
+}
         </Layout>
+       </>
     );
 }
 

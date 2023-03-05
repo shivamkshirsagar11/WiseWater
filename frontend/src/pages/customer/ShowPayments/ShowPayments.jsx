@@ -19,40 +19,43 @@ function ShowPayments() {
         const { token } = cookies;
         const authenticate = async () => {
             setLoading(true);
-            const rsp = authenticateUser('customer', token);
-            if ('error' === rsp.type) {
-                setLoading(false);
-                alert('you are not authenticated' + rsp.error);
-                navigate('/login');
+            const rsp = await authenticateUser('customer', token);
+            if (false === rsp.authenticated) {
+                MultiToast(rsp.message, true);
+                navigate('/');
             }
             const response = await getPaymentDetails(token);
             setLoading(false);
+            if (false === response.authenticated) {
+                MultiToast(response.message, true);
+                navigate('/');
+            }
             if ('error' === response.type) {
                 MultiToast(response.error, true);
-                navigate('/login');
             } else {
                 setPaymentList(response.paymentList);
                 console.log(response.paymentList);
             }
         }
         authenticate();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cookies]);
 
-    if (true === loading) {
-        return <Spinner />
-    }
 
     return (
-        <Layout userType='customer'>
-            {
-                paymentList.map((payment, index) => (
-                    <div key={index}>
-                        <h3>company name :- {payment.company_name}</h3>
-                        <Payment payment={payment} />
-                    </div>
-                ))
-            }
-        </Layout>
+        <>
+            <Layout userType='customer'>
+
+                { loading ? <Spinner />:
+                    paymentList.map((payment, index) => (
+                        <div key={index}>
+                            <h3>company name :- {payment.company_name}</h3>
+                            <Payment payment={payment} />
+                        </div>
+                    ))
+                }
+            </Layout>
+        </>
     )
 }
 

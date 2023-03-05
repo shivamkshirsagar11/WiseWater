@@ -36,9 +36,13 @@ function ShowWorkerApplications() {
             setLoading(true);
             const { token } = cookies;
             const response = await giveWorkerApplications(token);
+            setLoading(false);
+            if (false === response.authenticated) {
+                MultiToast(response.message, true);
+                navigate('/');
+            }
             if ('error' === response.type) {
                 MultiToast(response.error, true);
-                navigate('/login');
             } else {
                 console.log(response)
                 workerApplications.current = [...response.workerApplications];
@@ -51,9 +55,9 @@ function ShowWorkerApplications() {
                 });
                 setSearchedWorkerApplications(workerApplications.current);
             }
-            setLoading(false);
         }
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
@@ -74,8 +78,6 @@ function ShowWorkerApplications() {
         }
     }, [fuse, query]);
 
-    if (true === loading)
-        return (<Spinner />);
 
     const handleHiring = async (e) => {
         e.preventDefault();
@@ -92,13 +94,13 @@ function ShowWorkerApplications() {
             setQuery('');
         }
     }
-    const styles={
+    const styles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-         height: "70vh",
+        height: "70vh",
     }
-    const styles_company= {
+    const styles_company = {
         fontSize: "1.8rem",
         fontWeight: "700",
         borderRadius: "3px",
@@ -107,45 +109,49 @@ function ShowWorkerApplications() {
         margin: "0 auto",
         textAlign: "center",
         color: "#0d47a1",
-        backgroundColor:"#ede7f6 ",
+        backgroundColor: "#ede7f6 ",
         input: {
-          '::placeholder': {
-            color: "blue",
-          },
+            '::placeholder': {
+                color: "blue",
+            },
         },
-      }
+    }
     return (
-            <div >
-        <Layout userType={'owner'}>
-                <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} className="form-control"
-          placeholder="Search Companies here"
-          aria-describedby="button-addon2"
-          style={styles_company}
-          />
-                {
-                    searchedWorkerApplications.length !== 0 ?
-                        <>
-                            {
-                                searchedWorkerApplications.map((workerApplication, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <h3 style={{textAlign:"center",fontWeight:"600",fontFamily:"monospace"}}>Application {index}</h3>
-                                            <UserDetails userData={workerApplication} />
-                                            <div style={{textAlign:"center"}}>
-                                            <button className="btn btn-warning" onClick={handleHiring} style={{fontSize:"1.2em",fontWeight:"700",color:"darkblue",textAlign:"center"}}  value={index}>Hire Worker</button>
-                                        </div>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </>
-                        :
-                        <div style={styles}>
-                        <h1  style={{color:"#b33800",fontWeight:"500",fontSize:"4rem",textAlign:"center"}}>No Application Found</h1>
-                        </div>
+        <div >
+            <Layout userType={'owner'}>
+                {loading ? <Spinner /> :
+                    <>
+                        <input type="text" name="query" onChange={(e) => setQuery(e.target.value)} value={query} className="form-control"
+                            placeholder="Search Companies here"
+                            aria-describedby="button-addon2"
+                            style={styles_company}
+                        />
+                        {
+                            searchedWorkerApplications.length !== 0 ?
+                                <>
+                                    {
+                                        searchedWorkerApplications.map((workerApplication, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <h3 style={{ textAlign: "center", fontWeight: "600", fontFamily: "monospace" }}>Application {index}</h3>
+                                                    <UserDetails userData={workerApplication} />
+                                                    <div style={{ textAlign: "center" }}>
+                                                        <button className="btn btn-warning" onClick={handleHiring} style={{ fontSize: "1.2em", fontWeight: "700", color: "darkblue", textAlign: "center" }} value={index}>Hire Worker</button>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </>
+                                :
+                                <div style={styles}>
+                                    <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>No Application Found</h1>
+                                </div>
+                        }
+                    </>
                 }
-        </Layout>
-            </div>
+            </Layout>
+        </div>
     );
 }
 

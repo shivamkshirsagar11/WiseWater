@@ -15,12 +15,12 @@ export default function Placeorder() {
         const { token } = cookies;
         const authenticate = async () => {
             const response = await authenticateUser('customer', token);
-            if ('error' === response.type) {
-                MultiToast('you are not authenticated' + response.error, true);
-                navigate('/login');
+            if (false === response.authenticated) {
+                navigate('/');
             }
         }
         authenticate();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cookies]);
 
     const { company_name } = useParams();
@@ -56,6 +56,10 @@ export default function Placeorder() {
         const { token } = cookies;
         const fetchData = async () => {
             const response = await placeOrder(token, order);
+            if (false === response.authenticated) {
+                MultiToast(response.message, true);
+                navigate('/');
+            }
             if ('error' === response.type) {
                 MultiToast(response.error, true);
             } else {
@@ -67,6 +71,7 @@ export default function Placeorder() {
 
     return (
         <Layout userType={'customer'}>
+            
             <div>
                 <form action="post">
                     <label htmlFor="water_type">Choose a water type:</label>

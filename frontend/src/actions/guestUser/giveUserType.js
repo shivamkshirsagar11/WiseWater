@@ -10,13 +10,13 @@ const giveUserType = async (token) => {
         });
         const data = await response.json();
         return {
-            type : 'data',
-            userType : data.userType,
+            type: 'data',
+            userType: data.userType,
         }
     } catch (error) {
         return ({
             type: 'error',
-            error : 'some thing went wrong please try again',
+            error: 'some thing went wrong please try again',
         })
     }
 

@@ -10,6 +10,12 @@ const getAllSubscription = async (userType,urlParam, token) => {
         },
       });
       const data = await response.json();
+      if (401 === response.status) {
+        return {
+            authenticated: false,
+            message:"Authentication failed",
+        }
+    }
       if (undefined !== data.error) throw data.error.errorMessage;
       else {
         return {

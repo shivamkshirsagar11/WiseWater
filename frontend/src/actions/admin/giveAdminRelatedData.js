@@ -7,19 +7,20 @@ const giveAdminRelatedData = async (token, url) => {
             },
         };
         const response = await fetch(`/api/admin/${url}`, options);
+        if (401 === response.status) {
+            return {
+                authenticated: false,
+                message:"Authentication failed",
+            }
+        }
+
         const data = await response.json();
         if (undefined !== data.error) throw data.error.errorMessage;
         else {
-            if ('get-customers' === url)
-                return {
-                    type: "data",
-                    customers: data.customers
-                };
-            else
-                return {
-                    type: 'data',
-                    owners: data.owners
-                }
+            return {
+                type: "data",
+                ...data
+            };
         }
     } catch (error) {
         return ({

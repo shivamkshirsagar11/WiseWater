@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 
 // guest user
@@ -39,22 +38,19 @@ import CustomerPlans from "./pages/owner/CustomerPlans.jsx";
 
 import Profile from "./pages/shared/profile/Profile.jsx";
 
-// general pages
-import NotFound from "./pages/NotFound.jsx";
 
-import CookiesProvider, { CookiesContext } from './context/CookiesProvider.js'
-// import ShowCustomers from "./pages/admin/ShowCustomers.jsx";
+
+import NotFound from "./pages/NotFound.jsx";
+import CookiesProvider from './context/CookiesProvider.js'
 import Temp from "./pages/Temp.jsx";
 import AdminPage from "./pages/admin/AdminPage.jsx";
 import ShowOwners from "./pages/admin/ShowUsers/ShowOwners/ShowOwners.jsx";
 import ShowCustomers from "./pages/admin/ShowUsers/ShowCustomers/ShowCustomers.jsx";
-// import ShowOwners from "./pages/admin/ShowOwners.jsx";
 import ShowOwnersApplications from "./pages/admin/ShowOwnersApplications.jsx";
+import ProtectedRouter from "./ProtectedRouter.jsx";
 
 
 function App() {
-  // console.log(useContext(CookiesContext))
-  // const { cookies, handleRemoveCookies, handleSetCookies } = useContext(CookiesContext);
 
   return (
     <CookiesProvider>
@@ -101,28 +97,46 @@ function App() {
               />
               <Route
                 path="/customer/get-subscription-details"
-                element={<Plans />}
+                element={
+                  <ProtectedRouter userType='customer'>
+                    <Plans />
+                  </ProtectedRouter>
+                }
               />
 
               <Route
                 path="/customer/profile"
                 element={
-                  <Profile
-                    userType="customer"
-                  />
+                  <ProtectedRouter userType='customer'>
+                    <Profile
+                      userType="customer"
+                    />
+                  </ProtectedRouter>
                 }
               />
               <Route
                 path="/customer/placeorder/:company_name"
-                element={<Placeorder />}
+                element={
+                  <ProtectedRouter userType='customer'>
+                    <Placeorder />
+                  </ProtectedRouter>
+                }
               />
               <Route
                 path="/customer/get-payment-details"
-                element={<ShowPayments />}
+                element={
+                  <ProtectedRouter userType='customer'>
+                    <ShowPayments />
+                  </ProtectedRouter>
+                }
               />
               <Route
                 path="/customer/show-placed-orders"
-                element={<ShowPlacedorderList />}
+                element={
+                  <ProtectedRouter userType='customer'>
+                    <ShowPlacedorderList />
+                  </ProtectedRouter>
+                }
               />
               <Route
                 path="/customer/order/track/:orderId"
@@ -134,15 +148,27 @@ function App() {
             <Route path="/worker">
               <Route
                 path="/worker/orders/assigned"
-                element={<WorkerAssignedOrders />}
+                element={
+                  <ProtectedRouter userType='worker'>
+                    <WorkerAssignedOrders />
+                  </ProtectedRouter>
+                }
               />
               <Route
                 path="/worker/orders/daily"
-                element={<DailyOrders />}
+                element={
+                  <ProtectedRouter userType='worker'>
+                    <DailyOrders />
+                  </ProtectedRouter>
+                }
               />
               <Route
                 path="/worker/orders/delievered"
-                element={<WorkerDelieveredOrderes />}
+                element={
+                  <ProtectedRouter userType='worker'>
+                    <WorkerDelieveredOrderes />
+                  </ProtectedRouter>
+                }
               />
               <Route
                 path="/worker/order/assigned/query/:order_id"
@@ -151,9 +177,11 @@ function App() {
               <Route
                 path="/worker/profile"
                 element={
-                  <Profile
-                    userType="worker"
-                  />
+                  <ProtectedRouter userType='worker'>
+                    <Profile
+                      userType="worker"
+                    />
+                  </ProtectedRouter>
                 }
               />
             </Route>
@@ -162,47 +190,59 @@ function App() {
             <Route path="/owner">
               <Route
                 path="/owner/register"
-                element={<OwnerRegistration />}
+                element={
+                  <OwnerRegistration />
+                }
               />
               <Route
                 path="/owner/assigned/plans"
-                element={<ShowAssignedPlans />}
+                element={
+                  <ProtectedRouter userType='owner'>
+                    <ShowAssignedPlans />
+                  </ProtectedRouter>
+                }
               />
               <Route
                 path="/owner/customer-plans"
-                element={<CustomerPlans />}
+                element={
+                  <ProtectedRouter userType='owner'>
+                    <CustomerPlans />
+                  </ProtectedRouter>
+                }
               />
               <Route
                 path="/owner/show-worker-applications"
-                element={<ShowWorkerApplications />}
+                element={
+                  <ShowWorkerApplications />
+                }
               />
               <Route
                 path="/owner/profile"
                 element={
-                  <Profile
-                    userType="owner"
-                  />
+                  <ProtectedRouter userType='owner'>
+                    <Profile userType="owner" />
+                  </ProtectedRouter>
                 }
               />
               <Route
                 path="/owner/get-payment-details"
-                element={<ShowPaymentsOwner />}
+                element={<ProtectedRouter userType='owner'><ShowPaymentsOwner /></ProtectedRouter>}
               />
               <Route
                 path="/owner/show-pending-orders"
-                element={<ShowPendingOrderList />}
+                element={<ProtectedRouter userType='owner'><ShowPendingOrderList /></ProtectedRouter>}
               />
               <Route
                 path="/owner/show-workers/:orderId"
-                element={<ShowWorkers />}
+                element={<ProtectedRouter userType='owner'><ShowWorkers /></ProtectedRouter>}
               />
               <Route
                 path="/owner/assign-plan/:orderId"
-                element={<AssignPlan />}
+                element={<ProtectedRouter userType='owner'><AssignPlan /></ProtectedRouter>}
               />
               <Route
                 path="/owner/show-assigned-orders"
-                element={<ShowAssignedOrders />}
+                element={<ProtectedRouter userType='owner'><ShowAssignedOrders /></ProtectedRouter>}
               />
               <Route
                 path="/owner/show-in-query-orders"
@@ -215,7 +255,7 @@ function App() {
 
               <Route
                 path="/owner/resolve-order-query/customerdetails/:customer_id"
-                element={<ShowCustomer />}
+                element={<ProtectedRouter userType='owner'> <ShowCustomer /></ProtectedRouter>}
               />
             </Route>
 

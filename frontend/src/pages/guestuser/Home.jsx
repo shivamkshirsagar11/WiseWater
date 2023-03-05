@@ -7,15 +7,12 @@ import Card from "../../components/Card.jsx";
 import ownerImage from "../../media/owner.jfif";
 import customerImage from "../../media/customer.jfif";
 import workerImage from "../../media/worker.jfif";
-// import water from "../../media/water_splash.jpg"
 
 import { CookiesContext } from '../../context/CookiesProvider.js'
-// import { size } from "pdfkit/js/page";
 
 export default function Login() {
     const { setCookies } = useContext(CookiesContext);
     const navigate = useNavigate();
-    // console.log(props)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -29,35 +26,33 @@ export default function Login() {
         const response = await loginUser(user);
         console.log(response);
         if ("error" === response.type) {
-            console.log(response.error);
             MultiToast(response.error, true);
         } else {
             setCookies("token", response.token);
-            console.log(response.token);
             MultiToast("successfully logged in", false);
             navigate(`/${user.collectionName.toLowerCase()}/profile`);
         }
     };
     const styles = {
         backgroundColor: '#bbdefb',
-        
-      };
-      const cards = {
+
+    };
+    const cards = {
         backgroundColor: '#4fc3f7',
-      };
-      const hea= {
-            backgroundColor: "#bbdefb",
-            padding: "12px",
-            textAlign: "center",
-            // backgroundImage: "water",
-      }
-      const ti ={
-            color: "darkblue",
-            fontSize: "45px",
-            margin: "0",
-            textTransform: "uppercase"
-          
-      }
+    };
+    const hea = {
+        backgroundColor: "#bbdefb",
+        padding: "12px",
+        textAlign: "center",
+        // backgroundImage: "water",
+    }
+    const ti = {
+        color: "darkblue",
+        fontSize: "45px",
+        margin: "0",
+        textTransform: "uppercase"
+
+    }
     return (
         <div style={styles} >
             {/* // <h1 className="container display-3" > 
@@ -65,7 +60,7 @@ export default function Login() {
             // </h1> */}
 
             <header style={hea} >
-                <h1 class="header-title" style={ti}>Wise Water</h1>
+                <h1 className="header-title" style={ti}>Wise Water</h1>
             </header>
             <div className=" container p-3 mb-2   bg-gradient text-blue" style={cards} >
                 <div className="accordion accordion-flush" id="accordionFlushExample">

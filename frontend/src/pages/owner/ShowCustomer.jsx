@@ -35,11 +35,9 @@ export default function ResolveInQueryOrder() {
             }
         }
         fetchCustomer(customer_id);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (null === customer) {
-        return <Spinner />;
-    }
 
     return (
         <div>

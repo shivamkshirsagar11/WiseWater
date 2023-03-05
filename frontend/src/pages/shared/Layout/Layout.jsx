@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import "./Layout.css";
 
-import { Badge } from "antd";
 import {
   adminMenu,
   customerMenu,

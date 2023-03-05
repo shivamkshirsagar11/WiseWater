@@ -25,17 +25,21 @@ export default function CustomerPlans() {
         "get-all-plans",
         token
       );
+      setSpinner(false);
+      if (false === response.authenticated) {
+        MultiToast(response.message, true);
+        navigate('/');
+      }
       if ("error" === response.type) {
         MultiToast(response.error, true);
-        navigate("/login");
       }
       setCustomerPlans(response.plans);
       setCustomers(response.customers);
-      setSpinner(false);
       console.log(response.plans);
       console.log(response.customers);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookies]);
 
   const redirectHandler = (e) => {
@@ -45,29 +49,33 @@ export default function CustomerPlans() {
   };
   return (
     <>
-    <Layout userType={'customer'}style={{backgroundColor:"#670e00"}}
-             >
-      {spinner && <Spinner />}
-      {!spinner && customerPlans.length > 0 ? (
-        customerPlans.map((plans, index) => {
-          return (
-            <div key={index}>
-              <p>Plan {index}</p>
-              <PlanViewModel
-                show={planViewModelState}
-                onHide={() => setPlanViewModelState(false)}
-                data={{plan:plans, customer:customers[index], userType:"owner"}}
-            />
-              <button
-              onClick={redirectHandler}
-              value={`/owner/assign-plan/${plans._id}`}
-            >assign</button>
-            </div>
-          );
-        })
-      ) : (
-        <p>NO subscribed plans</p>
-      )}
+      <Layout userType={'customer'} style={{ backgroundColor: "#670e00" }}
+      >
+
+        {spinner ? <Spinner /> :
+          <>
+            {customerPlans.length > 0 ? (
+              customerPlans.map((plans, index) => {
+                return (
+                  <div key={index}>
+                    <p>Plan {index}</p>
+                    <PlanViewModel
+                      show={planViewModelState}
+                      onHide={() => setPlanViewModelState(false)}
+                      data={{ plan: plans, customer: customers[index], userType: "owner" }}
+                    />
+                    <button
+                      onClick={redirectHandler}
+                      value={`/owner/assign-plan/${plans._id}`}
+                    >assign</button>
+                  </div>
+                );
+              })
+            ) : (
+              <p>NO subscribed plans</p>
+            )}
+          </>
+        }
       </Layout>
     </>
   );

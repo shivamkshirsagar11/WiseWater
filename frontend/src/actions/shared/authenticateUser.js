@@ -7,12 +7,18 @@ const authenticateUser = async (user, token) => {
                 'Authorization': `Bearer ${token}`
             },
         });
+        if (401 === response.status) {
+            return {
+                authenticated: false,
+                message: "Authentication failed",
+            }
+        }
         const data = await response.json();
         if (data.type === 'error')
             throw (data.message);
         else {
-            return({
-                type : 'success',
+            return ({
+                type: 'success',
             })
         }
     } catch (error) {

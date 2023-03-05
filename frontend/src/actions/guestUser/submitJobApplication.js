@@ -10,7 +10,6 @@ const submitJobApplication = async (userData, onlyValidation) => {
             body: JSON.stringify(userData)
         });
         const data = await response.json();
-        console.log(data);
         if (undefined !== data.error)
             throw (data.error.errorMessage);
         else {

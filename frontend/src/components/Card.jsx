@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 
 export default function Card({
@@ -22,63 +22,63 @@ export default function Card({
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
-              <div className="accordion-item">
-                <h2 className="accordion-header" id={`flush-heading${varC}`}>
+            <div className="accordion-item">
+              <h2 className="accordion-header" id={`flush-heading${varC}`}>
+                <button
+                  className="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#flush-collapse${varC}`}
+                  aria-expanded="false"
+                  aria-controls={`#flush-collapse${varC}`}
+                >
+                  Login
+                </button>
+              </h2>
+              <div
+                id={`flush-collapse${varC}`}
+                className="accordion-collapse collapse"
+                aria-labelledby={`flush-heading${varC}`}
+                data-bs-parent="#accordionFlushExample"
+              >
+                <div className="accordion-body">
+                  Email:{" "}
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                  Password:{" "}
+                  <input
+                    type="password"
+                    value={password}
+                    placeholder="Enter password"
+                    className="form-control"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
+                  <br />
                   <button
-                    className="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target={`#flush-collapse${varC}`}
-                    aria-expanded="false"
-                    aria-controls={`#flush-collapse${varC}`}
+                    type="submit"
+                    value={collection}
+                    onClick={hadleSubmit}
+                    style={{ backgroundColor: "#0077be", color: 'white', }}
+                    className="btn btn-primary"
                   >
                     Login
                   </button>
-                </h2>
-                <div
-                  id={`flush-collapse${varC}`}
-                  className="accordion-collapse collapse"
-                  aria-labelledby={`flush-heading${varC}`}
-                  data-bs-parent="#accordionFlushExample"
-                >
-                  <div className="accordion-body">
-                    Email:{" "}
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Enter email"
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                      }}
-                    />
-                    Password:{" "}
-                    <input
-                      type="password"
-                      value={password}
-                      placeholder="Enter password"
-                      class="form-control"
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                      }}
-                    />
-                    <br/>
-                    <button
-                      type="submit"
-                      value={collection}
-                      onClick={hadleSubmit}
-                      style={ {backgroundColor:"#0077be",color:'white',}}
-                      className="btn btn-primary"
-                    >
-                      Login
-                    </button>
-                  </div>
                 </div>
               </div>
+            </div>
           </li>
         </ul>
         <div className="card-body">
-        <Link to={toLink}>{text}</Link>
+          <Link to={toLink}>{text}</Link>
         </div>
       </div>
     </div>

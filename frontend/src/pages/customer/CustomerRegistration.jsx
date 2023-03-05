@@ -3,14 +3,10 @@ import { registerUser } from "../../actions/shared/registerUser.js";
 import UserDetailsForm from "../shared/form/UserDetailsForm.jsx";
 import AddressDetailsForm from "../shared/form/AddressDetailsForm.jsx";
 import MultiToast from "../../actions/shared/MultiToast.js";
-import { useNavigate } from "react-router-dom";
 import { CookiesContext } from "../../context/CookiesProvider.js";
 import OTP from "../shared/form/OTP.jsx";
-import { style } from "glamor";
-
 
 function CustomerRegistration() {
-  const navigate = useNavigate();
 
   const { setCookies } = useContext(CookiesContext);
   const [flag, setFlag] = useState(false);
@@ -38,15 +34,15 @@ function CustomerRegistration() {
   const customer = { ...userData, address: { ...userData.address } };
   const styles = {
     backgroundColor: '#bbdefb',
-    
+
   };
   return (
-    
+
     <body style={styles}>
       {!flag && (
-        <div className="container " style={{backgroundColor:"#e3f2fd"}}>
+        <div className="container " style={{ backgroundColor: "#e3f2fd" }}>
           <h1 className="text-center " style={{ color: '#0077be' }}>
-            <span className="fw-bold">Customer Registration </span>  
+            <span className="fw-bold">Customer Registration </span>
           </h1>
           <form method="post">
             <UserDetailsForm userData={userData} setUserData={setUserData} />
@@ -59,17 +55,17 @@ function CustomerRegistration() {
                 type="submit"
                 className="btn btn-success "
                 style={{
-                  backgroundColor:"#0077be",color:'white',
+                  backgroundColor: "#0077be", color: 'white',
                 }}
                 onClick={handleSubmit}
               >
                 Submit
-              </button> 
+              </button>
             </div>
           </form>
         </div>
-      
-        )}
+
+      )}
       {flag && (
         <OTP
           userData={customer}
@@ -82,7 +78,7 @@ function CustomerRegistration() {
         />
       )}
     </body>
-    
+
   );
 }
 

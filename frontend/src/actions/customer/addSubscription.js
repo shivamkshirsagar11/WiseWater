@@ -10,7 +10,14 @@ const addSubscription = async (token, subObj)=>{
             body: JSON.stringify({subObj:subObj})
         }
         const response = await fetch('/api/customer/add-plan', options);
+        if (401 === response.status) {
+          return {
+              authenticated: false,
+              message:"Authentication failed",
+          }
+      }
         const data = await response.json();
+        
         if (undefined !== data.error) throw data.error.errorMessage;
       else {
         return {

@@ -13,7 +13,6 @@ import { getLatLang } from "./getLatLang.js";
             body: JSON.stringify(user)
         });
         const data = await response.json();
-        console.log(data);
         if (undefined !== data.error)
             throw (data.error.errorMessage);
         else {

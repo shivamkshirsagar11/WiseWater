@@ -18,9 +18,11 @@ function ShowCustomers() {
         const fetchData = async () => {
             setLoading(true);
             const response = await giveAdminRelatedData(token, 'get-customers');
+            if (false === response.authenticated) {
+                navigate('/adminpage');
+            }
             if ('error' === response.type) {
                 MultiToast(response.error, true);
-                navigate('/login');
             } else {
                 console.log(response.customers);
                 setCustomers(response.customers);
@@ -28,14 +30,13 @@ function ShowCustomers() {
             setLoading(false);
         }
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    if (true === loading) {
-        return <Spinner />
-    }
-
     return (
+        <>
         <Layout userType={'admin'}>
+            {loading ? <Spinner/>:
             <div>
                 {
                     customers.map((customer, index) => (
@@ -43,7 +44,9 @@ function ShowCustomers() {
                     ))
                 }
             </div>
+            }
         </Layout>
+        </>
     )
 }
 

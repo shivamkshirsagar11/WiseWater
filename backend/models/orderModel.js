@@ -3,8 +3,6 @@ import addressSchema from './addressModel.js';
 import getNextSequenceValue from './getNextSequenceValue.js';
 import CounterModel from './counterModel.js';
 
-// water_type,water_temperature,water_quantity,companyname
-
 const orderSchema = Schema({
     water_type: {
         type: String,

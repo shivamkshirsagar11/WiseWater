@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../actions/shared/registerUser.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
 import CompanyDetailsForm from "../shared/form/CompanyDetailsForm.jsx";
@@ -28,7 +27,7 @@ export default function OwnerRegistration() {
 		address: { line1: "", line2: "", city: "", pincode: "", state: "" },
 		waterPrice: { coldWater: '', normalWater: '', hotWater: '' }
 	});
-	const navigate = useNavigate();
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const response = await registerUser("owner", owner, true);
@@ -55,7 +54,7 @@ export default function OwnerRegistration() {
 							setCompanyData={setCompanyData}
 						/>
 
-						<div class="text-center">
+						<div className="text-center">
 							<button type="submit" onClick={handleSubmit} className="btn" style={{ backgroundColor: "#0077be", color: 'white' }}>
 								Submit
 							</button>

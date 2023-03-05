@@ -19,6 +19,10 @@ function ShowOwnersApplications() {
         const fetchData = async () => {
             setLoading(true);
             const response = await giveAdminRelatedData(token, 'get-owners-applications');
+            if (false === response.authenticated) {
+                MultiToast(response.message, true);
+                navigate('/admin/login');
+            }
             if ('error' === response.type) {
                 MultiToast(response.error, true);
                 navigate('/');
@@ -29,12 +33,16 @@ function ShowOwnersApplications() {
             setLoading(false);
         }
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const onClickHandler = async (e) => {
         e.preventDefault();
         const { token } = cookies;
         const response = await acceptApplication(token, e.target.value);
+        if (false === response.authenticated) {
+            navigate('/adminpage');
+        }
         if ('error' === response.type) {
             MultiToast(response.error, true);
             navigate('/');
@@ -52,16 +60,18 @@ function ShowOwnersApplications() {
     return (
         <>
             <Layout userType={'admin'}>
-                <div>
-                    {
-                        owners.map((owner, index) => (
-                            <div key={index}>
-                                <UserDetails user={owner.ownerData} companyData={owner.companyData} userType='owner' key={index} />
-                                <button value={owner.ownerData._id} onClick={onClickHandler}>accept</button>
-                            </div>
-                        ))
-                    }
-                </div>
+                {loading ? <Spinner /> :
+                    <div>
+                        {
+                            owners.map((owner, index) => (
+                                <div key={index}>
+                                    <UserDetails user={owner.ownerData} companyData={owner.companyData} userType='owner' key={index} />
+                                    <button value={owner.ownerData._id} onClick={onClickHandler}>accept</button>
+                                </div>
+                            ))
+                        }
+                    </div>
+                }
             </Layout>
         </>
     )

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from '../Spinner.jsx';
 import ShowOrder from "../shared/order/Order.jsx";
@@ -23,16 +22,19 @@ export default function TrackOrder() {
       const { token } = cookies;
       setLoading(true);
       const response = await giveDetailsToTrackOrder(token, orderId);
+      setLoading(false);
+      if (false === response.authenticated) {
+        navigate('/');
+      }
       console.log(response);
       if ('error' === response.type) {
         MultiToast(response.error, true);
-        navigate('/login');
       }
       setOrder(response.order);
       setWorker(response.worker);
-      setLoading(false);
     }
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (true === loading) {

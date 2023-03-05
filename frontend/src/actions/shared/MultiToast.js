@@ -13,6 +13,7 @@ const MultiToast = (message, isError) => {
                 toast.error(ele);
             else
                 toast.success(ele);
+            return '';
         })
     }
 }

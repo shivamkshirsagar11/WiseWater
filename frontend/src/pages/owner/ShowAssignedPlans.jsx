@@ -26,9 +26,12 @@ export default function ShowAssignedPlans() {
         "get-assigned-plans",
         token
       );
+      if (false === response.authenticated) {
+        MultiToast(response.message, true);
+        navigate('/');
+      }
       if ("error" === response.type) {
         MultiToast(response.error, true);
-        navigate("/login");
       }
       setCustomerPlans(response.plans);
       setCustomers(response.customers);
@@ -36,30 +39,31 @@ export default function ShowAssignedPlans() {
       setSpinner(false);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookies]);
-  
+
   return (
     <>
-    <Layout userType={'customer'}style={{backgroundColor:"#670e00"}}
-             >
-      {spinner && <Spinner />}
-      {!spinner && customerPlans.length > 0 ? (
-        customerPlans.map((plans, index) => {
-          return (
-            <div key={index}>
-              <p>Plan {index}</p>
-              <PlanViewModel
-                show={planViewModelState}
-                onHide={() => setPlanViewModelState(false)}
-                data={{plan:plans, customer:customers[index], userType:"owner", worker:workers[index]}}
-            />
-             <button className="btn btn-warning" onClick={() => setPlanViewModelState(true)}>Plan details</button>
-            </div>
-          );
-        })
-      ) : (
-        <p>NO subscribed plans</p>
-      )}
+      <Layout userType={'customer'} style={{ backgroundColor: "#670e00" }}
+      >
+        {spinner && <Spinner />}
+        {!spinner && customerPlans.length > 0 ? (
+          customerPlans.map((plans, index) => {
+            return (
+              <div key={index}>
+                <p>Plan {index}</p>
+                <PlanViewModel
+                  show={planViewModelState}
+                  onHide={() => setPlanViewModelState(false)}
+                  data={{ plan: plans, customer: customers[index], userType: "owner", worker: workers[index] }}
+                />
+                <button className="btn btn-warning" onClick={() => setPlanViewModelState(true)}>Plan details</button>
+              </div>
+            );
+          })
+        ) : (
+          <p>NO subscribed plans</p>
+        )}
       </Layout>
     </>
   );
