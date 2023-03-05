@@ -24,14 +24,16 @@ export default function Profile({ userType }) {
     useEffect(() => {
         const fetchData = async () => {
             const { token } = cookies;
-            const response = await giveUserData(userType, token);
-            if ('error' === response.type) {
-                alert(response.error);
-                navigate('/');
-            } else {
-                setUserData(response.userData);
-                if ('customer' !== userType)
-                    setCompanyData(response.companyData);
+            if ('admin' !== userType) {
+                const response = await giveUserData(userType, token);
+                if ('error' === response.type) {
+                    alert(response.error);
+                    navigate('/');
+                } else {
+                    setUserData(response.userData);
+                    if ('customer' !== userType)
+                        setCompanyData(response.companyData);
+                }
             }
         }
         fetchData();
@@ -56,25 +58,25 @@ export default function Profile({ userType }) {
     }
 
     return (
-        <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
-        <Layout userType={userType} >
-            <UserDetails userData={userData} userType={userType}/>
-            {
-                'customer' !== userType ?
-                    <>
-                        <CompanyViewModel
-                            show={companyViewModelState}
-                            onHide={() => setCompanyViewModelState(false)}
-                            data={companyData}
-                        />
-                        <br/>
-                        <div className="d-grid gap-2 col-2 mx-auto">
-                        <button className="btn btn-warning"onClick={() => setCompanyViewModelState(true)}>show company details</button> </div></> :
-                    <AddressDetails address={userData.address} />
-            }
-            {/* <ProfileButtons userType={userType} redirectHandler={redirectHandler} /> */}
-            {/* <button onClick={handleLogout}>logout</button> */}
-        </Layout>
+        <div style={{ "background-image": "linear-gradient(#b993d6, #8ca6db)" }}>
+            <Layout userType={userType} >
+                <UserDetails userData={userData} userType={userType} />
+                {
+                    'customer' !== userType ?
+                        <>
+                            <CompanyViewModel
+                                show={companyViewModelState}
+                                onHide={() => setCompanyViewModelState(false)}
+                                data={companyData}
+                            />
+                            <br />
+                            <div className="d-grid gap-2 col-2 mx-auto">
+                                <button className="btn btn-warning" onClick={() => setCompanyViewModelState(true)}>show company details</button> </div></> :
+                        <AddressDetails address={userData.address} />
+                }
+                {/* <ProfileButtons userType={userType} redirectHandler={redirectHandler} /> */}
+                {/* <button onClick={handleLogout}>logout</button> */}
+            </Layout>
         </div>
     );
 }

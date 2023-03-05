@@ -3,6 +3,7 @@ import "./Layout.css";
 
 import { Badge } from "antd";
 import {
+  adminMenu,
   customerMenu,
   guestMenu,
   ownerMenu,
@@ -26,10 +27,12 @@ const Layout = ({ children, userType }) => {
     userType === "customer"
       ? customerMenu
       : userType === "owner"
-      ? ownerMenu
-      : userType === "worker"
-      ? workerMenu
-      : guestMenu;
+        ? ownerMenu
+        : userType === "worker"
+          ? workerMenu
+          : userType === "admin"
+            ? adminMenu
+            : guestMenu;
 
   return (
     <>
@@ -68,7 +71,7 @@ const Layout = ({ children, userType }) => {
             </div>
           </div>
           <div className="content">
-            <div className="body" style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>{children}</div>
+            <div className="body" style={{ "background-image": "linear-gradient(#b993d6, #8ca6db)" }}>{children}</div>
           </div>
         </div>
       </div>

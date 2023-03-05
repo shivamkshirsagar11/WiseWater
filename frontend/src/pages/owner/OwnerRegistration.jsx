@@ -32,20 +32,21 @@ export default function OwnerRegistration() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const response = await registerUser("owner", owner, true);
+		console.log(response);
 		if ("error" === response.type) MultiToast(response.error, true);
 		else setFlag(true);
 	};
 	const owner = { userData: { ...userData }, companyData: { ...companyData } };
 	const styles = {
 		backgroundColor: '#bbdefb',
-		
-	  };
+
+	};
 	return (
 		<body style={styles}>
 			{!flag && (
-				<div className="container" style={{backgroundColor:"#e3f2fd"}}>
+				<div className="container" style={{ backgroundColor: "#e3f2fd" }}>
 					<h1 className="text-center " style={{ color: '#0077be' }}>
-						<span className="fw-bold">Customer Registration </span>  
+						<span className="fw-bold">Customer Registration </span>
 					</h1>
 					<form method="post">
 						<UserDetailsForm userData={userData} setUserData={setUserData} />
@@ -53,11 +54,11 @@ export default function OwnerRegistration() {
 							companyData={companyData}
 							setCompanyData={setCompanyData}
 						/>
-						
+
 						<div class="text-center">
-						<button type="submit" onClick={handleSubmit} className="btn" style={{backgroundColor:"#0077be",color:'white'}}>
-							Submit
-						</button>
+							<button type="submit" onClick={handleSubmit} className="btn" style={{ backgroundColor: "#0077be", color: 'white' }}>
+								Submit
+							</button>
 						</div>
 					</form>
 				</div>
@@ -68,7 +69,7 @@ export default function OwnerRegistration() {
 					userType="owner"
 					register={registerUser}
 					setCookies={setCookies}
-					navigateString={"/owner/profile"}
+					navigateString={"/"}
 					requiredCookie={2}
 					toastMsg={"you are registered successfully"}
 				/>

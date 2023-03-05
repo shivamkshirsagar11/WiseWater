@@ -43,6 +43,14 @@ import Profile from "./pages/shared/profile/Profile.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 import CookiesProvider, { CookiesContext } from './context/CookiesProvider.js'
+// import ShowCustomers from "./pages/admin/ShowCustomers.jsx";
+import Temp from "./pages/Temp.jsx";
+import AdminPage from "./pages/admin/AdminPage.jsx";
+import ShowOwners from "./pages/admin/ShowUsers/ShowOwners/ShowOwners.jsx";
+import ShowCustomers from "./pages/admin/ShowUsers/ShowCustomers/ShowCustomers.jsx";
+// import ShowOwners from "./pages/admin/ShowOwners.jsx";
+import ShowOwnersApplications from "./pages/admin/ShowOwnersApplications.jsx";
+
 
 function App() {
   // console.log(useContext(CookiesContext))
@@ -53,6 +61,27 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
+
+            {/* admin */}
+            <Route path='/admin/login' element={<Temp />} />
+            <Route
+              path="/admin/show-customers"
+              element={<ShowCustomers />}
+            />
+            <Route
+              path="/adminPage"
+              element={<AdminPage userType='admin' />}
+            />
+            <Route
+              path="/admin/show-owners"
+              element={<ShowOwners />}
+            />
+            <Route
+              path="admin/show-owners-applications"
+              element={<ShowOwnersApplications />}
+            />
+
+
             {/* guestuser */}
             <Route index element={<Home />} />
             <Route
@@ -72,14 +101,14 @@ function App() {
               />
               <Route
                 path="/customer/get-subscription-details"
-                element={<Plans/>}
+                element={<Plans />}
               />
 
               <Route
                 path="/customer/profile"
                 element={
                   <Profile
-                  userType="customer"
+                    userType="customer"
                   />
                 }
               />
@@ -123,7 +152,7 @@ function App() {
                 path="/worker/profile"
                 element={
                   <Profile
-                  userType="worker"
+                    userType="worker"
                   />
                 }
               />
@@ -141,7 +170,7 @@ function App() {
               />
               <Route
                 path="/owner/customer-plans"
-                element={<CustomerPlans/>}
+                element={<CustomerPlans />}
               />
               <Route
                 path="/owner/show-worker-applications"
@@ -151,7 +180,7 @@ function App() {
                 path="/owner/profile"
                 element={
                   <Profile
-                  userType="owner"
+                    userType="owner"
                   />
                 }
               />
@@ -197,7 +226,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-<ToastContainer autoClose={3000} />
+      <ToastContainer autoClose={3000} />
     </CookiesProvider>
   );
 }

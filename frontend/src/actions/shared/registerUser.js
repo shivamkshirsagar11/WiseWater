@@ -10,6 +10,7 @@ const registerUser = async (userType, userObj, onlyValidation) => {
       body: JSON.stringify(userObj),
     });
     const data = await response.json();
+    console.log(data);
     if (undefined !== data.error) throw data.error.errorMessage;
     else if (onlyValidation) {
       return {
