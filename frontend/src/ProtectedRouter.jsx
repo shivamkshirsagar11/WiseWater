@@ -29,7 +29,7 @@ function ProtectedRouter({ userType, children }) {
     if (loading) {
         return <Spinner />
     } else {
-        return { children }
+        return <>{children}</>
     }
 
 }

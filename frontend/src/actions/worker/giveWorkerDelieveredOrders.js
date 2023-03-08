@@ -12,7 +12,7 @@ const giveWorkerDelieveredOrders = async (token) => {
         if (401 === response.status) {
             return {
                 authenticated: false,
-                message:"Authentication failed",
+                message: "Authentication failed",
             }
         }
         const data = await response.json();

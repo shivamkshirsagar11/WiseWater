@@ -9,7 +9,7 @@ import { CookiesContext } from '../../context/CookiesProvider.js';
 
 export default function ShowAssignedOrders() {
     const navigate = useNavigate();
-    
+
     const { cookies } = useContext(CookiesContext);
     const { token } = cookies;
     const [delieveredOrders, setDelieveredOrders] = useState([]);

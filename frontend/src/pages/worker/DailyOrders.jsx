@@ -57,12 +57,7 @@ export default function DailyOrders() {
 
   return (
     <>
-<<<<<<< HEAD
-    <Layout userType={'worker'}style={{backgroundColor:"#670e00"}}
-             >
-=======
-      <Layout userType={'customer'} style={{ backgroundColor: "#670e00" }}>
->>>>>>> d78e1447e3f9f6256c0139eebea2463dc748fb55
+      <Layout userType={'worker'} style={{ backgroundColor: "#670e00" }}>
       {spinner && <Spinner />}
         {!spinner && customerPlans.length > 0 ? (
           customerPlans.map((plans, index) => {
