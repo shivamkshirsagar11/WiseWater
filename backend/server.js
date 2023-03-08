@@ -29,11 +29,13 @@ import userRoutes from './routes/userRoutes.js';
 import ownerRoutes from './routes/ownerRoutes.js';
 import workerRoutes from './routes/workerRoutes.js';
 import customerRoutes from './routes/customerRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 app.use('/api/user', userRoutes);
 app.use('/api/owner', ownerRoutes);
 app.use('/api/worker', workerRoutes);
 app.use('/api/customer', customerRoutes);
+app.use('/api/admin', adminRoutes);
 app.use(errorHandler);
 
 // port

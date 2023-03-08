@@ -5,7 +5,7 @@ const companySchema = Schema(
     {
         name: {
             type: String,
-            lowercase:true,
+            lowercase: true,
             unique: true,
             required: [true, "please give company name"]
         },
@@ -32,6 +32,9 @@ const companySchema = Schema(
         },
         waterPrice: {
             type: Object,
+        },
+        status: {
+            type: String
         },
         serviceTime: {
             // check when entry is made to database

@@ -2,7 +2,6 @@ import { decodeJWTtoken } from '../utility/decodeJWTtoken.js';
 
 const userTypeHandler = (req, res, next) => {
     const url = req.url.split('/');
-    console.log(req.url);
     if ('user' === url[2]) {
         next();
         return;
@@ -17,9 +16,7 @@ const userTypeHandler = (req, res, next) => {
             return;
         }
         const { collectionName } = temp_resp;
-        console.log('abc')
         if (collectionName.toLowerCase() === url[2].toLowerCase()) {
-            console.log('jhere')
             next();
         }
         else {

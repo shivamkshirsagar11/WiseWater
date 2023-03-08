@@ -21,13 +21,15 @@ function ShowPaymentsOwner() {
         const authenticate = async () => {
             setLoading(true);
             const rsp = authenticateUser('owner', token);
-            if ('error' === rsp.type) {
-                setLoading(false);
-                alert('you are not authenticated' + rsp.error);
+            if (false === rsp.authenticated) {
                 navigate('/');
             }
             const response = await getPaymentDetails(token);
             setLoading(false);
+            if (false === response.authenticated) {
+                MultiToast(response.message, true);
+                navigate('/');
+            }
             if ('error' === response.type) {
                 MultiToast(response.error, true);
                 // navigate('/');
@@ -37,35 +39,37 @@ function ShowPaymentsOwner() {
             }
         }
         authenticate();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cookies]);
 
-    if (true === loading) {
-        return <Spinner />
-    }
-    const styles={
+    const styles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-         height: "70vh",
+        height: "70vh",
     }
     return (
         <div style={{ "background-image": "linear-gradient(#b993d6, #8ca6db)" }}>
             <Layout userType={'owner'}>
-                {
-                    paymentList.length !== 0 ?
-                        paymentList.map((payment, index) => {
-                            console.log(payment.customer_data.firstname)
-                            return (
-                                <div key={index}>
-                                    <h3>customer name :- {payment.customer_data.firstname} {payment.customer_data.lastname}</h3>
-                                    <Payment payment={payment} setPaymentList={setPaymentList} setLoading={setLoading} />
+                {loading ? <Spinner /> :
+                    <>
+                        {
+                            paymentList.length !== 0 ?
+                                paymentList.map((payment, index) => {
+                                    console.log(payment.customer_data.firstname)
+                                    return (
+                                        <div key={index}>
+                                            <h3>customer name :- {payment.customer_data.firstname} {payment.customer_data.lastname}</h3>
+                                            <Payment payment={payment} setPaymentList={setPaymentList} setLoading={setLoading} />
+                                        </div>
+                                    )
+                                })
+                                :
+                                <div style={styles}>
+                                    <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>Oops!! No Details Found</h1>
                                 </div>
-                            )
-                        })
-                        :
-                        <div style={styles}>
-                        <h1  style={{color:"#b33800",fontWeight:"500",fontSize:"4rem",textAlign:"center"}}>Oops!! No Details Found</h1>
-                        </div>
+                        }
+                    </>
                 }
             </Layout>
         </div>

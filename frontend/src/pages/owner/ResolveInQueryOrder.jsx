@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useNavigate,useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '../Spinner.jsx';
 import { toast } from 'react-toastify';
 import ShowOrder from '../shared/order/Order.jsx';
 export default function ResolveInQueryOrder({ cookies }) {
-    const {order_id} = useParams();
+    const { order_id } = useParams();
     const navigate = useNavigate();
     const [order, setOrder] = useState(null);
     const { token } = cookies;
@@ -18,7 +18,7 @@ export default function ResolveInQueryOrder({ cookies }) {
                         'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ token,order_id })
+                    body: JSON.stringify({ token, order_id })
                 });
                 const data = await response.json();
                 console.log(data)
@@ -30,6 +30,7 @@ export default function ResolveInQueryOrder({ cookies }) {
             }
         }
         fetchInQueryOrder(order_id);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (null === order) {
@@ -44,7 +45,7 @@ export default function ResolveInQueryOrder({ cookies }) {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ token,order_id })
+                body: JSON.stringify({ token, order_id })
             });
             const data = await response.json();
             console.log(data)
@@ -63,7 +64,7 @@ export default function ResolveInQueryOrder({ cookies }) {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ token,order_id })
+                body: JSON.stringify({ token, order_id })
             });
             const data = await response.json();
             console.log(data)
@@ -75,15 +76,15 @@ export default function ResolveInQueryOrder({ cookies }) {
         }
     }
 
-    const handleReAssign = (e)=>{
+    const handleReAssign = (e) => {
         console.log(e.target)
         ReAssignOrder();
     }
-    const handleMoveToPending = (e)=>{
+    const handleMoveToPending = (e) => {
         MoveToPending();
     }
 
-    const handleCustomerDetail = (e)=>{
+    const handleCustomerDetail = (e) => {
         console.log(e.target);
         navigate(`${e.target.value}`)
     }

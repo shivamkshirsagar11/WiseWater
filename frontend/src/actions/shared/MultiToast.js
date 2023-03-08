@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 const MultiToast = (message, isError) => {
-
+    console.log(message);
     if (typeof message === typeof " ") {
         if (isError)
             toast.error(message);
@@ -13,6 +13,7 @@ const MultiToast = (message, isError) => {
                 toast.error(ele);
             else
                 toast.success(ele);
+            return '';
         })
     }
 }

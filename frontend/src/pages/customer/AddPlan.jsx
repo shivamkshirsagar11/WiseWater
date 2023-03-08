@@ -1,34 +1,35 @@
-import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import { CookiesContext } from "../../context/CookiesProvider";
 import { addSubscription } from "../../actions/customer/addSubscription";
 import MultiToast from "../../actions/shared/MultiToast";
+import { useNavigate } from "react-router-dom";
 
 export default function AddPlan({ hideThisPage }) {
-
-  const navigate = useNavigate();
   const { cookies } = useContext(CookiesContext);
   const { token } = cookies;
   console.log(token);
-  const [showButton, setShowButton] = useState(true)
   const [subObj, setSubObj] = useState({
     quantity: 0,
     remaining_days: 0,
     start_date: "",
     water_type: "choose one"
   });
+  const navigate = useNavigate();
   const handleChange = e => {
     const { name, value } = e.target;
     setSubObj(prevState => ({ ...prevState, [name]: value }));
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const res = await addSubscription(token, subObj);
+    if (false === res.authenticated) {
+      MultiToast(res.message, true);
+      navigate('/');
+    }
     console.log(res);
     if (res.type === "error") {
       MultiToast(res.error, true);
     } else {
-      setShowButton(false)
       MultiToast("Your Plan will start soon", false);
       hideThisPage(true);
     }
@@ -68,7 +69,7 @@ export default function AddPlan({ hideThisPage }) {
         <option value="coldWater">cold water</option>
         <option value="normalWater">normal water</option>
       </select>
-      <input type="submit" value="Save"/>
+      <input type="submit" value="Save" />
     </form>
   );
 }

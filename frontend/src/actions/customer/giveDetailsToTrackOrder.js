@@ -12,11 +12,16 @@ const giveDetailsToTrackOrder = async (token, orderId) => {
                 body: JSON.stringify({ orderId }),
             }
         );
+        if (401 === response.status) {
+            return {
+                authenticated: false,
+                message: "Authentication failed",
+            }
+        }
         const data = await response.json();
-        console.log(data);
         if (undefined !== data.error) {
             console.log(data.error);
-            throw (data.error);
+            throw data.error.errorMessage;
         }
         else {
             return {

@@ -21,47 +21,48 @@ export default function ShowAssignedOrders() {
         const fetchData = async () => {
             setLoading(true);
             const response = await giveAssignedOrders(token);
+            if (false === response.authenticated) {
+                MultiToast(response.message, true);
+                navigate('/');
+            }
             if ('error' === response.type) {
                 MultiToast(response.error, true)
-                navigate('/login');
             }
             setAssignedOrders(response.assignedOrders);
             console.log(response)
             setLoading(false);
         };
         fetchData();
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cookies]);
 
-    if (true === loading) {
-        return <Spinner />;
-    }
-    const styles={
+
+    const styles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-         height: "70vh",
+        height: "70vh",
     }
     return (
-        <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
-        <Layout userType={'owner'}>
-            <div>
-                {0 === assignedOrders.length &&  <div style={styles}>
-                        <h1  style={{color:"#b33800",fontWeight:"500",fontSize:"4rem",textAlign:"center"}}>No Orders are Assigned</h1>
-                        </div>}
-                {
-                    assignedOrders.map((assignedOrder, index) => {
-                        console.log(assignedOrder)
-                        delete assignedOrder.status
-                        return (
-                            <div key={index}>
-                                <ShowOrder order={assignedOrder} />
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        </Layout>
+        <div style={{ "background-image": "linear-gradient(#b993d6, #8ca6db)" }}>
+            <Layout userType={'owner'}>
+                <div>
+                    {0 === assignedOrders.length && <div style={styles}>
+                        <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>No Orders are Assigned</h1>
+                    </div>}
+                    {
+                        assignedOrders.map((assignedOrder, index) => {
+                            console.log(assignedOrder)
+                            delete assignedOrder.status
+                            return (
+                                <div key={index}>
+                                    <ShowOrder order={assignedOrder} />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </Layout>
         </div>
     )
 }

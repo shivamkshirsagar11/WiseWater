@@ -35,8 +35,6 @@ async function AddPlans(req, res){
         subObj.status = "pending"
         subObj.worker_id = null;
         const addOne = await subscriptionModel.create({...subObj})
-        console.log("from add subscription...");
-        console.log(addOne);
         if(addOne){
             res.status(200).json({
                 added:true

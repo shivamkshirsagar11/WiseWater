@@ -18,37 +18,41 @@ export default function ShowAssignedOrders() {
         const fetchData = async () => {
             setLoading(true);
             const response = await giveWorkerDelieveredOrders(token);
+            setLoading(false);
+            if (false === response.authenticated) {
+                MultiToast(response.message, true);
+                navigate('/');
+            }
             if ('error' === response.type) {
                 MultiToast(response.error, true);
-                navigate('/login');
             } else {
                 setDelieveredOrders(response.delieveredOrders);
             }
-            setLoading(false);
         }
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
 
-    if (true === loading) {
-        return <Spinner />;
-    }
+
 
     return (
         <Layout userType={'worker'}>
-            <div>
-                {0 === delieveredOrders.length && <p>no order are assigned</p>}
-                {
-                    delieveredOrders.map((assignedOrder, index) => {
-                        delete assignedOrder.status;
-                        return (
-                            <div key={index}>
-                                <h2>order number {index}</h2>
-                                <ShowOrder order={assignedOrder} />
-                            </div>
-                        )
-                    })
-                }
-            </div>
+            {loading ? <Spinner /> :
+                <div>
+                    {0 === delieveredOrders.length && <p>no order are assigned</p>}
+                    {
+                        delieveredOrders.map((assignedOrder, index) => {
+                            delete assignedOrder.status;
+                            return (
+                                <div key={index}>
+                                    <h2>order number {index}</h2>
+                                    <ShowOrder order={assignedOrder} />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            }
         </Layout>
     )
 }

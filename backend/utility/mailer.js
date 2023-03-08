@@ -4,25 +4,25 @@ import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-d
 dotenv.config();
 
 export async function sendHiringEmail(to, password, companyEmail, companyName, workerName, startDayTime, address) {
-    try{
-  let transporter = createTransport({
-   service:'gmail',
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.EMAIL_PASS, 
-    },
-  });
+  try {
+    let transporter = createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
 
-  let info = await transporter.sendMail({
-    from: 'wisewater.helpdesk.info@gmail.com',
-    to: `${to}`,
-    subject: "Hired For Job",
-    attachments: [{
+    let info = await transporter.sendMail({
+      from: 'wisewater.helpdesk.info@gmail.com',
+      to: `${to}`,
+      subject: "Hired For Job",
+      attachments: [{
         filename: '1.png',
         path: `D:\\SDP\\WiseWater\\backend\\utility\\media\\image-4.png`,
         cid: 'image@1' //same cid value as in the html img src
-    }],
-    html:`<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      }],
+      html: `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
     <!--[if gte mso 9]>
@@ -114,9 +114,9 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     
     </head>
     
-    <body class="clean-body u_body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #e7e7e7;color: #000000">
-      <!--[if IE]><div class="ie-container"><![endif]-->
-      <!--[if mso]><div class="mso-container"><![endif]-->
+    <body className="clean-body u_body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #e7e7e7;color: #000000">
+      <!--[if IE]><div className="ie-container"><![endif]-->
+      <!--[if mso]><div className="mso-container"><![endif]-->
       <table id="u_body" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #e7e7e7;width:100%" cellpadding="0" cellspacing="0">
       <tbody>
       <tr style="vertical-align: top">
@@ -124,20 +124,20 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
         <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: #e7e7e7;"><![endif]-->
         
     
-    <div class="u-row-container" style="padding: 0px;background-color: transparent">
-      <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #e6a501;">
+    <div className="u-row-container" style="padding: 0px;background-color: transparent">
+      <div className="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #e6a501;">
         <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
           <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #e6a501;"><![endif]-->
           
     <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
-    <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+    <div className="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
       <div style="height: 100%;width: 100% !important;">
       <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
       
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
             
       <table height="0px" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 1px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
         <tbody>
@@ -157,7 +157,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
             
       <h1 style="margin: 0px; color: #ffffff; line-height: 140%; text-align: center; word-wrap: break-word; font-family: 'Raleway',sans-serif; font-size: 48px; "><strong>Welcome!</strong></h1>
     
@@ -169,13 +169,13 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table id="u_content_image_2" style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
             
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
       <tr>
         <td style="padding-right: 0px;padding-left: 0px;" align="center">
           
-          <img align="center" border="0" src="cid:image@1" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 20%;max-width: 116px;" width="116" class="v-src-width v-src-max-width"/>
+          <img align="center" border="0" src="cid:image@1" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 20%;max-width: 116px;" width="116" className="v-src-width v-src-max-width"/>
           
         </td>
       </tr>
@@ -189,7 +189,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 35px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 35px;font-family:'Open Sans',sans-serif;" align="left">
             
       <div style="line-height: 140%; text-align: center; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%;"><span style="color: #e67e23; font-size: 26px; line-height: 36.4px; background-color: #ffffff;">You Are Hired!!  </span></p>
@@ -211,20 +211,20 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     
     
     
-    <div class="u-row-container" style="padding: 0px;background-color: transparent">
-      <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
+    <div className="u-row-container" style="padding: 0px;background-color: transparent">
+      <div className="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
         <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
           <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #ffffff;"><![endif]-->
           
     <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
-    <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+    <div className="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
       <div style="height: 100%;width: 100% !important;">
       <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
       
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:30px 10px 30px 20px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:30px 10px 30px 20px;font-family:'Open Sans',sans-serif;" align="left">
             
       <div style="color: #333333; line-height: 130%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 130%;"><strong><span style="font-size: 16px; line-height: 20.8px;">${workerName},</span></strong></p>
@@ -248,20 +248,20 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     
     
     
-    <div class="u-row-container" style="padding: 0px;background-color: transparent">
-      <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #f7f6f4;">
+    <div className="u-row-container" style="padding: 0px;background-color: transparent">
+      <div className="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #f7f6f4;">
         <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
           <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #f7f6f4;"><![endif]-->
           
     <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
-    <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+    <div className="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
       <div style="height: 100%;width: 100% !important;">
       <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
       
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:25px 10px 0px 20px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:25px 10px 0px 20px;font-family:'Open Sans',sans-serif;" align="left">
             
       <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%;"><span style="font-family: Lato, sans-serif; font-size: 14px; line-height: 19.6px;"><strong><span style="font-size: 18px; line-height: 25.2px; color: red;">Credentials</span></strong></span></p>
@@ -275,7 +275,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 10px 20px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 10px 20px;font-family:'Open Sans',sans-serif;" align="left">
             
       <table height="0px" align="left" border="0" cellpadding="0" cellspacing="0" width="22%" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 3px solid #e67e23;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
         <tbody>
@@ -295,7 +295,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 10px 20px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 10px 20px;font-family:'Open Sans',sans-serif;" align="left">
             
       <div style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%;"><strong>Name: </strong> <span style="color: #828080; font-size: 14px; line-height: 19.6px;">${workerName}</span></p>
@@ -309,7 +309,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 10px 20px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 10px 20px;font-family:'Open Sans',sans-serif;" align="left">
             
       <div style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
         <h4 style="font-size: 14px; line-height: 140%; color:red;"><strong>Email: </strong>&nbsp;<span style="color:yellow; font-size: 14px; line-height: 19.6px;">${to}</span></h4>
@@ -327,7 +327,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 10px 20px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 10px 20px;font-family:'Open Sans',sans-serif;" align="left">
             
       <div style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%;"><strong>Start Date / Time : </strong>&nbsp;<span style="color: #828080; font-size: 14px; line-height: 19.6px;">${startDayTime}</span></p>
@@ -341,7 +341,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 25px 20px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 25px 20px;font-family:'Open Sans',sans-serif;" align="left">
             
       <div style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%;"><strong>Location :&nbsp; </strong><span style="color: #828080; font-size: 14px; line-height: 19.6px;">${address}</span>&nbsp;</p>
@@ -363,20 +363,20 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     
     
     
-    <div class="u-row-container" style="padding: 0px;background-color: transparent">
-      <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
+    <div className="u-row-container" style="padding: 0px;background-color: transparent">
+      <div className="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
         <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
           <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: #ffffff;"><![endif]-->
           
     <!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
-    <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+    <div className="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
       <div style="height: 100%;width: 100% !important;">
       <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
       
     <table id="u_content_text_15" style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:20px 20px 15px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:20px 20px 15px;font-family:'Open Sans',sans-serif;" align="left">
             
       <div style="color: #333333; line-height: 160%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 16px; line-height: 25.6px; font-family: Lato, sans-serif;">Please, consider this as an acceptance email. If you have any questions contact us with this link <span style="text-decoration: underline; line-height: 25.6px; color: #e67e23; font-size: 16px;">${companyEmail}</span></span><br/><br/><span style="color: red; line-height: 160%; text-align: left; word-wrap: break-word;"><b>PLEASE DO NOT SHARE YOUR CREDENTIAL!</b></span></p>
@@ -390,7 +390,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 30px 20px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 30px 20px;font-family:'Open Sans',sans-serif;" align="left">
             
       <div style="color: #333333; line-height: 160%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 16px; line-height: 25.6px; font-family: Lato, sans-serif;">We look forward to seeing you at the Work.</span></p>
@@ -404,7 +404,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 30px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 30px;font-family:'Open Sans',sans-serif;" align="left">
             
       <!--[if mso]><style>.v-button {background: transparent !important;}</style><![endif]-->
     <div align="center">
@@ -420,7 +420,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
             
       <table height="0px" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 2px solid #939391;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
         <tbody>
@@ -440,7 +440,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     <table style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
       <tbody>
         <tr>
-          <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:14px;font-family:'Open Sans',sans-serif;" align="left">
+          <td className="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:14px;font-family:'Open Sans',sans-serif;" align="left">
             
     <div align="center">
       <div style="display: table; max-width:187px;">
@@ -506,11 +506,11 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
     
     </html>
     `
-  });
+    });
 
-  return true;
-}catch(e){
+    return true;
+  } catch (e) {
     console.log(`Error on sending Email: ${e}`);
     return false;
-}
+  }
 }

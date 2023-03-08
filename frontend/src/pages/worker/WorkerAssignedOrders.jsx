@@ -20,21 +20,22 @@ export default function WorkerAssignedOrders() {
     const fetchData = async () => {
       setLoading(true);
       const response = await giveWorkerAssignedOrders(token);
+      setLoading(false);
+      if (false === response.authenticated) {
+        MultiToast(response.message, true);
+        navigate('/');
+      }
       if ("error" === response.type) {
         MultiToast(response.error, true);
-        navigate("/login");
       } else {
         setAssignedOrders(response.assignedOrders);
         setLocation(response.location);
       }
-      setLoading(false);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
-  if (true === loading) {
-    return <Spinner />;
-  }
   console.log(location);
   const handleDelieverOrder = async (e) => {
     e.preventDefault();
@@ -52,13 +53,14 @@ export default function WorkerAssignedOrders() {
 
   return (
     <div style={{ "background-image": "linear-gradient(#b993d6, #8ca6db)" }}>
+      {loading && <Spinner />}
       <Layout userType={"worker"}>
-        {0 === assignedOrders.length && (
+        {!loading && 0 === assignedOrders.length && (
           <h4 className="display-6" style={{ color: "red" }}>
             no order are assigned
           </h4>
         )}
-        {assignedOrders.map((assignedOrder, index) => {
+        {!loading && assignedOrders.map((assignedOrder, index) => {
           delete assignedOrder.status;
           return (
             <div key={index}>

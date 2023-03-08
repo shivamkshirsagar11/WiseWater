@@ -9,6 +9,12 @@ const hireWorker = async (token, workerApplication) => {
             },
             body: JSON.stringify({ workerApplication }),
         });
+        if (401 === response.status) {
+            return {
+                authenticated: false,
+                message:"Authentication failed",
+            }
+        }
         const data = await response.json();
         if (undefined !== data.error)
             throw (data.error.errorMessage);

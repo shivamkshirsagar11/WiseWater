@@ -26,9 +26,12 @@ export default function ShowAssignedPlans() {
         "get-assigned-plans",
         token
       );
+      if (false === response.authenticated) {
+        MultiToast(response.message, true);
+        navigate('/');
+      }
       if ("error" === response.type) {
         MultiToast(response.error, true);
-        navigate("/login");
       }
       setCustomerPlans(response.plans);
       setCustomers(response.customers);
@@ -36,8 +39,9 @@ export default function ShowAssignedPlans() {
       setSpinner(false);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookies]);
-  
+
   return (
     <>
     <Layout userType={'owner'}style={{backgroundColor:"#670e00"}}

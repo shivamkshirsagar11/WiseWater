@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { CookiesContext } from '../../../context/CookiesProvider';
 import { sendRecipt } from '../../../actions/owner/sendRecipt';
 import MultiToast from '../../../actions/shared/MultiToast';
-import Spinner from '../../Spinner';
 import { getPaymentDetails } from '../../../actions/owner/getPaymentDetails';
 
 function Payment({ payment, setPaymentList, setLoading }) {

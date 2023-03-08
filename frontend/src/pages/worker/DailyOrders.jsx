@@ -27,56 +27,64 @@ export default function DailyOrders() {
         "daily-ord",
         token
       );
+      setSpinner(false)
+      if (false === response.authenticated) {
+        MultiToast(response.message, true);
+        navigate('/');
+      }
       if ("error" === response.type) {
         MultiToast(response.error, true);
-        navigate("/login");
       }
       setCustomerPlans(response.daily);
       setCustomers(response.customers);
-      setSpinner(false);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookies, trigger]);
 
   const delieverHandler = async (e) => {
-   //do something of delievered
-const id = e.target.value;
-const resp = await dailyDelievery(token, id);
-if ("error" === resp.type) {
-  MultiToast(resp.error, true);
-  navigate("/login");
-}
-else{
-  setTrigger(true);
-}
+    //do something of delievered
+    const id = e.target.value;
+    const resp = await dailyDelievery(token, id);
+    if ("error" === resp.type) {
+      MultiToast(resp.error, true);
+      navigate("/login");
+    }
+    else {
+      setTrigger(true);
+    }
   };
+
   return (
     <>
+<<<<<<< HEAD
     <Layout userType={'worker'}style={{backgroundColor:"#670e00"}}
              >
+=======
+      <Layout userType={'customer'} style={{ backgroundColor: "#670e00" }}>
+>>>>>>> d78e1447e3f9f6256c0139eebea2463dc748fb55
       {spinner && <Spinner />}
-      {!spinner && customerPlans.length > 0 ? (
-        customerPlans.map((plans, index) => {
-          return (
-            <div key={index}>
-              <p>Plan {index}</p>
-              {/* <SubscriptionDetails plan={plans} customer={customers[index]} userType={"worker"}/> */}
-              <PlanViewModel
-                show={planViewModelState}
-                onHide={() => setPlanViewModelState(false)}
-                data={{plan:plans, customer:customers[index], userType:"worker"}}
-            />
-             <button className="btn btn-warning" onClick={() => setPlanViewModelState(true)}>Plan details</button>
-              <button
-              value={plans._id}
-              onClick={delieverHandler}
-            >Delievered</button>
-            </div>
-          );
-        })
-      ) : (
-        <p>NO subscribed plans</p>
-      )}
+        {!spinner && customerPlans.length > 0 ? (
+          customerPlans.map((plans, index) => {
+            return (
+              <div key={index}>
+                <p>Plan {index}</p>
+                <PlanViewModel
+                  show={planViewModelState}
+                  onHide={() => setPlanViewModelState(false)}
+                  data={{ plan: plans, customer: customers[index], userType: "worker" }}
+                />
+                <button className="btn btn-warning" onClick={() => setPlanViewModelState(true)}>Plan details</button>
+                <button
+                  value={plans._id}
+                  onClick={delieverHandler}
+                >Delievered</button>
+              </div>
+            );
+          })
+        ) : (
+          !spinner && <p>NO subscribed plans</p>
+        )}
       </Layout>
     </>
   );

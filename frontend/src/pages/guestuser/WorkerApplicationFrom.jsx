@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { submitJobApplication } from "../../actions/guestUser/submitJobApplication.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
 import OTP from "../shared/form/OTP.jsx";
 
 export default function WorkerApplicationFrom() {
-  const navigate = useNavigate();
   const { companyname } = useParams();
   const [flag, setFlag] = useState(false);
   const [userData, setuserData] = useState({
@@ -23,7 +22,7 @@ export default function WorkerApplicationFrom() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-console.log("submitted")
+    console.log("submitted")
     const response = await submitJobApplication(userData, true);
     if ("error" === response.type) MultiToast(response.error, true);
     else setFlag(true);
@@ -33,8 +32,8 @@ console.log("submitted")
     <>
       {!flag && (
         <div>
-        <h1 className="text-center my-4 " style={{ color: '#0077be' }}>
-            <span className="fw-bold">Worker Application </span>  
+          <h1 className="text-center my-4 " style={{ color: '#0077be' }}>
+            <span className="fw-bold">Worker Application </span>
           </h1>
           {/* <h3 className="container-sm display-4">Worker Application</h3> */}
           <form method="post" className="container col-sm-6">
@@ -107,8 +106,8 @@ console.log("submitted")
               onClick={handleSubmit}
               className="btn "
               style={{
-                  backgroundColor:"#0077be",color:'white',
-                }}
+                backgroundColor: "#0077be", color: 'white',
+              }}
             >
               Submit
             </button>
@@ -120,7 +119,7 @@ console.log("submitted")
           userData={userData}
           userType="worker"
           register={submitJobApplication}
-          setCookies={() => {}}
+          setCookies={() => { }}
           navigateString={"/"}
           requiredCookie={0}
           toastMsg={"Application Sent Successfully"}

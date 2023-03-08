@@ -9,10 +9,15 @@ const getPaymentDetails = async (token) => {
                 },
             }
         );
+        if (401 === response.status) {
+            return {
+                authenticated: false,
+                message: "Authentication failed",
+            }
+        }
         const data = await response.json();
-        console.log(data);
         if (undefined !== data.error)
-            throw (data.error);
+            throw data.error.errorMessage;
         else {
             return {
                 type: 'data',

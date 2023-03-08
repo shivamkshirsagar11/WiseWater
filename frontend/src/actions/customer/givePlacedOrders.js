@@ -9,6 +9,12 @@ const givePlacedOrders = async (token) => {
                 },
             }
         );
+        if (401 === response.status) {
+            return {
+                authenticated: false,
+                message:"Authentication failed",
+            }
+        }
         const data = await response.json();
         if ('error' === data.type)
             throw (data.message);

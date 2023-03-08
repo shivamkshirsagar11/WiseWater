@@ -20,21 +20,22 @@ export default function ShowWorkers() {
       const { token } = cookies;
 
       const response = await giveWorkerDetails(token);
-
+      setLoading(false);
+      if (false === response.authenticated) {
+        MultiToast(response.message, true);
+        navigate('/');
+      }
       if ('error' === response.type) {
         alert(response.error);
       } else {
         console.log(response.workers);
         setShowWorkers(response.workers);
       }
-      setLoading(false);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (true === loading) {
-    return <Spinner />;
-  }
   const assignHandler = async (e) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -54,16 +55,19 @@ export default function ShowWorkers() {
   };
   return (
     <Layout userType={'owner'}>
-      {showWorkers.map((worker, index) => {
-        return (
-          <div key={index}>
-            <p>{worker.firstname}</p>
-            <button onClick={assignHandler} value={worker._id}>
-              assign order
-            </button>
-          </div>
-        );
-      })}
+      {loading ? <Spinner /> :
+        <>
+          {showWorkers.map((worker, index) => {
+            return (
+              <div key={index}>
+                <p>{worker.firstname}</p>
+                <button onClick={assignHandler} value={worker._id}>
+                  assign order
+                </button>
+              </div>
+            );
+          })}
+        </>}
     </Layout>
   );
 }

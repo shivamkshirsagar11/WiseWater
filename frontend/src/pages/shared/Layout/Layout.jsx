@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import "./Layout.css";
 
-import { Badge } from "antd";
 import {
+  adminMenu,
   customerMenu,
   guestMenu,
   ownerMenu,
@@ -26,13 +26,15 @@ const Layout = ({ children, userType }) => {
     userType === "customer"
       ? customerMenu
       : userType === "owner"
-      ? ownerMenu
-      : userType === "worker"
-      ? workerMenu
-      : guestMenu;
+        ? ownerMenu
+        : userType === "worker"
+          ? workerMenu
+          : userType === "admin"
+            ? adminMenu
+            : guestMenu;
 
   return (
-    <div style={{backgroundColor:"#64b5f6"}}>
+    <div style={{ backgroundColor: "#64b5f6" }}>
       <div className="main">
         <div className="layout">
           <div className="sidebar">
@@ -49,7 +51,7 @@ const Layout = ({ children, userType }) => {
                     className={`menu-item ${isActive && "active"}`}
                   >
                     <i className={menu.icon} ></i>
-                    <Link to={menu.path} style={{text:"center"}}>{menu.name}</Link>
+                    <Link to={menu.path} style={{ text: "center" }}>{menu.name}</Link>
                   </div>
                 );
               })}
@@ -57,7 +59,7 @@ const Layout = ({ children, userType }) => {
                 <div
                   className={`menu-item `}
                   onClick={handleLogout}
-                  style={{ cursor: "pointer" ,fontWeight:"400",fontSize:"1.2rem"}}
+                  style={{ cursor: "pointer", fontWeight: "400", fontSize: "1.2rem" }}
                 >
                   <i className="fa-solid fa-right-from-bracket"></i>
                   Logout
@@ -66,7 +68,7 @@ const Layout = ({ children, userType }) => {
             </div>
           </div>
           <div className="content">
-            <div className="body" style={{backgroundColor:"#ede7f6"}}>{children}</div>
+            <div className="body" style={{ backgroundColor: "#ede7f6" }}>{children}</div>
           </div>
         </div>
       </div>

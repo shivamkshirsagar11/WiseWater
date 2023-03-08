@@ -6,56 +6,57 @@ import { toast } from 'react-toastify';
 import MultiToast from '../../actions/shared/MultiToast.js';
 
 export default function WorkerOrderQuery({ cookies }) {
-    const {order_id} = useParams();
+    const { order_id } = useParams();
     const navigate = useNavigate();
     const [order, setOrder] = useState(null);
     const [orderQuery, setOrderQuery] = useState('');
-    const {token} = cookies;
+    const { token } = cookies;
     useEffect(() => {
-        const fetchOrder = async()=>{
-            try{
+        const fetchOrder = async () => {
+            try {
                 const response = await fetch('/api/worker/fetch-order', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({token,order_id:order_id})
+                    body: JSON.stringify({ token, order_id: order_id })
                 });
                 const data = await response.json();
                 if (data.type === 'error') throw new Error(data.message);
                 setOrder(data.order);
-            }catch(e){
+            } catch (e) {
                 toast.error(e.message);
             }
         }
         fetchOrder();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [order_id, token]);
 
     if (null === order) {
         return <Spinner />;
     }
 
-    const makeOrderQuery = async(x)=>{
-        try{
+    const makeOrderQuery = async (x) => {
+        try {
             const response = await fetch('/api/worker/make-order-query', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({token,order_id:x,query:orderQuery})
+                body: JSON.stringify({ token, order_id: x, query: orderQuery })
             });
             const data = await response.json();
             if (data.type === 'error') MultiToast(data.error, true);
             console.log(data)
             navigate(`/worker/profile`);
-        }catch(e){
+        } catch (e) {
             toast.error(e.message);
         }
     }
 
-    const handleQuery = async(e)=>{
+    const handleQuery = async (e) => {
         console.log(e.target);
         makeOrderQuery(e.target.value);
     }
@@ -68,7 +69,7 @@ export default function WorkerOrderQuery({ cookies }) {
                         <div key={index}>
                             <h2>order number {index}</h2>
                             <ShowOrder order={orderin} />
-                            Query: <textarea rows="5" cols="30" value={orderQuery} onChange={(e)=>{setOrderQuery(e.target.value)}}></textarea><br/> 
+                            Query: <textarea rows="5" cols="30" value={orderQuery} onChange={(e) => { setOrderQuery(e.target.value) }}></textarea><br />
                             <button value={orderin._id} onClick={handleQuery}>Submit</button>
                         </div>
                     )

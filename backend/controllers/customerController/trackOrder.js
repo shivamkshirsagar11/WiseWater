@@ -22,7 +22,6 @@ export async function trackOrder(req, res) {
             })
         }
     } else {
-        console.log(error);
         res.status(404).json({
             error: {
                 errorMessage: ['order is not found']

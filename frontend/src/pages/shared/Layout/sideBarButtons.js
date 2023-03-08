@@ -92,6 +92,23 @@ export const workerMenu = [
         icon: "fa-solid fa-user",
     }
 ];
+export const adminMenu = [
+    {
+        name: "show customers",
+        path: '/admin/show-customers',
+        icon: "fa-solid fa-house",
+    },
+    {
+        name: "show owners",
+        path: '/admin/show-owners',
+        icon: "fa-solid fa-house",
+    },
+    {
+        name: "show owners applications",
+        path: "/admin/show-owners-applications",
+        icon: "fa-solid fa-house",
+    }
+]
 export const guestMenu = [
     {
         name: "Apply for a job",

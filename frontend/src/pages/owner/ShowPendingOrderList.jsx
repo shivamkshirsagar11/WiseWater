@@ -6,7 +6,6 @@ import { givePendingOrders } from "../../actions/owner/givePendingOrders.js";
 import MultiToast from "../../actions/shared/MultiToast.js";
 import Layout from "../shared/Layout/Layout.jsx";
 import { CookiesContext } from "../../context/CookiesProvider.js";
-import { assignOrder } from "../../actions/owner/assignOrder.js";
 
 export default function ShowPendingOrderList() {
   const navigate = useNavigate();
@@ -21,19 +20,20 @@ export default function ShowPendingOrderList() {
     const fetchData = async () => {
       setLoading(true);
       const response = await givePendingOrders(token);
+      setLoading(false);
+      if (false === response.authenticated) {
+        navigate('/');
+      }
       if ('error' === response.type) {
         MultiToast(response.error, true);
-        navigate('/login');
       }
       setPendingOrderList(response.pendingOrderList);
-      setLoading(false);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookies]);
 
-  if (true === loading) {
-    return <Spinner />;
-  }
+
 
   const redirectHandler = (e) => {
     e.preventDefault();
@@ -44,33 +44,37 @@ export default function ShowPendingOrderList() {
   // REASON :- in showOrder componenet there is condataion on this order.status
   // when owner wants to show panding orders then there is no meansing to show order status
 
-  const styles={
+  const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-     height: "70vh",
-}
+    height: "70vh",
+  }
   return (
-    <div style={{"background-image":"linear-gradient(#b993d6, #8ca6db)"}}>
-    <Layout userType={'owner'}>
-      {pendingOrderList.length === 0 && <div style={styles}>
-                        <h1  style={{color:"#b33800",fontWeight:"500",fontSize:"4rem",textAlign:"center"}}>No Orders are Assigned</h1>
-                        </div>}
-      {pendingOrderList.map((order, index) => {
-        delete order.status
-        console.log(order)
-        return (
+    <div style={{ "background-image": "linear-gradient(#b993d6, #8ca6db)" }}>
+      <Layout userType={'owner'}>
+        {loading ? <Spinner /> :
+          <>
+            {pendingOrderList.length === 0 && <div style={styles}>
+              <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>No Orders are Assigned</h1>
+            </div>}
+            {pendingOrderList.map((order, index) => {
+              delete order.status
+              console.log(order)
+              return (
 
-          <div key={index}>
-            <ShowOrder order={order} />
-            <button
-              onClick={redirectHandler}
-              value={`/owner/show-workers/${order.orderId}`}
-            >Assign</button>
-          </div>
-        );
-      })}
-    </Layout>
+                <div key={index}>
+                  <ShowOrder order={order} />
+                  <button
+                    onClick={redirectHandler}
+                    value={`/owner/show-workers/${order.orderId}`}
+                  >Assign</button>
+                </div>
+              );
+            })}
+          </>
+        }
+      </Layout>
     </div>
   );
 }

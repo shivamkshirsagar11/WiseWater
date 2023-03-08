@@ -19,45 +19,46 @@ export default function ShowPlacedorderList() {
         const fetchData = async () => {
             setLoading(true);
             const response = await givePlacedOrders(token);
+            setLoading(false);
+            if (false === response.authenticated) {
+                MultiToast(response.message, true);
+                navigate('/');
+            }
             if ('error' === response.type) {
                 MultiToast(response.error, true);
-                navigate('/login');
             }
             setPlacedOrderList(response.orderList);
             console.log(response.orderList)
-            setLoading(false);
         }
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cookies]);
 
-    if (true === loading) {
-        return <Spinner />
-    }
-    const handleTrackOrder = (e) => {
-        e.preventDefault();
-        console.log(e.target.value)
-        navigate(`${e.target.value}`)
-    }
-    const styles={
+    // const handleTrackOrder = (e) => {
+    //     e.preventDefault();
+    //     console.log(e.target.value)
+    //     navigate(`${e.target.value}`)
+    // }
+    const styles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-         height: "70vh",
+        height: "70vh",
     }
     return (
-        // <div style={{backgroundColor:"#64b5f6"}} >
-            <Layout userType={'customer'}style={{backgroundColor:"#670e00"}}
-             >
+        <Layout userType={'customer'} style={{ backgroundColor: "#670e00" }}
+        >
+            {loading ? <Spinner />:
             <div >
-                {0 === placedOrderList.length && 
-                <div style={styles}>
-                <div style={{textAlign:"center"}}>
-                <h1 style={{color:"#b33800",fontWeight:"500",fontSize:"4.5rem"}}>No Orders Placed !!
-                </h1>
-                </div>
-                </div>
+                {0 === placedOrderList.length &&
+                    <div style={styles}>
+                        <div style={{ textAlign: "center" }}>
+                            <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4.5rem" }}>No Orders Placed !!
+                            </h1>
+                        </div>
+                    </div>
                 }
-                
+
                 {
                     placedOrderList.map((order, index) => {
                         return (
@@ -69,7 +70,7 @@ export default function ShowPlacedorderList() {
                     })
                 }
             </div>
-         </Layout>
-        // </div>
+}
+        </Layout>
     )
 }

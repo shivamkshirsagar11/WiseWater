@@ -4,7 +4,6 @@ import { CookiesContext } from "../../context/CookiesProvider.js";
 import MultiToast from "../../actions/shared/MultiToast";
 import { useNavigate } from "react-router-dom";
 import { getAllSubscription } from "../../actions/shared/subscription";
-import SubscriptionDetails from "../shared/details/SubscriptionDetails";
 import PlanViewModel from "../../components/planViewModel/PlanViewModel"
 import AddPlan from "./AddPlan";
 import Layout from "../shared/Layout/Layout.jsx";
@@ -27,45 +26,49 @@ export default function Plans() {
         "get-all-plans",
         token
       );
+      setSpinner(false);
+      if (false === response.authenticated) {
+        MultiToast(response.message, true);
+        navigate('/');
+      }
       if ("error" === response.type) {
         MultiToast(response.error, true);
-        navigate("/login");
       }
       setCustomerPlans(response.plans);
-      setSpinner(false);
       console.log(response.plans);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookies, hidePage]);
-  const showAddPage = (e)=>{
+  const showAddPage = (e) => {
     setHidePage(false)
   }
+
   return (
     <>
-     <Layout userType={'customer'}style={{backgroundColor:"#670e00"}}
-             >
+      <Layout userType={'customer'} style={{ backgroundColor: "#670e00" }}>
       {spinner && <Spinner />}
-      {!spinner && hidePage && customerPlans.length == 0 &&<button onClick={showAddPage}>Add +</button>}
-      {!spinner && hidePage && customerPlans.length > 0 ? (
-        customerPlans.map((plans, index) => {
-          return (
-            <div key={index}>
-              <p>Daily Delievery Plan</p>
-              <PlanViewModel
-                show={planViewModelState}
-                onHide={() => setPlanViewModelState(false)}
-                data={{plan:plans, userType:"customer"}}
-            />
-                        <button className="btn btn-warning" onClick={() => setPlanViewModelState(true)}>Plan details</button>
-            </div>
-          );
-        })
-      ) : (
-        hidePage && <p>NO subscribed plans</p>
-      )}
-      {
-        !spinner && !hidePage && <AddPlan hideThisPage={setHidePage}/>
-      }
+        {!spinner && hidePage && customerPlans.length === 0 && <button onClick={showAddPage}>Add +</button>}
+        {!spinner && hidePage && customerPlans.length > 0 ? (
+          customerPlans.map((plans, index) => {
+            return (
+              <div key={index}>
+                <p>Daily Delievery Plan</p>
+                <PlanViewModel
+                  show={planViewModelState}
+                  onHide={() => setPlanViewModelState(false)}
+                  data={{ plan: plans, userType: "customer" }}
+                />
+                <button className="btn btn-warning" onClick={() => setPlanViewModelState(true)}>Plan details</button>
+              </div>
+            );
+          })
+        ) : (
+          hidePage && <p>NO subscribed plans</p>
+        )}
+        {
+          !spinner && !hidePage && <AddPlan hideThisPage={setHidePage} />
+        }
       </Layout>
     </>
   );

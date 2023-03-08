@@ -7,7 +7,7 @@ function CompanyDetails({ redirectHandler, userType, company, index }) {
     const [companyViewModelState, setCompanyViewModelState] = useState(false);
     return (
         <div key={index} className="container">
-            <h5 style={{ color: "#1a237e" ,fontSize:"1.5rem",fontWeight:"700"}}>
+            <h5 style={{ color: "#1a237e", fontSize: "1.5rem", fontWeight: "700" }}>
                 {company.name}
             </h5>
             <CompanyViewModel
@@ -15,11 +15,12 @@ function CompanyDetails({ redirectHandler, userType, company, index }) {
                 onHide={() => setCompanyViewModelState(false)}
                 data={company}
             />
-            <button class="btn btn-warning "  style={{fontSize:"1.2em",fontWeight:"700",color:"darkblue",
-                }} data-bs-toggle="button" onClick={() => setCompanyViewModelState(true)}>Show Company Details</button>
-            
+            <button className="btn btn-warning " style={{
+                fontSize: "1.2em", fontWeight: "700", color: "darkblue",
+            }} data-bs-toggle="button" onClick={() => setCompanyViewModelState(true)}>Show Company Details</button>
+
             {"guest" === userType && (
-             <button
+                <button
                     value={`/worker/application/${company.name}`}
                     onClick={redirectHandler}
                     className="btn btn-warning mx-3"

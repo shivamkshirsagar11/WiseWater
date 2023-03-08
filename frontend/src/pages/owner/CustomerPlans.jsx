@@ -25,17 +25,21 @@ export default function CustomerPlans() {
         "get-all-plans",
         token
       );
+      setSpinner(false);
+      if (false === response.authenticated) {
+        MultiToast(response.message, true);
+        navigate('/');
+      }
       if ("error" === response.type) {
         MultiToast(response.error, true);
-        navigate("/login");
       }
       setCustomerPlans(response.plans);
       setCustomers(response.customers);
-      setSpinner(false);
       console.log(response.plans);
       console.log(response.customers);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookies]);
 
   const redirectHandler = (e) => {

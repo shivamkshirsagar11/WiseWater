@@ -8,6 +8,12 @@ const assignPlan = async ({ token, worker_id, orderId }) => {
             },
             body: JSON.stringify({ worker_id, orderId })
         });
+        if (401 === response.status) {
+            return {
+                authenticated: false,
+                message:"Authentication failed",
+            }
+        }
         const data = await response.json();
         if (undefined !== data.error)
             throw (data.error.errorMessage);

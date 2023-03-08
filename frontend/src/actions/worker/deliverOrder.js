@@ -11,6 +11,12 @@ const deliverOrder = async (token, orderId) => {
                 body: JSON.stringify({ orderId }),
             }
         );
+        if (401 === response.status) {
+            return {
+                authenticated: false,
+                message:"Authentication failed",
+            }
+        }
         const data = await response.json();
         if (undefined !== data.error)
             throw (data.error.errorMessage);
