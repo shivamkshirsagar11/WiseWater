@@ -7,10 +7,10 @@ import userTypeHandler from './middleware/userTypeMiddleware.js';
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config();
 // rest object
-const app = express();
+export const app = express();
 
 // connect to database
-connectDB();
+// connectDB();
 
 // middleware
 app.use(bodyparser.json());
@@ -41,4 +41,4 @@ app.use(errorHandler);
 // port
 const PORT = process.env.PORT || 3001;
 // listening port
-app.listen(PORT, () => { console.log(`server is listening on PORT: ${PORT}`) })
+// app.listen(PORT, () => { console.log(`server is listening on PORT: ${PORT}`) })

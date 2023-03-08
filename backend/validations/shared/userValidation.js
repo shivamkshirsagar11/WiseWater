@@ -1,7 +1,7 @@
 import pkg from "validator";
 const { isStrongPassword, isEmail } = pkg;
 import { validateContact } from "../validateContact.js";
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 
 export async function userValidation(userData) {
   const {

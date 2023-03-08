@@ -37,12 +37,12 @@ async function AddPlans(req, res){
         const addOne = await subscriptionModel.create({...subObj})
         if(addOne){
             res.status(200).json({
-                added:true
+                success:true
             })
         }
         else{
             res.status(500).json({
-                added:false
+                success:false
             })
         }
     }catch (error) {

@@ -50,6 +50,10 @@ export async function loginUser(req, res) {
             return;
         }
         if (user && (await compare(password, user.password))) {
+            res.json({
+                token: generateJWTtoken(user._id, req.body.collectionName) // whty every time create new token
+            });
+            return;
             console.log(user);
             const updateUser = await collection.updateOne({ _id: user._id }, { $set: { longitude: locationObj.longitude, latitude: locationObj.latitude } });
             console.log(updateUser)

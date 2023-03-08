@@ -1,5 +1,5 @@
 // import fetch from "node-fetch";
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 export async function validateContact(contact) {
   const url = `https://phonenumbervalidatefree.p.rapidapi.com/ts_PhoneNumberValidateTest.jsp?number=%2B91${contact}`;
 
