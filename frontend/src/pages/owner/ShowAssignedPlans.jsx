@@ -40,7 +40,7 @@ export default function ShowAssignedPlans() {
   
   return (
     <>
-    <Layout userType={'customer'}style={{backgroundColor:"#670e00"}}
+    <Layout userType={'owner'}style={{backgroundColor:"#670e00"}}
              >
       {spinner && <Spinner />}
       {!spinner && customerPlans.length > 0 ? (

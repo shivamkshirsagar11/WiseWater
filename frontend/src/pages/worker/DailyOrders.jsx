@@ -52,7 +52,7 @@ else{
   };
   return (
     <>
-    <Layout userType={'customer'}style={{backgroundColor:"#670e00"}}
+    <Layout userType={'worker'}style={{backgroundColor:"#670e00"}}
              >
       {spinner && <Spinner />}
       {!spinner && customerPlans.length > 0 ? (

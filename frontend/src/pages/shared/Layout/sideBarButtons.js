@@ -55,11 +55,6 @@ export const ownerMenu = [
         icon: "fa-solid fa-user",
     },
     {
-        name: "Worker Order Query",
-        path: "/owner/show-in-query-orders",
-        icon: "fa-solid fa-user-doctor",
-    },
-    {
         name: "Show Worker Application",
         path: "/owner/show-worker-applications",
         icon: "fa-solid fa-user-doctor",

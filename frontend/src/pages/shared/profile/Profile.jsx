@@ -54,7 +54,6 @@ export default function Profile({ userType }) {
         console.log(e.target);
         navigate(`${e.target.value}`);
     }
-
     return (
         <div style={{backgroundColor:"blue"}}>
         <Layout userType={userType} >
