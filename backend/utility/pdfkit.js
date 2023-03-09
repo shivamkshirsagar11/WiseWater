@@ -8,6 +8,23 @@ export function PDF_Creater(companyName, companyContact, phone, name, address, p
     const doc = new PDFDocument({ size: 'A5' });
 
     doc.pipe(fs.createWriteStream(`PDF/${phone}.pdf`));
+    const data = [];
+    let total_amount = 0
+    for (const key in payment) {
+      data.push(
+        {
+          item: payment[key].name,
+          des: `Quantity is ${payment[key].water_quantity} par litter cost is ${payment[key].cost}`,
+          amount: payment[key].water_quantity * payment[key].cost
+        }
+      )
+      total_amount += payment[key].water_quantity * payment[key].cost
+    }
+    data.push({
+      item: '',
+          des: `Payment Status`,
+          amount:`${total_amount} PAID in cash`
+    })
     const table = {
       title: "INVOICE",
       subtitle: `Billing for ${name}\n\nCompany name ${companyName}\n\nCompany contact ${companyContact}\n\nCompany Address\n-------------------------------\n${line1}\n${line2}\n${city} ${pincode}\n-------------------------------\n`,
@@ -17,23 +34,7 @@ export function PDF_Creater(companyName, companyContact, phone, name, address, p
         { label: "Amount", property: 'amount', width: 100 },
       ],
       // complex data
-      datas: [
-        {
-          item: 'Hot Water',
-          des: `Quantity is ${payment.hotWater.water_quantity} par litter cost is ${payment.hotWater.cost}`,
-          amount: payment.hotWater.water_quantity * payment.hotWater.cost
-        },
-        {
-          item: 'Normal Water',
-          des: `Quantity is ${payment.normalWater.water_quantity} par litter cost is ${payment.normalWater.cost}`,
-          amount: payment.normalWater.water_quantity * payment.normalWater.cost
-        },
-        {
-          item: 'Cold Water',
-          des: `Quantity is ${payment.coldWater.water_quantity} par litter cost is ${payment.coldWater.cost}`,
-          amount: payment.coldWater.water_quantity * payment.coldWater.cost
-        }
-      ],
+      datas:data,
     };
     doc.table(table, {
       prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),

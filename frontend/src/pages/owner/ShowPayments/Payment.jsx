@@ -29,6 +29,7 @@ function Payment({ payment, setPaymentList, setLoading }) {
         setLoading(true);
         const response = await sendRecipt(token, customer_id);
         setLoading(false);
+        console.log(response);
         if ('error' === response.type) {
             console.log(response.error)
             MultiToast(response.error, true);

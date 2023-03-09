@@ -27,7 +27,7 @@ const givePendingOrders = async (token) => {
     } catch (error) {
         return ({
             type: 'error',
-            error,
+            error:error[0]
         })
     }
 }

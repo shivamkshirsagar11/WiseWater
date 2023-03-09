@@ -25,7 +25,7 @@ const assignPlan = async ({ token, worker_id, orderId }) => {
     } catch (error) {
         return ({
             type: 'error',
-            error: error
+            error:error[0]
         })
     }
 }

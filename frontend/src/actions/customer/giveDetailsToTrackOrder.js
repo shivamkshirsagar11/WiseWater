@@ -33,7 +33,7 @@ const giveDetailsToTrackOrder = async (token, orderId) => {
     } catch (error) {
         return ({
             type: 'error',
-            error,
+            error:error[0]
         })
     }
 }

@@ -1,20 +1,23 @@
 import { toast } from 'react-toastify';
 const MultiToast = (message, isError) => {
-    console.log(message);
-    if (typeof message === typeof " ") {
-        if (isError)
-            toast.error(message);
-        else
-            toast.success(message);
-    }
-    else {
-        message.map((ele) => {
+    try{
+        if (typeof message === typeof " ") {
             if (isError)
-                toast.error(ele);
+                toast.error(message);
             else
-                toast.success(ele);
-            return '';
-        })
+                toast.success(message);
+        }
+        else {
+            message.map((ele) => {
+                if (isError)
+                    toast.error(ele);
+                else
+                    toast.success(ele);
+                return '';
+            })
+        }
+    }catch(e){
+        throw(["Internal Server Error"]);
     }
 }
 

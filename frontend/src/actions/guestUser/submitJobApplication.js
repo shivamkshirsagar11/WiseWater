@@ -20,7 +20,7 @@ const submitJobApplication = async (userData, onlyValidation) => {
     } catch (error) {
         return ({
             type: 'error',
-            error,
+            error:error[0]
         })
     }
 }

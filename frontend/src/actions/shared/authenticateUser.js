@@ -24,7 +24,7 @@ const authenticateUser = async (user, token) => {
     } catch (error) {
         return ({
             type: 'error',
-            error: error
+            error:error[0]
         })
     }
 

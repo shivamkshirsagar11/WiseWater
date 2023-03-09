@@ -29,7 +29,7 @@ const getAllSubscription = async (userType,urlParam, token) => {
     } catch (error) {
       return {
         type: "error",
-        error,
+        error:error[0]
       };
     }
   };

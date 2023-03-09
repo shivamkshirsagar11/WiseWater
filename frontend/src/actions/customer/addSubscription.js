@@ -28,7 +28,7 @@ const addSubscription = async (token, subObj)=>{
     }catch (error) {
         return ({
             type: 'error',
-            error,
+            error:error[0]
         })
     }
 }

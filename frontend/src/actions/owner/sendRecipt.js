@@ -27,7 +27,7 @@ const sendRecipt = async (token, customer_id) => {
     } catch (error) {
         return ({
             type: 'error',
-            error: error
+            error: error[0]
         })
     }
 }

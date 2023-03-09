@@ -26,6 +26,7 @@ export default function ShowAssignedOrders() {
             if ('error' === response.type) {
                 MultiToast(response.error, true);
             } else {
+                MultiToast("Order Delievered Successfully", false)
                 setDelieveredOrders(response.delieveredOrders);
             }
         }

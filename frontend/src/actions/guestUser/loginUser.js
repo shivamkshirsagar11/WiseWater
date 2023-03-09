@@ -25,7 +25,7 @@ import { getLatLang } from "./getLatLang.js";
         console.log(error)
         return {
             type: 'error',
-            error: error
+            error:error[0]
         };
     }
 }

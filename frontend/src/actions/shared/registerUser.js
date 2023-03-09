@@ -25,7 +25,7 @@ const registerUser = async (userType, userObj, onlyValidation) => {
   } catch (error) {
     return {
       type: "error",
-      error,
+      error:error[0]
     };
   }
 };

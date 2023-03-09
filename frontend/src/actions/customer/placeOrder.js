@@ -26,7 +26,7 @@ const placeOrder = async (token, order) => {
     } catch (error) {
         return ({
             type: 'error',
-            error,
+            error:error[0]
         })
     }
 }

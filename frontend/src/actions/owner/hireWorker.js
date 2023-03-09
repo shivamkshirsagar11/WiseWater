@@ -26,7 +26,7 @@ const hireWorker = async (token, workerApplication) => {
     } catch (error) {
         return ({
             type: 'error',
-            error: error
+            error:error[0]
         })
     }
 }

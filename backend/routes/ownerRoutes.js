@@ -37,7 +37,7 @@ router.post('/fetch-customer', protect, fetchCustomer);
 router.post('/assign-plan', protect, assignPlan);
 router.get('/payment-details', protect, getPaymentDetails);
 router.get('/get-assigned-plans', protect, getAllAssignedCustomerPlans);
-router.get('/send-recipt', protect, sendRecipt);
+router.post('/send-recipt', protect, sendRecipt);
 router.get('/get-all-plans', protect, getAllCustomerPlans);
 router.get('/authenticate', protect, (req, res) => {
     console.log('owner in atuhencated')

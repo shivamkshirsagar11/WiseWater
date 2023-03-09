@@ -4,7 +4,7 @@ import CustomerModel from '../../models/customerModel.js';
 import CompanyModel from '../../models/companyModel.js';
 import ownerModel from '../../models/ownerModel.js';
 import PaymentModel from '../../models/paymentModel.js';
-
+import OrderModel from '../../models/orderModel.js';
 export const sendRecipt = async (req, res) => {
     console.log(req.body.customer_id);
     const customer_data = await CustomerModel.findOne({ _id: req.body.customer_id });
@@ -13,12 +13,17 @@ export const sendRecipt = async (req, res) => {
     const { payment, _id: paymentId } = await PaymentModel.findOne({ customer_id: req.body.customer_id });
 
     if (0 === payment.hotWater.water_quantity) delete payment.hotWater;
+    else payment.hotWater.name = "Hot Water";
     if (0 === payment.coldWater.water_quantity) delete payment.coldWater;
+    else payment.coldWater.name = "Cold Water";
     if (0 === payment.normalWater.water_quantity) delete payment.normalWater;
+    else payment.normalWater.name = "Normal Water";
     try {
+
         PDF_Creater(company_data.name, company_data.contact, customer_data.contact, `${customer_data.firstname} ${customer_data.lastname}`, company_data.address, payment);
         console.log(customer_data)
-        // const response = await PaymentModel.findByIdAndDelete(paymentId);
+        const response = await PaymentModel.findByIdAndDelete(paymentId);
+        const orders = await OrderModel.deleteMany({ customer_id: req.body.customer_id, status: "delievered"});
         await BillMailer(customer_data.contact, customer_data.email);
         res.status(200).json({
             message: "pdf sent",

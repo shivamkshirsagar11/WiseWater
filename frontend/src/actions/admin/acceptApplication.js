@@ -26,7 +26,7 @@ const acceptApplication = async (token, ownerId) => {
     } catch (error) {
         return {
             type: "error",
-            error
+            error:error[0]
         };
     }
 };
