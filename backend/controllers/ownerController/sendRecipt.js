@@ -12,11 +12,13 @@ export const sendRecipt = async (req, res) => {
     const company_data = await CompanyModel.findOne({ name: data.company_name });
     const { payment, _id: paymentId } = await PaymentModel.findOne({ customer_id: req.body.customer_id });
 
-
+    if (0 === payment.hotWater.water_quantity) delete payment.hotWater;
+    if (0 === payment.coldWater.water_quantity) delete payment.coldWater;
+    if (0 === payment.normalWater.water_quantity) delete payment.normalWater;
     try {
         PDF_Creater(company_data.name, company_data.contact, customer_data.contact, `${customer_data.firstname} ${customer_data.lastname}`, company_data.address, payment);
         console.log(customer_data)
-        const response = await PaymentModel.findByIdAndDelete(paymentId);
+        // const response = await PaymentModel.findByIdAndDelete(paymentId);
         await BillMailer(customer_data.contact, customer_data.email);
         res.status(200).json({
             message: "pdf sent",

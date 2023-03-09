@@ -63,6 +63,7 @@ export default function Placeorder() {
             if ('error' === response.type) {
                 MultiToast(response.error, true);
             } else {
+                MultiToast("Order placed successfully", false);
                 navigate('/show-companies');
             }
         }

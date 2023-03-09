@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./Layout.css";
-
+import MultiToast from  "../../../actions/shared/MultiToast.js"
 import {
   adminMenu,
   customerMenu,
@@ -19,6 +19,7 @@ const Layout = ({ children, userType }) => {
 
   const handleLogout = () => {
     removeCookies("token");
+    MultiToast("Successfully logged out", false);
     navigate("/");
   };
 
