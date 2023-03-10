@@ -17,7 +17,7 @@ const MultiToast = (message, isError) => {
             })
         }
     }catch(e){
-        throw(["Internal Server Error"]);
+        throw Error("Internal Server Error");
     }
 }
 

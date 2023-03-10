@@ -48,6 +48,7 @@ import ShowOwners from "./pages/admin/ShowUsers/ShowOwners/ShowOwners.jsx";
 import ShowCustomers from "./pages/admin/ShowUsers/ShowCustomers/ShowCustomers.jsx";
 import ShowOwnersApplications from "./pages/admin/ShowOwnersApplications.jsx";
 import ProtectedRouter from "./ProtectedRouter.jsx";
+import SubscriptionForm from "./pages/customer/SubscriptionForm.jsx";
 
 
 function App() {
@@ -100,6 +101,15 @@ function App() {
                 element={
                   <ProtectedRouter userType='customer'>
                     <Plans />
+                  </ProtectedRouter>
+                }
+              />
+
+              <Route
+                path="/customer/subscription-from/:company_name"
+                element={
+                  <ProtectedRouter userType='customer'>
+                    <SubscriptionForm />
                   </ProtectedRouter>
                 }
               />

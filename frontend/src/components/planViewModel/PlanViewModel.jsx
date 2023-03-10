@@ -5,6 +5,7 @@ import AddressModal from "../AddressModal";
 
 const PlanViewModel = (props) => {
     const data = props.data;
+    console.log(data);
     const { plan, customer, userType, worker } = data;
 
     console.log("from plan modal",props.data)
@@ -18,7 +19,7 @@ const PlanViewModel = (props) => {
             <div style={{"background-image":"linear-gradient(#eef2f3, #8e9eab)"}}>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    plan ID {plan._id}
+                    {plan.company_name}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>

@@ -29,6 +29,7 @@ function CompanyDetails({ redirectHandler, userType, company, index }) {
                 </button>
             )}
             {"customer" === userType && (
+            <>
                 <button
                     value={`/customer/placeorder/${company.name}`}
                     onClick={redirectHandler}
@@ -36,6 +37,14 @@ function CompanyDetails({ redirectHandler, userType, company, index }) {
                 >
                     Place Order
                 </button>
+                <button
+                    value={`/customer/subscription-from/${company.name}`}
+                    onClick={redirectHandler}
+                    className="btn btn-warning mx-3"
+                >
+                    Take subscription
+                </button>
+                </>
             )}
         </div>
     );

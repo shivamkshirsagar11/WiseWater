@@ -25,6 +25,12 @@ const SubscriptionModel = Schema({
         defaultValue:null,
         type: Schema.Types.ObjectId
     },
+    company_name: {
+        type: Schema.Types.String,
+        required: true,
+        lowercase: true,
+        ref: 'Company'
+    },
     status:{
         type: Schema.Types.String,
         defaultValue:"pending"

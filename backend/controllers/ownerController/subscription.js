@@ -2,9 +2,14 @@ import subscriptionModel from "../../models/subscriptionModel.js";
 import customerModel from "../../models/customerModel.js";
 import workerModel from "../../models/workerModel.js";
 import {todayDatePlusNDays} from "../../utility/Date.js"
+import ownerModel from "../../models/ownerModel.js";
 async function getAllCustomerPlans(req, res) {
     try{
-        const plans = await subscriptionModel.find({status:"pending"})
+        console.log("from subscriptioin")
+        console.log(req.userid);
+        const owner = await ownerModel.findById({_id:req.userid._id});
+        console.log(owner);
+        const plans = await subscriptionModel.find({status:"pending",company_name:owner.company_name});
         let customerDet = new Array(plans.length)
         for(var i = 0;i<plans.length;i++){
             customerDet[i] = await customerModel.findOne({_id:plans[i].user_id},{firstname:1,lastname:1,contact:1,address:1})

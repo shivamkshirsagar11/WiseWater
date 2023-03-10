@@ -44,12 +44,6 @@ export default function Profile({ userType }) {
     if (userData === null || ('customer' !== userType && null === companyData)) {
         return <Spinner />
     }
-
-    const redirectHandler = (e) => {
-        e.preventDefault();
-        console.log(e.target);
-        navigate(`${e.target.value}`);
-    }
     return (
         <div style={{backgroundColor:"blue"}}>
         <Layout userType={userType} >

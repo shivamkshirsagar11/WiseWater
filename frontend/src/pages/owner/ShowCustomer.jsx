@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Spinner from '../Spinner.jsx';
 import UserDetails from '../shared/details/UserDetails.jsx';
 import MultiToast from '../../actions/shared/MultiToast.js';
 import { CookiesContext } from '../../context/CookiesProvider.js';

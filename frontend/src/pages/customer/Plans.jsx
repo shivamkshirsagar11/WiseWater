@@ -5,12 +5,12 @@ import MultiToast from "../../actions/shared/MultiToast";
 import { useNavigate } from "react-router-dom";
 import { getAllSubscription } from "../../actions/shared/subscription";
 import PlanViewModel from "../../components/planViewModel/PlanViewModel"
-import AddPlan from "./AddPlan";
+// import AddPlan from "./AddPlan";
 import Layout from "../shared/Layout/Layout.jsx";
 
 export default function Plans() {
   const [spinner, setSpinner] = useState(true);
-  const [hidePage, setHidePage] = useState(true);
+  
   const [customerPlans, setCustomerPlans] = useState(true);
   const [planViewModelState, setPlanViewModelState] = useState(false);
   const { cookies } = useContext(CookiesContext);
@@ -39,17 +39,14 @@ export default function Plans() {
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cookies, hidePage]);
-  const showAddPage = (e) => {
-    setHidePage(false)
-  }
+    }, [cookies]);
+
 
   return (
     <>
       <Layout userType={'customer'} style={{ backgroundColor: "#670e00" }}>
       {spinner && <Spinner />}
-        {!spinner && hidePage && customerPlans.length === 0 && <button onClick={showAddPage}>Add +</button>}
-        {!spinner && hidePage && customerPlans.length > 0 ? (
+        {!spinner && customerPlans.length > 0 ? (
           customerPlans.map((plans, index) => {
             return (
               <div key={index}>
@@ -64,11 +61,8 @@ export default function Plans() {
             );
           })
         ) : (
-          hidePage && <p>NO subscribed plans</p>
+          <p>NO subscribed plans</p>
         )}
-        {
-          !spinner && !hidePage && <AddPlan hideThisPage={setHidePage} />
-        }
       </Layout>
     </>
   );

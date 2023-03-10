@@ -13,17 +13,6 @@ function Payment({ payment, setPaymentList, setLoading }) {
     const { token } = cookies;
     const [paymentViewModelState, setPaymentViewModelState] = useState(false);
 
-    // async function sendRecipt() {
-    //     const response = await fetch(`/api/owner/send-recipt`, {
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             'Authorization': `Bearer ${token}`
-    //         },
-    //     });
-    //     const data = await response.json();
-    //     console.log(data);
-    // }
-
     const handleSendReciptClick = async (customer_id) => {
         console.log(customer_id);
         setLoading(true);
