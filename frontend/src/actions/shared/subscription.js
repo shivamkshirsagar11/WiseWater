@@ -18,12 +18,14 @@ const getAllSubscription = async (userType,urlParam, token) => {
     }
       if (undefined !== data.error) throw data.error.errorMessage;
       else {
+        const found = data.plans.length>0
         return {
           type: "data",
           plans:data.plans,
           customers:data.customers,
           workers:data.workers,
-          daily:data.dailyOrd
+          daily:data.dailyOrd,
+          found
         };
       }
     } catch (error) {

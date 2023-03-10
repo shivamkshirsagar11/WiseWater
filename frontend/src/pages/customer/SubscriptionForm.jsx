@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CookiesContext } from "../../context/CookiesProvider";
 import { addSubscription } from "../../actions/customer/addSubscription";
 import MultiToast from "../../actions/shared/MultiToast";
 import { useNavigate, useParams } from "react-router-dom";
+import { getAllSubscription } from "../../actions/shared/subscription";
 
 export default function SubscriptionForm() {
   const { cookies } = useContext(CookiesContext);
@@ -20,7 +21,19 @@ export default function SubscriptionForm() {
   const handleChange = e => {
     const { name, value } = e.target;
     setSubObj(prevState => ({ ...prevState, [name]: value }));
-  };
+  };git
+
+  useEffect(()=>{
+    (async()=>{
+      const response = await getAllSubscription('customer','get-all-plans',token);
+      if( response.found ){
+        MultiToast('you already have subscription',false);
+        navigate('/customer/profile') // check once again
+      }
+      
+    })();
+  },[]);
+
   const handleSubmit = async e => {
     e.preventDefault();
     

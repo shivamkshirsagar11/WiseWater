@@ -113,6 +113,10 @@ function App() {
                   </ProtectedRouter>
                 }
               />
+{/* 
+              <Route path="/customer" element={<ProtectedRouter userType='customer'>
+                <CustomerHome/>
+              </ProtectedRouter>} /> */}
 
               <Route
                 path="/customer/profile"
