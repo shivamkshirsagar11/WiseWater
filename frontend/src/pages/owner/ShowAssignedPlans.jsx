@@ -41,7 +41,12 @@ export default function ShowAssignedPlans() {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cookies]);
-
+  const styles = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "70vh",
+}
   return (
     <>
     <Layout userType={'owner'}style={{backgroundColor:"#670e00"}}
@@ -62,7 +67,9 @@ export default function ShowAssignedPlans() {
           );
         })
       ) : (
-        <p>NO subscribed plans</p>
+        <div style={styles}>
+                            <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>No Subscribed Plans</h1></div>
+      
       )}
       </Layout>
     </>

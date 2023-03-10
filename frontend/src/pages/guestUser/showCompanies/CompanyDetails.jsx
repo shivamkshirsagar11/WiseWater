@@ -29,8 +29,9 @@ function CompanyDetails({ redirectHandler, userType, company, index }) {
                 </button>
             )}
             {"customer" === userType && (
-            <>
-                <button
+                <>
+                <button style={{
+                fontSize: "1.2em", fontWeight: "700", color: "darkblue",}}
                     value={`/customer/placeorder/${company.name}`}
                     onClick={redirectHandler}
                     className="btn btn-warning mx-3"

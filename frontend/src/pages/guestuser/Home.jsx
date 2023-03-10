@@ -6,7 +6,7 @@ import MultiToast from "../../actions/shared/MultiToast.js";
 import Card from "../../components/Card.jsx";
 import ownerImage from "../../media/owner.jfif";
 import customerImage from "../../media/customer.jfif";
-import workerImage from "../../media/worker.jfif";
+import workerImage from "../../media/worker2.jfif";
 
 import { CookiesContext } from '../../context/CookiesProvider.js'
 
@@ -38,10 +38,10 @@ export default function Login() {
 
     };
     const cards = {
-        backgroundColor: '#4fc3f7',
+        backgroundColor: '#10a2ff',
     };
     const hea = {
-        backgroundColor: "#bbdefb",
+        backgroundColor: "#64B5F6",
         padding: "12px",
         textAlign: "center",
         // backgroundImage: "water",

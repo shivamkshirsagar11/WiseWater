@@ -1,4 +1,3 @@
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./OrderViewModel.css";
 import AddressModal from "../AddressModal";
@@ -16,7 +15,7 @@ const PlanViewModel = (props) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <div style={{"background-image":"linear-gradient(#eef2f3, #8e9eab)"}}>
+            <div >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     {plan.company_name}
@@ -36,7 +35,7 @@ const PlanViewModel = (props) => {
                     <span className="value"> {plan.remaining_days} </span>
                 </p>
                 <p className="data-row">
-                    <span className="key">Next Expected Delievery</span>{" "}
+                    <span className="key">Next Expected Delivery</span>{" "}
                     <span className="value"> {plan.next_date} </span>
                 </p>
                 <p className="data-row">
@@ -83,9 +82,6 @@ const PlanViewModel = (props) => {
         </>
       }
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
             </div>
         </Modal>
     );
