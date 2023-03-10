@@ -56,16 +56,21 @@ export default function CustomerPlans() {
         customerPlans.map((plans, index) => {
           return (
             <div key={index}>
-              <p>Plan {index}</p>
+              <label style={{fontSize:"1.7em",fontWeight:"600",color:"#1976D2"}}>Plan {index}</label>
               <PlanViewModel
                 show={planViewModelState}
                 onHide={() => setPlanViewModelState(false)}
                 data={{plan:plans, customer:customers[index], userType:"owner"}}
             />
-              <button
+            <button className="btn-btn-primary"
+              onClick={()=>setPlanViewModelState(true)}
+              style={{fontSize: "1.2em", fontWeight: "700", color: "darkblue",paddingLeft:"16px"}}
+            >Plan Details </button>
+              <button className="btn-btn-primary"
               onClick={redirectHandler}
               value={`/owner/assign-plan/${plans._id}`}
-            >assign</button>
+              style={{fontSize: "1.2em", fontWeight: "700", color: "darkblue",paddingLeft:"16px"}}
+            >Assign</button>
             </div>
           );
         })

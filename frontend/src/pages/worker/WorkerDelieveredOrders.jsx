@@ -34,13 +34,19 @@ export default function ShowAssignedOrders() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
 
-
+    const styles = {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "70vh",
+    }
 
     return (
         <Layout userType={'worker'}>
             {loading ? <Spinner /> :
                 <div>
-                    {0 === delieveredOrders.length && <p>no order are assigned</p>}
+                    {0 === delieveredOrders.length && <div style={styles}>
+                    <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>No Order Are Assigned</h1></div>}
                     {
                         delieveredOrders.map((assignedOrder, index) => {
                             delete assignedOrder.status;

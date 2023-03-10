@@ -54,7 +54,12 @@ export default function DailyOrders() {
       setTrigger(true);
     }
   };
-
+  const styles = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "70vh",
+}
   return (
     <>
       <Layout userType={'worker'} style={{ backgroundColor: "#670e00" }}>
@@ -73,12 +78,13 @@ export default function DailyOrders() {
                 <button
                   value={plans._id}
                   onClick={delieverHandler}
-                >Delievered</button>
+                >Delivered</button>
               </div>
             );
           })
         ) : (
-          !spinner && <p>NO subscribed plans</p>
+          !spinner && <div style={styles}>
+                            <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>No Subscribed Plans</h1></div>
         )}
       </Layout>
     </>
