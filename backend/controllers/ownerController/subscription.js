@@ -32,8 +32,7 @@ async function getAllCustomerPlans(req, res) {
 async function assignPlan(req, res) {
     try{
         const tomorrow = todayDatePlusNDays(1);
-        console.log("in assign plan")
-        console.log(tomorrow)
+        
         const {worker_id, order_id} = req.body;
 
         const order = await subscriptionModel.findOne({ order_id });
