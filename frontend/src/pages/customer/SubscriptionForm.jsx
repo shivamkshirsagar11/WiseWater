@@ -21,7 +21,7 @@ export default function SubscriptionForm() {
   const handleChange = e => {
     const { name, value } = e.target;
     setSubObj(prevState => ({ ...prevState, [name]: value }));
-  };git
+  };
 
   useEffect(()=>{
     (async()=>{
