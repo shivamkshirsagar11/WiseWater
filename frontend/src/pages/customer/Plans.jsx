@@ -34,6 +34,7 @@ export default function Plans() {
       if ("error" === response.type) {
         MultiToast(response.error, true);
       }
+      console.log(response);
       setCustomerPlans(response.plans);
       console.log(response.plans);
     };

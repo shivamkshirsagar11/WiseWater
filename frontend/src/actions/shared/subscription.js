@@ -9,7 +9,9 @@ const getAllSubscription = async (userType,urlParam, token) => {
           'Authorization': `Bearer ${token}`
         },
       });
+      console.log("ok till")
       const data = await response.json();
+      console.log("from action: ", data)
       if (401 === response.status) {
         return {
             authenticated: false,
@@ -18,7 +20,7 @@ const getAllSubscription = async (userType,urlParam, token) => {
     }
       if (undefined !== data.error) throw data.error.errorMessage;
       else {
-        const found = data.plans.length>0
+        const found = data.plans != undefined ?true:false
         return {
           type: "data",
           plans:data.plans,
@@ -31,7 +33,7 @@ const getAllSubscription = async (userType,urlParam, token) => {
     } catch (error) {
       return {
         type: "error",
-        error:error[0]
+        error:error
       };
     }
   };

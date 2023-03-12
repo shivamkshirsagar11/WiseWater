@@ -26,7 +26,6 @@ export default function ShowAssignedOrders() {
             if ('error' === response.type) {
                 MultiToast(response.error, true);
             } else {
-                MultiToast("Order Delievered Successfully", false)
                 setDelieveredOrders(response.delieveredOrders);
             }
         }
@@ -46,7 +45,7 @@ export default function ShowAssignedOrders() {
             {loading ? <Spinner /> :
                 <div>
                     {0 === delieveredOrders.length && <div style={styles}>
-                    <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>No Order Are Assigned</h1></div>}
+                        <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>No Order Are Assigned</h1></div>}
                     {
                         delieveredOrders.map((assignedOrder, index) => {
                             delete assignedOrder.status;

@@ -24,20 +24,20 @@ export default function SubscriptionForm() {
     setSubObj(prevState => ({ ...prevState, [name]: value }));
   };
 
-  useEffect(()=>{
-    (async()=>{
-      const response = await getAllSubscription('customer','get-all-plans',token);
-      if( response.found ){
-        MultiToast('you already have subscription',false);
-        navigate('/customer/profile') // check once again
+  useEffect(() => {
+    (async () => {
+      const response = await getAllSubscription('customer', 'get-all-plans', token);
+      if (response.found) {
+        MultiToast('you already have subscription', false);
+        navigate('/customer/profile');
       }
-      
     })();
-  },[]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    
+
     const res = await addSubscription(token, subObj);
     if (false === res.authenticated) {
       MultiToast(res.message, true);

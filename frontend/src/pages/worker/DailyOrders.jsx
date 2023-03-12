@@ -28,6 +28,7 @@ export default function DailyOrders() {
         token
       );
       setSpinner(false)
+      console.log(response)
       if (false === response.authenticated) {
         MultiToast(response.message, true);
         navigate('/');

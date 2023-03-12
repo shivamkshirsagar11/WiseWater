@@ -9,8 +9,6 @@ async function getDailyDelievery(req, res){
         for(var i=0; i<daily.length; i++){
             customers[i] = await customerModel.findOne({_id:daily[i].user_id})
         }
-        console.log("from worker daily")
-        console.log(daily);
             res.status(200).json({
                 dailyOrd:daily,
                 customers: customers
