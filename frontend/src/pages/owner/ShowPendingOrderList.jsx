@@ -65,7 +65,7 @@ export default function ShowPendingOrderList() {
 
                 <div key={index}>
                   <ShowOrder order={order} />
-                  <button
+                  <button class="btn btn-warning ml-4" style={{fontSize:"1.2em",fontWeight:"600"}}
                     onClick={redirectHandler}
                     value={`/owner/show-workers/${order.orderId}`}
                   >Assign</button>

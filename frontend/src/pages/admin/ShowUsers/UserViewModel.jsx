@@ -72,44 +72,41 @@ const UserViewModel = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <p className="data-row">
-                    <span className="key">contact No : </span>{" "}
+                    <span className="key">Contact No : </span>{" "}
                     <span className="value"> {user.contact} </span>
                 </p>
                 <p className="data-row">
-                    <span className="key">email : </span>{" "}
+                    <span className="key">Email : </span>{" "}
                     <span className="value"> {user.email} </span>
                 </p>
                 {
                     userType === 'customer' &&
                     <>
                         < hr />
-                        <p>address</p>
+                        <p>Address</p>
                         <p>
-                            <span className="key">line1 : </span>{" "}
+                            <span className="key">Line1 : </span>{" "}
                             <span className="value"> {user.address.line1} </span>
                         </p>
                         <p>
-                            <span className="key">line2 : </span>{" "}
+                            <span className="key">Line2 : </span>{" "}
                             <span className="value"> {user.address.line2} </span>
                         </p>
                         <p>
-                            <span className="key">city : </span>{" "}
+                            <span className="key">City : </span>{" "}
                             <span className="value"> {user.address.city} </span>
                         </p>
                         <p>
-                            <span className="key">pincode : </span>{" "}
+                            <span className="key">Pincode : </span>{" "}
                             <span className="value"> {user.address.pincode} </span>
                         </p>
                         <p>
-                            <span className="key">state : </span>{" "}
+                            <span className="key">State : </span>{" "}
                             <span className="value"> {user.address.state} </span>
                         </p>
                     </>
                 }
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={onHide}>Close</Button>
-            </Modal.Footer>
         </Modal>
     );
 };

@@ -94,17 +94,17 @@ export const workerMenu = [
 ];
 export const adminMenu = [
     {
-        name: "show customers",
+        name: "Show Customers",
         path: '/admin/show-customers',
         icon: "fa-solid fa-house",
     },
     {
-        name: "show owners",
+        name: "Show Owners",
         path: '/admin/show-owners',
         icon: "fa-solid fa-house",
     },
     {
-        name: "show owners applications",
+        name: "Show Owners Applications",
         path: "/admin/show-owners-applications",
         icon: "fa-solid fa-house",
     }

@@ -14,9 +14,10 @@ function UserDetails({ user, userType, companyData }) {
                 user={user}
                 userType={userType}
             />
-            <span>{user.firstname} {user.lastname}</span>
-            <button onClick={() => setUserViewModelState(true)}>show user details</button>
+            <span style={{fontSize:"1.3em",fontWeight:"700",color:"blue"}}>{user.firstname} {user.lastname}</span>
+            <button  class="btn btn-info mt-3  ml-3" style={{fontSize:"1.2em",fontWeight:"500"}} onClick={() => setUserViewModelState(true)}>Show User Details</button>
             {
+
                 'owner' === userType &&
                 <>
                     <CompanyViewModel
@@ -24,7 +25,7 @@ function UserDetails({ user, userType, companyData }) {
                         onHide={() => setCompnayViewModelState(false)}
                         data={companyData}
                     />
-                    <button onClick={() => setCompnayViewModelState(true)}>show company details</button>
+                    <button class="btn btn-dark mt-3  ml-3"  style={{fontSize:"1.2em",fontWeight:"500"}} onClick={() => setCompnayViewModelState(true)}>Show Company Details</button>
                 </>
             }
         </div>
