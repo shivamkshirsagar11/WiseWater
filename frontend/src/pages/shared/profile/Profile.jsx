@@ -9,15 +9,14 @@ import Layout from '../Layout/Layout';
 import CompanyViewModel from '../../../components/companyViewModel/CompanyViewModel'
 import { CookiesContext } from '../../../context/CookiesProvider';
 import MultiToast from '../../../actions/shared/MultiToast';
+import { DataContext } from '../../../context/DataProvider';
 
 export default function Profile({ userType }) {
-
+    const { state, dispatch } = useContext(DataContext);
     const { cookies } = useContext(CookiesContext);
     const navigate = useNavigate();
-    const [userData, setUserData] = useState(null);
-    const [companyData, setCompanyData] = useState(null);
     const [companyViewModelState, setCompanyViewModelState] = useState(false);
-    console.log(userData)
+    console.log(state.userData)
     useEffect(() => {
         const fetchData = async () => {
             const { token } = cookies;
@@ -30,47 +29,46 @@ export default function Profile({ userType }) {
                 if ('error' === response.type) {
                     MultiToast(response.error, true);
                 } else {
-                    setUserData(response.userData);
+                    // setUserData(response.userData);
+                    dispatch({ type: "setUserData", payload: response.userData });
                     if ('customer' !== userType)
-                        setCompanyData(response.companyData);
+                        dispatch({ type: "setProperty", propertyName: "companyData", payload: response.companyData });
+                    // setCompanyData(response.companyData);
                 }
             }
         }
-        fetchData();
+        console.log(state.userData);
+        (('customer' !== userType && !state.companyData) || !state.userData) && fetchData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cookies]);
 
-
-    if (userData === null || ('customer' !== userType && null === companyData)) {
-        return <Spinner />
-    }
     return (
-        <div style={{backgroundColor:"blue"}}>
-        <Layout userType={userType} >
-            {(userData === null || ('customer' !== userType && null === companyData)) ? <Spinner /> :
-                <>
-                    <UserDetails userData={userData} userType={userType} />
-                    {
-                        'customer' !== userType ?
-                            <>
-                                <CompanyViewModel
-                                    show={companyViewModelState}
-                                    onHide={() => setCompanyViewModelState(false)}
-                                    data={companyData}
-                                />
-                                <br />
-                                <div className="d-grid gap-2 col-2 mx-auto">
-                                    <button className="btn btn-warning" style={{ fontSize: "1.2em", fontWeight: "700", color: "darkblue" }} onClick={() => setCompanyViewModelState(true)}>Show Company Details</button> </div></> :
-                            <><AddressDetails address={userData.address} />
-                                <div style={{ backgroundColor: "#0077be", textAlign: "center", }}>
-                                    <h3 style={{ color: "white", fontSize: "1.4rem", fontFamily: "cursive", fontWeight: "500", }}>
-                                        Current Time: <Clock />
-                                    </h3>
-                                </div>
-                            </>
-                    }
-                </>}
-        </Layout>
-    </div>
-);
+        <div style={{ backgroundColor: "blue" }}>
+            <Layout userType={userType} >
+                {(state.userData === null || ('customer' !== userType && null === state.companyData)) ? <Spinner /> :
+                    <>
+                        <UserDetails userData={state.userData} userType={userType} />
+                        {
+                            'customer' !== userType ?
+                                <>
+                                    <CompanyViewModel
+                                        show={companyViewModelState}
+                                        onHide={() => setCompanyViewModelState(false)}
+                                        data={state.companyData}
+                                    />
+                                    <br />
+                                    <div className="d-grid gap-2 col-2 mx-auto">
+                                        <button className="btn btn-warning" style={{ fontSize: "1.2em", fontWeight: "700", color: "darkblue" }} onClick={() => setCompanyViewModelState(true)}>Show Company Details</button> </div></> :
+                                <><AddressDetails address={state.userData.address} />
+                                    <div style={{ backgroundColor: "#0077be", textAlign: "center", }}>
+                                        <h3 style={{ color: "white", fontSize: "1.4rem", fontFamily: "cursive", fontWeight: "500", }}>
+                                            Current Time: <Clock />
+                                        </h3>
+                                    </div>
+                                </>
+                        }
+                    </>}
+            </Layout>
+        </div>
+    );
 }

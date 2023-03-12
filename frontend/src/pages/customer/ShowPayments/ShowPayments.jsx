@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { authenticateUser } from '../../../actions/shared/authenticateUser';
 import MultiToast from '../../../actions/shared/MultiToast';
 import Spinner from '../../Spinner.jsx';
 import { getPaymentDetails } from '../../../actions/customer/getPaymentDetails';
@@ -19,13 +18,8 @@ function ShowPayments() {
         const { token } = cookies;
         const authenticate = async () => {
             setLoading(true);
-            const rsp = await authenticateUser('customer', token);
-            if (false === rsp.authenticated) {
-                MultiToast(rsp.message, true);
-                navigate('/');
-            }
+
             const response = await getPaymentDetails(token);
-            setLoading(false);
             if (false === response.authenticated) {
                 MultiToast(response.message, true);
                 navigate('/');
@@ -36,6 +30,7 @@ function ShowPayments() {
                 setPaymentList(response.paymentList);
                 console.log(response.paymentList);
             }
+            setLoading(false);
         }
         authenticate();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,7 +41,7 @@ function ShowPayments() {
         <>
             <Layout userType='customer'>
 
-                { loading ? <Spinner />:
+                {loading ? <Spinner /> :
                     paymentList.map((payment, index) => (
                         <div key={index}>
                             <h3>company name :- {payment.company_name}</h3>

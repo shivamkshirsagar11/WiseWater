@@ -1,5 +1,6 @@
 const giveUserData = async (userType, token) => {
     try {
+        console.log('call to backend')
         const response = await fetch(`/api/${userType}/profile`, {
             headers: {
                 "Content-Type": "application/json",
@@ -10,7 +11,7 @@ const giveUserData = async (userType, token) => {
         if (401 === response.status) {
             return {
                 authenticated: false,
-                message:"Authentication failed",
+                message: "Authentication failed",
             }
         }
         const data = await response.json();

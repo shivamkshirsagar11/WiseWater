@@ -6,20 +6,30 @@ import AddressDetailsForm from '../shared/form/AddressDetailsForm.jsx';
 import MultiToast from '../../actions/shared/MultiToast.js';
 import Layout from '../shared/Layout/Layout.jsx';
 import { CookiesContext } from '../../context/CookiesProvider.js';
+import { DataContext } from '../../context/DataProvider.js';
 
 export default function Placeorder() {
     const navigate = useNavigate();
-
+    const { state, dispatch } = useContext(DataContext);
     const { cookies } = useContext(CookiesContext);
     useEffect(() => {
         const { token } = cookies;
         const authenticate = async () => {
             const response = await authenticateUser('customer', token);
             if (false === response.authenticated) {
+                MultiToast('you are not authenticated')
                 navigate('/');
+            } else {
+                dispatch({ type: "setProperty", propertyName: "authenticated", payload: true });
             }
         }
-        authenticate();
+        if (undefined === state.authenticated) {
+            authenticate();
+        } else {
+            if (false === state.authenticated)
+                navigate('/');
+        }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cookies]);
 
@@ -72,7 +82,7 @@ export default function Placeorder() {
 
     return (
         <Layout userType={'customer'}>
-            
+
             <div>
                 <form action="post">
                     <label htmlFor="water_type">Choose a water type:</label>

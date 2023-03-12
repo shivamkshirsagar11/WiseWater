@@ -27,7 +27,7 @@ const getPaymentDetails = async (token) => {
     } catch (error) {
         return ({
             type: 'error',
-            error:error[0]
+            error: error[0]
         })
     }
 }

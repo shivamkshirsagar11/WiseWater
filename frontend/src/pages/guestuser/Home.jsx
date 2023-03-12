@@ -55,9 +55,6 @@ export default function Login() {
     }
     return (
         <div style={styles} >
-            {/* // <h1 className="container display-3" > 
-            //     Wise Water
-            // </h1> */}
 
             <header style={hea} >
                 <h1 className="header-title" style={ti}>Wise Water</h1>
