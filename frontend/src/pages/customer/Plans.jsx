@@ -41,6 +41,12 @@ export default function Plans() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cookies]);
 
+    const styles = {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "70vh",
+  }
 
   return (
     <>
@@ -50,18 +56,19 @@ export default function Plans() {
           customerPlans.map((plans, index) => {
             return (
               <div key={index}>
-                <p>Daily Delievery Plan</p>
+                <label style={{fontSize:"1.6em",fontWeight:"500",color:"#1E88E5"}}>Daily Delivery Plan &nbsp;</label>
                 <PlanViewModel
                   show={planViewModelState}
                   onHide={() => setPlanViewModelState(false)}
                   data={{ plan: plans, userType: "customer" }}
                 />
-                <button className="btn btn-warning" onClick={() => setPlanViewModelState(true)}>Plan details</button>
+                <button className="btn btn-info" style={{fontSize: "1.2em", fontWeight: "700", color: "darkblue"}} onClick={() => setPlanViewModelState(true)}>Plan Details</button>
               </div>
             );
           })
         ) : (
-          <p>NO subscribed plans</p>
+          <div style={styles}>
+                            <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>No Subscribed Plans</h1></div>
         )}
       </Layout>
     </>

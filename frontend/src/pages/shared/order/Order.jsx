@@ -16,7 +16,7 @@ export default function ShowOrder({ order }) {
                 onHide={() => setOrderViewModelState(false)}
                 data={order}
             />
-            <button className="btn btn-warning" onClick={() => setOrderViewModelState(true)} style={{
+            <button className="btn btn-info" onClick={() => setOrderViewModelState(true)} style={{
                 fontSize: "1.2em", fontWeight: "700", color: "darkblue",}}>Order Details</button>
         </div>
     )

@@ -49,7 +49,7 @@ function ShowPaymentsOwner() {
         height: "70vh",
     }
     return (
-        <div style={{ "background-image": "linear-gradient(#b993d6, #8ca6db)" }}>
+        <div >
             <Layout userType={'owner'}>
                 {loading ? <Spinner /> :
                     <>
@@ -59,7 +59,7 @@ function ShowPaymentsOwner() {
                                     console.log(payment.customer_data.firstname)
                                     return (
                                         <div key={index}>
-                                            <h3>customer name :- {payment.customer_data.firstname} {payment.customer_data.lastname}</h3>
+                                            <h3>Customer Name :- {payment.customer_data.firstname} {payment.customer_data.lastname}</h3>
                                             <Payment payment={payment} setPaymentList={setPaymentList} setLoading={setLoading} />
                                         </div>
                                     )

@@ -46,8 +46,8 @@ function Payment({ payment, setPaymentList, setLoading }) {
                 onHide={() => setPaymentViewModelState(false)}
                 data={payment}
             />
-            <button onClick={() => setPaymentViewModelState(true)}>show order details</button>
-            <button onClick={() => handleSendReciptClick(payment.customer_data._id)}>Send recipt</button>
+            <button className='btn btn-info' style={{fontSize:"1.2em",fontWeight:"700",color:"darkblue"}} onClick={() => setPaymentViewModelState(true)}>Show Order Details </button>
+            <button className='btn btn-success ml-3' style={{fontSize:"1.2em",fontWeight:"600"}} onClick={() => handleSendReciptClick(payment.customer_data._id)}>Send recipt</button>
         </div>
     )
 }

@@ -47,6 +47,12 @@ export default function CustomerPlans() {
     console.log(e.target);
     navigate(`${e.target.value}`);
   };
+  const styles = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "70vh",
+}
   return (
     <>
     <Layout userType={'owner'}style={{backgroundColor:"#670e00"}}
@@ -69,13 +75,14 @@ export default function CustomerPlans() {
               <button className="btn-btn-primary"
               onClick={redirectHandler}
               value={`/owner/assign-plan/${plans._id}`}
-              style={{fontSize: "1.2em", fontWeight: "700", color: "darkblue",paddingLeft:"16px"}}
+              style={{fontSize: "1.2em", fontWeight: "700", color: "darkblue",paddingLeft:"16px",marginLeft:"11"}}
             >Assign</button>
             </div>
           );
         })
       ) : (
-        <p>NO subscribed plans</p>
+        <div style={styles}>
+                            <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>No Subscribed Plans</h1></div>
       )}
       </Layout>
     </>

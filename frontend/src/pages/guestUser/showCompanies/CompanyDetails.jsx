@@ -15,12 +15,13 @@ function CompanyDetails({ redirectHandler, userType, company, index }) {
                 onHide={() => setCompanyViewModelState(false)}
                 data={company}
             />
-            <button className="btn btn-warning " style={{
+            <button className="btn btn-info " style={{
                 fontSize: "1.2em", fontWeight: "700", color: "darkblue",
             }} data-bs-toggle="button" onClick={() => setCompanyViewModelState(true)}>Show Company Details</button>
 
             {"guest" === userType && (
-                <button
+                <button style={{
+                fontSize: "1.2em", fontWeight: "700", color: "darkblue",}}
                     value={`/worker/application/${company.name}`}
                     onClick={redirectHandler}
                     className="btn btn-warning mx-3"
@@ -38,12 +39,13 @@ function CompanyDetails({ redirectHandler, userType, company, index }) {
                 >
                     Place Order
                 </button>
-                <button
+                <button style={{
+                fontSize: "1.2em", fontWeight: "700", color: "lightblue",}}
                     value={`/customer/subscription-from/${company.name}`}
                     onClick={redirectHandler}
-                    className="btn btn-warning mx-3"
+                    className="btn btn-danger mx-3"
                 >
-                    Take subscription
+                    Take Subscription
                 </button>
                 </>
             )}

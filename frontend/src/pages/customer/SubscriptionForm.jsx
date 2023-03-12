@@ -4,6 +4,7 @@ import { addSubscription } from "../../actions/customer/addSubscription";
 import MultiToast from "../../actions/shared/MultiToast";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllSubscription } from "../../actions/shared/subscription";
+import "./subscription.css"
 
 export default function SubscriptionForm() {
   const { cookies } = useContext(CookiesContext);
@@ -21,7 +22,7 @@ export default function SubscriptionForm() {
   const handleChange = e => {
     const { name, value } = e.target;
     setSubObj(prevState => ({ ...prevState, [name]: value }));
-  };git
+  };
 
   useEffect(()=>{
     (async()=>{
@@ -51,16 +52,15 @@ export default function SubscriptionForm() {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      Start date:{" "}
-      <input
+    <form class="subsc" onSubmit={handleSubmit}>
+      <label>  Start Date:{" "} </label>
+      <input  class="subsc" 
         type="date"
         name="start_date"
         value={subObj.start_date}
-        onChange={handleChange}
-      />
-      how many days:{" "}
-      <input
+        onChange={handleChange}/>
+      <label>How Many Days:{" "}</label>
+      <input class="subsc" 
         type="number"
         name="remaining_days"
         max={30}
@@ -68,8 +68,8 @@ export default function SubscriptionForm() {
         value={subObj.remaining_days}
         onChange={handleChange}
       />
-      Quantity:{" "}
-      <input
+      <label>Quantity:{" "}</label>
+      <input class="subsc" 
         type="number"
         name="quantity"
         value={subObj.quantity}
@@ -80,13 +80,13 @@ export default function SubscriptionForm() {
         onChange={handleChange}
         value={subObj.water_type}
       >
-        <option value="">water type</option>
-        <option value="hotWater">hot water</option>
-        <option value="coldWater">cold water</option>
-        <option value="normalWater">normal water</option>
+        <option value="">Water Type</option>
+        <option value="hotWater">Hot Water</option>
+        <option value="coldWater">Cold Water</option>
+        <option value="normalWater">Normal Water</option>
       </select>
-      companyname : <input type="text" name="companyname" value={company_name} readOnly={true} />
-      <button type="submit">subscrie</button>
+      <label>Company_Name :</label> <input  class="subsc" type="text" name="companyname" value={company_name} readOnly={true} />
+      <button type="submit">Subscribe</button>
     </form>
   );
 }

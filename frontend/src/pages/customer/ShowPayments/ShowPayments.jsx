@@ -49,7 +49,7 @@ function ShowPayments() {
                 { loading ? <Spinner />:
                     paymentList.map((payment, index) => (
                         <div key={index}>
-                            <h3>company name :- {payment.company_name}</h3>
+                            <h3>Company Name :- {payment.company_name}</h3>
                             <Payment payment={payment} />
                         </div>
                     ))

@@ -75,24 +75,29 @@ export default function Placeorder() {
             
             <div>
                 <form action="post">
-                    <label htmlFor="water_type">Choose a water type:</label>
-
+                    <div style={{textAlign:"center"}}>
+                    <label htmlFor="water_type" className='mt-3' style={{fontSize:"1.3em"}}>Choose a Water Type: &nbsp;</label>
                     <select name="water_type" onChange={handleInputData} value={orderData.water_type}>
-                        <option value="">water type</option>
-                        <option value="hotWater">hot water</option>
-                        <option value="coldWater">cold water</option>
-                        <option value="normalWater">normal water</option>
+                        <option value="">Water type</option>
+                        <option value="hotWater">Hot Water</option>
+                        <option value="coldWater">Cold Water</option>
+                        <option value="normalWater">Normal Water</option>
                     </select>
-
-                    water quantity :
+                    </div>
+                    <div style={{textAlign:"center",fontSize:"1.3em"}} className='mt-3' >
+                        <label> Quantity : &nbsp; </label>
                     <input type="text" name="water_quantity" value={orderData.water_quantity} onChange={handleInputData} />
-
+                    </div>
+                    <br></br>
                     {/* address */}
                     <AddressDetailsForm address={addressData} setAddress={setInputAddress} />
-
-                    companyname : <input type="text" name="companyname" value={orderData.companyname} readOnly={true} />
-
-                    <button type="submit" onClick={handleSubmit}>submit</button>
+                    <div style={{textAlign:"center",fontSize:"1.3em"}}>
+                     <label> Company_Name : &nbsp; <input type="text" name="companyname" value={orderData.companyname} readOnly={true} /> </label>
+                    </div>
+                    <br></br>
+                    <div style={{textAlign:"center",color: "#0077be",}}>
+                    <button type="submit"  class="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                    </div>
                 </form>
             </div>
         </Layout>

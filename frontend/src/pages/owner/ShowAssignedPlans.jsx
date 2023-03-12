@@ -55,14 +55,14 @@ export default function ShowAssignedPlans() {
       {!spinner && customerPlans.length > 0 ? (
         customerPlans.map((plans, index) => {
           return (
-            <div key={index}>
-              <p>Plan {index}</p>
+            <div key={index} >
+              <label style={{fontSize:"1.6em",fontWeight:"500",color:"#1E88E5"}}>&nbsp; Plan {index} &nbsp;</label>
               <PlanViewModel
                 show={planViewModelState}
                 onHide={() => setPlanViewModelState(false)}
                 data={{plan:plans, customer:customers[index], userType:"owner", worker:workers[index]}}
             />
-             <button className="btn btn-warning" onClick={() => setPlanViewModelState(true)}>Plan details</button>
+             <button className="btn btn-warning" style={{fontSize:"1.2em",fontWeight:"700",paddingLeft:"15",color:"darkblue"}}onClick={() => setPlanViewModelState(true)}>Plan details</button>
             </div>
           );
         })

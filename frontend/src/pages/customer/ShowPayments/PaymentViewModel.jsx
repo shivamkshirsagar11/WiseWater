@@ -22,15 +22,11 @@ const PaymentViewModel = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <p className="data-row">
-                    <span className="key">contact No : </span>{" "}
+                    <span className="key">Contact No : </span>{" "}
                     <span className="value"> {data.contact} </span>
                 </p>
                 <ShowPayment payment={payment}/>
-                <hr />
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
         </Modal>
     );
 };

@@ -52,7 +52,7 @@ export default function ShowAssignedOrders() {
                             delete assignedOrder.status;
                             return (
                                 <div key={index}>
-                                    <h2>order number {index}</h2>
+                                    <h2>Order Number {index}</h2>
                                     <ShowOrder order={assignedOrder} />
                                 </div>
                             )

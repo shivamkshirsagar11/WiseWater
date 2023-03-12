@@ -41,7 +41,7 @@ export default function Login() {
         backgroundColor: '#10a2ff',
     };
     const hea = {
-        backgroundColor: "#64B5F6",
+        backgroundColor: "#90CAF9",
         padding: "12px",
         textAlign: "center",
         // backgroundImage: "water",
