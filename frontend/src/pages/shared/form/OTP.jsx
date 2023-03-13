@@ -56,7 +56,7 @@ function OTP({ userData, userType, setCookies, register, requiredCookie, navigat
           <h1 className="text-center mb-5">Verify Your Account</h1>
           <form>
             <div className="form-group">
-              <label for="verification-code">Enter Verification Code:</label>
+              <label for="verification-code">Enter OTP:</label>
               <br></br>
               <input style={{ lineHeight: "1.5" }} type="text" name="otp" value={otp} onChange={handleInput} className="form-control" id="verification-code" placeholder="XXXXXX" />
             </div>

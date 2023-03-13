@@ -41,18 +41,29 @@ function ShowPayments() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cookies]);
 
-
+    const styles = {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "70vh",
+      }
     return (
         <>
             <Layout userType='customer'>
 
                 { loading ? <Spinner />:
-                    paymentList.map((payment, index) => (
+                <>
+                    {paymentList.length === 0 && <div style={styles}>
+                    <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>Oops !! No Payment Details</h1>
+                    </div>}
+                    {paymentList.map((payment, index) => (
                         <div key={index}>
                             <h3>Company Name :- {payment.company_name}</h3>
                             <Payment payment={payment} />
                         </div>
                     ))
+                    }
+                </>
                 }
             </Layout>
         </>

@@ -133,7 +133,7 @@ function ShowWorkerApplications() {
                                         searchedWorkerApplications.map((workerApplication, index) => {
                                             return (
                                                 <div key={index}>
-                                                    <h3 style={{ textAlign: "center", fontWeight: "600", fontFamily: "monospace" }}>Application {index}</h3>
+                                                    <h3 style={{ textAlign: "center", fontWeight: "600", fontFamily: "monospace" }}>Application {index+1}</h3>
                                                     <UserDetails userData={workerApplication} />
                                                     <div style={{ textAlign: "center" }}>
                                                         <button className="btn btn-warning" onClick={handleHiring} style={{ fontSize: "1.2em", fontWeight: "700", color: "darkblue", textAlign: "center" }} value={index}>Hire Worker</button>

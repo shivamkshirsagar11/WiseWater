@@ -90,7 +90,7 @@ function CompanyDetailsForm({ companyData, setCompanyData }) {
         <span className="input-group-text">.00</span>
       </div>
       <div className="input-group mb-3">
-        <span className="input-group-text">Normal Water</span>
+        <span className="input-group-text">Hot Water</span>
         <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" name="hotWater" onChange={setWaterPrice} value={waterPrice.hotWater} />
         <span className="input-group-text">.00</span>
       </div>

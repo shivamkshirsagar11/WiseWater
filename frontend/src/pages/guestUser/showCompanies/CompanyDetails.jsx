@@ -7,15 +7,15 @@ function CompanyDetails({ redirectHandler, userType, company, index }) {
     const [companyViewModelState, setCompanyViewModelState] = useState(false);
     return (
         <div key={index} className="container">
-            <h5 style={{ color: "#1a237e", fontSize: "1.5rem", fontWeight: "700" }}>
+            <label style={{ color: "#1a237e", fontSize: "1.5rem", fontWeight: "700" }}>
                 {company.name}
-            </h5>
+            </label>
             <CompanyViewModel
                 show={companyViewModelState}
                 onHide={() => setCompanyViewModelState(false)}
                 data={company}
             />
-            <button className="btn btn-info " style={{
+            <button className="btn btn-info ml-4 mt-1" style={{
                 fontSize: "1.2em", fontWeight: "700", color: "darkblue",
             }} data-bs-toggle="button" onClick={() => setCompanyViewModelState(true)}>Show Company Details</button>
 
