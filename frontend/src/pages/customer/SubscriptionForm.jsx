@@ -5,10 +5,12 @@ import MultiToast from "../../actions/shared/MultiToast";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllSubscription } from "../../actions/shared/subscription";
 import "./subscription.css"
+import { DateTime } from "luxon";
 
 export default function SubscriptionForm() {
   const { cookies } = useContext(CookiesContext);
   const { token } = cookies;
+  const [notFound, setNotFound] = useState(true)
   console.log(token);
   const { company_name } = useParams();
   const [subObj, setSubObj] = useState({
@@ -21,7 +23,18 @@ export default function SubscriptionForm() {
   const navigate = useNavigate();
   const handleChange = e => {
     const { name, value } = e.target;
-    setSubObj(prevState => ({ ...prevState, [name]: value }));
+    if (name == "start_date"){
+      let curr_date = DateTime.local();
+      var p = value.split('-');
+      var sd = DateTime.fromFormat(`${p[1]}-${p[2]}-${p[0]}`, 'MM-dd-yyyy');
+      if (sd >= curr_date){
+        setSubObj(prevState => ({ ...prevState, [name]: value }));
+      }
+      else{
+        setSubObj(prevState => ({ ...prevState, [name]: '' }));
+      }
+    }
+    else setSubObj(prevState => ({ ...prevState, [name]: value }));
   };
 
   useEffect(() => {
@@ -30,6 +43,9 @@ export default function SubscriptionForm() {
       if (response.found) {
         MultiToast('you already have subscription', false);
         navigate('/customer/profile');
+      }
+      else{
+        setNotFound(false);
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,15 +68,17 @@ export default function SubscriptionForm() {
     }
   };
   return (
-    <form class="subsc" onSubmit={handleSubmit}>
+    <>
+    {
+      !notFound && <form className="subsc" onSubmit={handleSubmit}>
       <label>  Start Date:{" "} </label>
-      <input  class="subsc" 
+      <input
         type="date"
         name="start_date"
         value={subObj.start_date}
         onChange={handleChange}/>
       <label>How Many Days:{" "}</label>
-      <input class="subsc" 
+      <input className="subsc" 
         type="number"
         name="remaining_days"
         max={30}
@@ -69,7 +87,7 @@ export default function SubscriptionForm() {
         onChange={handleChange}
       />
       <label>Quantity:{" "}</label>
-      <input class="subsc" 
+      <input className="subsc" 
         type="number"
         name="quantity"
         value={subObj.quantity}
@@ -85,8 +103,10 @@ export default function SubscriptionForm() {
         <option value="coldWater">Cold Water</option>
         <option value="normalWater">Normal Water</option>
       </select>
-      <label>Company_Name :</label> <input  class="subsc" type="text" name="companyname" value={company_name} readOnly={true} />
+      <label>Company_Name :</label> <input  className="subsc" type="text" name="companyname" value={company_name} readOnly={true} />
       <button type="submit">Subscribe</button>
     </form>
+    }
+    </>
   );
 }

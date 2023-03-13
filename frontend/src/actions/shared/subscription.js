@@ -20,7 +20,8 @@ const getAllSubscription = async (userType,urlParam, token) => {
     }
       if (undefined !== data.error) throw data.error.errorMessage;
       else {
-        const found = data.plans != undefined ?true:false
+        const found = data.plans != undefined ?data.plans.length>0:false
+        console.log("from action get all subscription: ",found, data.plans)
         return {
           type: "data",
           plans:data.plans,
