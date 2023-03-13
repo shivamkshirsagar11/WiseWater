@@ -23,7 +23,7 @@ export default function SubscriptionForm() {
   const navigate = useNavigate();
   const handleChange = e => {
     const { name, value } = e.target;
-    if (name == "start_date"){
+    if (name === "start_date"){
       let curr_date = DateTime.local();
       var p = value.split('-');
       var sd = DateTime.fromFormat(`${p[1]}-${p[2]}-${p[0]}`, 'MM-dd-yyyy');

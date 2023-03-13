@@ -1,7 +1,7 @@
 import subscriptionModel from "../../models/subscriptionModel.js";
 import customerModel from "../../models/customerModel.js";
 import workerModel from "../../models/workerModel.js";
-import {todayDatePlusNDays} from "../../utility/Date.js"
+import {formateStartDate, getStartDatePlus} from "../../utility/Date.js"
 import ownerModel from "../../models/ownerModel.js";
 async function getAllCustomerPlans(req, res) {
     try{
@@ -31,26 +31,24 @@ async function getAllCustomerPlans(req, res) {
 
 async function assignPlan(req, res) {
     try{
-        const tomorrow = todayDatePlusNDays(1);
-        
+        console.log("in owner assign plan")
         const {worker_id, order_id} = req.body;
-
+        
         const order = await subscriptionModel.findOne({ order_id });
-
 		if (null === order) {
-			res.status(404).json({
-				error: {
-					errorMessage: ['Error or getting item']
+            res.status(404).json({
+                error: {
+                    errorMessage: ['Error or getting item']
 				}
 			})
 		}
-        console.log(order_id, order)
+        const startDate = formateStartDate(order.start_date)
+        const next_date = getStartDatePlus(startDate, 1);
         const updatedSubscription = await subscriptionModel.updateOne({order_id},{$set:{
             worker_id:worker_id,
             status:"assigned",
-            next_date:tomorrow
+            next_date:next_date
         }})
-        console.log(updatedSubscription)
         if (updatedSubscription){
             res.status(200).json({
                 updated:true

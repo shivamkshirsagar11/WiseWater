@@ -65,7 +65,7 @@ const PlanViewModel = (props) => {
       <hr/>
       </>
       }{
-        worker && userType === "owner" &&
+        worker && (userType === "owner" || userType === "customer") &&
         <>
         <h5>
           Worker Details

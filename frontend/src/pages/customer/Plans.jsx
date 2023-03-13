@@ -12,6 +12,7 @@ export default function Plans() {
   const [spinner, setSpinner] = useState(true);
   
   const [customerPlans, setCustomerPlans] = useState(true);
+  const [worker, setWorker] = useState(true);
   const [planViewModelState, setPlanViewModelState] = useState(false);
   const { cookies } = useContext(CookiesContext);
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ export default function Plans() {
       }
       console.log(response);
       setCustomerPlans(response.plans);
+      setWorker(response.workers)
       console.log(response.plans);
     };
     fetchData();
@@ -61,7 +63,7 @@ export default function Plans() {
                 <PlanViewModel
                   show={planViewModelState}
                   onHide={() => setPlanViewModelState(false)}
-                  data={{ plan: plans, userType: "customer" }}
+                  data={{ plan: plans, userType: "customer", worker:worker[0]}}
                 />
                 <button className="btn btn-info" style={{fontSize: "1.2em", fontWeight: "700", color: "darkblue"}} onClick={() => setPlanViewModelState(true)}>Plan Details</button>
               </div>
