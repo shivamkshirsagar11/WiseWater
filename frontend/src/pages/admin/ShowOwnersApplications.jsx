@@ -65,8 +65,10 @@ function ShowOwnersApplications() {
                         {
                             owners.map((owner, index) => (
                                 <div key={index}>
+                                    <div className='container'>
                                     <UserDetails user={owner.ownerData} companyData={owner.companyData} userType='owner' key={index} />
-                                    <button value={owner.ownerData._id} onClick={onClickHandler}>accept</button>
+                                    <button class="btn btn-warning display-inline ml-3 "  style={{fontSize:"1.2em",fontWeight:"500"}} value={owner.ownerData._id} onClick={onClickHandler}>Accept</button>
+                                    </div>
                                 </div>
                             ))
                         }
