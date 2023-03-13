@@ -14,25 +14,25 @@ export async function hireWorker(req, res) {
     const password = passwordGen(10);
     workerApplication.password = await hash(password, 10);
     try {
-        const {company_name} = await OwnerModel.findOne({_id:req.userid}, { password: 0 });
-        const companyDetails = await CompanyModel.findOne({name:company_name});
+        const { company_name } = await OwnerModel.findOne({ _id: req.userid }, { password: 0 });
+        const companyDetails = await CompanyModel.findOne({ name: company_name });
         const checkWorkerApplication = await WorkerApplicationModel.find({ company_name: company_name, email: workerApplication.email }, { _id: 0 });
         if (checkWorkerApplication) {
             const nextDayToWork = "You can start working from nect monday.";
             const isSent = await sendHiringEmail(workerApplication.email, password, companyDetails.email, companyDetails.name, `${workerApplication.firstname} ${workerApplication.lastname}`, nextDayToWork, `${companyDetails.address.line1}, ${companyDetails.address.line2}, ${companyDetails.address.city}, ${companyDetails.address.pincode}`);
-            if(isSent){
+            if (isSent) {
                 const worker = await WorkerModel.create({
                     ...workerApplication
                 });
                 // when owner hire a worker
                 // the all applications related to that user will be removed from workerApplication collection
                 const val = await WorkerApplicationModel.deleteMany({ $or: [{ email: worker.email }, { contact: worker.contact }] });
-                
+
                 res.status(200).json({
                     message: 'success',
                 });
             }
-            else{
+            else {
                 res.status(500).json({
                     error: {
                         errorMessage: ['Interanl Server Error']

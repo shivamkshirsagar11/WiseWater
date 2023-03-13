@@ -16,7 +16,7 @@ export async function showAssignedOrders(req, res) {
             delete order_details.worker_id
             delete order_details.address._id
 
-            return { customer_data, worker_data, ...order_details };
+            return { customer_data, ...order_details };
         });
         console.log(assignedOrdersWithRenamedField)
 

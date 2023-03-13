@@ -19,7 +19,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
       subject: "Hired For Job",
       attachments: [{
         filename: '1.png',
-        path: `D:\\SDP\\WiseWater\\backend\\utility\\media\\image-4.png`,
+        path: process.env.emailLogo,
         cid: 'image@1' //same cid value as in the html img src
       }],
       html: `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
