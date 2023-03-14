@@ -86,7 +86,7 @@ function ShowWorkerApplications() {
         console.log(workerApplication);
         const response = await hireWorker(token, workerApplication);
         if ('error' === response.type) {
-            alert(response.error);
+            MultiToast(response.error, true);
         } else {
             const response = await giveWorkerApplications(token);
             workerApplications.current = [response.workerApplications];

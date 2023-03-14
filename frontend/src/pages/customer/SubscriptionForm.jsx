@@ -27,7 +27,7 @@ export default function SubscriptionForm() {
       let curr_date = DateTime.local();
       var p = value.split('-');
       var sd = DateTime.fromFormat(`${p[1]}-${p[2]}-${p[0]}`, 'MM-dd-yyyy');
-      if (sd >= curr_date){
+      if (sd >= curr_date || (sd.day === curr_date.day && sd.month === curr_date.month && sd.year === curr_date.year)){
         setSubObj(prevState => ({ ...prevState, [name]: value }));
       }
       else{

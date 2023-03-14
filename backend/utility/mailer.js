@@ -2,7 +2,6 @@
 import { createTransport } from "nodemailer";
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config();
-
 export async function sendHiringEmail(to, password, companyEmail, companyName, workerName, startDayTime, address) {
   try {
     let transporter = createTransport({
@@ -316,7 +315,7 @@ export async function sendHiringEmail(to, password, companyEmail, companyName, w
       </div>
 
       <div style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <h4 style="font-size: 14px; line-height: 140%;color:red;"><strong>Password: </strong>&nbsp;<span style="color: white; font-size: 14px; line-height: 19.6px;">${password}</span></h4>
+        <h4 style="font-size: 14px; line-height: 140%;color:red;"><strong>Password: </strong>&nbsp;<span style="color: red; font-size: 14px; line-height: 19.6px;">${password}</span></h4>
       </div>
     
           </td>

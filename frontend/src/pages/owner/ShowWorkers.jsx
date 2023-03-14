@@ -50,7 +50,7 @@ export default function ShowWorkers() {
         navigate('/owner/show-pending-orders');
       }
     } catch (error) {
-      alert(error);
+      MultiToast(error, true);
     }
   };
   return (

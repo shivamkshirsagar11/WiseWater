@@ -25,7 +25,7 @@ export default function AssignPlan() {
         navigate('/');
       }
       if ('error' === response.type) {
-        alert(response.error);
+        MultiToast(response.error, true);
       } else {
         console.log(response.workers);
         setShowWorkers(response.workers);

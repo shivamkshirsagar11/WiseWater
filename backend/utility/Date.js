@@ -16,7 +16,7 @@ function getNextMondayFromToday(){
     let givenWeekDay = date.weekday;
     let addWeekDay = 8 - givenWeekDay;
     if (givenWeekDay > 1){
-        temp = date.plus({days:addWeekDay})
+        let temp = date.plus({days:addWeekDay})
         date = temp
     }
     return `${date.day<10?'0'+String(date.day):date.day}/${date.month<10?'0'+String(date.month):date.month}/${date.year}`;

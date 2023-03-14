@@ -6,7 +6,7 @@ import { passwordGen } from '../../utility/passwordGenerator.js';
 import { sendHiringEmail } from '../../utility/mailer.js';
 import CompanyModel from '../../models/companyModel.js';
 import OwnerModel from '../../models/ownerModel.js';
-
+import {getNextMondayFromToday} from '../../utility/Date.js'
 export async function hireWorker(req, res) {
 
     const workerApplication = { ...req.body.workerApplication };
@@ -18,7 +18,7 @@ export async function hireWorker(req, res) {
         const companyDetails = await CompanyModel.findOne({ name: company_name });
         const checkWorkerApplication = await WorkerApplicationModel.find({ company_name: company_name, email: workerApplication.email }, { _id: 0 });
         if (checkWorkerApplication) {
-            const nextDayToWork = "You can start working from nect monday.";
+            const nextDayToWork = `You can start working from ${getNextMondayFromToday()}, Monday`;
             const isSent = await sendHiringEmail(workerApplication.email, password, companyDetails.email, companyDetails.name, `${workerApplication.firstname} ${workerApplication.lastname}`, nextDayToWork, `${companyDetails.address.line1}, ${companyDetails.address.line2}, ${companyDetails.address.city}, ${companyDetails.address.pincode}`);
             if (isSent) {
                 const worker = await WorkerModel.create({
