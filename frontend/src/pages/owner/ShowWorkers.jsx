@@ -53,10 +53,19 @@ export default function ShowWorkers() {
       MultiToast(error, true);
     }
   };
+  const styles = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "70vh",
+  }
   return (
     <Layout userType={'owner'}>
       {loading ? <Spinner /> :
         <>
+        {showWorkers.length === 0 && <div style={styles}>
+                    <h1 style={{ color: "#b33800", fontWeight: "500", fontSize: "4rem", textAlign: "center" }}>Currently , No Worker Available</h1>
+                    </div>}
           {showWorkers.map((worker, index) => {
             return (
               <div key={index}>
