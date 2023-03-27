@@ -14,8 +14,8 @@ function Payment({ payment }) {
                 onHide={() => setOrderViewModelState(false)}
                 data={payment}
             />
-            <button class="btn btn-info" style={{fontSize:"1.2em",fontWeight:"700",color:"darkblue"}}onClick={() => setOrderViewModelState(true)}>Show Order Details</button>
-        </div>
+            <button className="btn btn-info" style={{ fontSize: "1.2em", fontWeight: "700", color: "darkblue" }} onClick={() => setOrderViewModelState(true)}>Show Order Details</button>
+        </div >
     )
 }
 

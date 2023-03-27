@@ -60,16 +60,16 @@ export default function ShowWorkers() {
           {showWorkers.map((worker, index) => {
             return (
               <div key={index}>
-              <div className="mt-3 ml-3">
-                <label>{worker.firstname} &nbsp; </label>
-                <button class="btn btn-success mt-2 ml-3 "onClick={assignHandler} value={worker._id}>
-                  Assign Order
-                </button>
+                <div className="mt-3 ml-3">
+                  <label>{worker.firstname} &nbsp; </label>
+                  <button className="btn btn-success mt-2 ml-3 " onClick={assignHandler} value={worker._id}>
+                    Assign Order
+                  </button>
                 </div>
               </div>
             );
           })}
         </>}
-    </Layout>
+    </Layout >
   );
 }

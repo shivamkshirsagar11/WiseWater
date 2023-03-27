@@ -72,34 +72,34 @@ export default function Placeorder() {
 
     return (
         <Layout userType={'customer'}>
-            
+
             <div>
                 <form action="post">
-                    <div style={{textAlign:"center"}}>
-                    <label htmlFor="water_type" className='mt-3' style={{fontSize:"1.3em"}}>Choose a Water Type: &nbsp;</label>
-                    <select name="water_type" onChange={handleInputData} value={orderData.water_type}>
-                        <option value="">Water type</option>
-                        <option value="hotWater">Hot Water</option>
-                        <option value="coldWater">Cold Water</option>
-                        <option value="normalWater">Normal Water</option>
-                    </select>
+                    <div style={{ textAlign: "center" }}>
+                        <label htmlFor="water_type" className='mt-3' style={{ fontSize: "1.3em" }}>Choose a Water Type: &nbsp;</label>
+                        <select name="water_type" onChange={handleInputData} value={orderData.water_type}>
+                            <option value="">Water type</option>
+                            <option value="hotWater">Hot Water</option>
+                            <option value="coldWater">Cold Water</option>
+                            <option value="normalWater">Normal Water</option>
+                        </select>
                     </div>
-                    <div style={{textAlign:"center",fontSize:"1.3em"}} className='mt-3' >
+                    <div style={{ textAlign: "center", fontSize: "1.3em" }} className='mt-3' >
                         <label> Quantity : &nbsp; </label>
-                    <input type="text" name="water_quantity" value={orderData.water_quantity} onChange={handleInputData} />
+                        <input type="text" name="water_quantity" value={orderData.water_quantity} onChange={handleInputData} />
                     </div>
                     <br></br>
                     {/* address */}
                     <AddressDetailsForm address={addressData} setAddress={setInputAddress} />
-                    <div style={{textAlign:"center",fontSize:"1.3em"}}>
-                     <label> Company_Name : &nbsp; <input type="text" name="companyname" value={orderData.companyname} readOnly={true} /> </label>
+                    <div style={{ textAlign: "center", fontSize: "1.3em" }}>
+                        <label> Company_Name : &nbsp; <input type="text" name="companyname" value={orderData.companyname} readOnly={true} /> </label>
                     </div>
                     <br></br>
-                    <div style={{textAlign:"center",color: "#0077be",}}>
-                    <button type="submit"  class="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                    <div style={{ textAlign: "center", color: "#0077be", }}>
+                        <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
                     </div>
                 </form>
-            </div>
-        </Layout>
+            </div >
+        </Layout >
     )
 }

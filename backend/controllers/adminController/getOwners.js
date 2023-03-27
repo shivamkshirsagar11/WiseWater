@@ -3,7 +3,7 @@ import OwnerModel from '../../models/ownerModel.js';
 
 const getOwners = async (req, res) => {
     try {
-        const owners = await OwnerModel.find({}, { _id: 0, password: 0, latitude: 0, longitude: 0, __v: 0 });
+        const owners = await OwnerModel.find({status:'accepted'}, { _id: 0, password: 0, latitude: 0, longitude: 0, __v: 0 });
 
 
         const someFunction = (myArray) => {
