@@ -19,11 +19,13 @@ import { fetchCustomer } from '../controllers/ownerController/fetchCustomer.js';
 import { getPaymentDetails } from '../controllers/ownerController/getPaymentDetails.js';
 import { sendRecipt } from '../controllers/ownerController/sendRecipt.js';
 import { getAllCustomerPlans, assignPlan, getAllAssignedCustomerPlans } from '../controllers/ownerController/subscription.js';
+import { deleteWorkerApplication } from '../controllers/ownerController/deleteWorkerApplication.js';
 
 router.post('/register', registerUser);
 router.get('/profile', protect, profile);
 router.get('/showWorkerApplications', protect, showWorkerApplications);
 router.post('/hire-worker', protect, hireWorker);
+router.post('/delete-workerApplication', protect, deleteWorkerApplication);
 router.get('/show-pending-orders', protect, showPendingOrders);
 router.post('/assign-order', protect, assignOrder);
 router.get('/show-assigned-orders', protect, showAssignedOrders);

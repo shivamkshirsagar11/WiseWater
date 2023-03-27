@@ -8,6 +8,7 @@ import UserDetails from '../shared/details/UserDetails.jsx';
 import MultiToast from '../../actions/shared/MultiToast.js';
 import Layout from '../shared/Layout/Layout.jsx';
 import { CookiesContext } from '../../context/CookiesProvider.js';
+import { deleteWorkerApplication } from '../../actions/owner/deleteWorkerApplication.js';
 
 //  not 100% sure how this code works
 // REASON :- useEffect with useRef
@@ -94,6 +95,21 @@ function ShowWorkerApplications() {
             setQuery('');
         }
     }
+    const deleteWorkerApplications = async (e) => {
+        e.preventDefault();
+
+        const workerApplication = { ...searchedWorkerApplications[e.target.value] };
+        console.log(workerApplication);
+        const response = await deleteWorkerApplication(token, workerApplication);
+        if ('error' === response.type) {
+            MultiToast(response.error, true);
+        } else {
+            const response = await giveWorkerApplications(token);
+            workerApplications.current = [response.workerApplications];
+            setSearchedWorkerApplications(response.workerApplications);
+            setQuery('');
+        }
+    }
     const styles = {
         display: "flex",
         justifyContent: "center",
@@ -133,10 +149,13 @@ function ShowWorkerApplications() {
                                         searchedWorkerApplications.map((workerApplication, index) => {
                                             return (
                                                 <div key={index}>
-                                                    <h3 style={{ textAlign: "center", fontWeight: "600", fontFamily: "monospace" }}>Application {index+1}</h3>
+                                                    <h3 style={{ textAlign: "center", fontWeight: "600", fontFamily: "monospace" }}>Application {index + 1}</h3>
                                                     <UserDetails userData={workerApplication} />
                                                     <div style={{ textAlign: "center" }}>
                                                         <button className="btn btn-warning" onClick={handleHiring} style={{ fontSize: "1.2em", fontWeight: "700", color: "darkblue", textAlign: "center" }} value={index}>Hire Worker</button>
+                                                    </div>
+                                                    <div style={{ textAlign: "center" }}>
+                                                        <button className="btn btn-warning" onClick={deleteWorkerApplication} style={{ fontSize: "1.2em", fontWeight: "700", color: "darkblue", textAlign: "center" }} value={index}>reject worker application</button>
                                                     </div>
                                                 </div>
                                             )
