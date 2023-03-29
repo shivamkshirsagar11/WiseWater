@@ -50,12 +50,12 @@
 
 
 
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 // import "./PaymentViewModel.css";
 
 const UserViewModel = (props) => {
-    const { onHide, user, userType } = props;
+    const {user, userType } = props;
     console.log(userType)
     console.log(user)
     return (
