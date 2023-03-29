@@ -38,12 +38,12 @@ async function delieverDaily(req, res){
         const {remaining_days} = ord;
         const tomorrow = todayDatePlusNDays(1);
         const updated = await subscriptionModel.updateOne({_id:orderId},{$set:{next_date:tomorrow, remaining_days:remaining_days-1}})
-        console.log("in deliever order")
+        console.log("in deliever order", orderId, remaining_days)
         console.log(updated);
         if(remaining_days - 1 === 0){
-            const deleted = await subscriptionModel.deleteOne({orderId})
+            const deleted = await subscriptionModel.deleteOne({_id:orderId})
             if(deleted){
-                console.log("order deleted")
+                console.log("order deleted", deleted)
             }
         }
         if(updated){

@@ -61,8 +61,8 @@ export default function AssignPlan() {
             showWorkers.map((worker, index) => {
               return (
                 <div key={index}>
-                  <p>{worker.firstname}</p>
-                  <button onClick={assignHandler} value={worker._id}>
+                  <h3>{worker.firstname}</h3>
+                  <button className='btn btn-info'onClick={assignHandler} value={worker._id}>
                     assign order
                   </button>
                 </div>

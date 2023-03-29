@@ -14,7 +14,7 @@ export async function BillMailer(mobile, mailId) {
     from: 'wisewater.helpdesk.info@gmail.com',
     to: mailId,
     subject: "Invoice",
-    html: "<b>We will get this kind of pdf in invoice for billing.</b>",
+    html: "<b>Your Payment is Successfull<br> Please find attached reciept.</b>",
     attachments: [{
       filename: 'Invoice_Bill.pdf',
       path: `PDF/${mobile}.pdf`,

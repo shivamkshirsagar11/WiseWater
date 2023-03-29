@@ -70,12 +70,12 @@ export default function CustomerPlans() {
             />
             <button className="btn-btn-primary"
               onClick={()=>setPlanViewModelState(true)}
-              style={{fontSize: "1.2em", fontWeight: "700", color: "darkblue",paddingLeft:"16px"}}
+              className='btn btn-info'
             >Plan Details </button>
               <button className="btn-btn-primary"
               onClick={redirectHandler}
               value={`/owner/assign-plan/${plans._id}`}
-              style={{fontSize: "1.2em", fontWeight: "700", color: "darkblue",paddingLeft:"16px",marginLeft:"11"}}
+              className='btn btn-success ml-3'
             >Assign</button>
             </div>
           );
