@@ -39,7 +39,7 @@ function UserDetailsForm({ userData, setUserData }) {
         />
       </div>
       <div className="mb-3">
-        <label for="exampleFormControlInput1 " className="form-label">
+        <label htmlFor="exampleFormControlInput1 " className="form-label">
           Email
         </label>
         <input
@@ -53,7 +53,7 @@ function UserDetailsForm({ userData, setUserData }) {
         />
       </div>
       <div className="mb-3">
-        <label for="exampleFormControlInput4" className="form-labe1">
+        <label htmlFor="exampleFormControlInput4" className="form-labe1">
           Contact
         </label>
         <input
@@ -67,7 +67,7 @@ function UserDetailsForm({ userData, setUserData }) {
         />
       </div>
       <div className="mb-3">
-        <label for="exampleFormControlInput4" className="form-labe1">
+        <label htmlFor="exampleFormControlInput4" className="form-labe1">
           Password
         </label>
         <input
@@ -81,7 +81,7 @@ function UserDetailsForm({ userData, setUserData }) {
         />
       </div>
       <div className="mb-3">
-        <label for="exampleFormControlInput4" className="form-labe1">
+        <label htmlFor="exampleFormControlInput4" className="form-labe1">
           Confirm Password
         </label>
         <input

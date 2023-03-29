@@ -3,7 +3,7 @@ import Company from '../../models/companyModel.js';
 export async function showCompanies(req, res) {
 
     try {
-        const companies = await Company.find({}, { _id: 0 });
+        const companies = await Company.find({ status: "accepted" }, { _id: 0 });
         console.log('from show companies controller')
         console.log('print companies array')
         console.log(companies)

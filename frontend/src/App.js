@@ -42,8 +42,7 @@ import Profile from "./pages/shared/profile/Profile.jsx";
 
 import NotFound from "./pages/NotFound.jsx";
 import CookiesProvider from './context/CookiesProvider.js'
-import Temp from "./pages/Temp.jsx";
-import AdminPage from "./pages/admin/AdminPage.jsx";
+import AdminLogin from "./pages/admin/AdminLogin.jsx";
 import ShowOwners from "./pages/admin/ShowUsers/ShowOwners/ShowOwners.jsx";
 import ShowCustomers from "./pages/admin/ShowUsers/ShowCustomers/ShowCustomers.jsx";
 import ShowOwnersApplications from "./pages/admin/ShowOwnersApplications.jsx";
@@ -60,15 +59,19 @@ function App() {
           <Route path="/">
 
             {/* admin */}
-            <Route path='/admin/login' element={<Temp />} />
+            <Route path='/admin/login' element={<AdminLogin />} />
             <Route
               path="/admin/show-customers"
               element={<ShowCustomers />}
             />
-            <Route
+            {/* <Route
               path="/adminPage"
-              element={<AdminPage userType='admin' />}
-            />
+              element={
+                <ProtectedRouter userType='admin'>
+                  <AdminPage userType='admin' />
+                </ProtectedRouter>
+              }
+            /> */}
             <Route
               path="/admin/show-owners"
               element={<ShowOwners />}

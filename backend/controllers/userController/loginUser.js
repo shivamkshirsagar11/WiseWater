@@ -42,6 +42,7 @@ export async function loginUser(req, res) {
         const user = await collection.findOne({ email }, { password: 1, _id: 1, status: 1 });
         console.log(user)
         if (user?.status === 'pending') {
+            console.log('hrere')
             res.status(400).json({
                 error: {
                     errorMessage: ['invalid credential']
@@ -49,14 +50,15 @@ export async function loginUser(req, res) {
             })
             return;
         }
+        console.log(user);
         if (user && (await compare(password, user.password))) {
-            console.log(user);
             const updateUser = await collection.updateOne({ _id: user._id }, { $set: { longitude: locationObj.longitude, latitude: locationObj.latitude } });
             console.log(updateUser)
             res.json({
                 token: generateJWTtoken(user._id, req.body.collectionName) // whty every time create new token
             });
         } else {
+            console.log('not compared')
             res.status(400).json({
                 error: {
                     errorMessage: ['invalid credential']
